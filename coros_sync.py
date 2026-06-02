@@ -3,8 +3,9 @@
 COROS Workout Sync — Tom's Training Plan
 
   cp .env.example .env          # COROS_EMAIL, COROS_PASSWORD, COROS_REGION
-  python coros_sync.py web      # edit plan_v1_8.html → click Sync
-  python coros_sync.py sync     # same from the terminal
+  npm run sync:setup            # once: venv + pip install
+  npm run sync:web              # edit plan_v1_8.html → click Sync
+  npm run sync                  # full resync from terminal
 
   python coros_sync.py import-plan
   python coros_sync.py push --week week_5

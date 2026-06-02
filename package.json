@@ -1,0 +1,11 @@
+{
+  "name": "coros-mcp",
+  "private": true,
+  "description": "COROS training plan sync — npm scripts wrap the Python CLI",
+  "scripts": {
+    "sync:setup": "bash scripts/sync-setup.sh",
+    "sync:web": "bash scripts/sync-web.sh",
+    "sync": "bash scripts/sync-run.sh sync",
+    "sync:import": "bash scripts/sync-run.sh import-plan"
+  }
+}

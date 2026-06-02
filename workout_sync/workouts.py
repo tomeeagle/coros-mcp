@@ -64,7 +64,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     },
     "race_maverick": _open_run("Maverick Peaks 10K", 75),
     "race_calver": _open_run("Calver Peak Fell Race 8K", 70),
-    "race_alport_16k": _open_run("Alport Adventure 16K trail", 120),
+    "race_outer_projects_12k": _open_run("Outer Projects 12K social run", 75),
     "race_bakewell": _open_run("Bakewell Pudding Race 10.4K", 80),
     "race_love_trails": _open_run("Love Trails Race", 150),
     "race_open": _open_run("Race day — open", 90),

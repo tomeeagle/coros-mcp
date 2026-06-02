@@ -2,6 +2,7 @@
 .env
 .playwright-mcp/
 .venv/
+node_modules/
 __pycache__/
 har/
 .idea/

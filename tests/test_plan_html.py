@@ -49,6 +49,12 @@ def test_map_run_club_and_race():
         "x",
         {},
     ) == ("race_calver", None)
+    assert _map_run_to_workout(
+        "Social trail run — 12K, starts Calver village",
+        "🏔️ Outer Projects 12K social",
+        "20260606",
+        {},
+    ) == ("race_outer_projects_12k", None)
 
 
 @pytest.mark.skipif(not PLAN.is_file(), reason="plan_v1_8.html not in repo")
@@ -63,7 +69,8 @@ def test_parse_full_plan():
     assert plan.schedule["20260608"] == "strength_wk2"
     assert plan.schedule["20260530"] == "race_maverick"
     assert plan.schedule["20260603"] == "race_calver"
-    assert plan.schedule["20260606"] == "race_alport_16k"
+    assert plan.schedule["20260606"] == "race_outer_projects_12k"
+    assert plan.schedule["20260606"] != "race_calver"
     assert plan.schedule["20260610"] == "run_club_8k"
     assert plan.schedule["20260628"] == "race_bakewell"
     assert plan.schedule["20260704"] == "race_love_trails"

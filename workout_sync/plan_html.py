@@ -167,16 +167,22 @@ def _map_run_to_workout(
 
     combined = f"{text} {note}"
 
+    # Outer Projects must win over "Calver" in location text (Sat 6 vs Wed 3 fell race).
+    if re.search(r"outer projects", combined, re.I):
+        return "race_outer_projects_12k", None
+    if re.search(r"social trail run", text, re.I):
+        return "race_outer_projects_12k", None
+
     race_rules: list[tuple[str, str]] = [
         (r"love trails race", "race_love_trails"),
         (r"bakewell pudding", "race_bakewell"),
-        (r"calver", "race_calver"),
+        (r"calver peak|calver fell race", "race_calver"),
+        (r"7:30pm start", "race_calver"),
         (r"maverick", "race_maverick"),
-        (r"alport adventure|group trail run", "race_alport_16k"),
         (r"race day|^race —", "race_open"),
     ]
     for pat, key in race_rules:
-        if re.search(pat, combined):
+        if re.search(pat, combined, re.I):
             return key, None
 
     skip_patterns = (

@@ -22,9 +22,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from workout_sync import schedules as sched_mod
-from workout_sync.auth import auth_status_message, load_dotenv
+from workout_sync.auth import auth_status_message, ensure_auth, load_dotenv
 from workout_sync.plan_html import DEFAULT_PLAN_PATH, parse_plan_html
 from workout_sync.sync import describe_session, full_resync, push_schedule, resolve_schedule
+import coros_api
 from workout_sync.workouts import WORKOUTS
 
 load_dotenv()
@@ -50,6 +51,38 @@ def cmd_list_workouts() -> None:
         print(f"  {key:22}  [{kind:8}]  {w['name']}")
     print(f"\n  Plan: {DEFAULT_PLAN_PATH.name}")
     print(f"  Auth: {auth_status_message()}\n")
+
+
+async def cmd_plan_status() -> int:
+    print("\n📍 Where COROS shows your synced workouts\n")
+    print("=" * 45)
+    print(coros_api.format_calendar_vs_library_help())
+    print()
+    try:
+        auth = await coros_api.try_auto_login() or coros_api.get_stored_auth()
+        if not auth:
+            auth = await ensure_auth()
+        cal = await coros_api.fetch_active_calendar_plan(auth)
+        print("Training calendar (where sync writes):")
+        print(f"  Name: {cal['name']}")
+        print(f"  Plan ID: {cal['plan_id']}")
+        print(f"  Sessions in range: {cal['entity_count']} ({cal['start_day']}–{cal['end_day']})")
+        print()
+        lib = await coros_api.fetch_training_plan_library(auth)
+        print(f"Training Plan Library ({len(lib)} template plan(s), not from this sync):")
+        for p in lib:
+            active = " · active" if p["in_schedule"] else ""
+            print(f"  • {p['name']}{active}")
+        print()
+        print("In the COROS app:")
+        print("  • Progress tab → calendar → pick a day (synced sessions live here)")
+        print("  • Profile → Training Plan Library → only the template plans listed above")
+        print("  • Watch: start Run → accept scheduled workout when prompted")
+    except Exception as exc:
+        print(f"❌ {exc}")
+        return 1
+    print()
+    return 0
 
 
 def cmd_import_plan(args: argparse.Namespace) -> int:
@@ -109,7 +142,11 @@ async def cmd_sync(args: argparse.Namespace) -> int:
         print(f"⚠️  {result['push_errors']} push error(s)")
     for line in result["messages"][-20:]:
         print(f"  {line}")
-    print("\nOpen COROS app → Training Plan → sync to watch.")
+    cal = result.get("calendar_plan") or {}
+    if cal.get("name"):
+        print(f"\nCalendar plan: {cal['name']} ({cal.get('entity_count', '?')} sessions in range)")
+    print(coros_api.format_calendar_vs_library_help())
+    print("\nTip: coros-mcp plan-status")
     return 1 if result["push_errors"] else 0
 
 
@@ -150,7 +187,7 @@ async def cmd_push(args: argparse.Namespace) -> int:
     print(f"✓ {success} synced")
     if errors:
         print(f"⚠️  {errors} failed")
-    print("\nOpen COROS app → Training Plan, then sync to your watch.")
+    print(f"\n{coros_api.format_calendar_vs_library_help()}")
     return 1 if errors else 0
 
 
@@ -170,6 +207,7 @@ def main() -> int:
 
     sub.add_parser("list-weeks", help="Show week keys for --week")
     sub.add_parser("list-workouts", help="Show workout keys")
+    sub.add_parser("plan-status", help="Where synced workouts appear in COROS app vs library")
 
     imp_p = sub.add_parser("import-plan", help="Parse plan HTML and show generated schedule")
     imp_p.add_argument("--plan", help="Path to plan HTML (default: plan_v1_8.html)")
@@ -198,6 +236,8 @@ def main() -> int:
     if args.command == "list-workouts":
         cmd_list_workouts()
         return 0
+    if args.command == "plan-status":
+        return asyncio.run(cmd_plan_status())
     if args.command == "import-plan":
         return cmd_import_plan(args)
     if args.command == "sync":

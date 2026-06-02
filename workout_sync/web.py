@@ -7,6 +7,7 @@ from html import escape
 from workout_sync import schedules as sched_mod
 from workout_sync.auth import auth_status_message, load_dotenv
 from workout_sync.plan_html import DEFAULT_PLAN_PATH
+import coros_api
 from workout_sync.sync import describe_session, full_resync, resolve_schedule
 
 
@@ -65,6 +66,16 @@ def _index_html() -> str:
     <h2 style="margin:0 0 0.5rem;font-size:1.1rem">1. Edit your plan</h2>
     <p class="muted" style="margin:0">
       Open <code>{escape(plan_path.name)}</code> in this repo, save your changes, then sync.
+    </p>
+  </div>
+
+  <div class="card" style="background:#f7f9fc;border-color:#c5d4e8">
+    <h2 style="margin:0 0 0.5rem;font-size:1.1rem">Where workouts appear in COROS</h2>
+    <p class="muted" style="margin:0;line-height:1.5">
+      Sync puts sessions on your <strong>training calendar</strong> (Progress tab in the app),
+      <em>not</em> as a new plan in <strong>Training Plan Library</strong>.
+      That library is only for separate multi-week templates (Marathon plan, TrainingPeaks, etc.).
+      On the watch: open <strong>Run</strong> → accept today&apos;s scheduled workout when prompted.
     </p>
   </div>
 
@@ -132,11 +143,19 @@ def create_app():
             f"workout(s), pushed <strong>{result['pushed']}</strong>."
             f"{' (' + str(result['push_errors']) + ' errors)' if result['push_errors'] else ''}</p>"
         )
+        cal = result.get("calendar_plan") or {}
+        cal_line = ""
+        if cal.get("name"):
+            cal_line = (
+                f"<p class='muted'>COROS calendar plan: <strong>{escape(cal['name'])}</strong> "
+                f"— look under <strong>Progress</strong>, not Training Plan Library.</p>"
+            )
         return _page(
             f"{summary}"
+            f"{cal_line}"
             f"<p class='muted'>Cleared range: {escape(result['clear_range'])}</p>"
             f"<ul>{lines}</ul>"
-            f"<p class='muted'>Open the COROS app → Training Plan, then sync to your watch.</p>"
+            f"<p class='muted'>{escape(coros_api.format_calendar_vs_library_help())}</p>"
             f"<p><a href='/'>Back</a></p>"
         )
 

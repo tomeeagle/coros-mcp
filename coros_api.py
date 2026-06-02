@@ -583,12 +583,219 @@ async def fetch_activity_detail(auth: StoredAuth, activity_id: str, sport_type: 
 # IntensityType values: 1=weight, 2=HR, 3=pace, 4=speed, 5=none, 6=power, 7=cadence
 
 WORKOUT_SPORT_NAMES: dict[int, str] = {
+    1: "Running",
     2: "Indoor Cycling",
     4: "Strength",
     100: "Running",
     200: "Road Bike",
     201: "Indoor Cycling (alt)",
 }
+
+# Run builder (sportType=1) — required for structured workouts on the watch.
+_RUN_DISTANCE_TARGET_TYPES = {5}
+_RUN_TIME_TARGET_TYPES = {2}
+_RUN_STEP_KIND_TO_EXERCISE_TYPE = {
+    "warmup": 1,
+    "training": 2,
+    "interval": 2,
+    "cooldown": 3,
+    "rest": 4,
+}
+_RUN_SPORT_TYPE = 1
+_RUN_OPEN_INTENSITY_TYPE = 5  # no power/pace target — conversational / open effort
+
+
+def _run_kind_from_step_name(name: str) -> str:
+    lower = name.lower()
+    if "warm" in lower and "up" in lower:
+        return "warmup"
+    if "cool" in lower and "down" in lower:
+        return "cooldown"
+    if "recovery" in lower or "jog" in lower or lower.strip() == "rest":
+        return "rest"
+    if "interval" in lower or "effort" in lower or "threshold" in lower or "tempo" in lower:
+        return "training"
+    return "training"
+
+
+def legacy_run_steps_to_run_steps(steps: list[dict]) -> list[dict]:
+    """Convert duration_minutes workout_sync steps to run-native step dicts."""
+    out: list[dict] = []
+    for step in steps:
+        if "repeat" in step:
+            out.append({
+                "repeat": int(step["repeat"]),
+                "name": step.get("name", "Intervals"),
+                "steps": [
+                    {
+                        "kind": _run_kind_from_step_name(s.get("name", "")),
+                        "name": s.get("name", "Step"),
+                        "target_type": "time",
+                        "target_duration_seconds": int(s["duration_minutes"] * 60),
+                        "intensity_type": _RUN_OPEN_INTENSITY_TYPE,
+                    }
+                    for s in step.get("steps", [])
+                ],
+            })
+        else:
+            out.append({
+                "kind": _run_kind_from_step_name(step.get("name", "")),
+                "name": step.get("name", "Step"),
+                "target_type": "time",
+                "target_duration_seconds": int(step["duration_minutes"] * 60),
+                "intensity_type": _RUN_OPEN_INTENSITY_TYPE,
+            })
+    return out
+
+
+def _default_run_overview(kind: str, target_type: int) -> str:
+    if kind == "warmup":
+        return "sid_run_warm_up" if target_type in _RUN_TIME_TARGET_TYPES else "sid_run_warm_up_dist"
+    if kind == "cooldown":
+        return "sid_run_cool_down" if target_type in _RUN_TIME_TARGET_TYPES else "sid_run_cool_down_dist"
+    if kind == "rest":
+        return "sid_run_rest" if target_type in _RUN_TIME_TARGET_TYPES else "sid_run_rest_dist"
+    return "sid_run_training"
+
+
+def _build_run_exercise(
+    step: dict,
+    *,
+    ex_id: int,
+    sort_no: int,
+    group_id: str = "0",
+) -> tuple[dict, int, int]:
+    kind = str(step.get("kind", "training")).strip().lower()
+    if kind not in _RUN_STEP_KIND_TO_EXERCISE_TYPE:
+        raise ValueError(f"Unsupported run step kind: {kind!r}")
+
+    raw_target = step.get("target_type", 2)
+    if isinstance(raw_target, str):
+        target_type = 5 if raw_target.strip().lower() == "distance" else 2
+    else:
+        target_type = int(raw_target)
+    if target_type in _RUN_DISTANCE_TARGET_TYPES:
+        target_value = int(step.get("target_distance_meters", step.get("target_value", 0)))
+        target_display_unit = int(step.get("target_display_unit", 3))
+    else:
+        target_type = 2
+        target_value = int(
+            step.get("target_duration_seconds", step.get("target_value", 0))
+        )
+        target_display_unit = int(step.get("target_display_unit", 0))
+
+    exercise = {
+        "id": ex_id,
+        "name": step.get("name") or kind.title(),
+        "exerciseType": _RUN_STEP_KIND_TO_EXERCISE_TYPE[kind],
+        "sportType": _RUN_SPORT_TYPE,
+        "intensityType": int(step.get("intensity_type", _RUN_OPEN_INTENSITY_TYPE)),
+        "intensityValue": int(step.get("intensity_value", 0)),
+        "intensityValueExtend": int(step.get("intensity_value_extend", 0)),
+        "targetType": target_type,
+        "targetValue": target_value,
+        "targetDisplayUnit": target_display_unit,
+        "intensityDisplayUnit": int(step.get("intensity_display_unit", 0)),
+        "sets": int(step.get("sets", 1)),
+        "sortNo": sort_no,
+        "restType": int(step.get("rest_type", 3)),
+        "restValue": int(step.get("rest_value", 0)),
+        "groupId": group_id,
+        "isGroup": False,
+        "originId": "0",
+        "overview": step.get("overview") or _default_run_overview(kind, target_type),
+        "hrType": int(step.get("hr_type", 3)),
+        "isIntensityPercent": bool(step.get("is_intensity_percent", False)),
+    }
+    distance_sum = target_value if target_type in _RUN_DISTANCE_TARGET_TYPES else 0
+    time_sum = target_value if target_type in _RUN_TIME_TARGET_TYPES else 0
+    return exercise, distance_sum, time_sum
+
+
+def build_run_workout_payload(name: str, steps: list[dict]) -> dict:
+    """Build a COROS run workout (sportType=1) for watch-loadable structured sessions."""
+    if not steps:
+        raise ValueError("run workout requires at least one step")
+
+    exercises: list[dict] = []
+    top_index = 0
+    ex_id = 0
+    total_distance = 0
+    total_time = 0
+
+    for step in steps:
+        if "repeat" in step:
+            top_index += 1
+            ex_id += 1
+            group_sort = 16777216 * top_index
+            group_id = ex_id
+            repeat_count = int(step["repeat"])
+            sub_steps = step.get("steps") or []
+            group_distance = 0
+            group_time = 0
+            built_sub_steps: list[dict] = []
+            for j, sub in enumerate(sub_steps):
+                ex_id += 1
+                built, sub_distance, sub_time = _build_run_exercise(
+                    sub,
+                    ex_id=ex_id,
+                    sort_no=group_sort + 65536 * (j + 1),
+                    group_id=str(group_id),
+                )
+                built_sub_steps.append(built)
+                group_distance += sub_distance
+                group_time += sub_time
+            group_target_type = 5 if group_distance else 2
+            group_target_value = group_distance if group_distance else group_time
+            exercises.append({
+                "id": group_id,
+                "name": step.get("name", "Intervals"),
+                "exerciseType": 0,
+                "sportType": _RUN_SPORT_TYPE,
+                "intensityType": 0,
+                "intensityValue": 0,
+                "targetType": group_target_type,
+                "targetValue": group_target_value,
+                "targetDisplayUnit": 3 if group_target_type in _RUN_DISTANCE_TARGET_TYPES else 0,
+                "sets": repeat_count,
+                "sortNo": group_sort,
+                "restType": int(step.get("rest_type", 3)),
+                "restValue": int(step.get("rest_value", 0)),
+                "groupId": "0",
+                "isGroup": True,
+                "originId": "0",
+                "overview": step.get("overview", "sid_run_training"),
+            })
+            exercises.extend(built_sub_steps)
+            total_distance += group_distance * repeat_count
+            total_time += group_time * repeat_count
+        else:
+            top_index += 1
+            ex_id += 1
+            built, step_distance, step_time = _build_run_exercise(
+                step,
+                ex_id=ex_id,
+                sort_no=16777216 * top_index,
+            )
+            exercises.append(built)
+            total_distance += step_distance
+            total_time += step_time
+
+    return {
+        "name": name,
+        "sportType": _RUN_SPORT_TYPE,
+        "estimatedTime": total_time,
+        "estimatedDistance": total_distance,
+        "distanceDisplayUnit": 3,
+        "estimatedType": 6 if total_distance else 0,
+        "targetType": 5 if total_distance else 2,
+        "targetValue": total_distance if total_distance else total_time,
+        "simple": False,
+        "access": 1,
+        "exerciseNum": len(exercises),
+        "totalSets": len(exercises),
+        "exercises": exercises,
+    }
 
 
 def _parse_workout(item: dict) -> dict:
@@ -815,6 +1022,73 @@ async def _fetch_schedule_data(
     body = resp.json()
     _check_response(body, "schedule")
     return body.get("data") or {}
+
+
+async def fetch_active_calendar_plan(
+    auth: StoredAuth,
+    *,
+    start_day: str | None = None,
+    end_day: str | None = None,
+) -> dict:
+    """
+    Metadata for the user's always-on COROS training calendar (where schedule/update writes).
+
+    This is NOT the same as entries in Training Plan Library (/training/plan/query).
+    """
+    from datetime import date, timedelta
+
+    if not start_day or not end_day:
+        today = date.today()
+        start_day = start_day or today.strftime("%Y%m%d")
+        end_day = end_day or (today + timedelta(days=7)).strftime("%Y%m%d")
+
+    async with httpx.AsyncClient(timeout=30) as client:
+        data = await _fetch_schedule_data(client, auth, start_day, end_day)
+
+    entities = data.get("entities") or []
+    return {
+        "plan_id": str(data.get("id", "")),
+        "name": data.get("name") or "Training calendar",
+        "in_schedule": int(data.get("inSchedule") or 0),
+        "third_party_id": data.get("thirdPartyId"),
+        "entity_count": len(entities),
+        "start_day": start_day,
+        "end_day": end_day,
+    }
+
+
+async def fetch_training_plan_library(auth: StoredAuth) -> list[dict]:
+    """Named multi-week plans shown under Profile → Training Plan Library in the app."""
+    async with httpx.AsyncClient(timeout=30) as client:
+        resp = await client.post(
+            _base_url(auth.region) + "/training/plan/query",
+            json={},
+            headers=_auth_headers(auth),
+        )
+        resp.raise_for_status()
+        body = resp.json()
+    _check_response(body, "training plan library")
+    out: list[dict] = []
+    for item in body.get("data") or []:
+        out.append({
+            "plan_id": str(item.get("id", "")),
+            "name": item.get("name") or "Unnamed plan",
+            "category": item.get("category"),
+            "in_schedule": int(item.get("inSchedule") or 0),
+            "total_day": item.get("totalDay"),
+            "start_day": item.get("startDay"),
+        })
+    return out
+
+
+def format_calendar_vs_library_help() -> str:
+    """Plain-language explanation for where synced workouts appear in COROS."""
+    return (
+        "Synced workouts go on your COROS training calendar (Progress tab in the app), "
+        "not as a new entry in Training Plan Library. That library is for separate "
+        "multi-week template plans (e.g. Marathon plan, TrainingPeaks). "
+        "On the watch: open Run → accept today's scheduled workout when prompted."
+    )
 
 
 async def fetch_schedule(
@@ -1298,6 +1572,36 @@ async def schedule_workout_template(
     return await _post_schedule_inline(auth, program, happen_day, sort_no)
 
 
+async def schedule_run_workout(
+    auth: StoredAuth,
+    name: str,
+    steps: list[dict],
+    happen_day: str,
+    sort_no: int = 1,
+) -> dict:
+    """
+    Schedule a run workout (sportType=1) so the watch can load structured steps.
+
+    steps: duration_minutes dicts from workout_sync, or run-native step dicts.
+    """
+    def _is_legacy(step_list: list[dict]) -> bool:
+        for s in step_list:
+            if "duration_minutes" in s:
+                return True
+            if "repeat" in s:
+                for sub in s.get("steps", []):
+                    if "duration_minutes" in sub:
+                        return True
+        return False
+
+    if _is_legacy(steps):
+        run_steps = legacy_run_steps_to_run_steps(steps)
+    else:
+        run_steps = steps
+    program = build_run_workout_payload(name, run_steps)
+    return await _post_schedule_inline(auth, program, happen_day, sort_no)
+
+
 async def schedule_workout(
     auth: StoredAuth,
     name: str,
@@ -1308,14 +1612,17 @@ async def schedule_workout(
     sort_no: int = 1,
 ) -> dict:
     """
-    Build + schedule a one-off cycling/intervals workout for happen_day.
+    Build + schedule a one-off workout for happen_day.
     Does NOT persist a library entry — the program is embedded inline
     in the schedule POST.
 
     steps: same shape as save_workout_template (plain steps or repeat groups).
+    For running (sport_type 100/101), uses the run-native payload builder.
 
     Returns the server response 'data' dict (shape depends on Coros API).
     """
+    if sport_type in (100, 101):
+        return await schedule_run_workout(auth, name, steps, happen_day, sort_no)
     program = _build_workout_program_payload(name, steps, sport_type, intensity_type)
     return await _post_schedule_inline(auth, program, happen_day, sort_no)
 

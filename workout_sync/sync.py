@@ -99,13 +99,11 @@ async def push_session(
             sort_no=sort_no,
         )
     else:
-        await coros_api.schedule_workout(
+        await coros_api.schedule_run_workout(
             auth=auth,
             name=w["name"],
             steps=w["steps"],
             happen_day=day,
-            sport_type=w.get("sport_type", 100),
-            intensity_type=w.get("intensity_type", 0),
             sort_no=sort_no,
         )
 
@@ -152,6 +150,7 @@ async def full_resync(
         "pushed": 0,
         "push_errors": 0,
         "messages": [],
+        "calendar_plan": {},
     }
 
     if dry_run:
@@ -161,6 +160,12 @@ async def full_resync(
         return result
 
     auth = await ensure_auth()
+    try:
+        result["calendar_plan"] = await coros_api.fetch_active_calendar_plan(
+            auth, start_day=clear_start, end_day=clear_end,
+        )
+    except Exception:
+        result["calendar_plan"] = {}
     removed, clear_logs = await coros_api.clear_scheduled_workouts(auth, clear_start, clear_end)
     result["removed"] = removed
     result["messages"].extend(clear_logs)

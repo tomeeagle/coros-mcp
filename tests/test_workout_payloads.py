@@ -15,6 +15,8 @@ import coros_api
 from coros_api import (
     _build_strength_program_payload,
     _build_workout_program_payload,
+    build_run_workout_payload,
+    legacy_run_steps_to_run_steps,
     _load_strength_catalog,
     _reset_strength_catalog_cache,
 )
@@ -310,6 +312,28 @@ def test_cycling_power_legacy_aliases():
     ex = payload["exercises"][0]
     assert ex["intensityValue"] == 200
     assert ex["intensityValueExtend"] == 240
+
+
+def test_run_workout_uses_sport_type_1_and_step_kinds():
+    legacy = [
+        {"name": "Warmup", "duration_minutes": 10},
+        {
+            "repeat": 2,
+            "steps": [
+                {"name": "Tempo 8min", "duration_minutes": 8},
+                {"name": "Jog recovery", "duration_minutes": 2},
+            ],
+        },
+        {"name": "Cooldown", "duration_minutes": 10},
+    ]
+    payload = build_run_workout_payload("Test", legacy_run_steps_to_run_steps(legacy))
+    assert payload["sportType"] == 1
+    assert payload["simple"] is False
+    non_group = [e for e in payload["exercises"] if not e.get("isGroup")]
+    assert non_group[0]["exerciseType"] == 1  # warmup
+    assert non_group[-1]["exerciseType"] == 3  # cooldown
+    assert all(e.get("sportType") == 1 for e in payload["exercises"])
+    assert all(e.get("overview", "").startswith("sid_run_") for e in non_group)
 
 
 def test_cycling_empty_steps_raises():

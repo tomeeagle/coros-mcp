@@ -1,0 +1,339 @@
+"""Parse Tom's training plan HTML into COROS-syncable schedules."""
+
+from __future__ import annotations
+
+import re
+from dataclasses import dataclass, field
+from datetime import date
+from pathlib import Path
+
+MONTHS: dict[str, int] = {
+    "jan": 1,
+    "feb": 2,
+    "mar": 3,
+    "apr": 4,
+    "may": 5,
+    "jun": 6,
+    "jul": 7,
+    "aug": 8,
+    "sep": 9,
+    "oct": 10,
+    "nov": 11,
+    "dec": 12,
+}
+
+DEFAULT_PLAN_PATH = Path(__file__).resolve().parent.parent / "plan_v1_8.html"
+
+
+@dataclass
+class ParsedDay:
+    yyyymmdd: str
+    day_label: str
+    run_text: str
+    note_text: str
+    workout_key: str | None
+    skip_reason: str | None = None
+
+
+@dataclass
+class ParsedWeek:
+    key: str
+    label: str
+    phase: str
+    days: dict[str, str] = field(default_factory=dict)
+    skipped: list[ParsedDay] = field(default_factory=list)
+
+
+@dataclass
+class ParsedPlan:
+    year: int
+    weeks: dict[str, ParsedWeek]
+    schedule: dict[str, str]
+    unmapped: list[ParsedDay]
+    strength_mondays: dict[str, str]  # YYYYMMDD -> wk1..wk5
+
+
+def _parse_plan_year(html: str) -> int:
+    m = re.search(r"(\d{4})\s*$", html[:4000], re.MULTILINE)
+    if m:
+        return int(m.group(1))
+    m = re.search(r"–\s*\d{1,2}\s+\w+\s+(\d{4})", html[:4000])
+    if m:
+        return int(m.group(1))
+    return 2026
+
+
+def _parse_month_token(token: str) -> int:
+    key = token.strip().lower()[:3]
+    if key not in MONTHS:
+        raise ValueError(f"Unknown month: {token}")
+    return MONTHS[key]
+
+
+def _parse_week_dates(text: str) -> tuple[tuple[int, int], tuple[int, int]]:
+    """Return ((start_month, start_day), (end_month, end_day)) for a week-dates span."""
+    text = text.replace("–", "-").replace("—", "-").strip()
+    # "29 Jun - 6 Jul" or "1-7 Jun" or "16-24 May"
+    cross = re.match(
+        r"(\d{1,2})\s+(\w+)\s*-\s*(\d{1,2})\s+(\w+)",
+        text,
+        re.I,
+    )
+    if cross:
+        return (
+            (_parse_month_token(cross.group(2)), int(cross.group(1))),
+            (_parse_month_token(cross.group(4)), int(cross.group(3))),
+        )
+    single = re.match(r"(\d{1,2})\s*-\s*(\d{1,2})\s+(\w+)", text, re.I)
+    if single:
+        month = _parse_month_token(single.group(3))
+        return ((month, int(single.group(1))), (month, int(single.group(2))))
+    raise ValueError(f"Cannot parse week dates: {text!r}")
+
+
+def _parse_day_label(
+    label: str,
+    week_start: tuple[int, int],
+    week_end: tuple[int, int],
+    year: int,
+) -> date:
+    """e.g. Tue 2, Wed 1 Jul, Sat 28"""
+    label = re.sub(r"\s+", " ", label.strip())
+    explicit = re.match(r"\w+\s+(\d{1,2})\s+(\w+)", label, re.I)
+    if explicit:
+        month = _parse_month_token(explicit.group(2))
+        day = int(explicit.group(1))
+        return date(year, month, day)
+
+    m = re.match(r"\w+\s+(\d{1,2})", label, re.I)
+    if not m:
+        raise ValueError(f"Cannot parse day label: {label!r}")
+    day = int(m.group(1))
+
+    start_month, start_day = week_start
+    end_month, end_day = week_end
+
+    if start_month == end_month:
+        return date(year, start_month, day)
+
+    # Week spans two months: days >= start_day are in start_month, else end_month
+    if day >= start_day:
+        return date(year, start_month, day)
+    return date(year, end_month, day)
+
+
+def _slug_week(title: str, dates: str) -> str:
+    m = re.search(r"Week\s+(\d+)", title, re.I)
+    num = m.group(1) if m else "0"
+    phase = re.sub(r"[^a-z0-9]+", "_", title.lower())
+    phase = re.sub(r"^week_\d+_?", "", phase).strip("_")[:30]
+    if phase:
+        return f"week_{num}_{phase}"
+    return f"week_{num}"
+
+
+def _parse_strength_mondays(html: str, year: int) -> dict[str, str]:
+    """STR_WEEKS in the HTML: Mon 1 Jun -> wk1."""
+    out: dict[str, str] = {}
+    for m in re.finditer(
+        r"(\d+):\s*\{[^}]*?date:'([^']+)'",
+        html,
+        re.DOTALL,
+    ):
+        wk_num = m.group(1)
+        date_str = m.group(2)  # Mon 1 Jun
+        dm = re.search(r"(\d{1,2})\s+(\w+)", date_str)
+        if not dm:
+            continue
+        d = date(year, _parse_month_token(dm.group(2)), int(dm.group(1)))
+        out[d.strftime("%Y%m%d")] = f"wk{wk_num}"
+    return out
+
+
+def _map_run_to_workout(
+    run_text: str,
+    note_text: str,
+    yyyymmdd: str,
+    strength_mondays: dict[str, str],
+) -> tuple[str | None, str | None]:
+    text = run_text.strip().lower()
+    note = note_text.lower()
+
+    if not text or text in ("—", "-"):
+        return None, "empty"
+
+    if re.search(r"^rest", text):
+        return None, "rest_or_event"
+
+    combined = f"{text} {note}"
+
+    race_rules: list[tuple[str, str]] = [
+        (r"love trails race", "race_love_trails"),
+        (r"bakewell pudding", "race_bakewell"),
+        (r"calver", "race_calver"),
+        (r"maverick", "race_maverick"),
+        (r"alport adventure|group trail run", "race_alport_16k"),
+        (r"race day|^race —", "race_open"),
+    ]
+    for pat, key in race_rules:
+        if re.search(pat, combined):
+            return key, None
+
+    skip_patterns = (
+        r"padel",
+        r"travel",
+        r"drive",
+        r"festival",
+        r"arrive",
+        r"group runs/experiences",
+        r"recovery runs",
+        r"easy run/experience",
+    )
+    for pat in skip_patterns:
+        if re.search(pat, text):
+            return None, "rest_or_event"
+
+    if re.search(r"run club", text):
+        if re.search(r"6k", text):
+            return "run_club_6k", None
+        if re.search(r"5k", text):
+            return "run_club_5k", None
+        return "run_club_8k", None
+
+    if "dumbbell strength" in text or ("strength" in note and "💪" in note_text):
+        preset = strength_mondays.get(yyyymmdd, "wk1")
+        return f"strength_{preset}", None
+
+    rules: list[tuple[str, str]] = [
+        (r"long run 16k", "long_16k"),
+        (r"long run 14k", "long_14k"),
+        (r"3.×8min tempo|3×8min tempo", "tempo_8k"),
+        (r"6k.*15min tempo", "tempo_6k"),
+        (r"7k tempo|7k — 10min easy", "tempo_7k"),
+        (r"easy 4k.*stride", "easy_4k"),
+        (r"easy 4k|easy 3-4k", "easy_4k"),
+        (r"easy 3k", "easy_3k"),
+    ]
+    for pat, key in rules:
+        if re.search(pat, text):
+            return key, None
+
+    return None, f"unmapped: {run_text[:60]}"
+
+
+def parse_plan_html(path: Path | None = None) -> ParsedPlan:
+    plan_path = path or DEFAULT_PLAN_PATH
+    html = plan_path.read_text(encoding="utf-8")
+    year = _parse_plan_year(html)
+    strength_mondays = _parse_strength_mondays(html, year)
+    weeks, schedule, unmapped = _parse_week_blocks_ordered(html, year, strength_mondays)
+
+    return ParsedPlan(
+        year=year,
+        weeks=weeks,
+        schedule=schedule,
+        unmapped=unmapped,
+        strength_mondays=strength_mondays,
+    )
+
+
+def _iter_week_block_chunks(html: str):
+    """Yield inner HTML of each top-level week-block (handles nested divs)."""
+    marker = '<div class="week-block">'
+    end_markers = ('<div class="week-block">', "<!-- WEIGHT", "<hr ")
+    pos = 0
+    while True:
+        start = html.find(marker, pos)
+        if start < 0:
+            return
+        content_start = start + len(marker)
+        next_starts = [html.find(m, content_start) for m in end_markers]
+        next_starts = [i for i in next_starts if i >= 0]
+        end = min(next_starts) if next_starts else len(html)
+        yield html[content_start:end]
+        pos = end
+
+
+def _parse_week_blocks_ordered(
+    html: str,
+    year: int,
+    strength_mondays: dict[str, str],
+) -> tuple[dict[str, ParsedWeek], dict[str, str], list[ParsedDay]]:
+    """Parse each week-block section in document order."""
+    weeks: dict[str, ParsedWeek] = {}
+    schedule: dict[str, str] = {}
+    unmapped: list[ParsedDay] = []
+
+    title_re = re.compile(
+        r'<div class="week-title">\s*(.*?)\s*<span class="week-dates">([^<]+)</span>'
+        r'\s*<span class="week-phase[^"]*">([^<]+)</span>',
+        re.DOTALL,
+    )
+    row_re = re.compile(r'<div class="day-row[^"]*">(.*?)</div>', re.DOTALL)
+    label_re = re.compile(r'<span class="day-label">([^<]+)</span>')
+    note_re = re.compile(
+        r'<span class="day-note">(.*)</span>\s*<span class="run-cell',
+        re.DOTALL,
+    )
+    run_re = re.compile(r'<span class="run-cell[^"]*">([^<]*)</span>')
+
+    for chunk in _iter_week_block_chunks(html):
+        tm = title_re.search(chunk)
+        if not tm:
+            continue
+        title_raw = re.sub(r"<[^>]+>", " ", tm.group(1))
+        title = " ".join(title_raw.split())
+        dates_text = tm.group(2).strip()
+        phase = tm.group(3).strip()
+
+        try:
+            week_start, week_end = _parse_week_dates(dates_text)
+        except ValueError:
+            continue
+
+        key = _slug_week(title, dates_text)
+        pw = ParsedWeek(key=key, label=f"{title} ({dates_text})", phase=phase)
+
+        for rm in row_re.finditer(chunk):
+            row = rm.group(1)
+            lm = label_re.search(row)
+            run_m = run_re.search(row)
+            note_m = note_re.search(row)
+            if not lm or not run_m:
+                continue
+            label = lm.group(1).strip()
+            note = re.sub(r"<[^>]+>", " ", note_m.group(1)).strip() if note_m else ""
+            run = run_m.group(1).strip()
+            try:
+                d = _parse_day_label(label, week_start, week_end, year)
+            except ValueError:
+                continue
+            yyyymmdd = d.strftime("%Y%m%d")
+            workout_key, skip = _map_run_to_workout(run, note, yyyymmdd, strength_mondays)
+            pd = ParsedDay(yyyymmdd, label, run, note, workout_key, skip)
+            if workout_key:
+                pw.days[yyyymmdd] = workout_key
+                schedule[yyyymmdd] = workout_key
+            else:
+                pw.skipped.append(pd)
+                if skip and skip.startswith("unmapped"):
+                    unmapped.append(pd)
+
+        if pw.days:
+            weeks[key] = pw
+
+    return weeks, schedule, unmapped
+
+
+def weeks_for_coros(plan: ParsedPlan | None = None) -> dict[str, dict]:
+    """Format compatible with workout_sync.schedules.WEEKS."""
+    p = plan or parse_plan_html()
+    return {
+        k: {"label": w.label, "days": dict(w.days)}
+        for k, w in p.weeks.items()
+    }
+
+
+def load_weeks(html_path: Path | None = None) -> dict[str, dict[str, str]]:
+    """Return WEEKS dict from plan HTML (cached per call)."""
+    return weeks_for_coros(parse_plan_html(html_path))

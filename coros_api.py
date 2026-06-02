@@ -1342,6 +1342,42 @@ async def schedule_strength_workout(
     return await _post_schedule_inline(auth, program, happen_day, sort_no)
 
 
+async def clear_scheduled_workouts(
+    auth: StoredAuth,
+    start_day: str,
+    end_day: str,
+) -> tuple[int, list[str]]:
+    """
+    Remove every workout on the training calendar between start_day and end_day
+    (inclusive). Returns (removed_count, log_lines).
+    """
+    async with httpx.AsyncClient(timeout=30) as client:
+        data = await _fetch_schedule_data(client, auth, start_day, end_day)
+
+    plan_id = str(data.get("id", ""))
+    entities = data.get("entities") or []
+    if not plan_id:
+        return 0, ["No plan id in schedule response — nothing to clear"]
+
+    removed = 0
+    logs: list[str] = []
+    for entity in entities:
+        id_in_plan = entity.get("idInPlan")
+        if id_in_plan is None or id_in_plan == "":
+            continue
+        id_in_plan = str(id_in_plan)
+        plan_program_id = str(entity.get("planProgramId") or id_in_plan)
+        happen = str(entity.get("happenDay", ""))
+        try:
+            await remove_scheduled_workout(auth, plan_id, id_in_plan, plan_program_id)
+            removed += 1
+            logs.append(f"Removed {happen} (idInPlan={id_in_plan})")
+        except Exception as exc:
+            logs.append(f"Failed {happen} idInPlan={id_in_plan}: {exc}")
+
+    return removed, logs
+
+
 async def remove_scheduled_workout(
     auth: StoredAuth,
     plan_id: str,

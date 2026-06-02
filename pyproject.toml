@@ -27,10 +27,13 @@ dev = [
     "ruff>=0.9",
     "mypy>=1.10",
 ]
+sync = [
+    "flask>=3.0",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["."]
-include = ["*.py", "auth/*.py", "cache/*.py"]
+include = ["*.py", "auth/*.py", "cache/*.py", "workout_sync/*.py"]
 
 [tool.ruff]
 target-version = "py311"

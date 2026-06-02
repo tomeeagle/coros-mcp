@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -14,6 +15,8 @@ from workout_sync.plan_html import DEFAULT_PLAN_PATH, parse_plan_html
 from workout_sync.schedules import SCHEDULE, WEEKS
 from workout_sync.strength import build_strength_exercises
 from workout_sync.workouts import WORKOUTS
+
+_resync_lock = asyncio.Lock()
 
 
 def fmt_day(day_str: str) -> str:
@@ -139,7 +142,7 @@ async def full_resync(
     plan = parse_plan_html(path)
 
     schedule = resolve_schedule(upcoming_only=upcoming_only)
-    clear_start, clear_end = schedule_date_bounds(plan.schedule)
+    clear_start, clear_end = schedule_date_bounds(schedule)
 
     result: dict[str, Any] = {
         "plan_file": str(path),
@@ -155,25 +158,30 @@ async def full_resync(
 
     if dry_run:
         result["messages"].append(f"[dry run] Would clear {clear_start}–{clear_end}")
-        n = sum(len(k) for k in schedule.values())
+        n = sum(len(_one_run_per_day(k)) for k in schedule.values())
         result["messages"].append(f"[dry run] Would push {n} sessions")
         return result
 
-    auth = await ensure_auth()
-    try:
-        result["calendar_plan"] = await coros_api.fetch_active_calendar_plan(
-            auth, start_day=clear_start, end_day=clear_end,
+    async with _resync_lock:
+        auth = await ensure_auth()
+        try:
+            result["calendar_plan"] = await coros_api.fetch_active_calendar_plan(
+                auth, start_day=clear_start, end_day=clear_end,
+            )
+        except Exception:
+            result["calendar_plan"] = {}
+        removed, clear_logs = await coros_api.clear_scheduled_workouts(
+            auth, clear_start, clear_end,
         )
-    except Exception:
-        result["calendar_plan"] = {}
-    removed, clear_logs = await coros_api.clear_scheduled_workouts(auth, clear_start, clear_end)
-    result["removed"] = removed
-    result["messages"].extend(clear_logs)
+        result["removed"] = removed
+        result["messages"].extend(clear_logs)
 
-    pushed, errors, push_logs = await push_schedule(schedule, auth=auth)
-    result["pushed"] = pushed
-    result["push_errors"] = errors
-    result["messages"].extend(push_logs)
+        pushed, errors, push_logs = await push_schedule(
+            schedule, auth=auth, clear_each_day=False,
+        )
+        result["pushed"] = pushed
+        result["push_errors"] = errors
+        result["messages"].extend(push_logs)
     return result
 
 
@@ -182,9 +190,14 @@ async def push_schedule(
     *,
     dry_run: bool = False,
     auth: Any | None = None,
+    clear_each_day: bool = True,
 ) -> tuple[int, int, list[str]]:
-    """Push all sessions. Returns (success, errors, error_messages)."""
-    total = sum(len(keys) for keys in schedule.values())
+    """Push all sessions. Returns (success, errors, error_messages).
+
+    When clear_each_day is True (default), removes existing calendar workouts on
+    each day before pushing — prevents duplicates from repeat push/sync.
+    """
+    total = sum(len(_one_run_per_day(k)) for k in schedule.values())
     if dry_run:
         return total, 0, []
 
@@ -197,6 +210,10 @@ async def push_schedule(
 
     for day, keys in schedule.items():
         keys = _one_run_per_day(keys)
+        if clear_each_day:
+            removed, _ = await coros_api.clear_scheduled_workouts(auth, day, day)
+            if removed:
+                messages.append(f"Cleared {removed} on {fmt_day(day)}")
         for sort_no, key in enumerate(keys, start=1):
             w = WORKOUTS.get(key, {})
             label = w.get("name", key)

@@ -40,7 +40,7 @@ class ParsedWeek:
     key: str
     label: str
     phase: str
-    days: dict[str, str] = field(default_factory=dict)
+    days: dict[str, list[str]] = field(default_factory=dict)
     skipped: list[ParsedDay] = field(default_factory=list)
 
 
@@ -48,7 +48,7 @@ class ParsedWeek:
 class ParsedPlan:
     year: int
     weeks: dict[str, ParsedWeek]
-    schedule: dict[str, str]
+    schedule: dict[str, list[str]]
     unmapped: list[ParsedDay]
     strength_mondays: dict[str, str]  # YYYYMMDD -> wk1..wk5
 
@@ -150,43 +150,58 @@ def _parse_strength_mondays(html: str, year: int) -> dict[str, str]:
     return out
 
 
-def _map_run_to_workout(
+def _bac_key_from_text(text: str) -> str | None:
+    bac_rules: list[tuple[str, str]] = [
+        (r"bac.*interval|4.×500.*300.*200.*100", "bac_intervals"),
+        (r"bac.*hill|6.×800", "bac_hill_6x800"),
+        (r"bac.*threshold|4.×6min", "bac_threshold_4x6"),
+    ]
+    for pat, key in bac_rules:
+        if re.search(pat, text, re.I):
+            return key
+    if re.search(r"\bbac\b", text, re.I):
+        return "bac_intervals"
+    return None
+
+
+def _primary_run_key(
     run_text: str,
     note_text: str,
     yyyymmdd: str,
     strength_mondays: dict[str, str],
 ) -> tuple[str | None, str | None]:
+    """Map the main run-cell session (single key)."""
     text = run_text.strip().lower()
     note = note_text.lower()
 
     if not text or text in ("—", "-"):
         return None, "empty"
 
-    if re.search(r"^rest", text):
-        return None, "rest_or_event"
+    if re.search(r"^rest|^full rest", text):
+        return "easy_3k", None
 
     combined = f"{text} {note}"
 
-    # Outer Projects must win over "Calver" in location text (Sat 6 vs Wed 3 fell race).
     if re.search(r"outer projects", combined, re.I):
         return "race_outer_projects_12k", None
     if re.search(r"social trail run", text, re.I):
         return "race_outer_projects_12k", None
 
+    if re.search(r"bakewell pudding|pudding race", text, re.I):
+        return "race_bakewell", None
+
     race_rules: list[tuple[str, str]] = [
         (r"love trails race", "race_love_trails"),
-        (r"bakewell pudding", "race_bakewell"),
         (r"calver peak|calver fell race", "race_calver"),
         (r"7:30pm start", "race_calver"),
         (r"maverick", "race_maverick"),
         (r"race day|^race —", "race_open"),
     ]
     for pat, key in race_rules:
-        if re.search(pat, combined, re.I):
+        if re.search(pat, text, re.I) or re.search(pat, note, re.I):
             return key, None
 
     skip_patterns = (
-        r"padel",
         r"travel",
         r"drive",
         r"festival",
@@ -210,21 +225,99 @@ def _map_run_to_workout(
         preset = strength_mondays.get(yyyymmdd, "wk1")
         return f"strength_{preset}", None
 
+    bac_only = _bac_key_from_text(text)
+    if bac_only and re.search(r"^bac\b", text.strip(), re.I):
+        return bac_only, None
+
     rules: list[tuple[str, str]] = [
         (r"long run 16k", "long_16k"),
         (r"long run 14k", "long_14k"),
+        (r"long run 10k", "long_10k"),
+        (r"easy 5k", "easy_5k"),
         (r"3.×8min tempo|3×8min tempo", "tempo_8k"),
         (r"6k.*15min tempo", "tempo_6k"),
-        (r"7k tempo|7k — 10min easy", "tempo_7k"),
+        (r"7k tempo|7k — 10min easy|7k tempo", "tempo_7k"),
         (r"easy 4k.*stride", "easy_4k"),
         (r"easy 4k|easy 3-4k", "easy_4k"),
-        (r"easy 3k", "easy_3k"),
+        (r"easy 3k|streak.*3k", "easy_3k"),
+        (r"easy 5k|streak.*5k", "easy_5k"),
     ]
     for pat, key in rules:
-        if re.search(pat, text):
+        if re.search(pat, text, re.I):
             return key, None
 
     return None, f"unmapped: {run_text[:60]}"
+
+
+def _is_run_workout_key(key: str) -> bool:
+    return key.startswith(
+        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_"),
+    )
+
+
+def _single_run_per_day(keys: list[str]) -> list[str]:
+    """At most one run per calendar day; strength/races stay as mapped."""
+    if len(keys) <= 1:
+        return keys
+    runs = [k for k in keys if _is_run_workout_key(k)]
+    if len(runs) <= 1:
+        return keys
+    non_runs = [k for k in keys if not _is_run_workout_key(k)]
+    bac = [k for k in runs if k.startswith("bac_")]
+    chosen = bac[0] if bac else runs[0]
+    return non_runs + [chosen] if non_runs else [chosen]
+
+
+def _map_run_to_workouts(
+    run_text: str,
+    note_text: str,
+    yyyymmdd: str,
+    strength_mondays: dict[str, str],
+) -> tuple[list[str], str | None]:
+    """Return workout keys for a day (max one run; BAC wins if note says 6pm)."""
+    keys: list[str] = []
+    primary, skip = _primary_run_key(run_text, note_text, yyyymmdd, strength_mondays)
+    if skip and skip != "empty":
+        if skip.startswith("unmapped") or skip == "rest_or_event":
+            return [], skip
+    if primary:
+        keys.append(primary)
+
+    combined = f"{run_text} {note_text}"
+    if re.search(r"bac\s*6pm|bac\s*6\s*pm", combined, re.I) or (
+        re.search(r"\bBAC\b", note_text) and "6pm" in note_text.lower()
+    ):
+        bac = _bac_key_from_text(combined)
+        if bac:
+            keys = [bac] if _is_run_workout_key(primary or "") else keys + [bac]
+    elif _bac_key_from_text(run_text) and not re.search(r"^rest", run_text, re.I):
+        bac = _bac_key_from_text(run_text)
+        if bac and bac not in keys:
+            keys = [bac]
+
+    if primary and primary.startswith("strength_") and "easy_3k" not in keys:
+        keys.append("easy_3k")
+
+    keys = _single_run_per_day(keys)
+
+    if keys:
+        return keys, None
+    if skip == "empty":
+        return [], skip
+    return [], skip
+
+
+def _map_run_to_workout(
+    run_text: str,
+    note_text: str,
+    yyyymmdd: str,
+    strength_mondays: dict[str, str],
+) -> tuple[str | None, str | None]:
+    """Backward-compatible single-key mapper (first session only)."""
+    keys, skip = _map_run_to_workouts(run_text, note_text, yyyymmdd, strength_mondays)
+    if keys:
+        return keys[0], None
+    return None, skip
 
 
 def parse_plan_html(path: Path | None = None) -> ParsedPlan:
@@ -264,10 +357,10 @@ def _parse_week_blocks_ordered(
     html: str,
     year: int,
     strength_mondays: dict[str, str],
-) -> tuple[dict[str, ParsedWeek], dict[str, str], list[ParsedDay]]:
+) -> tuple[dict[str, ParsedWeek], dict[str, list[str]], list[ParsedDay]]:
     """Parse each week-block section in document order."""
     weeks: dict[str, ParsedWeek] = {}
-    schedule: dict[str, str] = {}
+    schedule: dict[str, list[str]] = {}
     unmapped: list[ParsedDay] = []
 
     title_re = re.compile(
@@ -315,11 +408,11 @@ def _parse_week_blocks_ordered(
             except ValueError:
                 continue
             yyyymmdd = d.strftime("%Y%m%d")
-            workout_key, skip = _map_run_to_workout(run, note, yyyymmdd, strength_mondays)
-            pd = ParsedDay(yyyymmdd, label, run, note, workout_key, skip)
-            if workout_key:
-                pw.days[yyyymmdd] = workout_key
-                schedule[yyyymmdd] = workout_key
+            workout_keys, skip = _map_run_to_workouts(run, note, yyyymmdd, strength_mondays)
+            pd = ParsedDay(yyyymmdd, label, run, note, workout_keys[0] if workout_keys else None, skip)
+            if workout_keys:
+                pw.days[yyyymmdd] = workout_keys
+                schedule[yyyymmdd] = workout_keys
             else:
                 pw.skipped.append(pd)
                 if skip and skip.startswith("unmapped"):
@@ -340,6 +433,6 @@ def weeks_for_coros(plan: ParsedPlan | None = None) -> dict[str, dict]:
     }
 
 
-def load_weeks(html_path: Path | None = None) -> dict[str, dict[str, str]]:
+def load_weeks(html_path: Path | None = None) -> dict[str, dict]:
     """Return WEEKS dict from plan HTML (cached per call)."""
     return weeks_for_coros(parse_plan_html(html_path))

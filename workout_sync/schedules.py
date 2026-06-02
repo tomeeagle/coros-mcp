@@ -15,9 +15,10 @@ def _load() -> dict[str, dict]:
 
 WEEKS: dict[str, dict] = _load()
 
-SCHEDULE: dict[str, str] = {}
+SCHEDULE: dict[str, list[str]] = {}
 for _week in WEEKS.values():
-    SCHEDULE.update(_week.get("days", {}))
+    for day, keys in _week.get("days", {}).items():
+        SCHEDULE[day] = list(keys) if isinstance(keys, list) else [keys]
 
 
 def reload_schedules(html_path: Path | None = None) -> dict[str, dict]:

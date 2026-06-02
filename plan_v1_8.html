@@ -192,7 +192,8 @@
   .day-row.taper { background: var(--taper-light); border-color: #A0B8D4; }
   .day-row.rest-day { background: var(--bg); }
   .day-label { font-size: 13px; font-weight: 600; }
-  .day-note { font-size: 12px; color: var(--text-mid); }
+  .day-note { font-size: 12px; color: var(--text-mid); min-height: 1em; }
+  .day-note:empty::before { content: '—'; color: var(--text-light); }
   .run-cell { font-size: 12px; font-weight: 500; color: var(--run); }
   .run-cell.rest { color: var(--rest); font-weight: 400; }
   .run-cell.race { color: var(--race); font-weight: 600; }
@@ -276,9 +277,9 @@
     <h1>Tom's Plan</h1>
     <div class="header-meta">
       16 May – 6 Jul 2026<br>
-      Maverick Peaks 10K · 30 May<br>
-      Love Trails Festival · 2–6 Jul<br>
-      Weight target · 89kg by 10 Jul
+      June run streak · every day<br>
+      Optional races — pick if you fancy<br>
+      Weight target · 89kg by 12 Jul
     </div>
   </div>
   <p class="header-sub">Two goals, one plan — running on the left, food on the right. Both matter.</p>
@@ -290,12 +291,13 @@
   <div class="strategy-band run">
     <h3>🏃 Running</h3>
     <ul>
-      <li>Hurtle run-walk 16 May — enjoy it</li>
-      <li>4 hrs/week after the Hurtle</li>
-      <li>Easy runs truly easy — conversational</li>
-      <li>One padel session/week max</li>
-      <li>Inhaler before every run</li>
-      <li>Slow on every descent — Achilles</li>
+      <li>June streak — run every day, min 3K if no key session</li>
+      <li>One run per day max — no doubling</li>
+      <li>Mon: strength + easy 3K · Tue: tempo or BAC 6pm</li>
+      <li>4 hrs/week · easy pace ~6:00/km conversational</li>
+      <li>All races optional — nothing booked, your call</li>
+      <li>No padel in June</li>
+      <li>Inhaler before every run · slow on descents</li>
     </ul>
   </div>
   <div class="strategy-band weight">
@@ -367,6 +369,27 @@
   </div>
 </div>
 
+<!-- OPTIONAL RACES (nothing booked) -->
+<div class="strategy-grid" style="margin-bottom:1.5rem">
+  <div class="strategy-band run" style="grid-column:1/-1">
+    <h3>🏁 Optional races & sessions (Jun–Jul)</h3>
+    <p style="margin:0 0 0.5rem;font-size:13px;color:var(--text-mid)">Pick and choose — default plan uses PFTC / long run / streak unless you swap the day in the calendar.</p>
+    <ul style="columns:2;column-gap:2rem;font-size:13px">
+      <li>Wed 3 Jun — Calver Peak fell 8K (7:30pm)</li>
+      <li>Sun 8 Jun — Passing Clouds ~16K</li>
+      <li>Tue 9 Jun — BAC hill reps 6pm</li>
+      <li>Sun 14 Jun — Edale fell 7.6K</li>
+      <li>Tue 16 Jun — BAC threshold 6pm</li>
+      <li>Thu 18 Jun — Grindleford fell 7.9K (7:30pm)</li>
+      <li>Sat 20 Jun — Run Weekends Edale 18.3K</li>
+      <li>Sun 21 Jun — PFTC Hayfield ~8K</li>
+      <li>Wed 24 Jun — PFTC Rivelin trail ~6K</li>
+      <li>Sun 28 Jun — Bakewell Pudding 10.4K</li>
+      <li>Sat 4 Jul — Love Trails 16K or 27K</li>
+    </ul>
+  </div>
+</div>
+
 <!-- COLUMN HEADERS -->
 <div class="col-header">
   <span></span>
@@ -391,19 +414,19 @@
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Sun 17</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Recovery</span>
     <span class="run-cell rest">Rest</span>
     <span class="weight-cell neutral">Back to structure when ready</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Mon 18</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Still recovering</span>
     <span class="run-cell rest">Rest</span>
     <span class="weight-cell">No pudding. Weigh in when feeling better.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 19</span>
-    <span class="day-note">—</span>
+    <span class="day-note">First run back</span>
     <span class="run-cell">Easy 4K — first run back, very gentle</span>
     <span class="weight-cell neutral">Swap crisps at lunch</span>
   </div>
@@ -415,25 +438,25 @@
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Thu 21</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Rest day</span>
     <span class="run-cell rest">Rest</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Fri 22</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Pre-race rest</span>
     <span class="run-cell rest">Rest</span>
     <span class="weight-cell neutral">AF. Carb load sensibly.</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Sat 23</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Maverick prep</span>
     <span class="run-cell rest">Rest — kit sorted for Maverick</span>
     <span class="weight-cell neutral">Pudding ok. Early bed.</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Sun 24</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Weigh in</span>
     <span class="run-cell rest">Rest</span>
     <span class="weight-cell neutral">No pudding. Weigh in.</span>
   </div>
@@ -449,25 +472,25 @@
   </div>
   <div class="day-row taper">
     <span class="day-label">Mon 25</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Maverick week</span>
     <span class="run-cell rest">Rest</span>
     <span class="weight-cell">Weigh in. No pudding.</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Tue 26</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Shakeout run</span>
     <span class="run-cell taper">Easy 3K — legs ticking only</span>
     <span class="weight-cell neutral">Swap crisps at lunch</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Wed 27</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Skip run club</span>
     <span class="run-cell rest">Rest — skip run club</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Thu 28</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Pre-race easy</span>
     <span class="run-cell taper">Easy 3-4K — short and gentle, nothing more</span>
     <span class="weight-cell neutral">AF. Carb load starts.</span>
   </div>
@@ -486,210 +509,222 @@
   <div class="day-row rest-day">
     <span class="day-label">Sun 31</span>
     <span class="day-note">Recovery</span>
-    <span class="run-cell rest">Full rest</span>
+    <span class="run-cell">Easy 3K — run streak</span>
     <span class="weight-cell neutral">Eat well to recover. No pudding.</span>
   </div>
 </div>
 
-<!-- WEEK 4 — BUILD -->
+<!-- JUNE WEEK 1 -->
 <div class="week-block">
   <div class="week-title">
-    Week 4
-    <span class="week-dates">1–7 Jun</span>
-    <span class="week-phase phase-weight">Build</span>
-    <span class="week-total">~26K running</span>
+    June Week 1
+    <span class="week-dates">1–8 Jun</span>
+    <span class="week-phase phase-weight">Streak + build</span>
+    <span class="week-total">~32K target</span>
   </div>
   <div class="day-row">
     <span class="day-label">Mon 1</span>
-    <span class="day-note">💪 Strength</span>
+    <span class="day-note">💪 Strength WK1 + easy 3K after</span>
     <span class="run-cell">Dumbbell strength — 45 mins max</span>
     <span class="weight-cell">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 2</span>
-    <span class="day-note">—</span>
-    <span class="run-cell">7K tempo — 10min easy / 20min tempo / 10min easy</span>
+    <span class="day-note">BAC 6pm — club track</span>
+    <span class="run-cell">BAC intervals — 4×500, 300, 200, 100 (15min warmup / 10min cooldown)</span>
     <span class="weight-cell neutral">Swap crisps at lunch</span>
   </div>
-  <div class="day-row race-day">
+  <div class="day-row">
     <span class="day-label">Wed 3</span>
-    <span class="day-note">🏔️ CALVER PEAK FELL RACE <span class="badge badge-race">8K · 275m</span></span>
-    <span class="run-cell race">7:30pm start — Derwentwater Arms carpark, Calver. Entry on day £10.</span>
-    <span class="weight-cell neutral">Light meal before, nothing heavy</span>
+    <span class="day-note">PFTC — or optional Calver fell 8K 7:30pm</span>
+    <span class="run-cell">Run club 8K easy</span>
+    <span class="weight-cell neutral">Light meal if racing Calver tonight</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Thu 4</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest or padel</span>
+    <span class="day-note">Streak</span>
+    <span class="run-cell">Easy 4K — run streak</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Fri 5</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest</span>
+    <span class="day-note">Streak</span>
+    <span class="run-cell">Easy 3K — run streak</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
-  <div class="day-row race-day">
+  <div class="day-row">
     <span class="day-label">Sat 6</span>
-    <span class="day-note">🏔️ Outer Projects <span class="badge badge-hike">12K social</span></span>
-    <span class="run-cell">Social trail run — 12K, starts Calver village. Replaces long run.</span>
-    <span class="weight-cell neutral">Easy pace, enjoy it</span>
+    <span class="day-note">Long run</span>
+    <span class="run-cell">Long run 10K easy — trail if you can</span>
+    <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Sun 7</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest</span>
+    <span class="day-note">Weigh in · streak</span>
+    <span class="run-cell">Easy 3K — run streak</span>
     <span class="weight-cell">No pudding. Record weight.</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Sun 8</span>
+    <span class="day-note">Optional Passing Clouds ~16K 11am Tittesworth</span>
+    <span class="run-cell">Easy 3K — run streak (or Passing Clouds if racing)</span>
+    <span class="weight-cell neutral">Pudding ok if easy day only</span>
   </div>
 </div>
 
-<!-- WEEK 5 — QUALITY STARTS -->
+<!-- JUNE WEEK 2 -->
 <div class="week-block">
   <div class="week-title">
-    Week 5
+    June Week 2
     <span class="week-dates">8–14 Jun</span>
-    <span class="week-phase phase-weight">Quality Starts</span>
-    <span class="week-total">~29K running</span>
+    <span class="week-phase phase-weight">Streak + quality</span>
+    <span class="week-total">~35K target</span>
   </div>
   <div class="day-row">
     <span class="day-label">Mon 8</span>
-    <span class="day-note">💪 Strength</span>
+    <span class="day-note">💪 Strength WK2 + easy 3K after</span>
     <span class="run-cell">Dumbbell strength — 45 mins max</span>
     <span class="weight-cell">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 9</span>
-    <span class="day-note">—</span>
-    <span class="run-cell">7K — 10min easy, 20min tempo, 10min easy</span>
+    <span class="day-note">BAC 6pm — hill reps</span>
+    <span class="run-cell">BAC hill reps — 6×800m (15min warmup / 10min cooldown)</span>
     <span class="weight-cell neutral">Swap crisps at lunch</span>
   </div>
   <div class="day-row">
     <span class="day-label">Wed 10</span>
     <span class="day-note">PFTC</span>
-    <span class="run-cell">Run club 8K easy — recovery after Tuesday</span>
+    <span class="run-cell">Run club 8K easy</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Thu 11</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest or padel</span>
+    <span class="day-note">Streak</span>
+    <span class="run-cell">Easy 4K — run streak</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Fri 12</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest</span>
+    <span class="day-note">Streak</span>
+    <span class="run-cell">Easy 3K — run streak</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
   <div class="day-row">
     <span class="day-label">Sat 13</span>
-    <span class="day-note">—</span>
-    <span class="run-cell">Long run 14K easy — no heroics, this is endurance not speed</span>
+    <span class="day-note">Long run</span>
+    <span class="run-cell">Long run 14K easy — conversational, trail preferred</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Sun 14</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest</span>
+    <span class="day-note">Weigh in · optional Edale fell 7.6K 1pm</span>
+    <span class="run-cell">Easy 3K — run streak (or Edale if you're racing)</span>
     <span class="weight-cell">No pudding. Record weight.</span>
   </div>
 </div>
 
-<!-- WEEK 6 — PEAK WEEK -->
+<!-- JUNE WEEK 3 -->
 <div class="week-block">
   <div class="week-title">
-    Week 6
+    June Week 3
     <span class="week-dates">15–21 Jun</span>
-    <span class="week-phase phase-weight">Peak Week</span>
-    <span class="week-total">~32K running</span>
+    <span class="week-phase phase-weight">Peak week</span>
+    <span class="week-total">~38K target</span>
   </div>
   <div class="day-row">
     <span class="day-label">Mon 15</span>
-    <span class="day-note">💪 Strength</span>
+    <span class="day-note">💪 Strength WK3 + easy 3K after</span>
     <span class="run-cell">Dumbbell strength — 45 mins max</span>
     <span class="weight-cell">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 16</span>
-    <span class="day-note">—</span>
-    <span class="run-cell">8K — 10min easy, 3×8min tempo (2min jog recovery), 10min easy</span>
+    <span class="day-note">BAC 6pm — threshold</span>
+    <span class="run-cell">BAC threshold — 4×6min (10min warmup / 10min cooldown)</span>
     <span class="weight-cell neutral">Swap crisps at lunch</span>
   </div>
   <div class="day-row">
     <span class="day-label">Wed 17</span>
     <span class="day-note">PFTC</span>
-    <span class="run-cell">Run club 8K easy — shake out Tuesday's legs</span>
+    <span class="run-cell">Run club 8K easy</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Thu 18</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest or padel</span>
+    <span class="day-note">Streak — optional Grindleford fell 7:30pm</span>
+    <span class="run-cell">Easy 4K — run streak (swap for race if entered)</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Fri 19</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest</span>
+    <span class="day-note">Streak</span>
+    <span class="run-cell">Easy 3K — run streak</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
   <div class="day-row">
     <span class="day-label">Sat 20</span>
-    <span class="day-note">—</span>
-    <span class="run-cell">Long run 16K easy — your biggest run before the race</span>
-    <span class="weight-cell neutral">Pudding ok tonight. Fuel well after.</span>
+    <span class="day-note">Long run — optional Run Weekends Edale 18.3K 9am</span>
+    <span class="run-cell">Long run 16K easy — biggest aerobic day (or Edale 18K race)</span>
+    <span class="weight-cell neutral">Fuel well after. Pudding ok.</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Sun 21</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest</span>
+    <span class="day-note">Weigh in · optional PFTC Hayfield ~8K 9am</span>
+    <span class="run-cell">Easy 3K — run streak (or Hayfield social)</span>
     <span class="weight-cell">No pudding. Record weight.</span>
   </div>
 </div>
 
-<!-- WEEK 7 — TAPER -->
+<!-- JUNE WEEK 4 -->
 <div class="week-block">
   <div class="week-title">
-    Week 7 — taper
+    June Week 4
     <span class="week-dates">22–28 Jun</span>
-    <span class="week-phase phase-taper">Taper</span>
-    <span class="week-total">~20K running</span>
+    <span class="week-phase phase-taper">Taper + pudding</span>
+    <span class="week-total">~42K target</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Mon 22</span>
-    <span class="day-note">💪 Strength</span>
-    <span class="run-cell taper">Dumbbell strength — 45 mins max. Light this week — taper.</span>
+    <span class="day-note">💪 Strength WK4 taper + easy 3K</span>
+    <span class="run-cell taper">Dumbbell strength — 45 mins max. Light this week.</span>
     <span class="weight-cell">Weigh in. No pudding.</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Tue 23</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Quality — tempo</span>
     <span class="run-cell taper">6K — 10min easy, 15min tempo, 10min easy</span>
     <span class="weight-cell neutral">Swap crisps at lunch</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Wed 24</span>
-    <span class="day-note">PFTC</span>
+    <span class="day-note">PFTC Rivelin trail ~6K 6:30pm</span>
     <span class="run-cell taper">Run club 6K easy — hold back</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Thu 25</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest</span>
+    <span class="day-note">Streak</span>
+    <span class="run-cell">Easy 4K — run streak</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Fri 26</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest</span>
-    <span class="weight-cell neutral">AF — race weekend approaching</span>
+    <span class="day-note">Streak — pudding race weekend</span>
+    <span class="run-cell">Easy 3K — run streak</span>
+    <span class="weight-cell neutral">AF tomorrow if racing pudding</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Sat 27</span>
+    <span class="day-note">Streak — pre-race</span>
+    <span class="run-cell">Easy 3K — run streak</span>
+    <span class="weight-cell neutral">Early bed. Kit out for Sunday.</span>
   </div>
   <div class="day-row race-day">
-    <span class="day-label">Sat 28</span>
-    <span class="day-note">🏔️ BAKEWELL PUDDING RACE <span class="badge badge-race">10.4K fell</span></span>
-    <span class="run-cell race">11am start — Recreation Ground, Bakewell DE45 1BH. Entries open soon.</span>
-    <span class="weight-cell neutral">Pudding ok after — you've earned it 🍮</span>
+    <span class="day-label">Sun 28</span>
+    <span class="day-note">Optional Bakewell Pudding 10.4K 11am</span>
+    <span class="run-cell race">Bakewell pudding race — 10.4K fell (or easy 5K streak if not racing)</span>
+    <span class="weight-cell neutral">Pudding ok after if you raced 🍮</span>
   </div>
 </div>
 
@@ -703,20 +738,20 @@
   </div>
   <div class="day-row taper">
     <span class="day-label">Mon 29</span>
-    <span class="day-note">💪 Strength</span>
+    <span class="day-note">💪 Strength WK5 + easy 3K</span>
     <span class="run-cell taper">Dumbbell strength — 30 mins only, light weights. Race week.</span>
     <span class="weight-cell neutral">Box dinner portions</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Tue 30</span>
-    <span class="day-note">—</span>
+    <span class="day-note">Taper — strides</span>
     <span class="run-cell taper">Easy 4K + 4×20s strides — keep the legs sharp</span>
     <span class="weight-cell neutral">Light eating, no heavy meals</span>
   </div>
   <div class="day-row taper">
     <span class="day-label">Wed 1 Jul</span>
-    <span class="day-note">Travel day</span>
-    <span class="run-cell rest">Rest — drive to Gower</span>
+    <span class="day-note">Travel — streak before you go if you can</span>
+    <span class="run-cell">Easy 3K — run streak before drive to Gower</span>
     <span class="weight-cell neutral">Eat well, hydrate for the festival</span>
   </div>
   <div class="day-row race-day">
@@ -789,7 +824,8 @@
   — Box up dinner portions before you sit down — what goes in the fridge stays there<br>
   — Crisps AND Snickers at lunch is the double-hit to cut. One or neither.<br>
   — Pudding max 3–4 nights/week — Friday and Saturday are the ones to keep<br>
-  — One padel session per week max until you're consistently running 4hrs/week<br>
+  — No padel during the June run streak<br>
+  — One run per day — strength on Monday is separate from the streak 3K<br>
   — Slow on every descent — the Achilles doesn't care how good you feel
 </div>
 

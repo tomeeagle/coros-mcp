@@ -21,14 +21,14 @@ def _open_run(name: str, minutes: int, *, sport_type: int = 101) -> dict[str, An
 
 WORKOUTS: dict[str, dict[str, Any]] = {
     "easy_3k": {
-        "name": "Easy 3K — June streak",
+        "name": "Easy 3K — run streak",
         "kind": "run",
         "sport_type": 100,
         "intensity_type": 0,
         "steps": [{"name": "Easy run", "duration_minutes": 18}],
     },
     "easy_4k": {
-        "name": "Easy 4K — June streak",
+        "name": "Easy 4K — run streak",
         "kind": "run",
         "sport_type": 100,
         "intensity_type": 0,
@@ -174,6 +174,13 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {"name": "5K max effort", "duration_minutes": 22},
             {"name": "Cooldown", "duration_minutes": 10},
         ],
+    },
+    "long_10k": {
+        "name": "Long Run 10K easy",
+        "kind": "run",
+        "sport_type": 101,
+        "intensity_type": 0,
+        "steps": [{"name": "Easy long run", "duration_minutes": 65}],
     },
     "long_14k": {
         "name": "Long Run 14K easy",

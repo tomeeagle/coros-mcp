@@ -4,7 +4,8 @@ COROS Workout Sync — Tom's Training Plan
 
   cp .env.example .env          # COROS_EMAIL, COROS_PASSWORD, COROS_REGION
   npm run sync:setup            # once: venv + pip install
-  npm run sync:web              # edit plan_v1_8.html → click Sync
+  npm run plan:serve            # view plan_v1_8.html in the browser
+  npm run sync:web              # edit plan → click Sync to COROS
   npm run sync                  # full resync from terminal
 
   python coros_sync.py import-plan
@@ -60,12 +61,15 @@ def cmd_import_plan(args: argparse.Namespace) -> int:
     plan = parse_plan_html(path)
     sched_mod.reload_schedules(path)
 
-    print(f"\n📄 {path.name} — {len(plan.weeks)} weeks, {len(plan.schedule)} syncable sessions\n")
+    n_sessions = sum(len(keys) for keys in plan.schedule.values())
+    print(f"\n📄 {path.name} — {len(plan.weeks)} weeks, {n_sessions} syncable sessions\n")
     for wk in plan.weeks.values():
         print(f"  {wk.key:28}  {wk.label}")
-        for day, key in sorted(wk.days.items()):
-            name = WORKOUTS.get(key, {}).get("name", key)
-            print(f"    {day}  {name}")
+        for day, keys in sorted(wk.days.items()):
+            if isinstance(keys, str):
+                keys = [keys]
+            names = [WORKOUTS.get(k, {}).get("name", k) for k in keys]
+            print(f"    {day}  {' + '.join(names)}")
 
     if plan.unmapped:
         print(f"\n⚠️  {len(plan.unmapped)} unmapped (not pushed to COROS):")
@@ -83,9 +87,10 @@ async def cmd_sync(args: argparse.Namespace) -> int:
 
     if not args.yes:
         schedule = resolve_schedule(upcoming_only=not args.all_dates)
-        print(f"Will clear calendar in plan range, then push {len(schedule)} session(s):\n")
-        for day, key in schedule.items():
-            print(f"  {describe_session(day, key)}")
+        n = sum(len(k) for k in schedule.values())
+        print(f"Will clear calendar in plan range, then push {n} session(s):\n")
+        for day, keys in schedule.items():
+            print(f"  {describe_session(day, keys)}")
         print()
         confirm = input("Continue? (y/n): ").strip().lower()
         if confirm != "y":
@@ -124,9 +129,10 @@ async def cmd_push(args: argparse.Namespace) -> int:
 
     print("\n🏃 COROS Workout Sync")
     print("=" * 45)
-    print(f"\nSessions ({len(schedule)}):\n")
-    for day, key in schedule.items():
-        print(f"  {describe_session(day, key)}")
+    n = sum(len(k) for k in schedule.values())
+    print(f"\nSessions ({n}):\n")
+    for day, keys in schedule.items():
+        print(f"  {describe_session(day, keys)}")
 
     if not args.yes:
         print()

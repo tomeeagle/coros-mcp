@@ -20,25 +20,43 @@ def fmt_day(day_str: str) -> str:
     return datetime.strptime(day_str, "%Y%m%d").strftime("%a %d %b")
 
 
+def _is_run_workout_key(key: str) -> bool:
+    return key.startswith(
+        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_"),
+    )
+
+
+def _one_run_per_day(keys: list[str]) -> list[str]:
+    """Hard cap: one run workout per day (strength sessions unchanged)."""
+    runs = [k for k in keys if _is_run_workout_key(k)]
+    if len(runs) <= 1:
+        return keys
+    non_runs = [k for k in keys if not _is_run_workout_key(k)]
+    bac = [k for k in runs if k.startswith("bac_")]
+    chosen = bac[0] if bac else runs[0]
+    return non_runs + [chosen] if non_runs else [chosen]
+
+
 def resolve_schedule(
     *,
     week_keys: list[str] | None = None,
     days: dict[str, str] | None = None,
     upcoming_only: bool = True,
-) -> dict[str, str]:
-    """Build date -> workout_key from week keys, explicit days, or full SCHEDULE."""
-    merged: dict[str, str] = {}
+) -> dict[str, list[str]]:
+    """Build date -> workout keys from week keys, explicit days, or full SCHEDULE."""
+    merged: dict[str, list[str]] = {}
 
     weeks = _schedules.WEEKS
     if week_keys:
         for wk in week_keys:
             if wk not in weeks:
                 raise KeyError(f"Unknown week: {wk}. Use list-weeks to see options.")
-            merged.update(weeks[wk]["days"])
+            for day, keys in weeks[wk]["days"].items():
+                merged[day] = list(keys) if isinstance(keys, list) else [keys]
     elif days:
-        merged = dict(days)
+        merged = {d: [k] if isinstance(k, str) else list(k) for d, k in days.items()}
     else:
-        merged = dict(SCHEDULE)
+        merged = {d: list(k) for d, k in SCHEDULE.items()}
 
     if upcoming_only:
         today = date.today()
@@ -51,12 +69,19 @@ def resolve_schedule(
     return dict(sorted(merged.items()))
 
 
-def describe_session(day: str, workout_key: str) -> str:
-    w = WORKOUTS.get(workout_key, {})
-    return f"{fmt_day(day):12}  {w.get('name', workout_key)}"
+def describe_session(day: str, workout_keys: str | list[str]) -> str:
+    keys = [workout_keys] if isinstance(workout_keys, str) else list(workout_keys)
+    names = [WORKOUTS.get(k, {}).get("name", k) for k in keys]
+    return f"{fmt_day(day):12}  {' + '.join(names)}"
 
 
-async def push_session(auth: Any, day: str, workout_key: str) -> None:
+async def push_session(
+    auth: Any,
+    day: str,
+    workout_key: str,
+    *,
+    sort_no: int = 1,
+) -> None:
     w = WORKOUTS.get(workout_key)
     if not w:
         raise KeyError(f"Unknown workout key: {workout_key}")
@@ -71,6 +96,7 @@ async def push_session(auth: Any, day: str, workout_key: str) -> None:
             exercises=exercises,
             happen_day=day,
             sets=int(w.get("circuit_sets", 1)),
+            sort_no=sort_no,
         )
     else:
         await coros_api.schedule_workout(
@@ -80,11 +106,12 @@ async def push_session(auth: Any, day: str, workout_key: str) -> None:
             happen_day=day,
             sport_type=w.get("sport_type", 100),
             intensity_type=w.get("intensity_type", 0),
+            sort_no=sort_no,
         )
 
 
 def schedule_date_bounds(
-    schedule: dict[str, str],
+    schedule: dict[str, list[str]],
     *,
     padding_days: int = 7,
 ) -> tuple[str, str]:
@@ -120,7 +147,7 @@ async def full_resync(
         "plan_file": str(path),
         "upcoming_only": upcoming_only,
         "clear_range": f"{clear_start} – {clear_end}",
-        "sessions_to_push": len(schedule),
+        "sessions_to_push": sum(len(k) for k in schedule.values()),
         "removed": 0,
         "pushed": 0,
         "push_errors": 0,
@@ -129,7 +156,8 @@ async def full_resync(
 
     if dry_run:
         result["messages"].append(f"[dry run] Would clear {clear_start}–{clear_end}")
-        result["messages"].append(f"[dry run] Would push {len(schedule)} sessions")
+        n = sum(len(k) for k in schedule.values())
+        result["messages"].append(f"[dry run] Would push {n} sessions")
         return result
 
     auth = await ensure_auth()
@@ -145,14 +173,15 @@ async def full_resync(
 
 
 async def push_schedule(
-    schedule: dict[str, str],
+    schedule: dict[str, list[str]],
     *,
     dry_run: bool = False,
     auth: Any | None = None,
 ) -> tuple[int, int, list[str]]:
     """Push all sessions. Returns (success, errors, error_messages)."""
+    total = sum(len(keys) for keys in schedule.values())
     if dry_run:
-        return len(schedule), 0, []
+        return total, 0, []
 
     if auth is None:
         auth = await ensure_auth()
@@ -161,15 +190,18 @@ async def push_schedule(
     errors = 0
     messages: list[str] = []
 
-    for day, key in schedule.items():
-        w = WORKOUTS.get(key, {})
-        label = w.get("name", key)
-        try:
-            await push_session(auth, day, key)
-            success += 1
-            messages.append(f"✓ {fmt_day(day)} — {label}")
-        except Exception as exc:
-            errors += 1
-            messages.append(f"✗ {fmt_day(day)} — {label}: {exc}")
+    for day, keys in schedule.items():
+        keys = _one_run_per_day(keys)
+        for sort_no, key in enumerate(keys, start=1):
+            w = WORKOUTS.get(key, {})
+            label = w.get("name", key)
+            try:
+                await push_session(auth, day, key, sort_no=sort_no)
+                success += 1
+                suffix = f" (#{sort_no})" if len(keys) > 1 else ""
+                messages.append(f"✓ {fmt_day(day)} — {label}{suffix}")
+            except Exception as exc:
+                errors += 1
+                messages.append(f"✗ {fmt_day(day)} — {label}: {exc}")
 
     return success, errors, messages

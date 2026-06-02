@@ -46,8 +46,8 @@ def _index_html() -> str:
     auth_line = escape(auth_status_message())
     plan_path = DEFAULT_PLAN_PATH
     schedule = resolve_schedule(upcoming_only=True)
-    total = len(sched_mod.SCHEDULE)
-    upcoming = len(schedule)
+    total = sum(len(k) for k in sched_mod.SCHEDULE.values())
+    upcoming = sum(len(k) for k in schedule.values())
 
     preview = "".join(
         f"<li>{escape(describe_session(d, k))}</li>"

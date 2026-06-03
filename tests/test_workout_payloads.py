@@ -336,6 +336,23 @@ def test_run_workout_uses_sport_type_1_and_step_kinds():
     assert all(e.get("overview", "").startswith("sid_run_") for e in non_group)
 
 
+def test_run_workout_distance_steps_use_target_type_5():
+    from workout_sync.workouts import WORKOUTS
+
+    steps = WORKOUTS["easy_3k"]["steps"]
+    payload = build_run_workout_payload(
+        WORKOUTS["easy_3k"]["name"],
+        legacy_run_steps_to_run_steps(steps),
+    )
+    main = [e for e in payload["exercises"] if not e.get("isGroup")][0]
+    assert main["targetType"] == 5
+    assert main["targetValue"] == 300_000  # 3 km in COROS centimeters
+    assert main["targetDisplayUnit"] == 1  # km
+    assert payload["targetType"] == 5
+    assert payload["targetValue"] == 300_000
+    assert payload["distanceDisplayUnit"] == 1
+
+
 def test_cycling_empty_steps_raises():
     with pytest.raises(ValueError):
         _build_workout_program_payload(name="empty", steps=[])

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing import Any
 
-# All duration_minutes must be whole integers — decimals crash the COROS app
-# when editing interval workouts.
+# duration_minutes and distance_meters must be whole integers — decimals crash
+# the COROS app when editing interval workouts.
 
 
 def _open_run(name: str, minutes: int, *, sport_type: int = 101) -> dict[str, Any]:
@@ -19,49 +19,30 @@ def _open_run(name: str, minutes: int, *, sport_type: int = 101) -> dict[str, An
     }
 
 
+def _distance_run(
+    name: str,
+    meters: int,
+    *,
+    step_name: str = "Easy run",
+    sport_type: int = 100,
+) -> dict[str, Any]:
+    """Run with a distance target (watch stops at metres, not minutes)."""
+    return {
+        "name": name,
+        "kind": "run",
+        "sport_type": sport_type,
+        "intensity_type": 0,
+        "steps": [{"name": step_name, "distance_meters": meters}],
+    }
+
+
 WORKOUTS: dict[str, dict[str, Any]] = {
-    "easy_3k": {
-        "name": "Easy 3K — run streak",
-        "kind": "run",
-        "sport_type": 100,
-        "intensity_type": 0,
-        "steps": [{"name": "Easy run", "duration_minutes": 18}],
-    },
-    "easy_4k": {
-        "name": "Easy 4K — run streak",
-        "kind": "run",
-        "sport_type": 100,
-        "intensity_type": 0,
-        "steps": [{"name": "Easy run", "duration_minutes": 24}],
-    },
-    "easy_5k": {
-        "name": "Easy 5K — June streak",
-        "kind": "run",
-        "sport_type": 100,
-        "intensity_type": 0,
-        "steps": [{"name": "Easy run", "duration_minutes": 30}],
-    },
-    "run_club_5k": {
-        "name": "Run club — easy 5K",
-        "kind": "run",
-        "sport_type": 100,
-        "intensity_type": 0,
-        "steps": [{"name": "Easy run", "duration_minutes": 30}],
-    },
-    "run_club_6k": {
-        "name": "Run club — easy 6K",
-        "kind": "run",
-        "sport_type": 100,
-        "intensity_type": 0,
-        "steps": [{"name": "Easy run", "duration_minutes": 36}],
-    },
-    "run_club_8k": {
-        "name": "Run club — easy 8K",
-        "kind": "run",
-        "sport_type": 100,
-        "intensity_type": 0,
-        "steps": [{"name": "Easy run", "duration_minutes": 48}],
-    },
+    "easy_3k": _distance_run("Easy 3K — run streak", 3000),
+    "easy_4k": _distance_run("Easy 4K — run streak", 4000),
+    "easy_5k": _distance_run("Easy 5K — June streak", 5000),
+    "run_club_5k": _distance_run("Run club — easy 5K", 5000),
+    "run_club_6k": _distance_run("Run club — easy 6K", 6000),
+    "run_club_8k": _distance_run("Run club — easy 8K", 8000),
     "race_maverick": _open_run("Maverick Peaks 10K", 75),
     "race_calver": _open_run("Calver Peak Fell Race 8K", 70),
     "race_outer_projects_12k": _open_run("Outer Projects 12K social run", 75),
@@ -75,7 +56,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "intensity_type": 0,
         "steps": [
             {"name": "Warmup", "duration_minutes": 10},
-            {"name": "Tempo effort", "duration_minutes": 20},
+            {"name": "Tempo effort", "distance_meters": 7000},
             {"name": "Cooldown", "duration_minutes": 10},
         ],
     },
@@ -103,7 +84,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "intensity_type": 0,
         "steps": [
             {"name": "Warmup", "duration_minutes": 10},
-            {"name": "Tempo effort", "duration_minutes": 15},
+            {"name": "Tempo effort", "distance_meters": 6000},
             {"name": "Cooldown", "duration_minutes": 10},
         ],
     },
@@ -117,13 +98,13 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {
                 "repeat": 4,
                 "steps": [
-                    {"name": "500m effort", "duration_minutes": 2},
+                    {"name": "500m effort", "distance_meters": 500},
                     {"name": "Recovery", "duration_minutes": 2},
-                    {"name": "300m effort", "duration_minutes": 1},
+                    {"name": "300m effort", "distance_meters": 300},
                     {"name": "Recovery", "duration_minutes": 1},
-                    {"name": "200m effort", "duration_minutes": 1},
+                    {"name": "200m effort", "distance_meters": 200},
                     {"name": "Recovery", "duration_minutes": 1},
-                    {"name": "100m sprint", "duration_minutes": 1},
+                    {"name": "100m sprint", "distance_meters": 100},
                     {"name": "Full recovery", "duration_minutes": 2},
                 ],
             },
@@ -140,7 +121,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {
                 "repeat": 6,
                 "steps": [
-                    {"name": "Hard uphill", "duration_minutes": 5},
+                    {"name": "Hard uphill", "distance_meters": 800},
                     {"name": "Recovery jog", "duration_minutes": 3},
                 ],
             },
@@ -171,24 +152,16 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "intensity_type": 0,
         "steps": [
             {"name": "Warmup", "duration_minutes": 10},
-            {"name": "5K max effort", "duration_minutes": 22},
+            {"name": "5K max effort", "distance_meters": 5000},
             {"name": "Cooldown", "duration_minutes": 10},
         ],
     },
-    "long_10k": {
-        "name": "Long Run 10K easy",
-        "kind": "run",
-        "sport_type": 101,
-        "intensity_type": 0,
-        "steps": [{"name": "Easy long run", "duration_minutes": 65}],
-    },
-    "long_14k": {
-        "name": "Long Run 14K easy",
-        "kind": "run",
-        "sport_type": 101,
-        "intensity_type": 0,
-        "steps": [{"name": "Easy long run", "duration_minutes": 90}],
-    },
+    "long_10k": _distance_run(
+        "Long Run 10K easy", 10000, step_name="Easy long run", sport_type=101
+    ),
+    "long_14k": _distance_run(
+        "Long Run 14K easy", 14000, step_name="Easy long run", sport_type=101
+    ),
     "long_run": {
         "name": "Easy Long Run",
         "kind": "run",
@@ -196,13 +169,9 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "intensity_type": 0,
         "steps": [{"name": "Easy long run", "duration_minutes": 75}],
     },
-    "long_16k": {
-        "name": "Long Run 16K easy",
-        "kind": "run",
-        "sport_type": 101,
-        "intensity_type": 0,
-        "steps": [{"name": "Easy long run", "duration_minutes": 100}],
-    },
+    "long_16k": _distance_run(
+        "Long Run 16K easy", 16000, step_name="Easy long run", sport_type=101
+    ),
     "strength_full_body": {
         "name": "Strength — full body",
         "kind": "strength",

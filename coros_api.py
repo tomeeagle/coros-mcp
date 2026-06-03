@@ -592,8 +592,13 @@ WORKOUT_SPORT_NAMES: dict[int, str] = {
 }
 
 # Run builder (sportType=1) — required for structured workouts on the watch.
+# Distance targetType=5 uses targetValue in centimeters (not meters).
 _RUN_DISTANCE_TARGET_TYPES = {5}
 _RUN_TIME_TARGET_TYPES = {2}
+_RUN_DISTANCE_CM_PER_METER = 100
+# targetDisplayUnit / distanceDisplayUnit: 1 = km, 3 = mi (per Training Hub builder catalog)
+_RUN_DISTANCE_DISPLAY_UNIT_KM = 1
+_RUN_DISTANCE_DISPLAY_UNIT_MI = 3
 _RUN_STEP_KIND_TO_EXERCISE_TYPE = {
     "warmup": 1,
     "training": 2,
@@ -618,8 +623,28 @@ def _run_kind_from_step_name(name: str) -> str:
     return "training"
 
 
+def _legacy_run_step_to_native(step: dict) -> dict:
+    """Convert one workout_sync step (duration or distance) to a run-native step."""
+    base = {
+        "kind": _run_kind_from_step_name(step.get("name", "")),
+        "name": step.get("name", "Step"),
+        "intensity_type": _RUN_OPEN_INTENSITY_TYPE,
+    }
+    if "distance_meters" in step:
+        return {
+            **base,
+            "target_type": "distance",
+            "target_distance_meters": int(step["distance_meters"]),
+        }
+    return {
+        **base,
+        "target_type": "time",
+        "target_duration_seconds": int(step["duration_minutes"] * 60),
+    }
+
+
 def legacy_run_steps_to_run_steps(steps: list[dict]) -> list[dict]:
-    """Convert duration_minutes workout_sync steps to run-native step dicts."""
+    """Convert workout_sync steps (duration_minutes or distance_meters) to run-native dicts."""
     out: list[dict] = []
     for step in steps:
         if "repeat" in step:
@@ -627,24 +652,12 @@ def legacy_run_steps_to_run_steps(steps: list[dict]) -> list[dict]:
                 "repeat": int(step["repeat"]),
                 "name": step.get("name", "Intervals"),
                 "steps": [
-                    {
-                        "kind": _run_kind_from_step_name(s.get("name", "")),
-                        "name": s.get("name", "Step"),
-                        "target_type": "time",
-                        "target_duration_seconds": int(s["duration_minutes"] * 60),
-                        "intensity_type": _RUN_OPEN_INTENSITY_TYPE,
-                    }
+                    _legacy_run_step_to_native(s)
                     for s in step.get("steps", [])
                 ],
             })
         else:
-            out.append({
-                "kind": _run_kind_from_step_name(step.get("name", "")),
-                "name": step.get("name", "Step"),
-                "target_type": "time",
-                "target_duration_seconds": int(step["duration_minutes"] * 60),
-                "intensity_type": _RUN_OPEN_INTENSITY_TYPE,
-            })
+            out.append(_legacy_run_step_to_native(step))
     return out
 
 
@@ -675,8 +688,14 @@ def _build_run_exercise(
     else:
         target_type = int(raw_target)
     if target_type in _RUN_DISTANCE_TARGET_TYPES:
-        target_value = int(step.get("target_distance_meters", step.get("target_value", 0)))
-        target_display_unit = int(step.get("target_display_unit", 3))
+        if "target_distance_meters" in step:
+            target_value = int(step["target_distance_meters"]) * _RUN_DISTANCE_CM_PER_METER
+        else:
+            # Already in COROS centimeters (e.g. cloned from API).
+            target_value = int(step.get("target_value", 0))
+        target_display_unit = int(
+            step.get("target_display_unit", _RUN_DISTANCE_DISPLAY_UNIT_KM)
+        )
     else:
         target_type = 2
         target_value = int(
@@ -756,7 +775,11 @@ def build_run_workout_payload(name: str, steps: list[dict]) -> dict:
                 "intensityValue": 0,
                 "targetType": group_target_type,
                 "targetValue": group_target_value,
-                "targetDisplayUnit": 3 if group_target_type in _RUN_DISTANCE_TARGET_TYPES else 0,
+                "targetDisplayUnit": (
+                    _RUN_DISTANCE_DISPLAY_UNIT_KM
+                    if group_target_type in _RUN_DISTANCE_TARGET_TYPES
+                    else 0
+                ),
                 "sets": repeat_count,
                 "sortNo": group_sort,
                 "restType": int(step.get("rest_type", 3)),
@@ -786,7 +809,7 @@ def build_run_workout_payload(name: str, steps: list[dict]) -> dict:
         "sportType": _RUN_SPORT_TYPE,
         "estimatedTime": total_time,
         "estimatedDistance": total_distance,
-        "distanceDisplayUnit": 3,
+        "distanceDisplayUnit": _RUN_DISTANCE_DISPLAY_UNIT_KM,
         "estimatedType": 6 if total_distance else 0,
         "targetType": 5 if total_distance else 2,
         "targetValue": total_distance if total_distance else total_time,
@@ -1586,11 +1609,11 @@ async def schedule_run_workout(
     """
     def _is_legacy(step_list: list[dict]) -> bool:
         for s in step_list:
-            if "duration_minutes" in s:
+            if "duration_minutes" in s or "distance_meters" in s:
                 return True
             if "repeat" in s:
                 for sub in s.get("steps", []):
-                    if "duration_minutes" in sub:
+                    if "duration_minutes" in sub or "distance_meters" in sub:
                         return True
         return False
 

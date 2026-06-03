@@ -87,11 +87,13 @@ def _summarize_steps(steps: list[dict]) -> tuple[float, int]:
     steps_count = 0
     for s in steps:
         if "repeat" in s:
-            sub_mins = sum(sub["duration_minutes"] for sub in s["steps"])
+            sub_mins = sum(sub.get("duration_minutes", 0) for sub in s["steps"])
             total_minutes += sub_mins * s["repeat"]
             steps_count += 1 + len(s["steps"])
-        else:
+        elif "duration_minutes" in s:
             total_minutes += s["duration_minutes"]
+            steps_count += 1
+        else:
             steps_count += 1
     return total_minutes, steps_count
 

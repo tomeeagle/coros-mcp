@@ -177,8 +177,8 @@ def _primary_run_key(
     if not text or text in ("—", "-"):
         return None, "empty"
 
-    if re.search(r"^rest|^full rest", text):
-        return "easy_3k", None
+    if re.search(r"^rest|^full rest", text, re.I):
+        return None, "empty"
 
     combined = f"{text} {note}"
 
@@ -233,6 +233,7 @@ def _primary_run_key(
         (r"long run 16k", "long_16k"),
         (r"long run 14k", "long_14k"),
         (r"long run 10k", "long_10k"),
+        (r"easy 10k", "easy_10k"),
         (r"easy 5k", "easy_5k"),
         (r"3.×8min tempo|3×8min tempo", "tempo_8k"),
         (r"6k.*15min tempo", "tempo_6k"),

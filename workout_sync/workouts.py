@@ -40,6 +40,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     "easy_3k": _distance_run("Easy 3K — run streak", 3000),
     "easy_4k": _distance_run("Easy 4K — run streak", 4000),
     "easy_5k": _distance_run("Easy 5K — June streak", 5000),
+    "easy_10k": _distance_run("Easy 10K", 10000),
     "run_club_5k": _distance_run("Run club — easy 5K", 5000),
     "run_club_6k": _distance_run("Run club — easy 6K", 6000),
     "run_club_8k": _distance_run("Run club — easy 8K", 8000),

@@ -38,7 +38,7 @@ def test_parse_day_label_inferred_month():
 
 
 def test_map_rest_to_streak_and_one_run_per_day():
-    assert _map_run_to_workout("Rest", "", "x", {}) == ("easy_3k", None)
+    assert _map_run_to_workout("Rest", "", "x", {}) == (None, "empty")
     keys, skip = _map_run_to_workouts(
         "7K tempo — 10min easy / 20min tempo / 10min easy",
         "Tempo AM · BAC 6pm intervals",
@@ -84,9 +84,12 @@ def test_parse_full_plan():
     assert plan.schedule["20260602"] == ["bac_intervals"]
     assert plan.schedule["20260603"] == ["run_club_8k"]
     assert plan.schedule["20260606"] == ["long_10k"]
+    assert plan.schedule["20260608"] == ["strength_wk2", "easy_3k"]
     assert plan.schedule["20260609"] == ["bac_hill_6x800"]
-    assert plan.schedule["20260611"] == ["easy_4k"]
+    assert "20260611" not in plan.schedule  # Thu rest
+    assert plan.schedule["20260612"] == ["easy_10k"]
     assert plan.schedule["20260613"] == ["long_14k"]
+    assert "20260614" not in plan.schedule  # Sun rest
     assert plan.schedule["20260616"] == ["bac_threshold_4x6"]
     assert plan.schedule["20260620"] == ["long_16k"]
     assert plan.schedule["20260623"] == ["tempo_6k"]

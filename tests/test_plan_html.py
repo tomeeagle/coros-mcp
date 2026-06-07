@@ -87,14 +87,18 @@ def test_parse_full_plan():
     assert plan.schedule["20260608"] == ["strength_wk2", "easy_3k"]
     assert plan.schedule["20260609"] == ["bac_hill_6x800"]
     assert "20260611" not in plan.schedule  # Thu rest
-    assert plan.schedule["20260612"] == ["easy_10k"]
-    assert plan.schedule["20260613"] == ["long_14k"]
+    assert plan.schedule["20260612"] == ["progression_8k"]
+    assert plan.schedule["20260613"] == ["long_12k"]
     assert "20260614" not in plan.schedule  # Sun rest
     assert plan.schedule["20260616"] == ["bac_threshold_4x6"]
-    assert plan.schedule["20260620"] == ["long_16k"]
+    assert "20260618" not in plan.schedule  # Thu rest
+    assert plan.schedule["20260619"] == ["progression_10k"]
+    assert plan.schedule["20260620"] == ["long_14k"]
+    assert "20260621" not in plan.schedule  # Sun rest
     assert plan.schedule["20260623"] == ["tempo_6k"]
-    assert plan.schedule["20260626"] == ["easy_3k"]
-    assert plan.schedule["20260627"] == ["easy_3k"]
+    assert "20260625" not in plan.schedule  # Thu rest taper
+    assert plan.schedule["20260626"] == ["easy_5k"]
+    assert "20260627" not in plan.schedule  # Sat rest pre-race
     assert plan.schedule["20260628"] == ["race_bakewell"]
     assert plan.schedule["20260530"] == ["race_maverick"]
     assert plan.schedule["20260610"] == ["run_club_8k"]

@@ -232,7 +232,10 @@ def _primary_run_key(
     rules: list[tuple[str, str]] = [
         (r"long run 16k", "long_16k"),
         (r"long run 14k", "long_14k"),
+        (r"long run 12k", "long_12k"),
         (r"long run 10k", "long_10k"),
+        (r"progression 10k|6k easy.*4k steady", "progression_10k"),
+        (r"progression 8k|5k easy.*3k steady", "progression_8k"),
         (r"easy 10k", "easy_10k"),
         (r"easy 5k", "easy_5k"),
         (r"3.×8min tempo|3×8min tempo", "tempo_8k"),
@@ -252,7 +255,7 @@ def _primary_run_key(
 
 def _is_run_workout_key(key: str) -> bool:
     return key.startswith(
-        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_"),
+        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_", "progression_"),
     )
 
 

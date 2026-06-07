@@ -41,6 +41,26 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     "easy_4k": _distance_run("Easy 4K — run streak", 4000),
     "easy_5k": _distance_run("Easy 5K — June streak", 5000),
     "easy_10k": _distance_run("Easy 10K", 10000),
+    "progression_8k": {
+        "name": "Progression 8K — 5K easy / 3K steady",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy", "distance_meters": 5000},
+            {"name": "Steady effort", "distance_meters": 3000},
+        ],
+    },
+    "progression_10k": {
+        "name": "Progression 10K — 6K easy / 4K steady",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy", "distance_meters": 6000},
+            {"name": "Steady effort", "distance_meters": 4000},
+        ],
+    },
     "run_club_5k": _distance_run("Run club — easy 5K", 5000),
     "run_club_6k": _distance_run("Run club — easy 6K", 6000),
     "run_club_8k": _distance_run("Run club — easy 8K", 8000),
@@ -159,6 +179,9 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     },
     "long_10k": _distance_run(
         "Long Run 10K easy", 10000, step_name="Easy long run", sport_type=101
+    ),
+    "long_12k": _distance_run(
+        "Long Run 12K easy", 12000, step_name="Easy long run", sport_type=101
     ),
     "long_14k": _distance_run(
         "Long Run 14K easy", 14000, step_name="Easy long run", sport_type=101

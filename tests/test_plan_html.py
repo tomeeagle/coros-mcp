@@ -84,7 +84,7 @@ def test_parse_full_plan():
     assert plan.schedule["20260602"] == ["bac_intervals"]
     assert plan.schedule["20260603"] == ["run_club_8k"]
     assert plan.schedule["20260606"] == ["long_10k"]
-    assert plan.schedule["20260608"] == ["strength_wk2", "easy_3k"]
+    assert plan.schedule["20260608"] == ["strength_wk2", "easy_6k"]
     assert plan.schedule["20260609"] == ["bac_hill_6x800"]
     assert "20260611" not in plan.schedule  # Thu rest
     assert plan.schedule["20260612"] == ["progression_8k"]

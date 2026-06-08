@@ -237,6 +237,7 @@ def _primary_run_key(
         (r"progression 10k|6k easy.*4k steady", "progression_10k"),
         (r"progression 8k|5k easy.*3k steady", "progression_8k"),
         (r"easy 10k", "easy_10k"),
+        (r"easy 6k|6k easy", "easy_6k"),
         (r"easy 5k", "easy_5k"),
         (r"3.×8min tempo|3×8min tempo", "tempo_8k"),
         (r"6k.*15min tempo", "tempo_6k"),
@@ -299,8 +300,14 @@ def _map_run_to_workouts(
         if bac and bac not in keys:
             keys = [bac]
 
-    if primary and primary.startswith("strength_") and "easy_3k" not in keys:
-        keys.append("easy_3k")
+    if primary and primary.startswith("strength_"):
+        post_strength = "easy_3k"
+        if re.search(r"easy 6k|6k easy", note_text, re.I):
+            post_strength = "easy_6k"
+        elif re.search(r"easy 3k|3k easy", note_text, re.I):
+            post_strength = "easy_3k"
+        if post_strength not in keys:
+            keys.append(post_strength)
 
     keys = _single_run_per_day(keys)
 

@@ -40,6 +40,38 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     "easy_3k": _distance_run("Easy 3K — run streak", 3000),
     "easy_4k": _distance_run("Easy 4K — run streak", 4000),
     "easy_5k": _distance_run("Easy 5K — June streak", 5000),
+    "easy_6k": {
+        "name": "Easy 6K + 5 strides",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {
+                "kind": "training",
+                "name": "Easy run",
+                "target_type": "distance",
+                "target_distance_meters": 6000,
+            },
+            {
+                "repeat": 5,
+                "name": "Strides",
+                "steps": [
+                    {
+                        "kind": "training",
+                        "name": "Stride",
+                        "target_type": "time",
+                        "target_duration_seconds": 22,
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Recovery jog",
+                        "target_type": "time",
+                        "target_duration_seconds": 75,
+                    },
+                ],
+            },
+        ],
+    },
     "easy_10k": _distance_run("Easy 10K", 10000),
     "progression_8k": {
         "name": "Progression 8K — 5K easy / 3K steady",

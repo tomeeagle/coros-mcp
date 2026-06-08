@@ -353,6 +353,22 @@ def test_run_workout_distance_steps_use_target_type_5():
     assert payload["distanceDisplayUnit"] == 1
 
 
+def test_easy_6k_includes_stride_interval_group():
+    from workout_sync.workouts import WORKOUTS
+
+    steps = WORKOUTS["easy_6k"]["steps"]
+    payload = build_run_workout_payload(WORKOUTS["easy_6k"]["name"], steps)
+    groups = [e for e in payload["exercises"] if e.get("isGroup")]
+    assert len(groups) == 1
+    assert groups[0]["sets"] == 5
+    sub = [e for e in payload["exercises"] if not e.get("isGroup")]
+    stride = [e for e in sub if e.get("name") == "Stride"][0]
+    recovery = [e for e in sub if e.get("name") == "Recovery jog"][0]
+    assert stride["targetType"] == 2
+    assert stride["targetValue"] == 22
+    assert recovery["exerciseType"] == 4  # rest
+
+
 def test_cycling_empty_steps_raises():
     with pytest.raises(ValueError):
         _build_workout_program_payload(name="empty", steps=[])

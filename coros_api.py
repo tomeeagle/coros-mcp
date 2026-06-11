@@ -595,6 +595,7 @@ WORKOUT_SPORT_NAMES: dict[int, str] = {
 # Distance targetType=5 uses targetValue in centimeters (not meters).
 _RUN_DISTANCE_TARGET_TYPES = {5}
 _RUN_TIME_TARGET_TYPES = {2}
+_RUN_OPEN_TARGET_TYPES = {1}
 _RUN_DISTANCE_CM_PER_METER = 100
 # targetDisplayUnit / distanceDisplayUnit: 1 = km, 3 = mi (per Training Hub builder catalog)
 _RUN_DISTANCE_DISPLAY_UNIT_KM = 1
@@ -630,6 +631,11 @@ def _legacy_run_step_to_native(step: dict) -> dict:
         "name": step.get("name", "Step"),
         "intensity_type": _RUN_OPEN_INTENSITY_TYPE,
     }
+    raw_tt = step.get("target_type")
+    if isinstance(raw_tt, str) and raw_tt.strip().lower() == "open":
+        return {**base, "target_type": "open"}
+    if raw_tt == 1:
+        return {**base, "target_type": "open"}
     if "distance_meters" in step:
         return {
             **base,
@@ -667,6 +673,8 @@ def _default_run_overview(kind: str, target_type: int) -> str:
     if kind == "cooldown":
         return "sid_run_cool_down" if target_type in _RUN_TIME_TARGET_TYPES else "sid_run_cool_down_dist"
     if kind == "rest":
+        if target_type in _RUN_OPEN_TARGET_TYPES:
+            return "sid_run_rest"
         return "sid_run_rest" if target_type in _RUN_TIME_TARGET_TYPES else "sid_run_rest_dist"
     return "sid_run_training"
 
@@ -684,10 +692,20 @@ def _build_run_exercise(
 
     raw_target = step.get("target_type", 2)
     if isinstance(raw_target, str):
-        target_type = 5 if raw_target.strip().lower() == "distance" else 2
+        t = raw_target.strip().lower()
+        if t == "distance":
+            target_type = 5
+        elif t == "open":
+            target_type = 1
+        else:
+            target_type = 2
     else:
         target_type = int(raw_target)
-    if target_type in _RUN_DISTANCE_TARGET_TYPES:
+    if target_type in _RUN_OPEN_TARGET_TYPES:
+        target_type = 1
+        target_value = 0
+        target_display_unit = 0
+    elif target_type in _RUN_DISTANCE_TARGET_TYPES:
         if "target_distance_meters" in step:
             target_value = int(step["target_distance_meters"]) * _RUN_DISTANCE_CM_PER_METER
         else:
@@ -1609,11 +1627,15 @@ async def schedule_run_workout(
     """
     def _is_legacy(step_list: list[dict]) -> bool:
         for s in step_list:
-            if "duration_minutes" in s or "distance_meters" in s:
+            if "duration_minutes" in s or "distance_meters" in s or "target_type" in s:
                 return True
             if "repeat" in s:
                 for sub in s.get("steps", []):
-                    if "duration_minutes" in sub or "distance_meters" in sub:
+                    if (
+                        "duration_minutes" in sub
+                        or "distance_meters" in sub
+                        or "target_type" in sub
+                    ):
                         return True
         return False
 

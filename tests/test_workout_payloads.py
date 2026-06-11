@@ -369,6 +369,23 @@ def test_easy_6k_includes_stride_interval_group():
     assert recovery["exerciseType"] == 4  # rest
 
 
+def test_bac_hill_recovery_is_open_target():
+    from workout_sync.workouts import WORKOUTS
+
+    steps = WORKOUTS["bac_hill_6x800"]["steps"]
+    payload = build_run_workout_payload(
+        WORKOUTS["bac_hill_6x800"]["name"],
+        legacy_run_steps_to_run_steps(steps),
+    )
+    recovery = [
+        e for e in payload["exercises"]
+        if e.get("name") == "Recovery to bottom"
+    ][0]
+    assert recovery["targetType"] == 1
+    assert recovery["targetValue"] == 0
+    assert recovery["exerciseType"] == 4
+
+
 def test_cycling_empty_steps_raises():
     with pytest.raises(ValueError):
         _build_workout_program_payload(name="empty", steps=[])

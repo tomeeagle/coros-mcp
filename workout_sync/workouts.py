@@ -175,7 +175,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
                 "repeat": 6,
                 "steps": [
                     {"name": "Hard uphill", "distance_meters": 800},
-                    {"name": "Recovery jog", "duration_minutes": 3},
+                    {"name": "Recovery to bottom", "target_type": "open"},
                 ],
             },
             {"name": "Cooldown", "duration_minutes": 10},

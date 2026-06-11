@@ -88,6 +88,11 @@ def _parse_week_dates(text: str) -> tuple[tuple[int, int], tuple[int, int]]:
     if single:
         month = _parse_month_token(single.group(3))
         return ((month, int(single.group(1))), (month, int(single.group(2))))
+    lone = re.match(r"^(\d{1,2})\s+(\w+)$", text, re.I)
+    if lone:
+        month = _parse_month_token(lone.group(2))
+        day = int(lone.group(1))
+        return ((month, day), (month, day))
     raise ValueError(f"Cannot parse week dates: {text!r}")
 
 
@@ -222,7 +227,8 @@ def _primary_run_key(
         return "run_club_8k", None
 
     if "dumbbell strength" in text or ("strength" in note and "💪" in note_text):
-        preset = strength_mondays.get(yyyymmdd, "wk1")
+        wk_m = re.search(r"strength\s+wk(\d+)", note, re.I)
+        preset = f"wk{wk_m.group(1)}" if wk_m else strength_mondays.get(yyyymmdd, "wk1")
         return f"strength_{preset}", None
 
     bac_only = _bac_key_from_text(text)
@@ -301,12 +307,12 @@ def _map_run_to_workouts(
             keys = [bac]
 
     if primary and primary.startswith("strength_"):
-        post_strength = "easy_3k"
+        post_strength: str | None = None
         if re.search(r"easy 6k|6k easy", note_text, re.I):
             post_strength = "easy_6k"
-        elif re.search(r"easy 3k|3k easy", note_text, re.I):
+        elif re.search(r"easy 3k|3k easy|\+ easy", note_text, re.I):
             post_strength = "easy_3k"
-        if post_strength not in keys:
+        if post_strength and post_strength not in keys:
             keys.append(post_strength)
 
     keys = _single_run_per_day(keys)
@@ -349,14 +355,15 @@ def parse_plan_html(path: Path | None = None) -> ParsedPlan:
 
 def _iter_week_block_chunks(html: str):
     """Yield inner HTML of each top-level week-block (handles nested divs)."""
-    marker = '<div class="week-block">'
-    end_markers = ('<div class="week-block">', "<!-- WEIGHT", "<hr ")
+    marker = '<div class="week-block'
+    end_markers = ('<div class="week-block', "<!-- WEIGHT", "<hr ")
     pos = 0
     while True:
         start = html.find(marker, pos)
         if start < 0:
             return
-        content_start = start + len(marker)
+        close = html.find(">", start)
+        content_start = close + 1 if close >= 0 else start + len(marker)
         next_starts = [html.find(m, content_start) for m in end_markers]
         next_starts = [i for i in next_starts if i >= 0]
         end = min(next_starts) if next_starts else len(html)
@@ -429,7 +436,7 @@ def _parse_week_blocks_ordered(
                 if skip and skip.startswith("unmapped"):
                     unmapped.append(pd)
 
-        if pw.days:
+        if pw.days or pw.skipped:
             weeks[key] = pw
 
     return weeks, schedule, unmapped

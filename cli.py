@@ -216,6 +216,71 @@ def cmd_cache_status() -> int:
     return 0
 
 
+def cmd_runs() -> int:
+    """List runs from local cache (fast). Use --refresh to pull latest from Coros first."""
+    import argparse
+    from datetime import datetime, timedelta
+
+    from cache.store import get_activities, init_db
+    from cache.sync import fetch_activities_cached
+    from cache.utils import LOCAL_TZ
+
+    parser = argparse.ArgumentParser(
+        prog="coros-mcp runs",
+        description="List runs from local cache (milliseconds).",
+    )
+    parser.add_argument("--from", dest="start_day", metavar="YYYYMMDD", help="Start date")
+    parser.add_argument("--to", dest="end_day", metavar="YYYYMMDD", help="End date (default: today)")
+    parser.add_argument(
+        "--refresh",
+        action="store_true",
+        help="Fetch latest from Coros into cache before listing (~1–2s)",
+    )
+    parsed = parser.parse_args(sys.argv[2:])
+
+    today = datetime.now(tz=LOCAL_TZ).date() if LOCAL_TZ else datetime.now().date()
+    end_day = parsed.end_day or today.strftime("%Y%m%d")
+    start_day = parsed.start_day or (today - timedelta(days=6)).strftime("%Y%m%d")
+
+    init_db()
+    if parsed.refresh:
+        auth = get_stored_auth() or asyncio.run(try_auto_login())
+        if auth is None:
+            print("✗ Not authenticated. Run 'coros-mcp auth' or use cache-only (omit --refresh).")
+            return 1
+        asyncio.run(fetch_activities_cached(auth, start_day, end_day, size=100))
+
+    runs = [
+        a for a in get_activities(start_day, end_day)
+        if a.sport_type in {1, 100, 101, 102, 103}
+        or "run" in (a.sport_name or "").lower()
+    ]
+    runs.sort(key=lambda a: int(a.start_time or 0))
+
+    if not runs:
+        print(f"No runs in cache for {start_day}–{end_day}.")
+        print("Run: coros-mcp sync --from", start_day, "--to", end_day)
+        return 0
+
+    total_km = 0.0
+    print(f"Runs {start_day}–{end_day} (from cache):\n")
+    for a in runs:
+        km = (a.distance_meters or 0) / 1000
+        total_km += km
+        dur = (a.duration_seconds or 0) / 60
+        pace = dur / km if km > 0.5 else 0
+        if a.start_time and LOCAL_TZ:
+            day = datetime.fromtimestamp(int(a.start_time), tz=LOCAL_TZ).strftime("%a %d")
+        else:
+            day = "?"
+        print(
+            f"  {day}  {a.name or 'Run':28}  {km:4.1f}km  {dur:3.0f}min  "
+            f"{pace:4.1f}/km  HR {a.avg_hr or '—'}  load {a.training_load or '—'}"
+        )
+    print(f"\n  {len(runs)} runs · {total_km:.1f}km total")
+    return 0
+
+
 def cmd_serve() -> int:
     """Start the MCP server (stdio mode)."""
     import server
@@ -235,6 +300,7 @@ Usage:
   coros-mcp auth-status             Check status of both tokens
   coros-mcp auth-clear              Remove stored token
   coros-mcp sync [--from YYYYMMDD] [--to YYYYMMDD]  Sync to local cache (default: 2 years → today)
+  coros-mcp runs [--from YYYYMMDD] [--to YYYYMMDD] [--refresh]  List runs from cache (fast)
   coros-mcp cache-status            Show local cache coverage
   coros-mcp help                    Show this help message
 """
@@ -255,6 +321,7 @@ def main() -> None:
         "auth-status": cmd_auth_status,
         "auth-clear": cmd_auth_clear,
         "sync": cmd_sync,
+        "runs": cmd_runs,
         "cache-status": cmd_cache_status,
         "help": cmd_help,
         "--help": cmd_help,

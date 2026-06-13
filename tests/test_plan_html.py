@@ -109,9 +109,9 @@ def test_parse_full_plan():
     assert len(plan.weeks) == 9  # finish-out + weeks 1–8
 
     # Finish out (8–14 Jun)
-    assert plan.schedule["20260612"] == ["progression_8k"]
+    assert "20260612" not in plan.schedule  # Fri rest
     assert plan.schedule["20260613"] == ["long_12k"]
-    assert "20260614" not in plan.schedule
+    assert plan.schedule["20260614"] == ["progression_8k"]
 
     # Week 1 (15–21 Jun) — 4 runs, strength WK1
     assert plan.schedule["20260615"] == ["strength_wk1"]

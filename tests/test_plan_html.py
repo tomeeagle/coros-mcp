@@ -26,6 +26,7 @@ def test_parse_week_dates_cross_month():
 
 def test_parse_week_dates_single_month():
     assert _parse_week_dates("8–14 Jun") == ((6, 8), (6, 14))
+    assert _parse_week_dates("18–21 Jun") == ((6, 18), (6, 21))
     assert _parse_week_dates("3–9 Aug") == ((8, 3), (8, 9))
 
 
@@ -70,7 +71,7 @@ def test_monday_strength_only_when_no_post_run():
     keys, skip = _map_run_to_workouts(
         "Dumbbell strength — 45 mins max",
         "💪 Strength WK1 — no run after",
-        "20260615",
+        "20260713",
         {},
     )
     assert skip is None
@@ -102,59 +103,81 @@ def test_map_run_club_and_race():
     ) == ("race_bakewell", None)
 
 
+def test_love_trails_long_effort_maps_to_long_16k():
+    assert _map_run_to_workout(
+        "Long run effort — Love Trails 16K or 27K easy, coastal trails",
+        "Love Trails long effort",
+        "20260704",
+        {},
+    ) == ("long_16k", None)
+
+
+def test_map_build_8k():
+    assert _map_run_to_workout(
+        "Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",
+        "",
+        "20260618",
+        {},
+    ) == ("build_8k", None)
+
+
 @pytest.mark.skipif(not PLAN.is_file(), reason="plan_v1_8.html not in repo")
 def test_parse_full_plan():
     plan = parse_plan_html(PLAN)
     assert plan.year == 2026
-    assert len(plan.weeks) == 9  # finish-out + weeks 1–8
+    assert len(plan.weeks) == 8
 
-    # Finish out (8–14 Jun)
-    assert "20260612" not in plan.schedule  # Fri rest
-    assert plan.schedule["20260613"] == ["long_12k"]
-    assert plan.schedule["20260614"] == ["progression_8k"]
+    # Week 1 (18–21 Jun) — Thu build run
+    assert plan.schedule["20260618"] == ["build_8k"]
+    assert plan.schedule["20260619"] == ["progression_8k"]
+    assert plan.schedule["20260620"] == ["long_10k"]
 
-    # Week 1 (15–21 Jun) — 4 runs, strength WK1
-    assert plan.schedule["20260615"] == ["strength_wk1"]
-    assert plan.schedule["20260616"] == ["bac_threshold_4x6"]
-    assert plan.schedule["20260617"] == ["run_club_8k"]
-    assert "20260618" not in plan.schedule
-    assert plan.schedule["20260619"] == ["progression_10k"]
-    assert plan.schedule["20260620"] == ["long_14k"]
-
-    # Week 2
+    # Week 2 (22–28 Jun)
     assert plan.schedule["20260622"] == ["strength_wk2"]
-    assert plan.schedule["20260623"] == ["tempo_6k"]
-    assert plan.schedule["20260626"] == ["progression_8k"]
+    assert plan.schedule["20260623"] == ["bac_intervals"]
+    assert plan.schedule["20260626"] == ["progression_10k"]
     assert plan.schedule["20260627"] == ["long_12k"]
 
-    # Week 3 — Love Trails
+    # Week 3 — Love Trails low volume
     assert plan.schedule["20260629"] == ["strength_wk5"]
     assert plan.schedule["20260630"] == ["easy_4k"]
-    assert plan.schedule["20260704"] == ["race_love_trails"]
+    assert "20260701" not in plan.schedule
+    assert plan.schedule["20260704"] == ["long_16k"]
 
     # Week 4 — recovery
     assert plan.schedule["20260706"] == ["strength_wk4"]
     assert plan.schedule["20260707"] == ["easy_5k"]
+    assert plan.schedule["20260710"] == ["progression_8k"]
     assert plan.schedule["20260711"] == ["long_10k"]
 
     # Week 5
     assert plan.schedule["20260713"] == ["strength_wk1"]
-    assert plan.schedule["20260714"] == ["bac_intervals"]
+    assert plan.schedule["20260714"] == ["bac_hill_6x800"]
+    assert plan.schedule["20260717"] == ["progression_10k"]
+
+    # Week 6
+    assert plan.schedule["20260721"] == ["bac_threshold_4x6"]
+    assert plan.schedule["20260724"] == ["progression_8k"]
+    assert plan.schedule["20260725"] == ["long_14k"]
+
+    # Week 7 — 16K peak long
+    assert plan.schedule["20260801"] == ["long_16k"]
+    assert plan.schedule["20260728"] == ["tempo_6k"]
 
     # Week 8 — block end
-    assert plan.schedule["20260804"] == ["bac_threshold_4x6"]
+    assert plan.schedule["20260804"] == ["bac_intervals"]
     assert plan.schedule["20260807"] == ["easy_10k"]
     assert "20260809" not in plan.schedule
 
-    # Old block dates removed
-    assert "20260601" not in plan.schedule
-    assert "20260530" not in plan.schedule
+    # Pre-block dates removed
+    assert "20260615" not in plan.schedule
+    assert "20260613" not in plan.schedule
 
 
 @pytest.mark.skipif(not PLAN.is_file(), reason="plan_v1_8.html not in repo")
 def test_strength_mondays_from_html():
     html = PLAN.read_text(encoding="utf-8")
     mondays = _parse_strength_mondays(html, 2026)
-    assert mondays["20260615"] == "wk1"
+    assert mondays["20260713"] == "wk1"
     assert mondays["20260629"] == "wk5"
-    assert mondays["20260713"] == "wk3"
+    assert mondays["20260727"] == "wk3"

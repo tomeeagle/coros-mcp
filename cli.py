@@ -281,6 +281,15 @@ def cmd_runs() -> int:
     return 0
 
 
+def cmd_export_calendar() -> int:
+    """Export plan to plan_calendar_export.json for Google Calendar."""
+    from workout_sync.export_calendar import export_calendar_json
+
+    path = export_calendar_json()
+    print(f"✓ Exported {path.name} ({path.stat().st_size:,} bytes)")
+    return 0
+
+
 def cmd_serve() -> int:
     """Start the MCP server (stdio mode)."""
     import server
@@ -301,6 +310,7 @@ Usage:
   coros-mcp auth-clear              Remove stored token
   coros-mcp sync [--from YYYYMMDD] [--to YYYYMMDD]  Sync to local cache (default: 2 years → today)
   coros-mcp runs [--from YYYYMMDD] [--to YYYYMMDD] [--refresh]  List runs from cache (fast)
+  coros-mcp export-calendar          Export plan_calendar_export.json for GCal
   coros-mcp cache-status            Show local cache coverage
   coros-mcp help                    Show this help message
 """
@@ -322,6 +332,7 @@ def main() -> None:
         "auth-clear": cmd_auth_clear,
         "sync": cmd_sync,
         "runs": cmd_runs,
+        "export-calendar": cmd_export_calendar,
         "cache-status": cmd_cache_status,
         "help": cmd_help,
         "--help": cmd_help,

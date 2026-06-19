@@ -195,8 +195,19 @@ def _primary_run_key(
     if re.search(r"bakewell pudding|pudding race", text, re.I):
         return "race_bakewell", None
 
+    if re.search(r"love trails", combined, re.I):
+        if re.search(r"long run effort|long effort", combined, re.I):
+            return "long_16k", None
+        return "race_love_trails", None
+
+    for pat, key in (
+        (r"bamford carnival", "race_bamford"),
+        (r"stoney middleton", "race_stoney"),
+    ):
+        if re.search(pat, text, re.I):
+            return key, None
+
     race_rules: list[tuple[str, str]] = [
-        (r"love trails race", "race_love_trails"),
         (r"calver peak|calver fell race", "race_calver"),
         (r"7:30pm start", "race_calver"),
         (r"maverick", "race_maverick"),
@@ -240,6 +251,7 @@ def _primary_run_key(
         (r"long run 14k", "long_14k"),
         (r"long run 12k", "long_12k"),
         (r"long run 10k", "long_10k"),
+        (r"build 8k|5k easy.*1k moderate.*1k hard.*1k push", "build_8k"),
         (r"progression 10k|6k easy.*4k steady", "progression_10k"),
         (r"progression 8k|5k easy.*3k steady", "progression_8k"),
         (r"easy 10k", "easy_10k"),
@@ -262,7 +274,7 @@ def _primary_run_key(
 
 def _is_run_workout_key(key: str) -> bool:
     return key.startswith(
-        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_", "progression_"),
+        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_", "progression_", "build_"),
     )
 
 

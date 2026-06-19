@@ -25,7 +25,7 @@ def fmt_day(day_str: str) -> str:
 
 def _is_run_workout_key(key: str) -> bool:
     return key.startswith(
-        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_", "progression_"),
+        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_", "progression_", "build_"),
     )
 
 

@@ -127,16 +127,16 @@ def test_parse_full_plan():
     assert plan.year == 2026
     assert len(plan.weeks) == 8
 
-    # Week 1 (18–21 Jun) — Thu build run
-    assert plan.schedule["20260618"] == ["build_8k"]
-    assert plan.schedule["20260619"] == ["progression_8k"]
+    # Week 1 (18–21 Jun) — build run Fri 19
+    assert "20260618" not in plan.schedule
+    assert plan.schedule["20260619"] == ["build_8k"]
     assert plan.schedule["20260620"] == ["long_10k"]
 
     # Week 2 (22–28 Jun)
     assert plan.schedule["20260622"] == ["strength_wk2"]
     assert plan.schedule["20260623"] == ["bac_intervals"]
-    assert plan.schedule["20260626"] == ["progression_10k"]
-    assert plan.schedule["20260627"] == ["long_12k"]
+    assert plan.schedule["20260626"] == ["easy_8k"]
+    assert plan.schedule["20260627"] == ["progression_10k"]
 
     # Week 3 — Love Trails low volume
     assert plan.schedule["20260629"] == ["strength_wk5"]

@@ -255,6 +255,7 @@ def _primary_run_key(
         (r"progression 10k|6k easy.*4k steady", "progression_10k"),
         (r"progression 8k|5k easy.*3k steady", "progression_8k"),
         (r"easy 10k", "easy_10k"),
+        (r"easy 8k", "easy_8k"),
         (r"easy 6k|6k easy", "easy_6k"),
         (r"easy 5k", "easy_5k"),
         (r"3.×8min tempo|3×8min tempo", "tempo_8k"),

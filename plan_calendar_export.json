@@ -14,28 +14,22 @@
         {
           "date": "2026-06-18",
           "dayLabel": "Thu 18",
-          "note": "Build run — easy 5:30–5:45/km · moderate 4:50–5:00 · hard 4:30–4:40 · push 4:15–4:25/km",
-          "runPlan": "Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",
+          "note": "Rest — build run moved to Fri 19",
+          "runPlan": null,
           "foodWeight": "Box dinner portions",
-          "workouts": [
-            {
-              "key": "build_8k",
-              "name": "Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-06-19",
           "dayLabel": "Fri 19",
-          "note": "Progression — last 3K steady (HR ~150–160)",
-          "runPlan": "Progression 8K — 5K easy then 3K steady",
+          "note": "Build run — easy 5:30–5:45/km · moderate 4:50–5:00 · hard 4:30–4:40 · push 4:15–4:25/km",
+          "runPlan": "Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "progression_8k",
-              "name": "Progression 8K — 5K easy / 3K steady",
+              "key": "build_8k",
+              "name": "Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",
               "kind": "run"
             }
           ],
@@ -91,9 +85,9 @@
         {
           "date": "2026-06-23",
           "dayLabel": "Tue 23",
-          "note": "BAC 6pm SUMMAT Bakewell — intervals · no second run after",
+          "note": "🔥 32° — BAC 6pm SUMMAT Bakewell · effort not pace · 3× sets ok if needed",
           "runPlan": "BAC intervals — 4×500, 300, 200, 100 (15min warmup / 10min cooldown)",
-          "foodWeight": "Swap crisps at lunch",
+          "foodWeight": "Swap crisps at lunch · hydrate from 4pm",
           "workouts": [
             {
               "key": "bac_intervals",
@@ -106,7 +100,7 @@
         {
           "date": "2026-06-24",
           "dayLabel": "Wed 24",
-          "note": "PFTC — optional Rivelin trail ~6K 6:30pm",
+          "note": "🔥 33° — PFTC easy only · cap 6K if hot · no Rivelin add-on",
           "runPlan": "Run club 8K easy",
           "foodWeight": "Box dinner portions",
           "workouts": [
@@ -121,7 +115,7 @@
         {
           "date": "2026-06-25",
           "dayLabel": "Thu 25",
-          "note": "Rest — no run",
+          "note": "🔥 36° peak — rest · shade &amp; water · no run",
           "runPlan": null,
           "foodWeight": "Box dinner portions",
           "workouts": [],
@@ -130,13 +124,13 @@
         {
           "date": "2026-06-26",
           "dayLabel": "Fri 26",
-          "note": "Progression — 4K steady block (HR ~150–160)",
-          "runPlan": "Progression 10K — 6K easy then 4K steady",
+          "note": "🔥 31° — heat swap · progression moved to Sat AM",
+          "runPlan": "Easy 8K — all conversational, shade if you can",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "progression_10k",
-              "name": "Progression 10K — 6K easy / 4K steady",
+              "key": "easy_8k",
+              "name": "Easy 8K — conversational",
               "kind": "run"
             }
           ],
@@ -145,13 +139,13 @@
         {
           "date": "2026-06-27",
           "dayLabel": "Sat 27",
-          "note": "Long run — all easy",
-          "runPlan": "Long run 12K easy — conversational, trail preferred",
+          "note": "Cooler ~25° — progression early AM · long 12K skipped this week (heat)",
+          "runPlan": "Progression 10K — 6K easy then 4K steady",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "long_12k",
-              "name": "Long Run 12K easy",
+              "key": "progression_10k",
+              "name": "Progression 10K — 6K easy / 4K steady",
               "kind": "run"
             }
           ],
@@ -589,8 +583,8 @@
           "foodWeight": "Swap crisps at lunch",
           "workouts": [
             {
-              "key": "race_stoney",
-              "name": "Stoney Middleton Fell ~8.5K",
+              "key": "tempo_6k",
+              "name": "6K Tempo — taper",
               "kind": "run"
             }
           ],
@@ -768,24 +762,7 @@
     "events": [
       {
         "summary": "Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",
-        "description": "Build run — easy 5:30–5:45/km · moderate 4:50–5:00 · hard 4:30–4:40 · push 4:15–4:25/km\nFood: Box dinner portions\nPlan: Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",
-        "start": {
-          "date": "2026-06-18",
-          "endDate": "2026-06-19"
-        },
-        "end": {
-          "date": "2026-06-18",
-          "endDate": "2026-06-19"
-        },
-        "date": "2026-06-18",
-        "dayLabel": "Thu 18",
-        "weekTitle": "Week 1",
-        "workoutKey": "build_8k",
-        "category": "run"
-      },
-      {
-        "summary": "Progression 8K — 5K easy / 3K steady",
-        "description": "Progression — last 3K steady (HR ~150–160)\nFood: Pudding ok tonight\nPlan: Progression 8K — 5K easy then 3K steady",
+        "description": "Build run — easy 5:30–5:45/km · moderate 4:50–5:00 · hard 4:30–4:40 · push 4:15–4:25/km\nFood: Pudding ok tonight\nPlan: Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",
         "start": {
           "date": "2026-06-19",
           "endDate": "2026-06-20"
@@ -797,7 +774,7 @@
         "date": "2026-06-19",
         "dayLabel": "Fri 19",
         "weekTitle": "Week 1",
-        "workoutKey": "progression_8k",
+        "workoutKey": "build_8k",
         "category": "run"
       },
       {
@@ -836,7 +813,7 @@
       },
       {
         "summary": "BAC — 4x500,300,200,100",
-        "description": "BAC 6pm SUMMAT Bakewell — intervals · no second run after\nFood: Swap crisps at lunch\nPlan: BAC intervals — 4×500, 300, 200, 100 (15min warmup / 10min cooldown)",
+        "description": "🔥 32° — BAC 6pm SUMMAT Bakewell · effort not pace · 3× sets ok if needed\nFood: Swap crisps at lunch · hydrate from 4pm\nPlan: BAC intervals — 4×500, 300, 200, 100 (15min warmup / 10min cooldown)",
         "start": {
           "date": "2026-06-23",
           "endDate": "2026-06-24"
@@ -853,7 +830,7 @@
       },
       {
         "summary": "Run club — easy 8K",
-        "description": "PFTC — optional Rivelin trail ~6K 6:30pm\nFood: Box dinner portions\nPlan: Run club 8K easy",
+        "description": "🔥 33° — PFTC easy only · cap 6K if hot · no Rivelin add-on\nFood: Box dinner portions\nPlan: Run club 8K easy",
         "start": {
           "date": "2026-06-24",
           "endDate": "2026-06-25"
@@ -869,8 +846,8 @@
         "category": "run"
       },
       {
-        "summary": "Progression 10K — 6K easy / 4K steady",
-        "description": "Progression — 4K steady block (HR ~150–160)\nFood: Pudding ok tonight\nPlan: Progression 10K — 6K easy then 4K steady",
+        "summary": "Easy 8K — conversational",
+        "description": "🔥 31° — heat swap · progression moved to Sat AM\nFood: Pudding ok tonight\nPlan: Easy 8K — all conversational, shade if you can",
         "start": {
           "date": "2026-06-26",
           "endDate": "2026-06-27"
@@ -882,12 +859,12 @@
         "date": "2026-06-26",
         "dayLabel": "Fri 26",
         "weekTitle": "Week 2",
-        "workoutKey": "progression_10k",
+        "workoutKey": "easy_8k",
         "category": "run"
       },
       {
-        "summary": "Long Run 12K easy",
-        "description": "Long run — all easy\nFood: Pudding ok tonight\nPlan: Long run 12K easy — conversational, trail preferred",
+        "summary": "Progression 10K — 6K easy / 4K steady",
+        "description": "Cooler ~25° — progression early AM · long 12K skipped this week (heat)\nFood: Pudding ok tonight\nPlan: Progression 10K — 6K easy then 4K steady",
         "start": {
           "date": "2026-06-27",
           "endDate": "2026-06-28"
@@ -899,7 +876,7 @@
         "date": "2026-06-27",
         "dayLabel": "Sat 27",
         "weekTitle": "Week 2",
-        "workoutKey": "long_12k",
+        "workoutKey": "progression_10k",
         "category": "run"
       },
       {
@@ -1226,7 +1203,7 @@
         "category": "strength"
       },
       {
-        "summary": "Stoney Middleton Fell ~8.5K",
+        "summary": "6K Tempo — taper",
         "description": "6K tempo — controlled effort · optional Stoney Middleton Thu 30\nFood: Swap crisps at lunch\nPlan: 6K tempo — 10min easy, 15min tempo, 10min easy",
         "start": {
           "date": "2026-07-28",
@@ -1239,7 +1216,7 @@
         "date": "2026-07-28",
         "dayLabel": "Tue 28",
         "weekTitle": "Week 7",
-        "workoutKey": "race_stoney",
+        "workoutKey": "tempo_6k",
         "category": "run"
       },
       {

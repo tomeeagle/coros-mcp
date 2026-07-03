@@ -138,11 +138,13 @@ def test_parse_full_plan():
     assert plan.schedule["20260626"] == ["easy_8k"]
     assert plan.schedule["20260627"] == ["progression_10k"]
 
-    # Week 3 — Love Trails low volume
-    assert plan.schedule["20260629"] == ["strength_wk5"]
-    assert plan.schedule["20260630"] == ["easy_4k"]
-    assert "20260701" not in plan.schedule
-    assert plan.schedule["20260704"] == ["long_16k"]
+    # Week 3 — Love Trails cancelled, normal hold week
+    assert plan.schedule["20260629"] == ["strength_wk3"]
+    assert plan.schedule["20260630"] == ["bac_threshold_4x6"]
+    assert plan.schedule["20260701"] == ["run_club_8k"]
+    assert "20260703" not in plan.schedule
+    assert "20260704" not in plan.schedule
+    assert plan.schedule["20260705"] == ["long_12k"]
 
     # Week 4 — recovery
     assert plan.schedule["20260706"] == ["strength_wk4"]

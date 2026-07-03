@@ -165,19 +165,19 @@
     {
       "title": "Week 3",
       "dates": "29 Jun – 5 Jul",
-      "phase": "🎉 Love Trails Festival",
+      "phase": "4 runs · hold ~32K",
       "weekNumber": 3,
       "days": [
         {
           "date": "2026-06-29",
           "dayLabel": "Mon 29",
-          "note": "💪 Strength WK5 — strength only",
-          "runPlan": "Dumbbell strength — 30 mins only, light weights. Race week.",
-          "foodWeight": "Box dinner portions",
+          "note": "💪 Strength WK3 — strength only",
+          "runPlan": "Dumbbell strength — 45 mins max",
+          "foodWeight": "Weigh in. No pudding.",
           "workouts": [
             {
-              "key": "strength_wk5",
-              "name": "Strength — Race week (WK5)",
+              "key": "strength_wk3",
+              "name": "Strength — Intensity (WK3)",
               "kind": "strength"
             }
           ],
@@ -186,13 +186,13 @@
         {
           "date": "2026-06-30",
           "dayLabel": "Tue 30",
-          "note": "Taper — strides",
-          "runPlan": "Easy 4K + 4×20s strides — keep the legs sharp",
-          "foodWeight": "Light eating, no heavy meals",
+          "note": "BAC 6pm SUMMAT Bakewell — threshold",
+          "runPlan": "BAC threshold — 4×6min (10min warmup / 10min cooldown)",
+          "foodWeight": "Swap crisps at lunch",
           "workouts": [
             {
-              "key": "easy_4k",
-              "name": "Easy 4K — run streak",
+              "key": "bac_threshold_4x6",
+              "name": "BAC — 4x6min threshold",
               "kind": "run"
             }
           ],
@@ -201,53 +201,59 @@
         {
           "date": "2026-07-01",
           "dayLabel": "Wed 1 Jul",
-          "note": "Travel — rest day · drive to Gower",
-          "runPlan": "Rest — no run",
-          "foodWeight": "Eat well, hydrate for the festival",
-          "workouts": [],
-          "rest": true
-        },
-        {
-          "date": "2026-07-02",
-          "dayLabel": "Thu 2",
-          "note": "🎉 Festival opens",
-          "runPlan": "Rest — arrive &amp; settle in",
-          "foodWeight": "Festival food — eat sensibly",
-          "workouts": [],
-          "rest": true
-        },
-        {
-          "date": "2026-07-03",
-          "dayLabel": "Fri 3",
-          "note": "Festival day 2",
-          "runPlan": "Rest — group experiences if you fancy",
-          "foodWeight": "Carb load for Saturday. AF or minimal.",
-          "workouts": [],
-          "rest": true
-        },
-        {
-          "date": "2026-07-04",
-          "dayLabel": "Sat 4 Jul",
-          "note": "🏃 Love Trails long effort  16K or 27K  — not a race, treat as long run",
-          "runPlan": "Long run effort — Love Trails 16K or 27K easy, coastal trails",
-          "foodWeight": "Fuel during the run. Enjoy the Gower. 🎶",
+          "note": "PFTC",
+          "runPlan": "Run club 8K easy",
+          "foodWeight": "Box dinner portions",
           "workouts": [
             {
-              "key": "long_16k",
-              "name": "Long Run 16K easy",
+              "key": "run_club_8k",
+              "name": "Run club — easy 8K",
               "kind": "run"
             }
           ],
           "rest": false
         },
         {
-          "date": "2026-07-05",
-          "dayLabel": "Sun 5",
-          "note": "Festival day 4",
-          "runPlan": "Rest — recovery runs available if legs allow",
-          "foodWeight": "Eat well to recover. Celebrate.",
+          "date": "2026-07-02",
+          "dayLabel": "Thu 2",
+          "note": "Rest — no run",
+          "runPlan": null,
+          "foodWeight": "Box dinner portions",
           "workouts": [],
           "rest": true
+        },
+        {
+          "date": "2026-07-03",
+          "dayLabel": "Fri 3 Jul",
+          "note": "Rest — biked instead · progression skipped",
+          "runPlan": null,
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-07-04",
+          "dayLabel": "Sat 4 Jul",
+          "note": "Rest — long run moved to Sun",
+          "runPlan": null,
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-07-05",
+          "dayLabel": "Sun 5",
+          "note": "Long run — all easy · moved from Sat",
+          "runPlan": "Long run 12K easy — conversational, trail preferred",
+          "foodWeight": "Weigh in after. No pudding.",
+          "workouts": [
+            {
+              "key": "long_12k",
+              "name": "Long Run 12K easy",
+              "kind": "run"
+            }
+          ],
+          "rest": false
         }
       ]
     },
@@ -260,7 +266,7 @@
         {
           "date": "2026-07-06",
           "dayLabel": "Mon 6",
-          "note": "💪 Strength WK4 — light · drive home from festival",
+          "note": "💪 Strength WK4 — light",
           "runPlan": "Dumbbell strength — 45 mins max. Light this week.",
           "foodWeight": "Ease back in. Box dinner portions.",
           "workouts": [
@@ -880,8 +886,8 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Race week (WK5)",
-        "description": "💪 Strength WK5 — strength only\nFood: Box dinner portions\nPlan: Dumbbell strength — 30 mins only, light weights. Race week.",
+        "summary": "Strength — Intensity (WK3)",
+        "description": "💪 Strength WK3 — strength only\nFood: Weigh in. No pudding.\nPlan: Dumbbell strength — 45 mins max",
         "start": {
           "date": "2026-06-29",
           "endDate": "2026-06-30"
@@ -893,12 +899,12 @@
         "date": "2026-06-29",
         "dayLabel": "Mon 29",
         "weekTitle": "Week 3",
-        "workoutKey": "strength_wk5",
+        "workoutKey": "strength_wk3",
         "category": "strength"
       },
       {
-        "summary": "Easy 4K — run streak",
-        "description": "Taper — strides\nFood: Light eating, no heavy meals\nPlan: Easy 4K + 4×20s strides — keep the legs sharp",
+        "summary": "BAC — 4x6min threshold",
+        "description": "BAC 6pm SUMMAT Bakewell — threshold\nFood: Swap crisps at lunch\nPlan: BAC threshold — 4×6min (10min warmup / 10min cooldown)",
         "start": {
           "date": "2026-06-30",
           "endDate": "2026-07-01"
@@ -910,29 +916,46 @@
         "date": "2026-06-30",
         "dayLabel": "Tue 30",
         "weekTitle": "Week 3",
-        "workoutKey": "easy_4k",
+        "workoutKey": "bac_threshold_4x6",
         "category": "run"
       },
       {
-        "summary": "Long Run 16K easy",
-        "description": "🏃 Love Trails long effort  16K or 27K  — not a race, treat as long run\nFood: Fuel during the run. Enjoy the Gower. 🎶\nPlan: Long run effort — Love Trails 16K or 27K easy, coastal trails",
+        "summary": "Run club — easy 8K",
+        "description": "PFTC\nFood: Box dinner portions\nPlan: Run club 8K easy",
         "start": {
-          "date": "2026-07-04",
-          "endDate": "2026-07-05"
+          "date": "2026-07-01",
+          "endDate": "2026-07-02"
         },
         "end": {
-          "date": "2026-07-04",
-          "endDate": "2026-07-05"
+          "date": "2026-07-01",
+          "endDate": "2026-07-02"
         },
-        "date": "2026-07-04",
-        "dayLabel": "Sat 4 Jul",
+        "date": "2026-07-01",
+        "dayLabel": "Wed 1 Jul",
         "weekTitle": "Week 3",
-        "workoutKey": "long_16k",
+        "workoutKey": "run_club_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Long Run 12K easy",
+        "description": "Long run — all easy · moved from Sat\nFood: Weigh in after. No pudding.\nPlan: Long run 12K easy — conversational, trail preferred",
+        "start": {
+          "date": "2026-07-05",
+          "endDate": "2026-07-06"
+        },
+        "end": {
+          "date": "2026-07-05",
+          "endDate": "2026-07-06"
+        },
+        "date": "2026-07-05",
+        "dayLabel": "Sun 5",
+        "weekTitle": "Week 3",
+        "workoutKey": "long_12k",
         "category": "run"
       },
       {
         "summary": "Strength — Taper (WK4)",
-        "description": "💪 Strength WK4 — light · drive home from festival\nFood: Ease back in. Box dinner portions.\nPlan: Dumbbell strength — 45 mins max. Light this week.",
+        "description": "💪 Strength WK4 — light\nFood: Ease back in. Box dinner portions.\nPlan: Dumbbell strength — 45 mins max. Light this week.",
         "start": {
           "date": "2026-07-06",
           "endDate": "2026-07-07"

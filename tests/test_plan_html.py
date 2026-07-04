@@ -103,15 +103,6 @@ def test_map_run_club_and_race():
     ) == ("race_bakewell", None)
 
 
-def test_love_trails_long_effort_maps_to_long_16k():
-    assert _map_run_to_workout(
-        "Long run effort — Love Trails 16K or 27K easy, coastal trails",
-        "Love Trails long effort",
-        "20260704",
-        {},
-    ) == ("long_16k", None)
-
-
 def test_map_build_8k():
     assert _map_run_to_workout(
         "Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",
@@ -138,7 +129,7 @@ def test_parse_full_plan():
     assert plan.schedule["20260626"] == ["easy_8k"]
     assert plan.schedule["20260627"] == ["progression_10k"]
 
-    # Week 3 — Love Trails cancelled, normal hold week
+    # Week 3 — hold week
     assert plan.schedule["20260629"] == ["strength_wk3"]
     assert plan.schedule["20260630"] == ["bac_threshold_4x6"]
     assert plan.schedule["20260701"] == ["run_club_8k"]

@@ -195,11 +195,6 @@ def _primary_run_key(
     if re.search(r"bakewell pudding|pudding race", text, re.I):
         return "race_bakewell", None
 
-    if re.search(r"love trails", combined, re.I):
-        if re.search(r"long run effort|long effort", combined, re.I):
-            return "long_16k", None
-        return "race_love_trails", None
-
     for pat, key in (
         (r"bamford carnival", "race_bamford"),
         (r"stoney middleton", "race_stoney"),

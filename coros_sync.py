@@ -23,7 +23,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from workout_sync import schedules as sched_mod
 from workout_sync.auth import auth_status_message, ensure_auth, load_dotenv
-from workout_sync.plan_html import DEFAULT_PLAN_PATH, parse_plan_html
 from workout_sync.sync import describe_session, full_resync, push_schedule, resolve_schedule
 import coros_api
 from workout_sync.workouts import WORKOUTS

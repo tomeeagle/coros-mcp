@@ -4,7 +4,7 @@ cd "$(dirname "$0")/.."
 
 PORT="${PORT:-8080}"
 HOST="${HOST:-127.0.0.1}"
-PLAN="plan_v1_8.html"
+PLAN="${PLAN:-plan_v1_8.html}"
 # Browser always uses localhost (HOST=0.0.0.0 is bind-only)
 OPEN_HOST="$HOST"
 if [[ "$OPEN_HOST" == "0.0.0.0" ]]; then

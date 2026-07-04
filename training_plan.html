@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tom's Plan — Running & Weight</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swapdisplay=swap" rel="stylesheet">
+<title>Tom's Training Plan — Full Volume</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
     --run: #1A6B3C;
@@ -161,6 +161,7 @@
   .week-phase { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
   .phase-hurtle { background: var(--run-light); color: var(--run); }
   .phase-taper { background: var(--taper-light); color: var(--taper); }
+  .phase-build { background: #EAF3DE; color: #3B6D11; }
   .phase-race { background: var(--race-light); color: var(--race); }
   .phase-weight { background: var(--weight-light); color: var(--weight); }
 
@@ -192,8 +193,7 @@
   .day-row.taper { background: var(--taper-light); border-color: #A0B8D4; }
   .day-row.rest-day { background: var(--bg); }
   .day-label { font-size: 13px; font-weight: 600; }
-  .day-note { font-size: 12px; color: var(--text-mid); min-height: 1em; }
-  .day-note:empty::before { content: '—'; color: var(--text-light); }
+  .day-note { font-size: 12px; color: var(--text-mid); }
   .run-cell { font-size: 12px; font-weight: 500; color: var(--run); }
   .run-cell.rest { color: var(--rest); font-weight: 400; }
   .run-cell.race { color: var(--race); font-weight: 600; }
@@ -276,14 +276,14 @@
   <div class="header-top">
     <h1>Tom's Plan</h1>
     <div class="header-meta">
-      8-week block · 18 Jun – 9 Aug 2026<br>
-      4 runs/week · ~32K hold → build from week 6<br>
-      Optional fell races — pick if you fancy<br>
-      Weight target · 89kg by 12 Jul
+      9-week block · 7 Jun – 9 Aug 2026<br>
+      Bamford Carnival · ~16 Jul<br>
+      Stoney Middleton · ~30 Jul<br>
+      Higher volume · padel 1×/week max
     </div>
   </div>
   <p class="header-sub">Two goals, one plan — running on the left, food on the right. Both matter.</p>
-  <button onclick="document.getElementById('strength-section').scrollIntoView({behavior:'smooth'})" style="margin-top:0.75rem; padding:7px 16px; background:#1A6B3C; color:white; border:none; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">💪 Jump to Strength Sessions</button>
+  <button onclick="document.getElementById('strength-split').scrollIntoView({behavior:'smooth'})" style="margin-top:0.75rem; padding:7px 16px; background:#1A6B3C; color:white; border:none; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">💪 Jump to Strength Sessions</button>
 </div>
 
 <!-- STRATEGY -->
@@ -291,20 +291,19 @@
   <div class="strategy-band run">
     <h3>🏃 Running</h3>
     <ul>
-      <li>Tue quality · Wed club 8K · Fri progression · Sat long easy · Mon strength only</li>
-      <li>Thu &amp; Sun rest — unless a fell race falls on those days</li>
-      <li>Max one session per day — no exceptions</li>
-      <li>Easy ~6:00/km · steady ~5:00–5:15/km · tempo ~4:30–4:45/km</li>
-      <li>BAC at SUMMAT Bakewell 6pm · 10–15min warmup &amp; cooldown</li>
-      <li>Long runs: 10K → 12K → 14K → 16K peak → 10K deload</li>
-      <li>Inhaler before every run · slow on descents</li>
+      <li>Hurtle run-walk 16 May — enjoy it</li>
+      <li>4 hrs/week after the Hurtle</li>
+      <li>Easy runs truly easy — conversational</li>
+      <li>One padel session/week max</li>
+      <li>Inhaler before every run</li>
+      <li>Slow on every descent — Achilles</li>
     </ul>
   </div>
   <div class="strategy-band weight">
     <h3>⚖️ Weight Loss</h3>
     <ul>
       <li>~2,000 kcal/day average — no app, use the rules below</li>
-      <li>Run days ~2,200 · rest days ~1,900 · eat before evening runs</li>
+      <li>Run days ~2,200 · rest days ~1,900</li>
       <li>Target ~0.5kg/week — swap crisps + Snickers at lunch</li>
       <li>Box dinner portions · pudding max 3–4 nights/week</li>
       <li>Booze: 1–2 drinks, one night/week — or skip pudding that week</li>
@@ -364,21 +363,7 @@
   <div class="food-meal">
     <div class="meal-label">Drinks</div>
     <div class="meal-keep">Zero sugar soft drinks, black coffee — both fine</div>
-    <div class="meal-swap">Flat whites 3x/week. Booze 1–2 drinks max, one night — counts toward your kcal.</div>
-  </div>
-</div>
-
-<!-- OPTIONAL RACES (nothing booked) -->
-<div class="strategy-grid" style="margin-bottom:1.5rem">
-  <div class="strategy-band run" style="grid-column:1/-1">
-    <h3>🏁 Optional fell races (Jun–Aug)</h3>
-    <p style="margin:0 0 0.5rem;font-size:13px;color:var(--text-mid)">If racing, swap that week's Tuesday quality session. Default plan keeps BAC / progression / long run.</p>
-    <ul style="columns:2;column-gap:2rem;font-size:13px">
-      <li>Thu 18 Jun — Grindleford fell 7.9K (7:30pm)</li>
-      <li>Sat 20 Jun — Run Weekends Edale 18.3K</li>
-      <li>Thu 16 Jul — Bamford Carnival ~7.2K</li>
-      <li>Thu 30 Jul — Stoney Middleton ~8.5K</li>
-    </ul>
+    <div class="meal-swap">Booze: 1–2 drinks one night/week — or skip pudding that week</div>
   </div>
 </div>
 
@@ -390,406 +375,422 @@
   <span>⚖️ Food / Weight</span>
 </div>
 
-<!-- WEEK 1 — BLOCK START -->
+<!-- WEEK 1 — 7–13 JUN -->
 <div class="week-block">
   <div class="week-title">
     Week 1
-    <span class="week-dates">18–21 Jun</span>
-    <span class="week-phase phase-weight">4 runs · hold ~32K</span>
-    <span class="week-total">Thu start · Fri/Sat quality</span>
+    <span class="week-dates">7–13 Jun</span>
+    <span class="week-phase phase-build">Build</span>
+    <span class="week-total">~37K running</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Sun 7</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Easy 3K</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Mon 8</span>
+    <span class="day-note">💪 Strength WK2</span>
+    <span class="run-cell">Easy 3K (separate from strength)</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Tue 9</span>
+    <span class="day-note">BAC</span>
+    <span class="run-cell t-fitness">BAC Hill Reps 6×800m · 6pm · Station Road</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Wed 10</span>
+    <span class="day-note">Run club</span>
+    <span class="run-cell">Run club 8K easy + strides</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row rest-day">
+    <span class="day-label">Thu 11</span>
+    <span class="day-note">—</span>
+    <span class="run-cell rest">Rest</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Fri 12</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Progression 8K (5K easy / 3K steady)</span>
+    <span class="weight-cell neutral">Pudding ok tonight</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Sat 13</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Long run 10K easy</span>
+    <span class="weight-cell neutral">Pudding ok tonight</span>
+  </div>
+</div>
+
+<!-- WEEK 2 — 14–20 JUN -->
+<div class="week-block">
+  <div class="week-title">
+    Week 2
+    <span class="week-dates">14–20 Jun</span>
+    <span class="week-phase phase-build">Peak</span>
+    <span class="week-total">~42K running</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Sun 14</span>
+    <span class="day-note">BAC optional</span>
+    <span class="run-cell">BPR Recce · 9am · SUMMAT</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Mon 15</span>
+    <span class="day-note">💪 Strength WK3</span>
+    <span class="run-cell">Easy 3K (separate from strength)</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Tue 16</span>
+    <span class="day-note">BAC</span>
+    <span class="run-cell t-fitness">BAC Threshold 4×6min · 6pm · Agri Centre</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Wed 17</span>
+    <span class="day-note">Run club</span>
+    <span class="run-cell">Run club 8K easy + strides</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row row-highlight">
     <span class="day-label">Thu 18</span>
-    <span class="day-note">Rest — build run moved to Fri 19</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
+    <span class="day-note">🏔️ Grindleford Fell Race</span>
+    <span class="run-cell t-fitness">7.9K · 7:30pm · Bishop's Pavilion Grindleford</span>
+    <span class="weight-cell neutral">Light meal before</span>
   </div>
   <div class="day-row">
     <span class="day-label">Fri 19</span>
-    <span class="day-note">Build run — easy 5:30–5:45/km · moderate 4:50–5:00 · hard 4:30–4:40 · push 4:15–4:25/km</span>
-    <span class="run-cell">Build 8K — 5K easy / 1K moderate / 1K hard / 1K push</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Easy 6K</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
   <div class="day-row">
     <span class="day-label">Sat 20</span>
-    <span class="day-note">Long run — all easy · optional Edale 18.3K if racing</span>
-    <span class="run-cell">Long run 10K easy — conversational, trail preferred</span>
-    <span class="weight-cell neutral">Fuel well after. Pudding ok.</span>
-  </div>
-  <div class="day-row rest-day">
-    <span class="day-label">Sun 21</span>
-    <span class="day-note">Rest · weigh in</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell">No pudding. Record weight.</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Long run 12K easy</span>
+    <span class="weight-cell neutral">Pudding ok tonight. Fuel well after.</span>
   </div>
 </div>
 
-<!-- WEEK 2 — HOLD -->
+<!-- WEEK 3 — 22–28 JUN (TAPER) -->
 <div class="week-block">
   <div class="week-title">
-    Week 2
+    Week 3
     <span class="week-dates">22–28 Jun</span>
-    <span class="week-phase phase-weight">4 runs · hold ~32K</span>
-    <span class="week-total">~28K + quality · 4 runs</span>
+    <span class="week-phase phase-taper">Taper · Pudding Race</span>
+    <span class="week-total">~39K running</span>
   </div>
   <div class="day-row">
     <span class="day-label">Mon 22</span>
-    <span class="day-note">💪 Strength WK2 — strength only</span>
-    <span class="run-cell">Dumbbell strength — 45 mins max</span>
-    <span class="weight-cell">Weigh in. No pudding.</span>
+    <span class="day-note">💪 Strength WK4</span>
+    <span class="run-cell">Easy 3K (separate from strength)</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 23</span>
-    <span class="day-note">🔥 32° — BAC 6pm SUMMAT Bakewell · effort not pace · 3× sets ok if needed</span>
-    <span class="run-cell">BAC intervals — 4×500, 300, 200, 100 (15min warmup / 10min cooldown)</span>
-    <span class="weight-cell neutral">Swap crisps at lunch · hydrate from 4pm</span>
+    <span class="day-note">BAC optional</span>
+    <span class="run-cell">6K tempo · BAC Team Relays 6pm optional</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
     <span class="day-label">Wed 24</span>
-    <span class="day-note">🔥 33° — PFTC easy only · cap 6K if hot · no Rivelin add-on</span>
-    <span class="run-cell">Run club 8K easy</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
-  </div>
-  <div class="day-row rest-day">
-    <span class="day-label">Thu 25</span>
-    <span class="day-note">🔥 36° peak — rest · shade &amp; water · no run</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
+    <span class="day-note">Run club</span>
+    <span class="run-cell">Run club 6K easy</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
+    <span class="day-label">Thu 25</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Easy 8K</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row row-risk">
     <span class="day-label">Fri 26</span>
-    <span class="day-note">🔥 31° — heat swap · progression moved to Sat AM</span>
-    <span class="run-cell">Easy 8K — all conversational, shade if you can</span>
+    <span class="day-note">Padel 7pm</span>
+    <span class="run-cell">Easy 5K shakeout (before padel)</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
   <div class="day-row">
     <span class="day-label">Sat 27</span>
-    <span class="day-note">Cooler ~25° — progression early AM · long 12K skipped this week (heat)</span>
-    <span class="run-cell">Progression 10K — 6K easy then 4K steady</span>
-    <span class="weight-cell neutral">Pudding ok tonight</span>
+    <span class="day-note">Carsington optional ⚠️</span>
+    <span class="run-cell rest">Rest — day before race</span>
+    <span class="weight-cell neutral">Carb load sensibly</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row row-race">
     <span class="day-label">Sun 28</span>
-    <span class="day-note">Rest · weigh in</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell">No pudding. Record weight.</span>
+    <span class="day-note">🏔️ BAKEWELL PUDDING RACE <span class="badge badge-race">10.4K fell</span></span>
+    <span class="run-cell race">11am · Recreation Ground, Bakewell DE45 1BH</span>
+    <span class="weight-cell">Race fuel. Enjoy every pudding at the finish. 🍮</span>
   </div>
 </div>
 
-<!-- WEEK 3 — HOLD -->
+<!-- WEEK 4 — 29 JUN–5 JUL (HOLD) -->
 <div class="week-block">
   <div class="week-title">
-    Week 3
-    <span class="week-dates">29 Jun – 5 Jul</span>
-    <span class="week-phase phase-weight">4 runs · hold ~32K</span>
-    <span class="week-total">~28K · 4 runs</span>
+    Week 4
+    <span class="week-dates">29 Jun–5 Jul</span>
+    <span class="week-phase phase-weight">Hold week</span>
+    <span class="week-total">~32K running</span>
   </div>
   <div class="day-row">
     <span class="day-label">Mon 29</span>
-    <span class="day-note">💪 Strength WK3 — strength only</span>
-    <span class="run-cell">Dumbbell strength — 45 mins max</span>
-    <span class="weight-cell">Weigh in. No pudding.</span>
+    <span class="day-note">💪 Strength WK3</span>
+    <span class="run-cell">Easy 3K (separate from strength)</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 30</span>
     <span class="day-note">BAC 6pm SUMMAT Bakewell — threshold</span>
-    <span class="run-cell">BAC threshold — 4×6min (10min warmup / 10min cooldown)</span>
-    <span class="weight-cell neutral">Swap crisps at lunch</span>
+    <span class="run-cell t-fitness">BAC threshold — 4×6min (10min warmup / 10min cooldown)</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
     <span class="day-label">Wed 1 Jul</span>
-    <span class="day-note">PFTC</span>
+    <span class="day-note">Run club</span>
     <span class="run-cell">Run club 8K easy</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Thu 2</span>
-    <span class="day-note">Rest — no run</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
+    <span class="day-note">Rest</span>
+    <span class="run-cell rest">—</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Fri 3 Jul</span>
     <span class="day-note">Rest — biked instead · progression skipped</span>
-    <span class="run-cell">—</span>
+    <span class="run-cell rest">—</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Sat 4 Jul</span>
-    <span class="day-note">Rest — long run moved to Sun</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell neutral">Pudding ok tonight</span>
+    <span class="day-note">Rest</span>
+    <span class="run-cell rest">—</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
-    <span class="day-label">Sun 5</span>
-    <span class="day-note">Long run — all easy · moved from Sat</span>
-    <span class="run-cell">Long run 12K easy — conversational, trail preferred</span>
-    <span class="weight-cell">Weigh in after. No pudding.</span>
+    <span class="day-label">Sun 5 Jul</span>
+    <span class="day-note">Long run moved from Sat</span>
+    <span class="run-cell">Long run 12K easy</span>
+    <span class="weight-cell neutral">Pudding ok tonight. Fuel well after.</span>
   </div>
 </div>
 
-<!-- WEEK 4 — RECOVERY -->
+
+<!-- WEEK 5 — 6–12 JUL (RECOVERY) -->
 <div class="week-block">
   <div class="week-title">
-    Week 4
+    Week 5
     <span class="week-dates">6–12 Jul</span>
-    <span class="week-phase phase-weight">4 runs · recovery</span>
-    <span class="week-total">~29K · 4 runs</span>
+    <span class="week-phase phase-taper">Recovery</span>
+    <span class="week-total">~35K running</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Mon 6</span>
-    <span class="day-note">💪 Strength WK4 — light</span>
-    <span class="run-cell">Dumbbell strength — 45 mins max. Light this week.</span>
-    <span class="weight-cell neutral">Ease back in. Box dinner portions.</span>
+    <span class="day-note">💪 Strength WK4</span>
+    <span class="run-cell rest">Strength only — light</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 7</span>
-    <span class="day-note">Easy return — Z2 only</span>
-    <span class="run-cell">Easy 5K — conversational</span>
-    <span class="weight-cell neutral">Swap crisps at lunch</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Easy 5K</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
     <span class="day-label">Wed 8</span>
-    <span class="day-note">PFTC — easy only</span>
+    <span class="day-note">Run club</span>
     <span class="run-cell">Run club 8K easy</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Thu 9</span>
-    <span class="day-note">Rest — no run</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
     <span class="day-label">Fri 10</span>
-    <span class="day-note">Progression — last 3K steady (HR ~150–160)</span>
-    <span class="run-cell">Progression 8K — 5K easy then 3K steady</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Easy 5K</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
   <div class="day-row">
     <span class="day-label">Sat 11</span>
-    <span class="day-note">Long run — all easy</span>
-    <span class="run-cell">Long run 10K easy — trail if you can</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Long run 10K easy</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
-  </div>
-  <div class="day-row rest-day">
-    <span class="day-label">Sun 12</span>
-    <span class="day-note">Rest · weigh in</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell">No pudding. Record weight.</span>
   </div>
 </div>
 
-<!-- WEEK 5 — HOLD -->
+<!-- WEEK 6 — 13–19 JUL -->
 <div class="week-block">
   <div class="week-title">
-    Week 5
+    Week 6
     <span class="week-dates">13–19 Jul</span>
-    <span class="week-phase phase-weight">4 runs · hold ~32K</span>
-    <span class="week-total">~28K + BAC · 4 runs</span>
+    <span class="week-phase phase-build">Build</span>
+    <span class="week-total">~38K running</span>
   </div>
   <div class="day-row">
     <span class="day-label">Mon 13</span>
-    <span class="day-note">💪 Strength WK1 — strength only</span>
-    <span class="run-cell">Dumbbell strength — 45 mins max</span>
-    <span class="weight-cell">Weigh in. No pudding.</span>
+    <span class="day-note">💪 Strength WK1</span>
+    <span class="run-cell rest">Strength only</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 14</span>
-    <span class="day-note">BAC 6pm SUMMAT Bakewell — hill reps · optional Bamford Carnival Thu 16</span>
-    <span class="run-cell">BAC hill reps — 6×800m (15min warmup / open jog down / 10min cooldown)</span>
-    <span class="weight-cell neutral">Swap crisps at lunch</span>
+    <span class="day-note">BAC</span>
+    <span class="run-cell t-fitness">BAC Intervals — 4×(500, 300, 200, 100) · 6pm</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
     <span class="day-label">Wed 15</span>
-    <span class="day-note">PFTC</span>
+    <span class="day-note">Run club</span>
     <span class="run-cell">Run club 8K easy</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Thu 16</span>
-    <span class="day-note">Rest — optional Bamford Carnival fell ~7.2K (replaces Tue quality if racing)</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
     <span class="day-label">Fri 17</span>
-    <span class="day-note">Progression — 4K steady block (HR ~150–160)</span>
-    <span class="run-cell">Progression 10K — 6K easy then 4K steady</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Progression 8K — 5K easy / 3K steady</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
   <div class="day-row">
     <span class="day-label">Sat 18</span>
-    <span class="day-note">Long run — all easy</span>
-    <span class="run-cell">Long run 12K easy — conversational, trail preferred</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Long run 12K easy</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
-  </div>
-  <div class="day-row rest-day">
-    <span class="day-label">Sun 19</span>
-    <span class="day-note">Rest · weigh in</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell">No pudding. Record weight.</span>
   </div>
 </div>
 
-<!-- WEEK 6 — BUILD -->
+<!-- WEEK 7 — 20–26 JUL -->
 <div class="week-block">
   <div class="week-title">
-    Week 6
+    Week 7
     <span class="week-dates">20–26 Jul</span>
-    <span class="week-phase phase-weight">4 runs · build distance</span>
-    <span class="week-total">~36K · 4 runs</span>
+    <span class="week-phase phase-build">Build</span>
+    <span class="week-total">~42K running</span>
   </div>
   <div class="day-row">
     <span class="day-label">Mon 20</span>
-    <span class="day-note">💪 Strength WK2 — strength only</span>
-    <span class="run-cell">Dumbbell strength — 45 mins max</span>
-    <span class="weight-cell">Weigh in. No pudding.</span>
+    <span class="day-note">💪 Strength WK2</span>
+    <span class="run-cell rest">Strength only</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 21</span>
-    <span class="day-note">BAC 6pm SUMMAT Bakewell — threshold</span>
-    <span class="run-cell">BAC threshold — 4×6min (10min warmup / 10min cooldown)</span>
-    <span class="weight-cell neutral">Swap crisps at lunch</span>
+    <span class="day-note">BAC</span>
+    <span class="run-cell t-fitness">BAC Hill Reps — 6×800m · 6pm · Station Road</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
     <span class="day-label">Wed 22</span>
-    <span class="day-note">PFTC</span>
+    <span class="day-note">Run club</span>
     <span class="run-cell">Run club 8K easy</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Thu 23</span>
-    <span class="day-note">Rest — no run</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
     <span class="day-label">Fri 24</span>
-    <span class="day-note">Progression — last 3K steady (HR ~150–160)</span>
-    <span class="run-cell">Progression 8K — 5K easy then 3K steady</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Progression 10K — 6K easy / 4K steady</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
   <div class="day-row">
     <span class="day-label">Sat 25</span>
-    <span class="day-note">Long run — all easy</span>
-    <span class="run-cell">Long run 14K easy — conversational, trail preferred</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Long run 14K easy</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
-  </div>
-  <div class="day-row rest-day">
-    <span class="day-label">Sun 26</span>
-    <span class="day-note">Rest · weigh in</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell">No pudding. Record weight.</span>
   </div>
 </div>
 
-<!-- WEEK 7 — BUILD -->
-<div class="week-block">
-  <div class="week-title">
-    Week 7
-    <span class="week-dates">27 Jul – 2 Aug</span>
-    <span class="week-phase phase-weight">4 runs · build distance</span>
-    <span class="week-total">~36K · 4 runs</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Mon 27</span>
-    <span class="day-note">💪 Strength WK3 — strength only</span>
-    <span class="run-cell">Dumbbell strength — 45 mins max</span>
-    <span class="weight-cell">Weigh in. No pudding.</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Tue 28</span>
-    <span class="day-note">6K tempo — controlled effort · optional Stoney Middleton Thu 30</span>
-    <span class="run-cell">6K tempo — 10min easy, 15min tempo, 10min easy</span>
-    <span class="weight-cell neutral">Swap crisps at lunch</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Wed 29</span>
-    <span class="day-note">PFTC</span>
-    <span class="run-cell">Run club 8K easy</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Thu 30</span>
-    <span class="day-note">Rest — optional Stoney Middleton fell ~8.5K (replaces Tue quality if racing)</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Fri 31 Jul</span>
-    <span class="day-note">Progression — 4K steady block (HR ~150–160)</span>
-    <span class="run-cell">Progression 10K — 6K easy then 4K steady</span>
-    <span class="weight-cell neutral">Pudding ok tonight</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Sat 1 Aug</span>
-    <span class="day-note">Long run — all easy · peak long of block</span>
-    <span class="run-cell">Long run 16K easy — conversational, trail preferred</span>
-    <span class="weight-cell neutral">Pudding ok tonight</span>
-  </div>
-  <div class="day-row rest-day">
-    <span class="day-label">Sun 2 Aug</span>
-    <span class="day-note">Rest · weigh in</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell">No pudding. Record weight.</span>
-  </div>
-</div>
-
-<!-- WEEK 8 — BLOCK END -->
+<!-- WEEK 8 — 27 JUL–2 AUG -->
 <div class="week-block">
   <div class="week-title">
     Week 8
-    <span class="week-dates">3–9 Aug</span>
-    <span class="week-phase phase-taper">Block ends · deload</span>
-    <span class="week-total">~28K · 4 runs</span>
+    <span class="week-dates">27 Jul–2 Aug</span>
+    <span class="week-phase phase-build">Peak</span>
+    <span class="week-total">~42K running</span>
   </div>
   <div class="day-row">
-    <span class="day-label">Mon 3 Aug</span>
-    <span class="day-note">💪 Strength WK4 — strength only</span>
-    <span class="run-cell">Dumbbell strength — 45 mins max. Light this week.</span>
-    <span class="weight-cell">Weigh in. No pudding.</span>
+    <span class="day-label">Mon 27</span>
+    <span class="day-note">💪 Strength WK3</span>
+    <span class="run-cell rest">Strength only</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
-    <span class="day-label">Tue 4 Aug</span>
-    <span class="day-note">BAC 6pm SUMMAT Bakewell — intervals</span>
-    <span class="run-cell">BAC intervals — 4×500, 300, 200, 100 (15min warmup / 10min cooldown)</span>
-    <span class="weight-cell neutral">Swap crisps at lunch</span>
+    <span class="day-label">Tue 28</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">6K Tempo — 10min easy / 15min tempo / 10min easy</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
-    <span class="day-label">Wed 5 Aug</span>
-    <span class="day-note">PFTC</span>
+    <span class="day-label">Wed 29</span>
+    <span class="day-note">Run club</span>
     <span class="run-cell">Run club 8K easy</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
+    <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
-    <span class="day-label">Thu 6 Aug</span>
-    <span class="day-note">Rest — no run</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell neutral">Box dinner portions</span>
-  </div>
-  <div class="day-row">
-    <span class="day-label">Fri 7 Aug</span>
-    <span class="day-note">Easy — deload before next block</span>
-    <span class="run-cell">Easy 10K — all conversational</span>
+    <span class="day-label">Fri 31</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Progression 8K — 5K easy / 3K steady</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
-  <div class="day-row">
-    <span class="day-label">Sat 8 Aug</span>
-    <span class="day-note">Long run — easy finish</span>
-    <span class="run-cell">Long run 10K easy — trail if you can</span>
-    <span class="weight-cell neutral">Pudding ok tonight</span>
-  </div>
-  <div class="day-row rest-day">
-    <span class="day-label">Sun 9 Aug</span>
-    <span class="day-note">Rest · weigh in · block complete</span>
-    <span class="run-cell">—</span>
-    <span class="weight-cell">No pudding. Record weight. Plan next block.</span>
+  <div class="day-row row-highlight">
+    <span class="day-label">Sat 1 Aug</span>
+    <span class="day-note">🏔️ Peak long run</span>
+    <span class="run-cell">Long run 16K easy — peak long of the block</span>
+    <span class="weight-cell neutral">Fuel well after.</span>
   </div>
 </div>
 
-<!-- WEIGHT MILESTONES -->
-<div style="margin-bottom:2rem;">
+<!-- WEEK 9 — DELOAD 3–9 AUG -->
+<div class="week-block">
+  <div class="week-title">
+    Week 9
+    <span class="week-dates">3–9 Aug</span>
+    <span class="week-phase phase-taper">Deload</span>
+    <span class="week-total">~30K running</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Mon 3</span>
+    <span class="day-note">💪 Strength WK4</span>
+    <span class="run-cell rest">Strength only — light</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Tue 4</span>
+    <span class="day-note">BAC</span>
+    <span class="run-cell t-fitness">BAC Threshold — 4×6min · 6pm · SUMMAT</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Wed 5</span>
+    <span class="day-note">Run club</span>
+    <span class="run-cell">Run club 8K easy</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Fri 7</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Easy 10K</span>
+    <span class="weight-cell neutral">Pudding ok tonight</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Sat 8</span>
+    <span class="day-note">—</span>
+    <span class="run-cell">Long run 10K easy</span>
+    <span class="weight-cell neutral">Pudding ok tonight</span>
+  </div>
+  <div class="day-row rest-day">
+    <span class="day-label">Sun 9</span>
+    <span class="day-note">Block complete 🎉</span>
+    <span class="run-cell rest">Rest — block complete</span>
+    <span class="weight-cell neutral">Weigh in. Celebrate.</span>
+  </div>
+</div>
+
+
   <div class="col-header" style="grid-template-columns: 100px 1fr 1fr 1fr; margin-bottom:6px;">
     <span>Date</span><span>Target weight</span><span>Loss so far</span><span>Check-in</span>
   </div>
@@ -822,13 +823,12 @@
 <div class="footer">
   <strong>Golden rules:</strong><br>
   — Use your inhaler before every run, without exception<br>
-  — Max one session per day — Mon is strength only (no run same day)<br>
-  — Easy ~6:00/km · steady ~5:00–5:15/km · tempo ~4:30–4:45/km<br>
-  — BAC at SUMMAT Bakewell 6pm · 10–15min warmup &amp; cooldown<br>
-  — Progression runs alternate 8K (5+3) and 10K (6+4) · long runs build to 16K peak<br>
-  — Optional fell races replace that week's Tuesday quality session<br>
   — Weigh in every Sunday morning, same time, before eating<br>
   — ~2,000 kcal/day avg · more on run days, less on rest — don't starve then binge<br>
+  — Box up dinner portions before you sit down — what goes in the fridge stays there<br>
+  — Crisps AND Snickers at lunch is the double-hit to cut. One or neither.<br>
+  — Pudding max 3–4 nights/week — Friday and Saturday are the ones to keep<br>
+  — One padel session per week max until you're consistently running 4hrs/week<br>
   — Slow on every descent — the Achilles doesn't care how good you feel
 </div>
 
@@ -837,9 +837,15 @@
 <!-- ═══════════════════════════════════════════════════
      STRENGTH TRAINING
 ═══════════════════════════════════════════════════ -->
-<div id="strength-section" style="margin-bottom: 1.5rem;">
+<div id="strength-split" style="margin-bottom: 1.5rem;">
   <div style="font-family:'DM Sans',sans-serif; font-size: 36px; font-weight:600; margin-bottom: 4px;">Strength Sessions</div>
-  <div style="font-size: 13px; color: var(--text-mid);">Monday · 12.5kg + 15kg dumbbells · cycles WK1–4 across the block</div>
+  <div style="font-size: 13px; color: var(--text-mid); margin-bottom: 12px;">Monday · 12.5kg + 15kg dumbbells · cycles WK1–5 across the block</div>
+  <div style="font-size: 13px; color: var(--text-mid); margin-bottom: 8px;">Session split</div>
+  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+    <button type="button" data-str-split="full" onclick="setStrSplit('full')" style="padding:8px 18px; border-radius:6px; border:1.5px solid #1a1a1a; background:#1a1a1a; color:#fff; font-family:'DM Sans',sans-serif; font-size:16px; letter-spacing:0.04em; cursor:pointer;">Full body</button>
+    <button type="button" data-str-split="upper" onclick="setStrSplit('upper')" style="padding:8px 18px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:16px; letter-spacing:0.04em; cursor:pointer;">Upper only</button>
+    <button type="button" data-str-split="lower" onclick="setStrSplit('lower')" style="padding:8px 18px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:16px; letter-spacing:0.04em; cursor:pointer;">Lower only</button>
+  </div>
 </div>
 
 <!-- WEEK TABS -->
@@ -863,7 +869,7 @@
 .str-pill-hi { border-color: var(--run); color: var(--run); font-weight:600; }
 
 /* BIG TIMER */
-.str-timer-box { background:#1a1a1a; border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.str-timer-box { background:#1a1a1a; border-radius:0 0 12px 12px; padding:1rem 1.5rem; margin-bottom:1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; position:sticky; top:0; z-index:50; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 .str-timer-num { font-family:'DM Sans',sans-serif; font-weight:700; font-size:80px; line-height:1; color:#E8FF47; min-width:160px; }
 .str-timer-num.str-rest { color:#FF6B35; }
 .str-timer-label { font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; color:#aaa; margin-top:-8px; }
@@ -898,15 +904,33 @@
 .str-start-btn { width:100%; padding:18px; background: var(--run); color:white; border:none; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:22px; font-weight:700; cursor:pointer; margin-bottom:1.25rem; }
 .str-start-btn.running { background:#555; }
 
-/* EXERCISE TABLE */
-.str-table { width:100%; border-collapse:collapse; border-radius:10px; overflow:hidden; border:1px solid var(--border); margin-bottom:1rem; }
-.str-table thead th { background:#f0ede8; padding:10px 14px; text-align:left; font-family:'DM Sans',sans-serif; font-size:14px; letter-spacing:0.08em; color:#999; }
-.str-exrow { border-top:1px solid var(--border); transition:background .2s; }
-.str-exrow:nth-child(even) { background:#faf8f5; }
-.str-exrow.active-ex { background:#e8f5ee !important; outline:2px solid var(--run); outline-offset:-2px; }
-.str-exrow.done-ex { opacity:0.4; }
-.str-exrow.rest-ex { background:#fff3ee !important; }
-.str-exrow td { padding:16px 14px; vertical-align:middle; }
+/* EXERCISE CAROUSEL */
+.str-carousel-wrap { position:relative; margin-bottom:1rem; overflow:hidden; }
+.str-carousel { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:4px 2px 8px; -webkit-overflow-scrolling:touch; }
+.str-carousel::-webkit-scrollbar { display:none; }
+.str-card { flex:0 0 min(280px, 80vw); scroll-snap-align:center; border-radius:12px; border:1.5px solid var(--border); background:#fff; padding:16px; display:flex; flex-direction:column; gap:8px; transition:all .25s; min-height:180px; }
+.str-card.active-ex { border-color:var(--run); background:#e8f5ee; outline:none; box-shadow:0 4px 16px rgba(26,107,60,0.15); transform:scale(1.02); }
+.str-card.done-ex { opacity:0.4; border-color:#ccc; }
+.str-card.rest-ex { border-color:#FF6B35; background:#fff3ee; }
+.str-card-num { font-size:11px; font-weight:600; color:var(--text-light); text-transform:uppercase; letter-spacing:0.08em; }
+.str-card-name { font-size:24px; font-weight:700; color:var(--text); line-height:1.1; }
+.str-card-note { font-size:12px; color:#777; line-height:1.4; flex:1; }
+.str-card-weight { font-size:18px; font-weight:700; color:#FF6B35; }
+.str-card-tempo { font-size:12px; color:#999; }
+.str-card-timer { font-size:52px; font-weight:700; color:#ccc; line-height:1; margin-top:auto; }
+.str-card.active-ex .str-card-timer { color:var(--run); }
+.str-card.rest-ex .str-card-timer { color:#FF6B35; }
+.str-side-indicator { font-size:36px; font-weight:700; border-radius:8px; padding:4px 14px; margin-top:4px; display:none; align-self:flex-start; }
+.str-side-left { background:#E6F1FB; color:#185FA5; }
+.str-side-right { background:#FAEEDA; color:#854F0B; }
+.str-card-timer.countdown { color:#FF6B35 !important; }
+.str-card-tlabel { font-size:10px; color:#999; text-transform:uppercase; letter-spacing:0.06em; }
+.str-skip-btn { margin-top:6px; padding:5px 12px; background:transparent; border:1.5px solid #ccc; color:#999; border-radius:5px; font-size:13px; font-weight:600; cursor:pointer; align-self:flex-start; }
+.str-skip-btn:hover { border-color:#FF6B35; color:#FF6B35; }
+.str-carousel-dots { display:flex; justify-content:center; gap:6px; margin-top:4px; }
+.str-carousel-dot { width:8px; height:8px; border-radius:50%; background:#ddd; transition:all .2s; }
+.str-carousel-dot.active { background:var(--run); width:20px; border-radius:4px; }
+.str-carousel-dot.done { background:var(--run); opacity:0.4; }
 .str-exname { font-family:'DM Sans',sans-serif; font-size:28px; font-weight:700; line-height:1.1; color: var(--text); }
 .str-exnote { font-size:13px; color:#777; margin-top:4px; }
 .str-skip-btn { margin-top:8px; padding:6px 14px; background:transparent; border:1.5px solid #ccc; color:#999; border-radius:5px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; }
@@ -915,8 +939,8 @@
 .str-weight-note { font-size:11px; color:#999; margin-top:2px; }
 .str-tempo { font-size:13px; color:#777; }
 .str-row-timer { font-family:'DM Sans',sans-serif; font-size:48px; font-weight:700; line-height:1; color:#ccc; text-align:center; min-width:70px; }
-.str-exrow.active-ex .str-row-timer { color: var(--run); }
-.str-exrow.rest-ex .str-row-timer { color:#FF6B35; }
+.str-card.active-ex .str-card-timer { color: var(--run); }
+.str-card.rest-ex .str-card-timer { color:#FF6B35; }
 .str-row-timer.countdown { color:#FF6B35 !important; }
 .str-row-tlabel { font-size:11px; color:#999; text-align:center; text-transform:uppercase; letter-spacing:0.06em; margin-top:2px; }
 
@@ -927,42 +951,42 @@
 <script>
 // ─── STRENGTH DATA ──────────────────────────────────────────────
 const STR_WEEKS = {
-  1: { label:'Foundation', date:'Mon 13 Jul', rounds:3, work:40, rest:20, badge:'#1A6B3C',
+  1: { label:'Foundation', date:'Mon 1 Jun', rounds:3, work:40, rest:20, badge:'#1A6B3C',
     ex:[
       { n:'Goblet Squat',          t:'Deep, full range. Elbows inside knees.', w:'12.5kg', wn:'1 dumbbell', tempo:'Controlled' },
       { n:'Romanian Deadlift',     t:'Slow lower — 3 secs down, feel the hamstrings.', w:'12.5kg ×2', wn:'both hands', tempo:'3s lower' },
       { n:'Overhead Press',        t:'Stand tall, press directly overhead. Brace your core.', w:'12.5kg ×2', wn:'both hands', tempo:'Controlled' },
-      { n:'Dumbbell Row',          t:'Each side. Elbow close to body, full range.', w:'12.5kg', wn:'each side', tempo:'Controlled' },
+      { n:'Dumbbell Row',          t:'Elbow close to body, full range.', w:'12.5kg', wn:'each side', tempo:'Controlled', sided:true },
       { n:'Press Ups',             t:'Chest to floor. Full extension at top.', w:'BW', wn:'bodyweight', tempo:'Controlled' },
       { n:'Calf Raise',            t:'Edge of step. 3 secs down — eccentric focus. Non-negotiable.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️' },
       { n:'Farmers Carry',         t:'FINISHER — 2 lengths of your flat. Tall posture, shoulders back. Builds carry strength for FF/MOD.', w:'12.5kg ×2', wn:'both hands', tempo:'2 lengths' },
     ]},
-  2: { label:'Build', date:'Mon 20 Jul', rounds:3, work:45, rest:15, badge:'#1A6B3C',
+  2: { label:'Build', date:'Mon 8 Jun', rounds:3, work:45, rest:15, badge:'#1A6B3C',
     ex:[
       { n:'Goblet Squat',          t:'⭐ Pause 2 secs at the bottom this week.', w:'12.5kg', wn:'1 dumbbell', tempo:'2s pause' },
       { n:'Romanian Deadlift',     t:'Slow lower — 3 secs down.', w:'12.5kg ×2', wn:'both hands', tempo:'3s lower' },
       { n:'Overhead Press',        t:'Stand tall, press directly overhead. Brace your core.', w:'12.5kg ×2', wn:'both hands', tempo:'Controlled' },
-      { n:'Dumbbell Row',          t:'Each side. Elbow close to body.', w:'12.5kg', wn:'each side', tempo:'Controlled' },
+      { n:'Dumbbell Row',          t:'Elbow close to body.', w:'12.5kg', wn:'each side', tempo:'Controlled', sided:true },
       { n:'Press Ups',             t:'⭐ Max reps this week — push to failure.', w:'BW', wn:'bodyweight', tempo:'Max reps' },
       { n:'Calf Raise',            t:'Edge of step. 3 secs down.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️' },
       { n:'Farmers Carry',         t:'FINISHER — 3 lengths of your flat. Tall posture, shoulders back.', w:'12.5kg ×2', wn:'both hands', tempo:'3 lengths' },
     ]},
-  3: { label:'Intensity', date:'Mon 27 Jul', rounds:4, work:45, rest:15, badge:'#7A1A4A',
+  3: { label:'Intensity', date:'Mon 15 Jun', rounds:4, work:45, rest:15, badge:'#7A1A4A',
     ex:[
       { n:'Goblet Squat',          t:'⭐ Pause 2 secs at the bottom.', w:'12.5kg', wn:'1 dumbbell', tempo:'2s pause' },
       { n:'Romanian Deadlift',     t:'Slow lower — 3 secs down. Heavier this week.', w:'15kg ×2 🔺', wn:'both hands', tempo:'3s lower' },
       { n:'Overhead Press',        t:'⭐ Heavier this week. Brace hard, no arching back.', w:'15kg ×2 🔺', wn:'both hands', tempo:'Controlled' },
-      { n:'Dumbbell Row',          t:'Each side. Heavier this week.', w:'15kg 🔺', wn:'each side', tempo:'Controlled' },
+      { n:'Dumbbell Row',          t:'Heavier this week.', w:'15kg 🔺', wn:'each side', tempo:'Controlled', sided:true },
       { n:'Press Ups',             t:'Max reps — chest to floor.', w:'BW', wn:'bodyweight', tempo:'Max reps' },
-      { n:'Single Leg Calf Raise', t:'⭐ Single leg this week. 3 secs down each side.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️' },
+      { n:'Single Leg Calf Raise', t:'⭐ 3 secs down each side.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️', sided:true },
       { n:'Farmers Carry',         t:'FINISHER — 4 lengths of your flat at 15kg. This is your dummy drag prep.', w:'15kg ×2 🔺', wn:'both hands', tempo:'4 lengths' },
     ]},
-  4: { label:'Taper', date:'Mon 3 Aug', rounds:3, work:40, rest:20, badge:'#1A4A7A',
+  4: { label:'Taper', date:'Mon 22 Jun', rounds:3, work:40, rest:20, badge:'#1A4A7A',
     ex:[
       { n:'Goblet Squat',          t:'Controlled. No pause this week.', w:'12.5kg', wn:'1 dumbbell', tempo:'Controlled' },
       { n:'Romanian Deadlift',     t:'Slow lower — keep the 15kg.', w:'15kg ×2 🔺', wn:'both hands', tempo:'3s lower' },
       { n:'Overhead Press',        t:'Keep the 15kg. Controlled reps.', w:'15kg ×2 🔺', wn:'both hands', tempo:'Controlled' },
-      { n:'Dumbbell Row',          t:'Each side. Keep the 15kg.', w:'15kg 🔺', wn:'each side', tempo:'Controlled' },
+      { n:'Dumbbell Row',          t:'Keep the 15kg.', w:'15kg 🔺', wn:'each side', tempo:'Controlled', sided:true },
       { n:'Press Ups',             t:'Controlled reps — not to failure this week.', w:'BW', wn:'bodyweight', tempo:'Controlled' },
       { n:'Calf Raise',            t:'Both legs. 3 secs down.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️' },
       { n:'Farmers Carry',         t:'FINISHER — 3 lengths at 15kg. Taper week so keep it controlled.', w:'15kg ×2 🔺', wn:'both hands', tempo:'3 lengths' },
@@ -972,13 +996,100 @@ const STR_WEEKS = {
       { n:'Goblet Squat',          t:'Easy pace. Light weight.', w:'12.5kg', wn:'1 dumbbell', tempo:'Easy' },
       { n:'Romanian Deadlift',     t:'Light weight — just moving.', w:'12.5kg ×2', wn:'both hands', tempo:'Controlled' },
       { n:'Overhead Press',        t:'Light weight. Just maintain.', w:'12.5kg ×2', wn:'both hands', tempo:'Easy' },
-      { n:'Dumbbell Row',          t:'Light weight. Easy pace.', w:'12.5kg', wn:'each side', tempo:'Easy' },
+      { n:'Dumbbell Row',          t:'Light weight. Easy pace.', w:'12.5kg', wn:'each side', tempo:'Easy', sided:true },
       { n:'Press Ups',             t:'Easy pace — not to failure.', w:'BW', wn:'bodyweight', tempo:'Easy' },
       { n:'Calf Raise',            t:'Both legs. 3 secs down.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️' },
       { n:'Farmers Carry',         t:'FINISHER — 2 easy lengths at 12.5kg. Race week — keep it light.', w:'12.5kg ×2', wn:'both hands', tempo:'2 lengths' },
     ]},
 };
 const STR_ROUND_REST = 60;
+let strRoundRest = STR_ROUND_REST;
+
+// ─── SPLIT (full / upper / lower) ───────────────────────────────
+let strSplit = 'full';
+
+function strExCat(name) {
+  if (/Goblet|Romanian|Calf|Farmers|Single Leg/i.test(name)) return 'lower';
+  return 'upper';
+}
+
+function strExForWeek(n) {
+  const all = STR_WEEKS[n].ex;
+  if (strSplit === 'full') return all;
+  return all.filter(e => strExCat(e.n) === strSplit);
+}
+
+function setStrSplit(split) {
+  if (!['full', 'upper', 'lower'].includes(split)) return;
+  strSplit = split;
+  localStorage.setItem('strSplit', split);
+  document.querySelectorAll('[data-str-split]').forEach(btn => {
+    const on = btn.dataset.strSplit === split;
+    btn.style.background = on ? '#1a1a1a' : 'transparent';
+    btn.style.color = on ? '#fff' : '#555';
+    btn.style.borderColor = on ? '#1a1a1a' : '#ccc';
+  });
+  const wk = strState?.week || 1;
+  showStrWk(wk);
+}
+
+function initStrSplit() {
+  const saved = localStorage.getItem('strSplit');
+  if (saved && ['full', 'upper', 'lower'].includes(saved)) strSplit = saved;
+  document.querySelectorAll('[data-str-split]').forEach(btn => {
+    const on = btn.dataset.strSplit === strSplit;
+    btn.style.background = on ? '#1a1a1a' : 'transparent';
+    btn.style.color = on ? '#fff' : '#555';
+    btn.style.borderColor = on ? '#1a1a1a' : '#ccc';
+  });
+}
+
+function strAdjustTiming(type, delta) {
+  if (!strState) {
+    // Adjust before circuit starts — modify the week data directly
+    const weekNum = parseInt(document.querySelector('[id^=swk].active-wk, [id^=swk][style*="background: rgb(26"]')?.id?.replace('swk','') || '1');
+    const w = STR_WEEKS[weekNum];
+    if (type === 'work') {
+      w.work = Math.max(5, w.work + delta);
+      const el = document.getElementById('adj-work');
+      const pill = document.getElementById('pill-work');
+      if (el) el.textContent = w.work + 's';
+      if (pill) pill.textContent = w.work + 's work';
+    } else if (type === 'rest') {
+      w.rest = Math.max(0, w.rest + delta);
+      const el = document.getElementById('adj-rest');
+      const pill = document.getElementById('pill-rest');
+      if (el) el.textContent = w.rest + 's';
+      if (pill) pill.textContent = w.rest + 's rest';
+    } else if (type === 'roundrest') {
+      strRoundRest = Math.max(5, strRoundRest + delta);
+      const el = document.getElementById('adj-roundrest');
+      const pill = document.getElementById('pill-roundrest');
+      if (el) el.textContent = strRoundRest + 's';
+      if (pill) pill.textContent = strRoundRest + 's between rounds';
+    }
+    // Update timer display
+    const tn = document.getElementById('stimer-num');
+    if (tn && type === 'work') tn.textContent = w.work;
+    return;
+  }
+  // Mid-session adjust
+  if (type === 'work') {
+    const w = STR_WEEKS[strState.week];
+    w.work = Math.max(5, w.work + delta);
+    const el = document.getElementById('adj-work');
+    if (el) el.textContent = w.work + 's';
+  } else if (type === 'rest') {
+    const w = STR_WEEKS[strState.week];
+    w.rest = Math.max(0, w.rest + delta);
+    const el = document.getElementById('adj-rest');
+    if (el) el.textContent = w.rest + 's';
+  } else if (type === 'roundrest') {
+    strRoundRest = Math.max(5, strRoundRest + delta);
+    const el = document.getElementById('adj-roundrest');
+    if (el) el.textContent = strRoundRest + 's';
+  }
+}
 let strState = null;
 
 // ─── AUDIO ──────────────────────────────────────────────────────
@@ -1003,6 +1114,7 @@ function strBeepGo()    { strBeep(1100,0.2,0.6); setTimeout(()=>strBeep(1100,0.2
 // ─── RENDER ──────────────────────────────────────────────────────
 function showStrWk(n) {
   if (strState) { clearInterval(strState.interval); strState = null; }
+  strRoundRest = STR_ROUND_REST;
   document.querySelectorAll('[id^=swk]').forEach((b,i) => {
     const active = i+1 === n;
     b.style.background = active ? '#1a1a1a' : 'transparent';
@@ -1010,21 +1122,23 @@ function showStrWk(n) {
     b.style.borderColor = active ? '#1a1a1a' : '#ccc';
   });
   const w = STR_WEEKS[n];
+  const ex = strExForWeek(n);
+  const splitLabel = strSplit === 'full' ? 'Full body' : strSplit === 'upper' ? 'Upper only' : 'Lower only';
   const dots = Array.from({length:w.rounds},(_,i)=>`<div class="str-rdot" id="srdot-${i+1}">${i+1}</div>`).join('');
-  const rows = w.ex.map((e,i)=>`
-    <tr class="str-exrow" id="sex-${i}">
-      <td>
-        <div class="str-exname">${e.n}</div>
-        <div class="str-exnote">${e.t}</div>
-        <button class="str-skip-btn" onclick="strSkipTo(${i})">Skip to this →</button>
-      </td>
-      <td><div class="str-weight">${e.w}</div><div class="str-weight-note">${e.wn}</div></td>
-      <td><div class="str-tempo">${e.tempo}</div></td>
-      <td>
-        <div class="str-row-timer" id="srt-${i}">–</div>
-        <div class="str-row-tlabel" id="srl-${i}"></div>
-      </td>
-    </tr>`).join('');
+  const rows = ex.map((e,i)=>`
+    <div class="str-card" id="sex-${i}">
+      <div class="str-card-num">Exercise ${i+1} of ${ex.length}</div>
+      <div class="str-card-name">${e.n}</div>
+      <div class="str-card-note">${e.t}</div>
+      <div class="str-card-weight">${e.w} <span style="font-size:12px;font-weight:400;color:#aaa">${e.wn}</span></div>
+      <div class="str-card-tempo">${e.tempo}</div>
+      ${e.sided ? `<div class="str-side-indicator str-side-left" id="sside-${i}">LEFT</div>` : ''}
+      <div class="str-card-timer" id="srt-${i}">–</div>
+      <div class="str-card-tlabel" id="srl-${i}"></div>
+      <button class="str-skip-btn" onclick="strSkipTo(${i})">Skip to this →</button>
+    </div>`).join('');
+
+  const carouselDots = ex.map((_,i)=>`<div class="str-carousel-dot" id="sdot-${i}"></div>`).join('');
 
   document.getElementById('str-panel').innerHTML = `
     <div class="str-meta">
@@ -1032,10 +1146,37 @@ function showStrWk(n) {
       <div class="str-badge" style="background:${w.badge}">${w.date}</div>
     </div>
     <div class="str-pills">
+      <div class="str-pill str-pill-hi">${splitLabel}</div>
       <div class="str-pill str-pill-hi">${w.rounds} rounds</div>
-      <div class="str-pill str-pill-hi">${w.work}s work</div>
-      <div class="str-pill str-pill-hi">${w.rest}s rest</div>
-      <div class="str-pill">60s between rounds</div>
+      <div class="str-pill str-pill-hi" id="pill-work">${w.work}s work</div>
+      <div class="str-pill str-pill-hi" id="pill-rest">${w.rest}s rest</div>
+      <div class="str-pill" id="pill-roundrest">60s between rounds</div>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.25rem;">
+      <div style="flex:1; min-width:120px; background:#f7f5f2; border:1px solid var(--border); border-radius:8px; padding:8px 12px;">
+        <div style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:#999; margin-bottom:4px;">Work</div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <button onclick="strAdjustTiming('work',-5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">−</button>
+          <span id="adj-work" style="font-weight:700; font-size:16px; min-width:36px; text-align:center;">${w.work}s</span>
+          <button onclick="strAdjustTiming('work',5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">+</button>
+        </div>
+      </div>
+      <div style="flex:1; min-width:120px; background:#f7f5f2; border:1px solid var(--border); border-radius:8px; padding:8px 12px;">
+        <div style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:#999; margin-bottom:4px;">Rest</div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <button onclick="strAdjustTiming('rest',-5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">−</button>
+          <span id="adj-rest" style="font-weight:700; font-size:16px; min-width:36px; text-align:center;">${w.rest}s</span>
+          <button onclick="strAdjustTiming('rest',5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">+</button>
+        </div>
+      </div>
+      <div style="flex:1; min-width:120px; background:#f7f5f2; border:1px solid var(--border); border-radius:8px; padding:8px 12px;">
+        <div style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:#999; margin-bottom:4px;">Between rounds</div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <button onclick="strAdjustTiming('roundrest',-5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">−</button>
+          <span id="adj-roundrest" style="font-weight:700; font-size:16px; min-width:36px; text-align:center;">60s</span>
+          <button onclick="strAdjustTiming('roundrest',5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">+</button>
+        </div>
+      </div>
     </div>
     <div class="str-timer-box">
       <div>
@@ -1047,7 +1188,6 @@ function showStrWk(n) {
         ${dots}
       </div>
       <div class="str-timer-btns">
-        <button class="str-tbtn str-tbtn-go" id="str-go-btn" onclick="strStart(${n})">▶ GO</button>
         <button class="str-tbtn str-tbtn-pause" id="str-pause-btn" onclick="strPause()">⏸ PAUSE</button>
         <button class="str-tbtn str-tbtn-reset" onclick="strReset(${n})">↺ RESET</button>
       </div>
@@ -1061,30 +1201,134 @@ function showStrWk(n) {
       <div class="str-rest-num" id="str-rest-num">60</div>
       <button class="str-skip-rest" onclick="strSkipRest()">Skip rest →</button>
     </div>
-    <table class="str-table">
-      <thead><tr>
-        <th style="width:45%">Exercise</th>
-        <th>Weight</th>
-        <th>Tempo</th>
-        <th style="width:80px;text-align:center">Timer</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
+
+    <!-- WARM UP -->
+    <div id="str-warmup-box" style="background:#f7f5f2; border:1.5px solid #e5e0d8; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1.25rem;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.75rem;">
+        <div style="font-size:16px; font-weight:600; color:#1a1a1a;">🏃 Warm up</div>
+        <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#555;">
+          Duration:
+          <button onclick="strAdjustWarmup(-60)" style="padding:2px 10px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">−</button>
+          <span id="warmup-duration-label" style="font-weight:600; min-width:40px; text-align:center;">5:00</span>
+          <button onclick="strAdjustWarmup(60)" style="padding:2px 10px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">+</button>
+        </div>
+      </div>
+      <div style="font-size:12px; color:#777; margin-bottom:0.75rem;">Leg swings · Hip circles · Arm circles · 10 bodyweight squats · 10 hip hinges</div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <div id="warmup-timer-display" style="font-family:'DM Sans',sans-serif; font-size:52px; font-weight:700; color:#1A6B3C; line-height:1; min-width:90px;">5:00</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <button id="str-warmup-btn" class="str-start-btn" style="width:auto; padding:12px 24px; font-size:18px; margin:0;" onclick="strStartWarmup(${n})">▶ Start Workout</button>
+          <button id="str-skip-warmup-btn" style="display:none; padding:6px 16px; border-radius:6px; border:1.5px solid #FF6B35; color:#FF6B35; background:transparent; font-size:14px; font-weight:600; cursor:pointer;" onclick="strSkipWarmup(${n})">Skip warm up →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="str-carousel-wrap">
+      <div class="str-carousel" id="str-carousel">${rows}</div>
+      <div class="str-carousel-dots">${carouselDots}</div>
+    </div>
     <div class="str-notes">
-      <strong>Warm up (5 min):</strong> Leg swings · Hip circles · Arm circles · 10 bodyweight squats<br>
       <strong>Cool down (5 min):</strong> Hip flexor · Hamstring · Calf stretch · 45s each side
     </div>
   `;
 }
 
+// ─── WARM UP LOGIC ───────────────────────────────────────────────
+let warmupSecs = 300; // 5 mins default
+let warmupInterval = null;
+let warmupWeek = null;
+
+function strAdjustWarmup(delta) {
+  warmupSecs = Math.max(60, warmupSecs + delta);
+  const m = Math.floor(warmupSecs/60);
+  const s = String(warmupSecs%60).padStart(2,'0');
+  const label = `${m}:${s}`;
+  const dl = document.getElementById('warmup-duration-label');
+  const td = document.getElementById('warmup-timer-display');
+  if (dl) dl.textContent = label;
+  if (td) td.textContent = label;
+}
+
+function strStartWarmup(n) {
+  if (strAudio && strAudio.state === 'suspended') strAudio.resume();
+  warmupWeek = n;
+  warmupPaused = false;
+  let remaining = warmupSecs;
+  const btn = document.getElementById('str-warmup-btn');
+  const skipBtn = document.getElementById('str-skip-warmup-btn');
+  const display = document.getElementById('warmup-timer-display');
+  if (btn) { btn.textContent = '⏸ Pause warm up'; btn.onclick = strPauseWarmup; }
+  if (skipBtn) skipBtn.style.display = 'block';
+  strBeepWork();
+
+  function updateDisplay() {
+    if (warmupPaused) return;
+    const m = Math.floor(remaining/60);
+    const s = String(remaining%60).padStart(2,'0');
+    if (display) {
+      display.textContent = `${m}:${s}`;
+      display.style.color = remaining <= 10 ? '#FF6B35' : '#1A6B3C';
+    }
+    if (remaining <= 10 && remaining > 0) strBeepCount();
+    if (remaining <= 0) {
+      clearInterval(warmupInterval);
+      warmupInterval = null;
+      strBeepGo();
+      if (display) { display.textContent = '✓'; display.style.color = '#1A6B3C'; }
+      if (btn) skipBtn.style.display = 'none';
+      // Auto-start circuit
+      strStart(n);
+      return;
+    }
+    remaining--;
+  }
+
+  if (warmupInterval) clearInterval(warmupInterval);
+  updateDisplay();
+  warmupInterval = setInterval(updateDisplay, 1000);
+}
+
+function strPauseWarmup() {
+  warmupPaused = !warmupPaused;
+  const btn = document.getElementById('str-warmup-btn');
+  if (warmupPaused) {
+    if (btn) btn.textContent = '▶ Resume warm up';
+    const pauseBtn = document.getElementById('str-pause-btn');
+    if (pauseBtn) pauseBtn.textContent = '▶ RESUME';
+  } else {
+    if (btn) btn.textContent = '⏸ Pause warm up';
+    const pauseBtn = document.getElementById('str-pause-btn');
+    if (pauseBtn) pauseBtn.textContent = '⏸ PAUSE';
+  }
+}
+
+function strSkipWarmup(n) {
+  if (warmupInterval) { clearInterval(warmupInterval); warmupInterval = null; }
+  const display = document.getElementById('warmup-timer-display');
+  const btn = document.getElementById('str-warmup-btn');
+  const skipBtn = document.getElementById('str-skip-warmup-btn');
+  if (display) { display.textContent = '✓'; display.style.color = '#1A6B3C'; }
+  if (btn) btn.style.display = 'none';
+  if (skipBtn) skipBtn.style.display = 'none';
+  strStart(n);
+}
+
 // ─── CIRCUIT LOGIC ───────────────────────────────────────────────
+function strGetWorkTime(weekNum, exIdx) {
+  const w = STR_WEEKS[weekNum];
+  const ex = strState?.week === weekNum && strState.ex ? strState.ex : strExForWeek(weekNum);
+  return ex[exIdx].sided ? w.work * 2 : w.work;
+}
+
 function strStart(n) {
   if (strAudio && strAudio.state === 'suspended') strAudio.resume();
   if (strState) { clearInterval(strState.interval); strState = null; }
-  const w = STR_WEEKS[n];
-  document.getElementById('str-go-btn').textContent = '■ STOP';
-  document.getElementById('str-go-btn').onclick = () => strReset(n);
-  strState = { week:n, round:1, exIdx:0, remaining:w.work, phase:'work', paused:false };
+  const ex = strExForWeek(n);
+  const goBtn = document.getElementById('str-go-btn');
+  if (goBtn) { goBtn.textContent = '■ STOP'; goBtn.onclick = () => strReset(n); }
+  const pauseBtn = document.getElementById('str-pause-btn');
+  if (pauseBtn) pauseBtn.textContent = '⏸ PAUSE';
+  strState = { week:n, round:1, exIdx:0, remaining:strGetWorkTime(n,0), phase:'work', paused:false, ex };
   strUpdateDots(); strUpdateProg();
   strBeepWork();
   strTick();
@@ -1092,9 +1336,16 @@ function strStart(n) {
 }
 
 function strPause() {
+  // If warmup is running, pause that
+  if (warmupInterval || warmupPaused) {
+    strPauseWarmup();
+    return;
+  }
+  // Otherwise pause circuit
   if (!strState) return;
   strState.paused = !strState.paused;
-  document.getElementById('str-pause-btn').textContent = strState.paused ? '▶ RESUME' : '⏸ PAUSE';
+  const btn = document.getElementById('str-pause-btn');
+  if (btn) btn.textContent = strState.paused ? '▶ RESUME' : '⏸ PAUSE';
 }
 
 function strReset(n) {
@@ -1102,40 +1353,60 @@ function strReset(n) {
   showStrWk(n);
 }
 
+function strScrollToCard(idx) {
+  const carousel = document.getElementById('str-carousel');
+  const card = document.getElementById('sex-'+idx);
+  if (carousel && card) {
+    carousel.scrollTo({ left: card.offsetLeft - (carousel.offsetWidth - card.offsetWidth) / 2, behavior: 'smooth' });
+  }
+  // Update dots
+  const w = strState ? STR_WEEKS[strState.week] : STR_WEEKS[1];
+  const ex = strState?.ex || strExForWeek(strState?.week || 1);
+  if (ex) {
+    ex.forEach((_,i) => {
+      const dot = document.getElementById('sdot-'+i);
+      if (!dot) return;
+      dot.classList.remove('active','done');
+      if (strState && i < strState.exIdx) dot.classList.add('done');
+      else if (i === idx) dot.classList.add('active');
+    });
+  }
+}
+
 function strSkipTo(exIdx) {
   if (!strState) return;
-  const w = STR_WEEKS[strState.week];
-  w.ex.forEach((_,i) => {
-    const row = document.getElementById('sex-'+i);
+  const ex = strState.ex;
+  ex.forEach((_,i) => {
+    const card = document.getElementById('sex-'+i);
     const t = document.getElementById('srt-'+i);
     const l = document.getElementById('srl-'+i);
-    if (row) row.classList.remove('active-ex','done-ex','rest-ex');
+    if (card) card.classList.remove('active-ex','done-ex','rest-ex');
     if (t) { t.textContent='–'; t.classList.remove('countdown'); }
     if (l) l.textContent='';
   });
   for (let i=0; i<exIdx; i++) {
-    const row = document.getElementById('sex-'+i);
+    const card = document.getElementById('sex-'+i);
     const t = document.getElementById('srt-'+i);
-    if (row) row.classList.add('done-ex');
+    if (card) card.classList.add('done-ex');
     if (t) t.textContent='✓';
   }
   strState.exIdx = exIdx;
   strState.phase = 'work';
-  strState.remaining = STR_WEEKS[strState.week].work;
+  strState.remaining = strGetWorkTime(strState.week, exIdx);
   strState.paused = false;
   document.getElementById('str-pause-btn').textContent = '⏸ PAUSE';
+  strScrollToCard(exIdx);
   strUpdateProg();
   strBeepWork();
 }
 
 function strSkipRest() {
   if (!strState || strState.phase !== 'round-rest') return;
-  const w = STR_WEEKS[strState.week];
   document.getElementById('str-rest-banner').classList.remove('visible');
   strState.round++;
   strState.exIdx = 0;
   strState.phase = 'work';
-  strState.remaining = w.work;
+  strState.remaining = strGetWorkTime(strState.week, 0);
   strUpdateDots(); strUpdateProg();
   strBeepGo();
 }
@@ -1143,27 +1414,54 @@ function strSkipRest() {
 function strTick() {
   if (!strState || strState.paused) return;
   const w = STR_WEEKS[strState.week];
+  const circuit = strState.ex;
   const { phase, exIdx, round } = strState;
   const timerNum = document.getElementById('stimer-num');
   const timerLabel = document.getElementById('stimer-label');
 
   if (phase === 'work') {
+    const ex = circuit[exIdx];
+    const sided = ex.sided;
+    const totalWork = sided ? w.work * 2 : w.work;
     const row = document.getElementById('sex-'+exIdx);
     const rt = document.getElementById('srt-'+exIdx);
     const rl = document.getElementById('srl-'+exIdx);
-    document.querySelectorAll('.str-exrow').forEach(r=>r.classList.remove('active-ex'));
-    if (row) { row.classList.add('active-ex'); row.classList.remove('done-ex','rest-ex'); row.scrollIntoView({behavior:'smooth',block:'nearest'}); }
-    if (timerNum) { timerNum.textContent = strState.remaining; timerNum.className = 'str-timer-num'; }
-    if (timerLabel) timerLabel.textContent = 'WORK — ' + w.ex[exIdx].n.toUpperCase();
-    if (rt) { rt.textContent = strState.remaining; rt.classList.toggle('countdown', strState.remaining <= 5 && strState.remaining > 0); }
-    if (rl) rl.textContent = 'WORK';
-    if (strState.remaining <= 5 && strState.remaining > 0) strBeepCount();
+    const sside = document.getElementById('sside-'+exIdx);
+    document.querySelectorAll('.str-card').forEach(r=>r.classList.remove('active-ex'));
+    if (row) { row.classList.add('active-ex'); row.classList.remove('done-ex','rest-ex'); strScrollToCard(exIdx); }
+
+    // Side indicator logic
+    if (sided && sside) {
+      sside.style.display = 'block';
+      const halfPoint = w.work;
+      if (strState.remaining > halfPoint) {
+        sside.textContent = 'LEFT';
+        sside.className = 'str-side-indicator str-side-left';
+      } else if (strState.remaining === halfPoint) {
+        // Halfway — switch sides
+        sside.textContent = 'RIGHT';
+        sside.className = 'str-side-indicator str-side-right';
+        strBeepWork();
+      } else {
+        sside.textContent = 'RIGHT';
+        sside.className = 'str-side-indicator str-side-right';
+      }
+    }
+
+    // Display remaining — show countdown within each half for sided
+    const displayTime = sided ? (strState.remaining > w.work ? strState.remaining - w.work : strState.remaining) : strState.remaining;
+    if (timerNum) { timerNum.textContent = displayTime; timerNum.className = 'str-timer-num'; }
+    if (timerLabel) timerLabel.textContent = 'WORK — ' + ex.n.toUpperCase() + (sided ? (strState.remaining > w.work ? ' · LEFT' : ' · RIGHT') : '');
+    if (rt) { rt.textContent = displayTime; rt.classList.toggle('countdown', displayTime <= 5 && displayTime > 0); }
+    if (rl) rl.textContent = sided ? (strState.remaining > w.work ? 'LEFT' : 'RIGHT') : 'WORK';
+    if (displayTime <= 5 && displayTime > 0) strBeepCount();
     if (strState.remaining <= 0) {
       if (rt) { rt.textContent='✓'; rt.classList.remove('countdown'); }
       if (rl) rl.textContent='';
+      if (sside) sside.style.display = 'none';
       if (row) { row.classList.remove('active-ex'); row.classList.add('done-ex'); }
       const next = exIdx + 1;
-      if (next < w.ex.length) {
+      if (next < circuit.length) {
         strState.phase = 'rest'; strState.remaining = w.rest; strState.exIdx = next;
         const nr = document.getElementById('sex-'+next);
         const nt = document.getElementById('srt-'+next);
@@ -1175,12 +1473,14 @@ function strTick() {
         if (timerLabel) timerLabel.textContent = 'REST';
         strBeepRest();
       } else if (round < w.rounds) {
-        strState.phase = 'round-rest'; strState.remaining = STR_ROUND_REST;
-        w.ex.forEach((_,i) => {
+        strState.phase = 'round-rest'; strState.remaining = strRoundRest;
+        circuit.forEach((_,i) => {
           const r=document.getElementById('sex-'+i), t=document.getElementById('srt-'+i), l=document.getElementById('srl-'+i);
+          const ss=document.getElementById('sside-'+i);
           if(r) r.classList.remove('active-ex','done-ex','rest-ex');
           if(t) { t.textContent='–'; t.classList.remove('countdown'); }
           if(l) l.textContent='';
+          if(ss) ss.style.display='none';
         });
         const rb = document.getElementById('str-rest-banner');
         if (rb) rb.classList.add('visible');
@@ -1210,9 +1510,9 @@ function strTick() {
       if (row) row.classList.remove('rest-ex');
       if (rt) { rt.textContent='–'; rt.classList.remove('countdown'); }
       if (rl) rl.textContent='';
-      strState.phase = 'work'; strState.remaining = w.work;
-      if (timerNum) { timerNum.textContent = strState.remaining; timerNum.className = 'str-timer-num'; }
-      if (timerLabel) timerLabel.textContent = 'WORK — ' + w.ex[exIdx].n.toUpperCase();
+      strState.phase = 'work'; strState.remaining = strGetWorkTime(strState.week, exIdx);
+      if (timerNum) { timerNum.textContent = circuit[exIdx].sided ? w.work : strState.remaining; timerNum.className = 'str-timer-num'; }
+      if (timerLabel) timerLabel.textContent = 'WORK — ' + circuit[exIdx].n.toUpperCase();
       strBeepWork();
       return;
     }
@@ -1225,10 +1525,10 @@ function strTick() {
     if (strState.remaining <= 5 && strState.remaining > 0) strBeepCount();
     if (strState.remaining <= 0) {
       document.getElementById('str-rest-banner').classList.remove('visible');
-      strState.round++; strState.exIdx = 0; strState.phase = 'work'; strState.remaining = w.work;
+      strState.round++; strState.exIdx = 0; strState.phase = 'work'; strState.remaining = strGetWorkTime(strState.week, 0);
       strUpdateDots(); strUpdateProg();
       if (timerNum) { timerNum.textContent = strState.remaining; timerNum.className = 'str-timer-num'; }
-      if (timerLabel) timerLabel.textContent = 'WORK — ' + w.ex[0].n.toUpperCase();
+      if (timerLabel) timerLabel.textContent = 'WORK — ' + circuit[0].n.toUpperCase();
       strBeepGo();
       return;
     }
@@ -1251,14 +1551,15 @@ function strUpdateDots() {
 function strUpdateProg() {
   if (!strState) return;
   const w = STR_WEEKS[strState.week];
-  const total = w.rounds * w.ex.length;
-  const done = ((strState.round-1) * w.ex.length) + strState.exIdx;
+  const ex = strState.ex;
+  const total = w.rounds * ex.length;
+  const done = ((strState.round-1) * ex.length) + strState.exIdx;
   const pct = Math.round((done/total)*100);
   const f = document.getElementById('sprog-fill');
   const t = document.getElementById('sprog-text');
   const p = document.getElementById('sprog-pct');
   if (f) f.style.width = pct+'%';
-  if (t) t.textContent = `Round ${strState.round}/${w.rounds} · Exercise ${strState.exIdx+1}/${w.ex.length}`;
+  if (t) t.textContent = `Round ${strState.round}/${w.rounds} · Exercise ${strState.exIdx+1}/${ex.length}`;
   if (p) p.textContent = pct+'%';
 }
 
@@ -1273,10 +1574,43 @@ function strFinish() {
   if (tn) { tn.textContent = '✓'; tn.className = 'str-timer-num'; tn.style.color='#1A6B3C'; }
 }
 
-// Init
-showStrWk(1);
+// Init — auto select current week based on date
+function initStrWeek() {
+  initStrSplit();
+  const now = new Date();
+  const y = now.getFullYear(), m = now.getMonth(), d = now.getDate();
+  const todayLocal = new Date(y, m, d);
 
-// Auto-scroll to today's date
+  const weekStarts = [
+    { wk: 1, start: new Date(2026, 5, 7)  },
+    { wk: 2, start: new Date(2026, 5, 14) },
+    { wk: 3, start: new Date(2026, 5, 22) },
+    { wk: 4, start: new Date(2026, 5, 29) },
+    { wk: 5, start: new Date(2026, 6, 6)  },
+  ];
+
+  let currentWeek = 1;
+  for (const { wk, start } of weekStarts) {
+    if (todayLocal >= start) currentWeek = wk;
+  }
+  showStrWk(currentWeek);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initStrWeek);
+} else {
+  setTimeout(initStrWeek, 50);
+}
+
+// Spacebar to pause/resume
+document.addEventListener('keydown', function(e) {
+  if (e.code === 'Space' && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'INPUT') {
+    e.preventDefault();
+    strPause();
+  }
+});
+
+// Auto-scroll to today's date and add strength button
 const today = new Date();
 const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const dayOfWeek = dayNames[today.getDay()];
@@ -1284,15 +1618,29 @@ const date = today.getDate();
 const rows = document.querySelectorAll('.day-label');
 for (const row of rows) {
   const text = row.textContent.trim();
-  // Match exactly e.g. "Tue 2" not "Tue 26" — check for end of string or space after date
   const pattern = dayOfWeek + ' ' + date;
   if (text === pattern || text.startsWith(pattern + ' ') || text.startsWith(pattern + '\n')) {
-    row.closest('.day-row').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    row.closest('.day-row').style.outline = '2px solid #1A6B3C';
-    row.closest('.day-row').style.outlineOffset = '2px';
+    const dayRow = row.closest('.day-row');
+    dayRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    dayRow.style.outline = '2px solid #1A6B3C';
+    dayRow.style.outlineOffset = '2px';
+    // Add strength button
+    const strBtn = document.createElement('button');
+    strBtn.textContent = '💪 Strength';
+    strBtn.style.cssText = 'margin-left:8px; padding:2px 8px; background:#1A6B3C; color:white; border:none; border-radius:4px; font-size:11px; font-weight:600; cursor:pointer; vertical-align:middle;';
+    strBtn.onclick = () => document.getElementById('strength-split').scrollIntoView({ behavior:'smooth' });
+    row.appendChild(strBtn);
     break;
   }
 }
+// Sticky nav buttons
+const stickyNav = document.createElement('div');
+stickyNav.style.cssText = 'position:fixed; bottom:20px; right:20px; display:flex; flex-direction:column; gap:8px; z-index:999;';
+stickyNav.innerHTML = `
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:10px 14px; background:#1a1a1a; color:white; border:none; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2);">↑ Top</button>
+  <button onclick="document.querySelector('.day-row[style*=outline]')?.scrollIntoView({behavior:'smooth',block:'center'})" style="padding:10px 14px; background:#1A6B3C; color:white; border:none; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2);">📅 Today</button>
+`;
+document.body.appendChild(stickyNav);
 </script>
 </body>
 </html>

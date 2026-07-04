@@ -7,6 +7,7 @@
     "sync:web": "bash scripts/sync-web.sh",
     "sync": "bash scripts/sync-run.sh sync",
     "sync:import": "bash scripts/sync-run.sh import-plan",
-    "plan:serve": "bash scripts/serve-plan.sh"
+    "plan:serve": "bash scripts/serve-plan.sh",
+    "plan:serve:full": "PLAN=training_plan.html bash scripts/serve-plan.sh"
   }
 }

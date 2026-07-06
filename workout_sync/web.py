@@ -1,4 +1,4 @@
-"""Web UI: edit plan_v1_8.html, click Sync to replace COROS calendar."""
+"""Web UI: edit training_plan.html, click Sync to replace COROS calendar."""
 
 from __future__ import annotations
 

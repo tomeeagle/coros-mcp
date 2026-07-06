@@ -60,3 +60,14 @@ All Coros API responses return `result: "0000"` on success. Any other value indi
 
 ### Region Handling
 Regions (`eu`, `us`) map to different base URLs for both APIs. EU tokens only work on EU endpoints — mixing regions causes auth failures.
+
+## Training plan → COROS
+
+- **Single plan file:** `training_plan.html` (browser + COROS sync).
+- **After editing the plan or workout mappings**, push to COROS immediately:
+  ```bash
+  npm run sync:plan
+  # or: .venv/bin/python coros_sync.py sync -y
+  ```
+- **`npm run plan:serve`** serves the plan and **auto-syncs to COROS on every save** (disable with `AUTO_SYNC=0`).
+- Do not wait for the user to ask — sync after plan changes as part of the same task.

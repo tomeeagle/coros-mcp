@@ -39,7 +39,7 @@ def _distance_run(
 WORKOUTS: dict[str, dict[str, Any]] = {
     "easy_3k": _distance_run("Easy 3K — run streak", 3000),
     "easy_4k": _distance_run("Easy 4K — run streak", 4000),
-    "easy_5k": _distance_run("Easy 5K — June streak", 5000),
+    "easy_5k": _distance_run("Easy 5K — run streak", 5000),
     "easy_6k": {
         "name": "Easy 6K + 5 strides",
         "kind": "run",
@@ -273,7 +273,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "circuit_sets": 3,
     },
     "strength_wk5": {
-        "name": "Strength — Race week (WK5)",
+        "name": "Strength — Light (WK5)",
         "kind": "strength",
         "strength_preset": "wk5",
         "circuit_sets": 2,

@@ -4,7 +4,7 @@ COROS Workout Sync — Tom's Training Plan
 
   cp .env.example .env          # COROS_EMAIL, COROS_PASSWORD, COROS_REGION
   npm run sync:setup            # once: venv + pip install
-  npm run plan:serve            # view plan_v1_8.html in the browser
+  npm run plan:serve            # view training_plan.html in the browser
   npm run sync:web              # edit plan → click Sync to COROS
   npm run sync                  # full resync from terminal
 
@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from workout_sync import schedules as sched_mod
 from workout_sync.auth import auth_status_message, ensure_auth, load_dotenv
-from workout_sync.sync import describe_session, full_resync, push_schedule, resolve_schedule
+from workout_sync.sync import describe_session, fmt_day, full_resync, push_schedule, resolve_schedule
 import coros_api
 from workout_sync.workouts import WORKOUTS
 
@@ -139,8 +139,46 @@ async def cmd_sync(args: argparse.Namespace) -> int:
     print(f"Removed {result['removed']} · Pushed {result['pushed']}")
     if result["push_errors"]:
         print(f"⚠️  {result['push_errors']} push error(s)")
-    for line in result["messages"][-20:]:
+    msgs = result["messages"]
+    push_lines = [m for m in msgs if m.startswith("✓") or m.startswith("✗")]
+    other_lines = [m for m in msgs if m not in push_lines]
+    for line in other_lines:
         print(f"  {line}")
+    if push_lines:
+        print("\n  Pushed sessions:")
+        for line in push_lines:
+            print(f"  {line}")
+    try:
+        auth = await coros_api.try_auto_login() or coros_api.get_stored_auth()
+        if auth:
+            from datetime import date, timedelta
+
+            today = date.today()
+            end = today + timedelta(days=13)
+            sched = await coros_api.fetch_schedule(
+                auth,
+                today.strftime("%Y%m%d"),
+                end.strftime("%Y%m%d"),
+            )
+            entities = sorted(
+                sched.get("entities") or [],
+                key=lambda e: str(e.get("happenDay", "")),
+            )
+            programs = {
+                str(p.get("idInPlan")): p for p in sched.get("programs") or [] if p.get("idInPlan")
+            }
+            print(f"\n  COROS calendar ({today.strftime('%a %d %b')} – {end.strftime('%a %d %b')}):")
+            if not entities:
+                print("    (no sessions)")
+            for e in entities:
+                day = str(e.get("happenDay", ""))
+                prog = programs.get(str(e.get("planProgramId", ""))) or programs.get(
+                    str(e.get("idInPlan", ""))
+                )
+                name = (prog or {}).get("name") or (prog or {}).get("title") or "Workout"
+                print(f"    {fmt_day(day):12}  {name}")
+    except Exception:
+        pass
     cal = result.get("calendar_plan") or {}
     if cal.get("name"):
         print(f"\nCalendar plan: {cal['name']} ({cal.get('entity_count', '?')} sessions in range)")
@@ -209,7 +247,7 @@ def main() -> int:
     sub.add_parser("plan-status", help="Where synced workouts appear in COROS app vs library")
 
     imp_p = sub.add_parser("import-plan", help="Parse plan HTML and show generated schedule")
-    imp_p.add_argument("--plan", help="Path to plan HTML (default: plan_v1_8.html)")
+    imp_p.add_argument("--plan", help="Path to plan HTML (default: training_plan.html)")
 
     sync_p = sub.add_parser(
         "sync",

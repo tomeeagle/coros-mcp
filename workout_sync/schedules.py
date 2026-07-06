@@ -1,4 +1,4 @@
-"""Weekly schedules loaded from plan_v1_8.html."""
+"""Weekly schedules loaded from training_plan.html."""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ for _week in WEEKS.values():
 
 
 def reload_schedules(html_path: Path | None = None) -> dict[str, dict]:
-    """Re-read plan HTML (e.g. after editing plan_v1_8.html)."""
+    """Re-read plan HTML (e.g. after editing training_plan.html)."""
     global WEEKS, SCHEDULE
     WEEKS = load_weeks(html_path)
     SCHEDULE.clear()

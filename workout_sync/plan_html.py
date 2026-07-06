@@ -22,7 +22,7 @@ MONTHS: dict[str, int] = {
     "dec": 12,
 }
 
-DEFAULT_PLAN_PATH = Path(__file__).resolve().parent.parent / "plan_v1_8.html"
+DEFAULT_PLAN_PATH = Path(__file__).resolve().parent.parent / "training_plan.html"
 
 
 @dataclass
@@ -316,9 +316,9 @@ def _map_run_to_workouts(
 
     if primary and primary.startswith("strength_"):
         post_strength: str | None = None
-        if re.search(r"easy 6k|6k easy", note_text, re.I):
+        if re.search(r"easy 6k|6k easy", combined, re.I):
             post_strength = "easy_6k"
-        elif re.search(r"easy 3k|3k easy|\+ easy", note_text, re.I):
+        elif re.search(r"easy 3k|3k easy|\+ easy", combined, re.I):
             post_strength = "easy_3k"
         if post_strength and post_strength not in keys:
             keys.append(post_strength)

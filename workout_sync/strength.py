@@ -70,7 +70,7 @@ def _circuit(
     ]
 
 
-# Presets aligned with plan_v1_8.html STR_WEEKS (Mon strength sessions)
+# Presets aligned with training_plan.html STR_WEEKS (Mon strength sessions)
 STRENGTH_PRESETS: dict[str, list[dict[str, Any]]] = {
     "full_body": _circuit(),
     "wk1": _circuit(goblet=12.5, rdl=12.5, press=12.5, row=12.5, carry=12.5, rounds=3, carry_seconds=45),

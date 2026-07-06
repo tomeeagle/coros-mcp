@@ -592,16 +592,16 @@
     <span class="week-phase phase-taper">Recovery</span>
     <span class="week-total">~35K running</span>
   </div>
-  <div class="day-row">
+  <div class="day-row rest-day">
     <span class="day-label">Mon 6</span>
-    <span class="day-note">💪 Strength WK4</span>
-    <span class="run-cell rest">Strength only — light</span>
+    <span class="day-note">Rest — strength moved to Tue (recovery)</span>
+    <span class="run-cell rest">—</span>
     <span class="weight-cell neutral">Weigh in. No pudding.</span>
   </div>
   <div class="day-row">
     <span class="day-label">Tue 7</span>
-    <span class="day-note">—</span>
-    <span class="run-cell">Easy 5K</span>
+    <span class="day-note">💪 Strength WK4 — light · moved from Mon</span>
+    <span class="run-cell rest">Dumbbell strength — 45 mins max. Light this week.</span>
     <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
@@ -837,57 +837,65 @@
 <!-- ═══════════════════════════════════════════════════
      STRENGTH TRAINING
 ═══════════════════════════════════════════════════ -->
-<div id="strength-split" style="margin-bottom: 1.5rem;">
-  <div style="font-family:'DM Sans',sans-serif; font-size: 36px; font-weight:600; margin-bottom: 4px;">Strength Sessions</div>
-  <div style="font-size: 13px; color: var(--text-mid); margin-bottom: 12px;">Monday · 12.5kg + 15kg dumbbells · cycles WK1–5 across the block</div>
-  <div style="font-size: 13px; color: var(--text-mid); margin-bottom: 8px;">Session split</div>
-  <div style="display:flex; gap:8px; flex-wrap:wrap;">
-    <button type="button" data-str-split="full" onclick="setStrSplit('full')" style="padding:8px 18px; border-radius:6px; border:1.5px solid #1a1a1a; background:#1a1a1a; color:#fff; font-family:'DM Sans',sans-serif; font-size:16px; letter-spacing:0.04em; cursor:pointer;">Full body</button>
-    <button type="button" data-str-split="upper" onclick="setStrSplit('upper')" style="padding:8px 18px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:16px; letter-spacing:0.04em; cursor:pointer;">Upper only</button>
-    <button type="button" data-str-split="lower" onclick="setStrSplit('lower')" style="padding:8px 18px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:16px; letter-spacing:0.04em; cursor:pointer;">Lower only</button>
+<div id="strength-split" style="margin-bottom: 1rem;">
+  <div style="font-family:'DM Sans',sans-serif; font-size: 28px; font-weight:600; margin-bottom: 2px;">Strength Sessions</div>
+  <div style="font-size: 12px; color: var(--text-mid); margin-bottom: 10px;">Monday · 12.5kg + 15kg · WK1–5</div>
+  <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px;">
+    <button type="button" data-str-split="full" onclick="setStrSplit('full')" style="padding:6px 14px; border-radius:6px; border:1.5px solid #1a1a1a; background:#1a1a1a; color:#fff; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">Full body</button>
+    <button type="button" data-str-split="upper" onclick="setStrSplit('upper')" style="padding:6px 14px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">Upper</button>
+    <button type="button" data-str-split="lower" onclick="setStrSplit('lower')" style="padding:6px 14px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">Lower</button>
   </div>
 </div>
 
 <!-- WEEK TABS -->
-<div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem;">
-  <button onclick="showStrWk(1)" id="swk1" style="padding:8px 18px; border-radius:6px; border:1.5px solid #1a1a1a; background:#1a1a1a; color:#fff; font-family:'DM Sans',sans-serif; font-size:18px; letter-spacing:0.04em; cursor:pointer;">WK1 · Foundation</button>
-  <button onclick="showStrWk(2)" id="swk2" style="padding:8px 18px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:18px; letter-spacing:0.04em; cursor:pointer;">WK2 · Build</button>
-  <button onclick="showStrWk(3)" id="swk3" style="padding:8px 18px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:18px; letter-spacing:0.04em; cursor:pointer;">WK3 · Intensity</button>
-  <button onclick="showStrWk(4)" id="swk4" style="padding:8px 18px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:18px; letter-spacing:0.04em; cursor:pointer;">WK4 · Taper</button>
-  <button onclick="showStrWk(5)" id="swk5" style="padding:8px 18px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:18px; letter-spacing:0.04em; cursor:pointer;">WK5 · Race week</button>
+<div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1rem;">
+  <button onclick="showStrWk(1)" id="swk1" style="padding:6px 14px; border-radius:6px; border:1.5px solid #1a1a1a; background:#1a1a1a; color:#fff; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">WK1 · Foundation</button>
+  <button onclick="showStrWk(2)" id="swk2" style="padding:6px 14px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">WK2 · Build</button>
+  <button onclick="showStrWk(3)" id="swk3" style="padding:6px 14px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">WK3 · Intensity</button>
+  <button onclick="showStrWk(4)" id="swk4" style="padding:6px 14px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">WK4 · Taper</button>
+  <button onclick="showStrWk(5)" id="swk5" style="padding:6px 14px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">WK5 · Light</button>
 </div>
 
 <div id="str-panel"></div>
 
 <style>
-.str-meta { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; margin-bottom:1.25rem; }
-.str-title { font-family:'DM Sans',sans-serif; font-weight:700; font-size:48px; line-height:1; }
+.str-meta { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:0.5rem; }
+.str-title { font-family:'DM Sans',sans-serif; font-weight:700; font-size:28px; line-height:1.1; }
 .str-title span { color: var(--run); }
-.str-badge { font-family:'DM Sans',sans-serif; font-size:14px; letter-spacing:0.06em; padding:4px 12px; border-radius:4px; color:white; }
-.str-pills { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.25rem; }
-.str-pill { padding:5px 14px; border-radius:20px; font-size:13px; border:1.5px solid #ccc; color:#555; }
+.str-badge { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:0.04em; padding:3px 10px; border-radius:4px; color:white; }
+.str-pills { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:0.75rem; }
+.str-pill { padding:3px 10px; border-radius:16px; font-size:12px; border:1.5px solid #ccc; color:#555; }
 .str-pill-hi { border-color: var(--run); color: var(--run); font-weight:600; }
 
+/* STICKY CONSOLE */
+.str-console { position:sticky; top:0; z-index:50; margin-bottom:0.75rem; border-radius:10px; overflow:hidden; box-shadow:0 3px 14px rgba(0,0,0,0.14); }
+.str-timing-strip { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:4px 12px; padding:5px 10px; background:#252525; border-bottom:1px solid #3a3a3a; }
+.str-adj { display:inline-flex; align-items:center; gap:3px; }
+.str-adj-lbl { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:#777; margin-right:2px; }
+.str-adj-btn { width:22px; height:22px; padding:0; border-radius:4px; border:1px solid #555; background:#333; color:#bbb; cursor:pointer; font-size:14px; line-height:1; display:flex; align-items:center; justify-content:center; }
+.str-adj-btn:hover { border-color:#888; color:#fff; }
+.str-adj-val { font-weight:700; font-size:12px; color:#E8FF47; min-width:26px; text-align:center; }
+
 /* BIG TIMER */
-.str-timer-box { background:#1a1a1a; border-radius:0 0 12px 12px; padding:1rem 1.5rem; margin-bottom:1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; position:sticky; top:0; z-index:50; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-.str-timer-num { font-family:'DM Sans',sans-serif; font-weight:700; font-size:80px; line-height:1; color:#E8FF47; min-width:160px; }
+.str-timer-box { background:#1a1a1a; border-radius:0; padding:0.65rem 1rem; margin-bottom:0; display:flex; align-items:center; justify-content:space-between; gap:0.75rem; flex-wrap:wrap; position:static; box-shadow:none; }
+.str-timer-num { font-family:'DM Sans',sans-serif; font-weight:700; font-size:56px; line-height:1; color:#E8FF47; min-width:90px; }
 .str-timer-num.str-rest { color:#FF6B35; }
-.str-timer-label { font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; color:#aaa; margin-top:-8px; }
-.str-timer-btns { display:flex; gap:10px; flex-wrap:wrap; }
-.str-tbtn { padding:14px 24px; border-radius:8px; border:none; font-family:'DM Sans',sans-serif; font-size:16px; font-weight:700; cursor:pointer; min-width:90px; }
+.str-timer-label { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; color:#aaa; letter-spacing:0.06em; text-transform:uppercase; }
+.str-timer-btns { display:flex; gap:6px; flex-wrap:wrap; }
+.str-tbtn { padding:8px 14px; border-radius:6px; border:none; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:700; cursor:pointer; min-width:0; }
 .str-tbtn-go { background:#E8FF47; color:#1a1a1a; }
 .str-tbtn-pause { background:#FF6B35; color:white; }
 .str-tbtn-reset { background:#333; color:#aaa; }
 
 /* ROUND DOTS */
-.str-round-wrap { display:flex; align-items:center; gap:10px; margin-bottom:1.25rem; }
-.str-round-label { font-family:'DM Sans',sans-serif; font-size:18px; letter-spacing:0.06em; color:#999; }
-.str-rdot { width:36px; height:36px; border-radius:50%; border:2px solid #ccc; display:flex; align-items:center; justify-content:center; font-family:'DM Sans',sans-serif; font-size:16px; color:#999; transition:all .2s; }
+.str-round-wrap { display:flex; align-items:center; gap:6px; margin:0; }
+.str-round-label { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:0.06em; color:#777; }
+.str-rdot { width:26px; height:26px; border-radius:50%; border:2px solid #555; display:flex; align-items:center; justify-content:center; font-family:'DM Sans',sans-serif; font-size:12px; color:#777; transition:all .2s; }
 .str-rdot.active { border-color: var(--run); color: var(--run); }
 .str-rdot.done { background: var(--run); border-color: var(--run); color:white; }
 
 /* PROGRESS */
-.str-progress { margin-bottom:1.25rem; }
+.str-progress { margin-bottom:0.75rem; padding:0 2px; }
 .str-prog-labels { display:flex; justify-content:space-between; font-size:12px; color:#999; margin-bottom:4px; }
 .str-prog-bar { height:6px; background:#e5e0d8; border-radius:3px; overflow:hidden; }
 .str-prog-fill { height:100%; background: var(--run); border-radius:3px; transition:width .3s; width:0%; }
@@ -981,7 +989,7 @@ const STR_WEEKS = {
       { n:'Single Leg Calf Raise', t:'⭐ 3 secs down each side.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️', sided:true },
       { n:'Farmers Carry',         t:'FINISHER — 4 lengths of your flat at 15kg. This is your dummy drag prep.', w:'15kg ×2 🔺', wn:'both hands', tempo:'4 lengths' },
     ]},
-  4: { label:'Taper', date:'Mon 22 Jun', rounds:3, work:40, rest:20, badge:'#1A4A7A',
+  4: { label:'Taper', date:'Mon 6 Jul', rounds:3, work:40, rest:20, badge:'#1A4A7A',
     ex:[
       { n:'Goblet Squat',          t:'Controlled. No pause this week.', w:'12.5kg', wn:'1 dumbbell', tempo:'Controlled' },
       { n:'Romanian Deadlift',     t:'Slow lower — keep the 15kg.', w:'15kg ×2 🔺', wn:'both hands', tempo:'3s lower' },
@@ -991,7 +999,7 @@ const STR_WEEKS = {
       { n:'Calf Raise',            t:'Both legs. 3 secs down.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️' },
       { n:'Farmers Carry',         t:'FINISHER — 3 lengths at 15kg. Taper week so keep it controlled.', w:'15kg ×2 🔺', wn:'both hands', tempo:'3 lengths' },
     ]},
-  5: { label:'Race week', date:'Mon 29 Jun', rounds:2, work:30, rest:30, badge:'#555',
+  5: { label:'Light', date:'Mon 6 Jul', rounds:2, work:30, rest:30, badge:'#555',
     ex:[
       { n:'Goblet Squat',          t:'Easy pace. Light weight.', w:'12.5kg', wn:'1 dumbbell', tempo:'Easy' },
       { n:'Romanian Deadlift',     t:'Light weight — just moving.', w:'12.5kg ×2', wn:'both hands', tempo:'Controlled' },
@@ -999,7 +1007,7 @@ const STR_WEEKS = {
       { n:'Dumbbell Row',          t:'Light weight. Easy pace.', w:'12.5kg', wn:'each side', tempo:'Easy', sided:true },
       { n:'Press Ups',             t:'Easy pace — not to failure.', w:'BW', wn:'bodyweight', tempo:'Easy' },
       { n:'Calf Raise',            t:'Both legs. 3 secs down.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️' },
-      { n:'Farmers Carry',         t:'FINISHER — 2 easy lengths at 12.5kg. Race week — keep it light.', w:'12.5kg ×2', wn:'both hands', tempo:'2 lengths' },
+      { n:'Farmers Carry',         t:'FINISHER — 2 easy lengths at 12.5kg. Keep it light.', w:'12.5kg ×2', wn:'both hands', tempo:'2 lengths' },
     ]},
 };
 const STR_ROUND_REST = 60;
@@ -1009,14 +1017,18 @@ let strRoundRest = STR_ROUND_REST;
 let strSplit = 'full';
 
 function strExCat(name) {
-  if (/Goblet|Romanian|Calf|Farmers|Single Leg/i.test(name)) return 'lower';
+  if (/Farmers/i.test(name)) return 'both';
+  if (/Goblet|Romanian|Calf|Single Leg/i.test(name)) return 'lower';
   return 'upper';
 }
 
 function strExForWeek(n) {
   const all = STR_WEEKS[n].ex;
   if (strSplit === 'full') return all;
-  return all.filter(e => strExCat(e.n) === strSplit);
+  return all.filter(e => {
+    const cat = strExCat(e.n);
+    return cat === 'both' || cat === strSplit;
+  });
 }
 
 function setStrSplit(split) {
@@ -1052,21 +1064,15 @@ function strAdjustTiming(type, delta) {
     if (type === 'work') {
       w.work = Math.max(5, w.work + delta);
       const el = document.getElementById('adj-work');
-      const pill = document.getElementById('pill-work');
       if (el) el.textContent = w.work + 's';
-      if (pill) pill.textContent = w.work + 's work';
     } else if (type === 'rest') {
       w.rest = Math.max(0, w.rest + delta);
       const el = document.getElementById('adj-rest');
-      const pill = document.getElementById('pill-rest');
       if (el) el.textContent = w.rest + 's';
-      if (pill) pill.textContent = w.rest + 's rest';
     } else if (type === 'roundrest') {
       strRoundRest = Math.max(5, strRoundRest + delta);
       const el = document.getElementById('adj-roundrest');
-      const pill = document.getElementById('pill-roundrest');
       if (el) el.textContent = strRoundRest + 's';
-      if (pill) pill.textContent = strRoundRest + 's between rounds';
     }
     // Update timer display
     const tn = document.getElementById('stimer-num');
@@ -1148,48 +1154,26 @@ function showStrWk(n) {
     <div class="str-pills">
       <div class="str-pill str-pill-hi">${splitLabel}</div>
       <div class="str-pill str-pill-hi">${w.rounds} rounds</div>
-      <div class="str-pill str-pill-hi" id="pill-work">${w.work}s work</div>
-      <div class="str-pill str-pill-hi" id="pill-rest">${w.rest}s rest</div>
-      <div class="str-pill" id="pill-roundrest">60s between rounds</div>
     </div>
-    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.25rem;">
-      <div style="flex:1; min-width:120px; background:#f7f5f2; border:1px solid var(--border); border-radius:8px; padding:8px 12px;">
-        <div style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:#999; margin-bottom:4px;">Work</div>
-        <div style="display:flex; align-items:center; gap:6px;">
-          <button onclick="strAdjustTiming('work',-5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">−</button>
-          <span id="adj-work" style="font-weight:700; font-size:16px; min-width:36px; text-align:center;">${w.work}s</span>
-          <button onclick="strAdjustTiming('work',5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">+</button>
+    <div class="str-console">
+      <div class="str-timing-strip">
+        <span class="str-adj"><span class="str-adj-lbl">Work</span><button type="button" class="str-adj-btn" onclick="strAdjustTiming('work',-5)">−</button><span id="adj-work" class="str-adj-val">${w.work}s</span><button type="button" class="str-adj-btn" onclick="strAdjustTiming('work',5)">+</button></span>
+        <span class="str-adj"><span class="str-adj-lbl">Rest</span><button type="button" class="str-adj-btn" onclick="strAdjustTiming('rest',-5)">−</button><span id="adj-rest" class="str-adj-val">${w.rest}s</span><button type="button" class="str-adj-btn" onclick="strAdjustTiming('rest',5)">+</button></span>
+        <span class="str-adj"><span class="str-adj-lbl">Gap</span><button type="button" class="str-adj-btn" onclick="strAdjustTiming('roundrest',-5)">−</button><span id="adj-roundrest" class="str-adj-val">60s</span><button type="button" class="str-adj-btn" onclick="strAdjustTiming('roundrest',5)">+</button></span>
+      </div>
+      <div class="str-timer-box">
+        <div>
+          <div class="str-timer-label" id="stimer-label">READY</div>
+          <div class="str-timer-num" id="stimer-num">${w.work}</div>
         </div>
-      </div>
-      <div style="flex:1; min-width:120px; background:#f7f5f2; border:1px solid var(--border); border-radius:8px; padding:8px 12px;">
-        <div style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:#999; margin-bottom:4px;">Rest</div>
-        <div style="display:flex; align-items:center; gap:6px;">
-          <button onclick="strAdjustTiming('rest',-5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">−</button>
-          <span id="adj-rest" style="font-weight:700; font-size:16px; min-width:36px; text-align:center;">${w.rest}s</span>
-          <button onclick="strAdjustTiming('rest',5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">+</button>
+        <div class="str-round-wrap">
+          <div class="str-round-label">RD</div>
+          ${dots}
         </div>
-      </div>
-      <div style="flex:1; min-width:120px; background:#f7f5f2; border:1px solid var(--border); border-radius:8px; padding:8px 12px;">
-        <div style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:#999; margin-bottom:4px;">Between rounds</div>
-        <div style="display:flex; align-items:center; gap:6px;">
-          <button onclick="strAdjustTiming('roundrest',-5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">−</button>
-          <span id="adj-roundrest" style="font-weight:700; font-size:16px; min-width:36px; text-align:center;">60s</span>
-          <button onclick="strAdjustTiming('roundrest',5)" style="padding:2px 9px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">+</button>
+        <div class="str-timer-btns">
+          <button class="str-tbtn str-tbtn-pause" id="str-pause-btn" onclick="strPause()">⏸</button>
+          <button class="str-tbtn str-tbtn-reset" onclick="strReset(${n})">↺</button>
         </div>
-      </div>
-    </div>
-    <div class="str-timer-box">
-      <div>
-        <div class="str-timer-label" id="stimer-label">READY</div>
-        <div class="str-timer-num" id="stimer-num">${w.work}</div>
-      </div>
-      <div class="str-round-wrap" style="margin:0">
-        <div class="str-round-label">ROUND</div>
-        ${dots}
-      </div>
-      <div class="str-timer-btns">
-        <button class="str-tbtn str-tbtn-pause" id="str-pause-btn" onclick="strPause()">⏸ PAUSE</button>
-        <button class="str-tbtn str-tbtn-reset" onclick="strReset(${n})">↺ RESET</button>
       </div>
     </div>
     <div class="str-progress">
@@ -1203,22 +1187,21 @@ function showStrWk(n) {
     </div>
 
     <!-- WARM UP -->
-    <div id="str-warmup-box" style="background:#f7f5f2; border:1.5px solid #e5e0d8; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1.25rem;">
-      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.75rem;">
-        <div style="font-size:16px; font-weight:600; color:#1a1a1a;">🏃 Warm up</div>
-        <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#555;">
-          Duration:
-          <button onclick="strAdjustWarmup(-60)" style="padding:2px 10px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">−</button>
-          <span id="warmup-duration-label" style="font-weight:600; min-width:40px; text-align:center;">5:00</span>
-          <button onclick="strAdjustWarmup(60)" style="padding:2px 10px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:14px;">+</button>
+    <div id="str-warmup-box" style="background:#f7f5f2; border:1px solid #e5e0d8; border-radius:8px; padding:0.75rem 1rem; margin-bottom:0.75rem;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.5rem;">
+        <div style="font-size:14px; font-weight:600;">🏃 Warm up</div>
+        <div style="display:flex; align-items:center; gap:6px; font-size:12px; color:#555;">
+          <button onclick="strAdjustWarmup(-60)" style="padding:0 8px; height:22px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:13px;">−</button>
+          <span id="warmup-duration-label" style="font-weight:600; min-width:36px; text-align:center;">5:00</span>
+          <button onclick="strAdjustWarmup(60)" style="padding:0 8px; height:22px; border-radius:4px; border:1px solid #ccc; background:white; cursor:pointer; font-size:13px;">+</button>
         </div>
       </div>
-      <div style="font-size:12px; color:#777; margin-bottom:0.75rem;">Leg swings · Hip circles · Arm circles · 10 bodyweight squats · 10 hip hinges</div>
+      <div style="font-size:11px; color:#888; margin-bottom:0.5rem;">Leg swings · Hip circles · Arm circles · 10 squats · 10 hip hinges</div>
       <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-        <div id="warmup-timer-display" style="font-family:'DM Sans',sans-serif; font-size:52px; font-weight:700; color:#1A6B3C; line-height:1; min-width:90px;">5:00</div>
-        <div style="display:flex; flex-direction:column; gap:6px;">
-          <button id="str-warmup-btn" class="str-start-btn" style="width:auto; padding:12px 24px; font-size:18px; margin:0;" onclick="strStartWarmup(${n})">▶ Start Workout</button>
-          <button id="str-skip-warmup-btn" style="display:none; padding:6px 16px; border-radius:6px; border:1.5px solid #FF6B35; color:#FF6B35; background:transparent; font-size:14px; font-weight:600; cursor:pointer;" onclick="strSkipWarmup(${n})">Skip warm up →</button>
+        <div id="warmup-timer-display" style="font-family:'DM Sans',sans-serif; font-size:40px; font-weight:700; color:#1A6B3C; line-height:1; min-width:72px;">5:00</div>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <button id="str-warmup-btn" class="str-start-btn" style="width:auto; padding:8px 18px; font-size:15px; margin:0;" onclick="strStartWarmup(${n})">▶ Start Workout</button>
+          <button id="str-skip-warmup-btn" style="display:none; padding:4px 12px; border-radius:5px; border:1px solid #FF6B35; color:#FF6B35; background:transparent; font-size:12px; font-weight:600; cursor:pointer;" onclick="strSkipWarmup(${n})">Skip warm up →</button>
         </div>
       </div>
     </div>
@@ -1294,11 +1277,11 @@ function strPauseWarmup() {
   if (warmupPaused) {
     if (btn) btn.textContent = '▶ Resume warm up';
     const pauseBtn = document.getElementById('str-pause-btn');
-    if (pauseBtn) pauseBtn.textContent = '▶ RESUME';
+    if (pauseBtn) pauseBtn.textContent = '▶';
   } else {
     if (btn) btn.textContent = '⏸ Pause warm up';
     const pauseBtn = document.getElementById('str-pause-btn');
-    if (pauseBtn) pauseBtn.textContent = '⏸ PAUSE';
+    if (pauseBtn) pauseBtn.textContent = '⏸';
   }
 }
 
@@ -1327,7 +1310,7 @@ function strStart(n) {
   const goBtn = document.getElementById('str-go-btn');
   if (goBtn) { goBtn.textContent = '■ STOP'; goBtn.onclick = () => strReset(n); }
   const pauseBtn = document.getElementById('str-pause-btn');
-  if (pauseBtn) pauseBtn.textContent = '⏸ PAUSE';
+  if (pauseBtn) pauseBtn.textContent = '⏸';
   strState = { week:n, round:1, exIdx:0, remaining:strGetWorkTime(n,0), phase:'work', paused:false, ex };
   strUpdateDots(); strUpdateProg();
   strBeepWork();
@@ -1345,7 +1328,7 @@ function strPause() {
   if (!strState) return;
   strState.paused = !strState.paused;
   const btn = document.getElementById('str-pause-btn');
-  if (btn) btn.textContent = strState.paused ? '▶ RESUME' : '⏸ PAUSE';
+  if (btn) btn.textContent = strState.paused ? '▶' : '⏸';
 }
 
 function strReset(n) {
@@ -1394,7 +1377,7 @@ function strSkipTo(exIdx) {
   strState.phase = 'work';
   strState.remaining = strGetWorkTime(strState.week, exIdx);
   strState.paused = false;
-  document.getElementById('str-pause-btn').textContent = '⏸ PAUSE';
+  document.getElementById('str-pause-btn').textContent = '⏸';
   strScrollToCard(exIdx);
   strUpdateProg();
   strBeepWork();
@@ -1574,26 +1557,54 @@ function strFinish() {
   if (tn) { tn.textContent = '✓'; tn.className = 'str-timer-num'; tn.style.color='#1A6B3C'; }
 }
 
-// Init — auto select current week based on date
+function strengthWkFromCalendar() {
+  const today = new Date();
+  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const pattern = dayNames[today.getDay()] + ' ' + today.getDate();
+  for (const row of document.querySelectorAll('.day-row')) {
+    const label = row.querySelector('.day-label')?.textContent.trim() || '';
+    if (label !== pattern && !label.startsWith(pattern + ' ')) continue;
+    const m = (row.querySelector('.day-note')?.textContent || '').match(/Strength\s+WK(\d+)/i);
+    if (m) return parseInt(m[1], 10);
+    break;
+  }
+  return null;
+}
+
+// Init — match today's Strength WK? from the calendar row
 function initStrWeek() {
   initStrSplit();
-  const now = new Date();
-  const y = now.getFullYear(), m = now.getMonth(), d = now.getDate();
-  const todayLocal = new Date(y, m, d);
+  const fromCal = strengthWkFromCalendar();
+  showStrWk(fromCal && STR_WEEKS[fromCal] ? fromCal : 1);
+  highlightTodayRow();
+  const strengthEl = document.getElementById('strength-split');
+  if (strengthEl) strengthEl.scrollIntoView({ block: 'start' });
+}
 
-  const weekStarts = [
-    { wk: 1, start: new Date(2026, 5, 7)  },
-    { wk: 2, start: new Date(2026, 5, 14) },
-    { wk: 3, start: new Date(2026, 5, 22) },
-    { wk: 4, start: new Date(2026, 5, 29) },
-    { wk: 5, start: new Date(2026, 6, 6)  },
-  ];
-
-  let currentWeek = 1;
-  for (const { wk, start } of weekStarts) {
-    if (todayLocal >= start) currentWeek = wk;
+function highlightTodayRow() {
+  const today = new Date();
+  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const dayOfWeek = dayNames[today.getDay()];
+  const date = today.getDate();
+  for (const row of document.querySelectorAll('.day-label')) {
+    const text = row.textContent.trim();
+    const pattern = dayOfWeek + ' ' + date;
+    if (text === pattern || text.startsWith(pattern + ' ') || text.startsWith(pattern + '\n')) {
+      const dayRow = row.closest('.day-row');
+      if (!dayRow) break;
+      dayRow.style.outline = '2px solid #1A6B3C';
+      dayRow.style.outlineOffset = '2px';
+      if (!row.querySelector('.str-jump-btn')) {
+        const strBtn = document.createElement('button');
+        strBtn.className = 'str-jump-btn';
+        strBtn.textContent = '💪 Strength';
+        strBtn.style.cssText = 'margin-left:8px; padding:2px 8px; background:#1A6B3C; color:white; border:none; border-radius:4px; font-size:11px; font-weight:600; cursor:pointer; vertical-align:middle;';
+        strBtn.onclick = () => document.getElementById('strength-split')?.scrollIntoView({ behavior:'smooth', block:'start' });
+        row.appendChild(strBtn);
+      }
+      break;
+    }
   }
-  showStrWk(currentWeek);
 }
 
 if (document.readyState === 'loading') {
@@ -1610,35 +1621,13 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Auto-scroll to today's date and add strength button
-const today = new Date();
-const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const dayOfWeek = dayNames[today.getDay()];
-const date = today.getDate();
-const rows = document.querySelectorAll('.day-label');
-for (const row of rows) {
-  const text = row.textContent.trim();
-  const pattern = dayOfWeek + ' ' + date;
-  if (text === pattern || text.startsWith(pattern + ' ') || text.startsWith(pattern + '\n')) {
-    const dayRow = row.closest('.day-row');
-    dayRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    dayRow.style.outline = '2px solid #1A6B3C';
-    dayRow.style.outlineOffset = '2px';
-    // Add strength button
-    const strBtn = document.createElement('button');
-    strBtn.textContent = '💪 Strength';
-    strBtn.style.cssText = 'margin-left:8px; padding:2px 8px; background:#1A6B3C; color:white; border:none; border-radius:4px; font-size:11px; font-weight:600; cursor:pointer; vertical-align:middle;';
-    strBtn.onclick = () => document.getElementById('strength-split').scrollIntoView({ behavior:'smooth' });
-    row.appendChild(strBtn);
-    break;
-  }
-}
 // Sticky nav buttons
 const stickyNav = document.createElement('div');
 stickyNav.style.cssText = 'position:fixed; bottom:20px; right:20px; display:flex; flex-direction:column; gap:8px; z-index:999;';
 stickyNav.innerHTML = `
   <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:10px 14px; background:#1a1a1a; color:white; border:none; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2);">↑ Top</button>
-  <button onclick="document.querySelector('.day-row[style*=outline]')?.scrollIntoView({behavior:'smooth',block:'center'})" style="padding:10px 14px; background:#1A6B3C; color:white; border:none; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2);">📅 Today</button>
+  <button onclick="document.getElementById('strength-split')?.scrollIntoView({behavior:'smooth',block:'start'})" style="padding:10px 14px; background:#1A6B3C; color:white; border:none; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2);">💪 Strength</button>
+  <button onclick="document.querySelector('.day-row[style*=outline]')?.scrollIntoView({behavior:'smooth',block:'center'})" style="padding:10px 14px; background:#555; color:white; border:none; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2);">📅 Today</button>
 `;
 document.body.appendChild(stickyNav);
 </script>

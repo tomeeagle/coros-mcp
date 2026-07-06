@@ -4,7 +4,8 @@ cd "$(dirname "$0")/.."
 
 PORT="${PORT:-8080}"
 HOST="${HOST:-127.0.0.1}"
-PLAN="${PLAN:-plan_v1_8.html}"
+PLAN="${PLAN:-training_plan.html}"
+AUTO_SYNC="${AUTO_SYNC:-1}"
 # Browser always uses localhost (HOST=0.0.0.0 is bind-only)
 OPEN_HOST="$HOST"
 if [[ "$OPEN_HOST" == "0.0.0.0" ]]; then
@@ -24,12 +25,22 @@ open_url() {
 
 echo ""
 echo "  Plan:  ${URL}"
+if [[ "$AUTO_SYNC" == "1" ]]; then
+  echo "  COROS: auto-sync on save (set AUTO_SYNC=0 to disable)"
+fi
 echo "  Ctrl+C to stop"
 echo ""
 
+if [[ "$AUTO_SYNC" == "1" ]]; then
+  bash scripts/watch-plan-sync.sh &
+  WATCH_PID=$!
+  trap 'kill "$SRV_PID" "$WATCH_PID" 2>/dev/null' EXIT INT TERM
+else
+  trap 'kill "$SRV_PID" 2>/dev/null' EXIT INT TERM
+fi
+
 python3 -m http.server "$PORT" --bind "$HOST" &
 SRV_PID=$!
-trap 'kill "$SRV_PID" 2>/dev/null' EXIT INT TERM
 
 sleep 0.4
 open_url

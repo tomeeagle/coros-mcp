@@ -37,6 +37,11 @@ async def ensure_auth() -> StoredAuth:
     auth = await coros_api.try_auto_login()
     if auth:
         return auth
+    # Last resort: a TTL-expired stored token often still works server-side,
+    # and downstream calls fail loudly if it doesn't.
+    stale = coros_api._load_auth()
+    if stale:
+        return stale
     raise RuntimeError(
         "Not authenticated. Copy .env.example to .env and set COROS_EMAIL, COROS_PASSWORD, "
         "and COROS_REGION (eu). Or run: coros-mcp auth-web"

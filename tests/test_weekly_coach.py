@@ -41,3 +41,9 @@ def test_build_week_review_shape():
     assert len(payload["days"]) == 7
     assert payload["headline"]
     assert isinstance(payload["notes"], list)
+    assert "weekLoad" in payload["stats"]
+    assert "doneRunKm" in payload["stats"]
+    assert "bikeKm" in payload["stats"]
+    tue_day = next(d for d in payload["days"] if d["date"] == "2026-07-14")
+    assert tue_day["activities"]
+    assert tue_day["activities"][0]["kind"] == "run"

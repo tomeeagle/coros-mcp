@@ -2,11 +2,18 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 
+type DayActivity = {
+  kind: string;
+  label: string;
+};
+
 type DayReview = {
   date: string;
   planned: string | null;
+  plannedKind?: string | null;
   done: string | null;
   status: string;
+  activities?: DayActivity[];
 };
 
 type Suggestion = {
@@ -27,8 +34,12 @@ type Review = {
   stats: {
     plannedRunKm?: number;
     doneRunKm?: number;
+    bikeKm?: number;
+    bikeMinutes?: number;
     weekLoad?: number;
-    mtbMinutes?: number;
+    loadRatio?: number | null;
+    avgRunHr?: number | null;
+    avgRhr?: number | null;
     activityCount?: number;
   };
 };
@@ -51,11 +62,84 @@ function dayName(iso: string): string {
   return `${d.toLocaleDateString("en-GB", { weekday: "short" })} ${d.getDate()}`;
 }
 
-function doneText(day: DayReview): string {
-  if (day.done) return day.done;
+function Icon({
+  kind,
+  className = "h-5 w-5",
+}: {
+  kind: string | null | undefined;
+  className?: string;
+}) {
+  const common = {
+    className,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true as const,
+  };
+
+  switch (kind) {
+    case "run":
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="5" r="2" />
+          <path d="M8 21l2-6 2 2 3-5" />
+          <path d="M14 12l-2-4-3 1-2 5" />
+        </svg>
+      );
+    case "bike":
+      return (
+        <svg {...common}>
+          <circle cx="6.5" cy="16.5" r="3.5" />
+          <circle cx="17.5" cy="16.5" r="3.5" />
+          <path d="M6.5 16.5L10 8h4l3.5 8.5" />
+          <path d="M10 8l2 4h4" />
+        </svg>
+      );
+    case "strength":
+      return (
+        <svg {...common}>
+          <path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12" />
+        </svg>
+      );
+    case "rest":
+      return (
+        <svg {...common}>
+          <path d="M18 14.5A6.5 6.5 0 119.5 6 5.2 5.2 0 0018 14.5z" />
+        </svg>
+      );
+    case "heart":
+      return (
+        <svg {...common}>
+          <path d="M12 20s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 10c0 5.5-7 10-7 10z" />
+        </svg>
+      );
+    case "load":
+      return (
+        <svg {...common}>
+          <path d="M4 19V9M10 19V5M16 19v-7M22 19V8" />
+        </svg>
+      );
+    default:
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="8" />
+        </svg>
+      );
+  }
+}
+
+function doneFallback(day: DayReview): string {
   if (day.status === "upcoming") return "Upcoming";
   if (day.status === "pending") return "Later today";
   return "—";
+}
+
+function fmtKm(n: number | undefined | null): string {
+  if (n == null) return "0";
+  return Number.isInteger(n) ? String(n) : n.toFixed(1);
 }
 
 export default function WeeklyCoachPage() {
@@ -96,6 +180,48 @@ export default function WeeklyCoachPage() {
     if (h.includes("hard")) return "var(--ease)";
     if (h.includes("on track") || h.includes("nice")) return "var(--ok)";
     return "var(--ink)";
+  }, [review]);
+
+  const statItems = useMemo(() => {
+    if (!review?.stats) return [];
+    const s = review.stats;
+    const items: { key: string; icon: string; value: string; label: string }[] = [
+      {
+        key: "load",
+        icon: "load",
+        value: String(s.weekLoad ?? 0),
+        label: s.loadRatio != null ? `Load · ${s.loadRatio}×` : "Training load",
+      },
+      {
+        key: "run",
+        icon: "run",
+        value: `${fmtKm(s.doneRunKm)}`,
+        label: `km run · ${fmtKm(s.plannedRunKm)} planned`,
+      },
+      {
+        key: "bike",
+        icon: "bike",
+        value: `${fmtKm(s.bikeKm)}`,
+        label: s.bikeMinutes ? `km bike · ${s.bikeMinutes} min` : "km bike",
+      },
+    ];
+    if (s.avgRunHr != null) {
+      items.push({
+        key: "hr",
+        icon: "heart",
+        value: String(s.avgRunHr),
+        label: "avg run HR",
+      });
+    }
+    if (s.avgRhr != null) {
+      items.push({
+        key: "rhr",
+        icon: "heart",
+        value: String(s.avgRhr),
+        label: "avg resting HR",
+      });
+    }
+    return items;
   }, [review]);
 
   async function applyTweaks() {
@@ -195,6 +321,24 @@ export default function WeeklyCoachPage() {
               </p>
             )}
 
+            {statItems.length > 0 && (
+              <div className="fade-up mb-14 grid grid-cols-2 gap-x-6 gap-y-8 border-y border-[var(--line)] py-8 sm:grid-cols-3">
+                {statItems.map((item) => (
+                  <div key={item.key} className="min-w-0">
+                    <div className="mb-3 text-[var(--muted)]">
+                      <Icon kind={item.icon} className="h-5 w-5" />
+                    </div>
+                    <p className="text-[2rem] font-extrabold leading-none tracking-[-0.03em] sm:text-[2.25rem]">
+                      {item.value}
+                    </p>
+                    <p className="mt-2 text-[0.85rem] font-medium leading-snug text-[var(--muted)]">
+                      {item.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <ul className="fade-up-delay mb-20 space-y-4">
               {review.notes.map((note) => (
                 <li
@@ -221,29 +365,44 @@ export default function WeeklyCoachPage() {
                       <p className="text-[0.75rem] font-medium uppercase tracking-wide text-[var(--muted)]">
                         Planned
                       </p>
-                      <p className="mt-1 text-[1.02rem] font-medium leading-snug">
-                        {day.planned || "Rest"}
-                      </p>
+                      <div className="mt-1 flex items-start gap-2">
+                        <span className="mt-0.5 shrink-0 text-[var(--muted)]">
+                          <Icon
+                            kind={day.plannedKind || (day.planned ? "other" : "rest")}
+                            className="h-[1.1rem] w-[1.1rem]"
+                          />
+                        </span>
+                        <p className="text-[1.02rem] font-medium leading-snug">
+                          {day.planned || "Rest"}
+                        </p>
+                      </div>
                     </div>
                     <div className="col-span-2 sm:col-span-1">
                       <p className="text-[0.75rem] font-medium uppercase tracking-wide text-[var(--muted)]">
                         Done
                       </p>
-                      <p className="mt-1 text-[1.02rem] font-medium leading-snug text-[var(--muted)]">
-                        {doneText(day)}
-                      </p>
+                      {day.activities && day.activities.length > 0 ? (
+                        <ul className="mt-1 space-y-2">
+                          {day.activities.map((act) => (
+                            <li key={`${day.date}-${act.label}`} className="flex items-start gap-2">
+                              <span className="mt-0.5 shrink-0 text-[var(--muted)]">
+                                <Icon kind={act.kind} className="h-[1.1rem] w-[1.1rem]" />
+                              </span>
+                              <p className="text-[1.02rem] font-medium leading-snug text-[var(--muted)]">
+                                {act.label}
+                              </p>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="mt-1 text-[1.02rem] font-medium leading-snug text-[var(--muted)]">
+                          {doneFallback(day)}
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
-              {review.stats && (
-                <p className="mt-6 text-[0.95rem] text-[var(--muted)]">
-                  {review.stats.doneRunKm ?? 0}km run · {review.stats.plannedRunKm ?? 0}km planned
-                  {review.stats.mtbMinutes
-                    ? ` · ${review.stats.mtbMinutes} min bike`
-                    : ""}
-                </p>
-              )}
             </section>
 
             <section className="fade-up-delay-2 mb-12">

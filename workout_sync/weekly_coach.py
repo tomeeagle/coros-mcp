@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field
 from datetime import UTC, date, datetime, timedelta
 from typing import Any
 
@@ -14,7 +14,15 @@ from workout_sync.workouts import WORKOUTS
 
 # Sport types treated as running for volume / HR comparisons
 _RUN_SPORTS = {1, 100, 101, 102, 103}
+_BIKE_SPORTS = {200, 201, 202, 204}
+_STRENGTH_SPORTS = {8, 9, 18}
 _HARD_KEYS = ("bac_", "progression_", "tempo_", "build_", "race_")
+
+
+@dataclass
+class DayActivity:
+    kind: str  # run | bike | strength | other
+    label: str
 
 
 @dataclass
@@ -23,6 +31,8 @@ class DayReview:
     planned: str | None
     done: str | None
     status: str  # matched | missed | extra | rest | upcoming | pending
+    planned_kind: str | None = None
+    activities: list[DayActivity] = field(default_factory=list)
 
 
 @dataclass
@@ -49,7 +59,17 @@ class WeekReview:
             "weekEnd": self.week_end,
             "headline": self.headline,
             "notes": self.notes,
-            "days": [asdict(d) for d in self.days],
+            "days": [
+                {
+                    "date": d.date,
+                    "planned": d.planned,
+                    "plannedKind": d.planned_kind,
+                    "done": d.done,
+                    "status": d.status,
+                    "activities": [{"kind": a.kind, "label": a.label} for a in d.activities],
+                }
+                for d in self.days
+            ],
             "nextWeekSuggestions": [
                 {
                     "date": s.date,
@@ -97,6 +117,56 @@ def _is_run(a: ActivitySummary) -> bool:
         return True
     name = (a.sport_name or "").lower()
     return "run" in name
+
+
+def _is_bike(a: ActivitySummary) -> bool:
+    if a.sport_type in _BIKE_SPORTS:
+        return True
+    sport = (a.sport_name or "").lower()
+    return "mtb" in sport or "bike" in sport or "cycl" in sport
+
+
+def _is_strength(a: ActivitySummary) -> bool:
+    if a.sport_type in _STRENGTH_SPORTS:
+        return True
+    sport = (a.sport_name or a.name or "").lower()
+    return "strength" in sport or "weight" in sport or "gym" in sport
+
+
+def _activity_kind(a: ActivitySummary) -> str:
+    if _is_run(a):
+        return "run"
+    if _is_bike(a):
+        return "bike"
+    if _is_strength(a):
+        return "strength"
+    return "other"
+
+
+def _planned_kind(keys: list[str]) -> str | None:
+    if not keys:
+        return None
+    if any(k.startswith("strength_") for k in keys):
+        return "strength"
+    if any(k.startswith(("easy_", "long_", "bac_", "run_club_", "progression_", "tempo_", "build_")) for k in keys):
+        return "run"
+    return "other"
+
+
+def _format_activity(a: ActivitySummary) -> str:
+    km = (a.distance_meters or 0) / 1000
+    mins = (a.duration_seconds or 0) / 60
+    bit = a.name or a.sport_name or "Activity"
+    if km >= 0.3:
+        bit += f" · {km:.1f}km"
+    elif mins >= 1:
+        bit += f" · {mins:.0f}min"
+    if _is_run(a) and km >= 1 and mins >= 1:
+        pace_s = (a.duration_seconds or 0) / km
+        bit += f" · {int(pace_s // 60)}:{int(pace_s % 60):02d}/km"
+    if a.avg_hr:
+        bit += f" · HR {a.avg_hr}"
+    return bit
 
 
 def _planned_km(keys: list[str]) -> float:
@@ -164,6 +234,8 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
     days: list[DayReview] = []
     planned_run_km = 0.0
     done_run_km = 0.0
+    bike_km = 0.0
+    run_hrs: list[int] = []
     missed_hard = 0
     missed_easy = 0
     extras: list[str] = []
@@ -202,28 +274,23 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
         keys = _day_plan_labels(schedule, ymd)
         planned_label = _label_for_keys(keys) if keys else None
         acts = by_day.get(ymd, [])
+        day_acts: list[DayActivity] = []
         done_bits = []
         for a in acts:
             km = (a.distance_meters or 0) / 1000
-            mins = (a.duration_seconds or 0) / 60
-            bit = a.name or a.sport_name or "Activity"
-            if km >= 0.3:
-                bit += f" · {km:.1f}km"
-            elif mins >= 1:
-                bit += f" · {mins:.0f}min"
-            if _is_run(a) and km >= 1 and mins >= 1:
-                pace_s = (a.duration_seconds or 0) / km
-                bit += f" · {int(pace_s // 60)}:{int(pace_s % 60):02d}/km"
-            if a.avg_hr:
-                bit += f" · HR {a.avg_hr}"
-            done_bits.append(bit)
+            label = _format_activity(a)
+            kind = _activity_kind(a)
+            day_acts.append(DayActivity(kind=kind, label=label))
+            done_bits.append(label)
             if _is_run(a):
                 done_run_km += km
+                if a.avg_hr:
+                    run_hrs.append(a.avg_hr)
                 note = _high_hr_note(a, d, km, baseline_hr, lthr)
                 if note:
                     high_hr_notes.append(note)
-            sport = (a.sport_name or "").lower()
-            if "mtb" in sport or "bike" in sport or (a.sport_type or 0) in {200, 201, 202, 204}:
+            if _is_bike(a):
+                bike_km += km
                 mtb_minutes += (a.duration_seconds or 0) / 60
 
         done_label = " · ".join(done_bits) if done_bits else None
@@ -256,6 +323,8 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
                 planned=planned_label,
                 done=done_label,
                 status=status,
+                planned_kind=_planned_kind(keys),
+                activities=day_acts,
             )
         )
 
@@ -415,8 +484,12 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
         stats={
             "plannedRunKm": round(planned_run_km, 1),
             "doneRunKm": round(done_run_km, 1),
+            "bikeKm": round(bike_km, 1),
+            "bikeMinutes": round(mtb_minutes),
             "weekLoad": week_load,
-            "mtbMinutes": round(mtb_minutes),
+            "loadRatio": round(load_ratio, 2) if load_ratio is not None else None,
+            "avgRunHr": round(sum(run_hrs) / len(run_hrs)) if run_hrs else None,
+            "avgRhr": round(sum(week_rhrs) / len(week_rhrs)) if week_rhrs else None,
             "activityCount": len(activities),
         },
     )

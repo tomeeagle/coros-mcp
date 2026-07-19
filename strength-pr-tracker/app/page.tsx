@@ -5,6 +5,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 type DayActivity = {
   kind: string;
   label: string;
+  hard?: boolean;
+  reason?: string | null;
 };
 
 type DayReview = {
@@ -120,6 +122,12 @@ function Icon({
       return (
         <svg {...common}>
           <path d="M4 19V9M10 19V5M16 19v-7M22 19V8" />
+        </svg>
+      );
+    case "flame":
+      return (
+        <svg {...common}>
+          <path d="M12 3c1 3-2 4-2 7a2 2 0 004 0c0-1 1-2 1-2 1 1.5 2 3 2 5a5 5 0 01-10 0c0-4 4-6 5-10z" />
         </svg>
       );
     default:
@@ -410,12 +418,28 @@ export default function WeeklyCoachPage() {
                         <ul className="mt-1 space-y-2">
                           {day.activities.map((act) => (
                             <li key={`${day.date}-${act.label}`} className="flex items-start gap-2">
-                              <span className="mt-0.5 shrink-0 text-[var(--muted)]">
+                              <span
+                                className="mt-0.5 shrink-0"
+                                style={{ color: act.hard ? "#D9532B" : "var(--muted)" }}
+                              >
                                 <Icon kind={act.kind} className="h-[1.1rem] w-[1.1rem]" />
                               </span>
-                              <p className="text-[1.02rem] font-medium leading-snug text-[var(--muted)]">
-                                {act.label}
-                              </p>
+                              <div>
+                                <p className="flex flex-wrap items-center gap-x-2 text-[1.02rem] font-medium leading-snug text-[var(--muted)]">
+                                  <span>{act.label}</span>
+                                  {act.hard && (
+                                    <span className="inline-flex items-center gap-1 rounded-full bg-[#D9532B] px-2 py-0.5 text-[0.7rem] font-bold uppercase tracking-wide text-white">
+                                      <Icon kind="flame" className="h-3 w-3" />
+                                      Too hard
+                                    </span>
+                                  )}
+                                </p>
+                                {act.hard && act.reason && (
+                                  <p className="mt-1 text-[0.85rem] font-medium leading-snug text-[#D9532B]">
+                                    {act.reason}
+                                  </p>
+                                )}
+                              </div>
                             </li>
                           ))}
                         </ul>

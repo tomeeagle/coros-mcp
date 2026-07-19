@@ -23,6 +23,8 @@ _HARD_KEYS = ("bac_", "progression_", "tempo_", "build_", "race_")
 class DayActivity:
     kind: str  # run | bike | strength | other
     label: str
+    hard: bool = False
+    reason: str | None = None
 
 
 @dataclass
@@ -66,7 +68,15 @@ class WeekReview:
                     "plannedKind": d.planned_kind,
                     "done": d.done,
                     "status": d.status,
-                    "activities": [{"kind": a.kind, "label": a.label} for a in d.activities],
+                    "activities": [
+                        {
+                            "kind": a.kind,
+                            "label": a.label,
+                            "hard": a.hard,
+                            "reason": a.reason,
+                        }
+                        for a in d.activities
+                    ],
                 }
                 for d in self.days
             ],
@@ -274,21 +284,36 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
         keys = _day_plan_labels(schedule, ymd)
         planned_label = _label_for_keys(keys) if keys else None
         acts = by_day.get(ymd, [])
+        planned_hard_day = any(_is_hard_key(k) for k in keys)
+        planned_easy_day = bool(keys) and not planned_hard_day and any(
+            k.startswith(("easy_", "long_", "run_club_")) for k in keys
+        )
         day_acts: list[DayActivity] = []
         done_bits = []
         for a in acts:
             km = (a.distance_meters or 0) / 1000
             label = _format_activity(a)
             kind = _activity_kind(a)
-            day_acts.append(DayActivity(kind=kind, label=label))
-            done_bits.append(label)
+            reason = None
             if _is_run(a):
                 done_run_km += km
                 if a.avg_hr:
                     run_hrs.append(a.avg_hr)
+                reason = _activity_flag(
+                    a,
+                    km,
+                    planned_easy=planned_easy_day or not keys,
+                    planned_hard=planned_hard_day,
+                    baseline_hr=baseline_hr,
+                    lthr=lthr,
+                )
                 note = _high_hr_note(a, d, km, baseline_hr, lthr)
                 if note:
                     high_hr_notes.append(note)
+            day_acts.append(
+                DayActivity(kind=kind, label=label, hard=reason is not None, reason=reason)
+            )
+            done_bits.append(label)
             if _is_bike(a):
                 bike_km += km
                 mtb_minutes += (a.duration_seconds or 0) / 60
@@ -497,6 +522,70 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
 
 def _friendly_day(d: date) -> str:
     return d.strftime("%A")
+
+
+def _run_effort_zone(
+    hr: int, lthr: int | None, baseline_hr: float | None
+) -> str | None:
+    """Classify a run's average HR as tempo/threshold, or None if easy/steady."""
+    if lthr:
+        pct = hr / lthr
+        if pct >= 1.0:
+            return "threshold"
+        if pct >= 0.92:
+            return "tempo"
+        return None
+    # No LTHR on record — fall back to an easy-run baseline if we have a real one
+    if baseline_hr and hr >= 140:
+        if hr >= baseline_hr + 22:
+            return "threshold"
+        if hr >= baseline_hr + 14:
+            return "tempo"
+    return None
+
+
+def _activity_flag(
+    a: ActivitySummary,
+    km: float,
+    *,
+    planned_easy: bool,
+    planned_hard: bool,
+    baseline_hr: float | None,
+    lthr: int | None,
+) -> str | None:
+    """Explain why a single run looks harder than it should have been.
+
+    Only flags endurance runs (>=3km) done at tempo/threshold effort when the
+    day was meant to be easy (or was an unplanned extra). Planned quality
+    sessions are expected to be hard, so they're never flagged.
+    """
+    if not _is_run(a) or planned_hard:
+        return None
+    hr = a.avg_hr
+    if not hr or km < 3:
+        return None
+    zone = _run_effort_zone(hr, lthr, baseline_hr)
+    if zone is None:
+        return None
+    gain_per_km = (a.elevation_gain or 0) / km
+    hilly = gain_per_km > 25
+    # On hills HR runs high naturally — only a genuine threshold effort is notable
+    if hilly and zone != "threshold":
+        return None
+
+    if lthr:
+        effort = (
+            f"avg HR {hr} was at threshold (your LTHR is {lthr})"
+            if zone == "threshold"
+            else f"avg HR {hr} sat in the tempo zone (~{lthr} threshold)"
+        )
+    else:
+        effort = f"avg HR {hr} vs ~{baseline_hr:.0f} easy baseline"
+
+    intent = " on a day meant to be easy" if planned_easy else " on an easy/extra run"
+    hills = " even allowing for the hills" if hilly else ""
+    verb = "That's a hard effort" if zone == "threshold" else "Harder than easy"
+    return f"{effort[0].upper()}{effort[1:]}{intent}. {verb}{hills}."
 
 
 def _high_hr_note(

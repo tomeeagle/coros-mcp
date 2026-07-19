@@ -22,3 +22,7 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Weekly coach Next.js
+strength-pr-tracker/node_modules/
+strength-pr-tracker/.next/

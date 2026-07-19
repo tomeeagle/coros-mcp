@@ -342,6 +342,30 @@ def cmd_calendar_sync() -> int:
         return 1
 
 
+def cmd_weekly_api() -> int:
+    """Start the local weekly coach HTTP API for the Next.js UI."""
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        prog="coros-mcp weekly-api",
+        description="Serve the weekly coach review API on localhost.",
+    )
+    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--port", type=int, default=5055)
+    parsed = parser.parse_args(sys.argv[2:])
+    try:
+        from workout_sync.activity_api import main as weekly_main
+
+        weekly_main(host=parsed.host, port=parsed.port)
+        return 0
+    except ImportError:
+        print("✗ Flask is required. Install with: pip install -e '.[sync]'")
+        return 1
+    except Exception as e:
+        print(f"✗ weekly-api failed: {e}")
+        return 1
+
+
 def cmd_serve() -> int:
     """Start the MCP server (stdio mode)."""
     import server
@@ -365,6 +389,7 @@ Usage:
   coros-mcp export-calendar          Export plan_calendar_export.json for GCal
   coros-mcp calendar-auth [--force]  Connect Google Calendar using OAuth
   coros-mcp calendar-sync [--dry-run] [--calendar-id ID]  Sync plan events to Google Calendar
+  coros-mcp weekly-api [--port 5055]  Local weekly coach API for the Next.js UI
   coros-mcp cache-status            Show local cache coverage
   coros-mcp help                    Show this help message
 """
@@ -389,6 +414,7 @@ def main() -> None:
         "export-calendar": cmd_export_calendar,
         "calendar-auth": cmd_calendar_auth,
         "calendar-sync": cmd_calendar_sync,
+        "weekly-api": cmd_weekly_api,
         "cache-status": cmd_cache_status,
         "help": cmd_help,
         "--help": cmd_help,

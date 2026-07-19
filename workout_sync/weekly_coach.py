@@ -22,7 +22,7 @@ class DayReview:
     date: str
     planned: str | None
     done: str | None
-    status: str  # matched | missed | extra | rest | optional_skip
+    status: str  # matched | missed | extra | rest | upcoming | pending
 
 
 @dataclass
@@ -143,6 +143,11 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
     start, end = week_bounds(week)
     start_s, end_s = _ymd(start), _ymd(end)
 
+    today = datetime.now(UTC).astimezone().date()
+    week_over = today > end
+    week_ending = today >= end  # Sunday of the reviewed week, or later
+    days_left = max(0, (end - max(today, start - timedelta(days=1))).days) if not week_over else 0
+
     plan = parse_plan_html()
     schedule = plan.schedule
 
@@ -156,10 +161,6 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
 
     daily = {d.date: d for d in get_daily_records(start_s, end_s)}
 
-    # Collect optional notes from HTML via parse — use plan days only; optional from unmapped notes
-    # Re-parse week notes from schedule keys only; optional BAC/PFTC inferred from workout keys absence
-    # when day has easy default — check export isn't needed; use day status heuristics.
-
     days: list[DayReview] = []
     planned_run_km = 0.0
     done_run_km = 0.0
@@ -170,12 +171,30 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
     hard_done = 0
     mtb_minutes = 0
 
-    # Recent easy-run HR baseline (prior 28 days ending before week)
+    # Recent easy-run HR baseline (prior 28 days ending before week).
+    # Needs a real sample — a couple of runs after a layoff is not a baseline.
     hist_start = _ymd(start - timedelta(days=28))
     hist_end = _ymd(start - timedelta(days=1))
     hist = [a for a in get_activities(hist_start, hist_end) if _is_run(a) and a.avg_hr]
     easy_hrs = [a.avg_hr for a in hist if a.avg_hr and (a.distance_meters or 0) < 12000]
-    baseline_hr = (sum(easy_hrs) / len(easy_hrs)) if easy_hrs else None
+    baseline_hr = (sum(easy_hrs) / len(easy_hrs)) if len(easy_hrs) >= 3 else None
+
+    # Physiology context from daily records (28 days back through this week)
+    hist_daily = get_daily_records(hist_start, end_s)
+    lthr = next(
+        (r.lthr for r in sorted(hist_daily, key=lambda r: r.date, reverse=True) if r.lthr),
+        None,
+    )
+    hist_rhrs = [r.rhr for r in hist_daily if r.rhr and r.date < start_s]
+    week_rhrs = [r.rhr for r in hist_daily if r.rhr and start_s <= r.date <= end_s]
+    load_ratio = next(
+        (
+            r.training_load_ratio
+            for r in sorted(hist_daily, key=lambda r: r.date, reverse=True)
+            if r.training_load_ratio and start_s <= r.date <= end_s
+        ),
+        None,
+    )
 
     for i in range(7):
         d = start + timedelta(days=i)
@@ -192,16 +211,17 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
                 bit += f" · {km:.1f}km"
             elif mins >= 1:
                 bit += f" · {mins:.0f}min"
+            if _is_run(a) and km >= 1 and mins >= 1:
+                pace_s = (a.duration_seconds or 0) / km
+                bit += f" · {int(pace_s // 60)}:{int(pace_s % 60):02d}/km"
             if a.avg_hr:
                 bit += f" · HR {a.avg_hr}"
             done_bits.append(bit)
             if _is_run(a):
                 done_run_km += km
-                if baseline_hr and a.avg_hr and a.avg_hr >= baseline_hr + 12 and km >= 3:
-                    high_hr_notes.append(
-                        f"Heart rate looked high on {_friendly_day(d)}'s "
-                        f"{(a.name or 'run').lower()} (avg {a.avg_hr} vs ~{baseline_hr:.0f} easy baseline)."
-                    )
+                note = _high_hr_note(a, d, km, baseline_hr, lthr)
+                if note:
+                    high_hr_notes.append(note)
             sport = (a.sport_name or "").lower()
             if "mtb" in sport or "bike" in sport or (a.sport_type or 0) in {200, 201, 202, 204}:
                 mtb_minutes += (a.duration_seconds or 0) / 60
@@ -209,15 +229,14 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
         done_label = " · ".join(done_bits) if done_bits else None
         planned_run_km += _planned_km(keys)
 
-        if not keys and not acts:
+        if d > today and not acts:
+            status = "upcoming"
+        elif not keys and not acts:
             status = "rest"
         elif keys and not acts:
-            if any(k.startswith("strength_") for k in keys) and not any(
-                k.startswith(("easy_", "long_", "bac_", "run_club_", "progression_")) for k in keys
-            ):
-                status = "missed"  # strength-only day with nothing logged
+            if d == today:
+                status = "pending"  # today isn't over — don't call it missed yet
             else:
-                # Optional BAC/PFTC days still have easy_* planned — missed if no activity
                 status = "missed"
                 if any(_is_hard_key(k) for k in keys):
                     missed_hard += 1
@@ -244,6 +263,7 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
     suggestions: list[Suggestion] = []
     load_vals = [daily[k].training_load for k in daily if daily[k].training_load]
     week_load = sum(load_vals) if load_vals else 0
+    future_week = start > today
 
     hard_flags = 0
     if done_run_km > planned_run_km * 1.25 and planned_run_km >= 8:
@@ -258,6 +278,31 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
         hard_flags += 1
         notes.append(f"Training load stacked up ({week_load}).")
 
+    if load_ratio is not None:
+        if load_ratio > 1.5:
+            hard_flags += 1
+            notes.append(
+                f"Your load ratio is {load_ratio:.1f} — you're ramping up much faster than "
+                "your recent base. Injury risk zone; ease back."
+            )
+        elif load_ratio > 1.3:
+            notes.append(
+                f"Load ratio {load_ratio:.1f} — building quickly. Fine for a week or two, "
+                "just don't stack another big jump on top."
+            )
+        elif 0.8 <= load_ratio <= 1.3:
+            notes.append(f"Load ratio {load_ratio:.1f} — building at a sensible rate.")
+
+    if hist_rhrs and week_rhrs:
+        rhr_base = sum(hist_rhrs) / len(hist_rhrs)
+        rhr_week = sum(week_rhrs) / len(week_rhrs)
+        if rhr_week >= rhr_base + 5:
+            hard_flags += 1
+            notes.append(
+                f"Resting heart rate is up (~{rhr_week:.0f} vs ~{rhr_base:.0f} recently) — "
+                "a sign you're carrying fatigue or fighting something off."
+            )
+
     for n in high_hr_notes[:2]:
         notes.append(n)
         hard_flags += 1
@@ -270,29 +315,47 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
     if extras:
         notes.append(f"Extra sessions on {', '.join(extras)}.")
 
-    # Headline
-    if hard_flags >= 2 or (done_run_km >= planned_run_km * 1.35 and planned_run_km >= 10):
-        headline = "You went a bit hard this week."
+    # Headline — phrased for where we are in the week
+    if future_week:
+        headline = "This week hasn't happened yet."
+        soften = False
+        notes = [f"{planned_run_km:.0f}km of running planned. Check back once it's underway."]
+    elif hard_flags >= 2 or (done_run_km >= planned_run_km * 1.35 and planned_run_km >= 10):
+        headline = "You went a bit hard this week." if week_over else "You're going a bit hard so far."
         soften = True
-    elif missed_easy + missed_hard >= 3 or done_run_km < planned_run_km * 0.55 and planned_run_km >= 10:
+    elif week_over and (
+        missed_easy + missed_hard >= 3
+        or (done_run_km < planned_run_km * 0.55 and planned_run_km >= 10)
+    ):
         headline = "This week was lighter than planned."
         soften = False
     elif missed_easy + missed_hard == 0 and abs(done_run_km - planned_run_km) <= max(3, planned_run_km * 0.2):
-        headline = "Nice — you stayed about on track."
+        headline = "Nice — you stayed about on track." if week_over else "On track so far."
         soften = False
     else:
-        headline = "Decent week — a few things to tidy up."
+        headline = (
+            "Decent week — a few things to tidy up." if week_over else "Decent week so far."
+        )
         soften = hard_flags >= 1
+
+    if not week_over and not future_week and days_left > 0:
+        notes.append(
+            f"{days_left} day{'s' if days_left != 1 else ''} of this week still to go — "
+            "the verdict below is provisional."
+        )
 
     if not notes:
         notes.append("No big red flags from the data we have.")
 
-    # Next week suggestions
+    # Next week suggestions — only once the reviewed week is done (or on its final day)
     next_start = end + timedelta(days=1)
     next_keys_by_day = {
         _ymd(next_start + timedelta(days=i)): schedule.get(_ymd(next_start + timedelta(days=i)), [])
         for i in range(7)
     }
+
+    if not week_ending:
+        soften = False  # too early to rewrite next week
 
     if soften:
         # Find first progression/tempo/bac in next week → ease to Easy 5K
@@ -325,7 +388,7 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
                     break
             if len(suggestions) >= 2:
                 break
-    elif missed_easy + missed_hard >= 2:
+    elif week_ending and missed_easy + missed_hard >= 2:
         # Don't stack quality if consistency is shaky
         for ymd, keys in next_keys_by_day.items():
             for k in keys:
@@ -361,6 +424,33 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
 
 def _friendly_day(d: date) -> str:
     return d.strftime("%A")
+
+
+def _high_hr_note(
+    a: ActivitySummary, d: date, km: float, baseline_hr: float | None, lthr: int | None
+) -> str | None:
+    """Flag a run's HR only when it's high by several independent measures.
+
+    Guards against false positives: short runs, hilly/trail terrain (HR runs
+    high on climbs), runs clearly below lactate threshold, and genuinely easy
+    absolute HRs.
+    """
+    hr = a.avg_hr
+    if not hr or km < 3:
+        return None
+    if hr < 140:  # comfortably easy in absolute terms, whatever the baseline says
+        return None
+    if lthr and hr < lthr * 0.88:  # well under threshold — an easy/steady effort
+        return None
+    gain_per_km = (a.elevation_gain or 0) / km
+    if gain_per_km > 25:  # hilly/trail — elevated HR is expected
+        return None
+    if baseline_hr is None or hr < baseline_hr + 12:
+        return None
+    return (
+        f"Heart rate looked high on {_friendly_day(d)}'s "
+        f"{(a.name or 'run').lower()} (avg {hr} vs ~{baseline_hr:.0f} easy baseline)."
+    )
 
 
 def apply_suggestions(suggestions: list[dict[str, str]]) -> dict[str, Any]:

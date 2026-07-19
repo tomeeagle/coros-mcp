@@ -47,7 +47,15 @@ function formatWeekRange(start: string, end: string): string {
 }
 
 function dayName(iso: string): string {
-  return new Date(iso + "T12:00:00").toLocaleDateString("en-GB", { weekday: "short" });
+  const d = new Date(iso + "T12:00:00");
+  return `${d.toLocaleDateString("en-GB", { weekday: "short" })} ${d.getDate()}`;
+}
+
+function doneText(day: DayReview): string {
+  if (day.done) return day.done;
+  if (day.status === "upcoming") return "Upcoming";
+  if (day.status === "pending") return "Later today";
+  return "—";
 }
 
 export default function WeeklyCoachPage() {
@@ -206,7 +214,7 @@ export default function WeeklyCoachPage() {
                 {review.days.map((day) => (
                   <div
                     key={day.date}
-                    className="grid grid-cols-[4.5rem_1fr] gap-4 py-5 sm:grid-cols-[5rem_1fr_1fr]"
+                    className="grid grid-cols-[5.5rem_1fr] gap-4 py-5 sm:grid-cols-[6rem_1fr_1fr]"
                   >
                     <div className="pt-0.5 text-[0.95rem] font-bold">{dayName(day.date)}</div>
                     <div>
@@ -222,7 +230,7 @@ export default function WeeklyCoachPage() {
                         Done
                       </p>
                       <p className="mt-1 text-[1.02rem] font-medium leading-snug text-[var(--muted)]">
-                        {day.done || "—"}
+                        {doneText(day)}
                       </p>
                     </div>
                   </div>

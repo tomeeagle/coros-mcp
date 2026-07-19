@@ -267,11 +267,11 @@ export default function WeeklyCoachPage() {
   }
 
   return (
-    <main className="min-h-screen px-6 py-16 sm:px-10 sm:py-24">
-      <div className="mx-auto w-full max-w-[44rem]">
-        <div className="fade-up mb-16 flex items-end justify-between gap-6">
+    <main className="min-h-screen px-6 py-8 sm:px-10 sm:py-10">
+      <div className="mx-auto w-full max-w-[64rem]">
+        <div className="fade-up mb-8 flex items-end justify-between gap-6">
           <div>
-            <p className="mb-3 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-[var(--muted)]">
+            <p className="mb-1.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-[var(--muted)]">
               Weekly coach
             </p>
             {week && review && (
@@ -328,7 +328,7 @@ export default function WeeklyCoachPage() {
         {review && (
           <>
             <div
-              className="fade-up mb-8 rounded-2xl px-8 py-10 sm:px-10 sm:py-12"
+              className="fade-up mb-8 rounded-2xl px-8 py-8 sm:px-10 sm:py-10"
               style={{ backgroundColor: hero.bg, color: hero.fg }}
             >
               <h1 className="max-w-[16ch] text-[clamp(2.2rem,6vw,3.4rem)] font-extrabold leading-[1.05] tracking-[-0.035em]">
@@ -343,7 +343,7 @@ export default function WeeklyCoachPage() {
             )}
 
             {statItems.length > 0 && (
-              <div className="fade-up mb-14 grid grid-cols-2 gap-4 sm:grid-cols-3">
+              <div className="fade-up mb-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                 {statItems.map((item) => (
                   <div
                     key={item.key}

@@ -307,7 +307,7 @@ export default function WeeklyCoachPage() {
       <div className="mx-auto w-full max-w-[64rem]">
         <div className="fade-up mb-8 flex items-end justify-between gap-6">
           <div>
-            <p className="mb-1.5 text-[0.875rem] font-medium uppercase tracking-[0.14em] text-[var(--muted)]">
+            <p className="mb-1.5 text-[1rem] font-medium uppercase tracking-[0.14em] text-[var(--muted)]">
               Weekly coach
             </p>
             {week && review && (
@@ -316,7 +316,7 @@ export default function WeeklyCoachPage() {
               </p>
             )}
           </div>
-          <div className="flex items-center gap-4 text-[0.95rem] font-semibold">
+          <div className="flex items-center gap-4 text-[1rem] font-semibold">
             <button
               type="button"
               className="text-[var(--muted)] transition hover:text-[var(--ink)]"
@@ -356,7 +356,7 @@ export default function WeeklyCoachPage() {
             <p className="max-w-xl text-[1.1rem] leading-relaxed text-[var(--muted)]">{error}</p>
             <p className="text-[1rem] text-[var(--muted)]">
               In the repo root run{" "}
-              <code className="rounded bg-white px-2 py-1 text-[0.95rem]">coros-mcp weekly-api</code>
+              <code className="rounded bg-white px-2 py-1 text-[1rem]">coros-mcp weekly-api</code>
             </p>
           </div>
         )}
@@ -373,7 +373,7 @@ export default function WeeklyCoachPage() {
             </div>
 
             {review.refreshWarning && (
-              <p className="fade-up mb-8 max-w-xl text-[0.95rem] leading-relaxed text-[var(--muted)]">
+              <p className="fade-up mb-8 max-w-xl text-[1rem] leading-relaxed text-[var(--muted)]">
                 {review.refreshWarning}
               </p>
             )}
@@ -392,7 +392,7 @@ export default function WeeklyCoachPage() {
                     <p className="text-[2rem] font-extrabold leading-none tracking-[-0.03em] sm:text-[2.25rem]">
                       {item.value}
                     </p>
-                    <p className="mt-2 text-[0.875rem] font-semibold leading-snug opacity-80">
+                    <p className="mt-2 text-[1rem] font-semibold leading-snug opacity-80">
                       {item.label}
                     </p>
                   </div>
@@ -412,7 +412,7 @@ export default function WeeklyCoachPage() {
             </ul>
 
             <section className="fade-up-delay-2 mb-20">
-              <h2 className="mb-8 text-[0.875rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+              <h2 className="mb-8 text-[1rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
                 This week
               </h2>
               <div className="rounded-2xl bg-white px-6 py-2 sm:px-8">
@@ -420,7 +420,7 @@ export default function WeeklyCoachPage() {
                   {["Day", "Planned", "Done", ""].map((h, i) => (
                     <p
                       key={i}
-                      className="text-[0.875rem] font-semibold uppercase tracking-[0.12em] text-[var(--muted)]"
+                      className="text-[1rem] font-semibold uppercase tracking-[0.12em] text-[var(--muted)]"
                     >
                       {h}
                     </p>
@@ -436,7 +436,7 @@ export default function WeeklyCoachPage() {
                         className="grid grid-cols-[4.5rem_1fr] gap-4 py-5 sm:grid-cols-[4.5rem_1fr_1.4fr_6.5rem] sm:items-center"
                       >
                         <div>
-                          <p className="text-[0.875rem] font-semibold uppercase tracking-wide text-[var(--muted)]">
+                          <p className="text-[1rem] font-semibold uppercase tracking-wide text-[var(--muted)]">
                             {wd}
                           </p>
                           <p className="text-[1.5rem] font-extrabold leading-tight tracking-[-0.02em]">
@@ -470,19 +470,19 @@ export default function WeeklyCoachPage() {
                                       <p className="flex flex-wrap items-center gap-x-2 text-[1.02rem] font-bold leading-snug">
                                         <span>{title}</span>
                                         {act.hard && (
-                                          <span className="inline-flex items-center gap-1 rounded-full bg-[#D9532B] px-2 py-0.5 text-[0.875rem] font-bold text-white">
+                                          <span className="inline-flex items-center gap-1 rounded-full bg-[#D9532B] px-2 py-0.5 text-[1rem] font-bold text-white">
                                             <Icon kind="flame" className="h-3.5 w-3.5" />
                                             Too hard
                                           </span>
                                         )}
                                       </p>
                                       {meta && (
-                                        <p className="text-[0.95rem] font-medium text-[var(--muted)]">
+                                        <p className="text-[1rem] font-medium text-[var(--muted)]">
                                           {meta}
                                         </p>
                                       )}
                                       {act.hard && act.reason && (
-                                        <p className="mt-1 text-[0.875rem] font-medium leading-snug text-[#D9532B]">
+                                        <p className="mt-1 text-[1rem] font-medium leading-snug text-[#D9532B]">
                                           {act.reason}
                                         </p>
                                       )}
@@ -499,7 +499,7 @@ export default function WeeklyCoachPage() {
                         <div className="col-span-2 pl-[4.75rem] sm:col-span-1 sm:justify-self-end sm:pl-0">
                           {pill && (
                             <span
-                              className="inline-block rounded-full px-3 py-1 text-[0.875rem] font-bold"
+                              className="inline-block rounded-full px-3 py-1 text-[1rem] font-bold"
                               style={{ backgroundColor: pill.bg, color: pill.fg }}
                             >
                               {pill.text}
@@ -514,7 +514,7 @@ export default function WeeklyCoachPage() {
             </section>
 
             <section className="fade-up-delay-2 mb-12">
-              <h2 className="mb-8 text-[0.875rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+              <h2 className="mb-8 text-[1rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
                 Next week
               </h2>
               {review.nextWeekSuggestions.length === 0 ? (
@@ -550,7 +550,7 @@ export default function WeeklyCoachPage() {
                 </button>
               )}
               {applyMsg && (
-                <p className="mt-5 max-w-xl text-[0.95rem] leading-relaxed text-[var(--muted)]">
+                <p className="mt-5 max-w-xl text-[1rem] leading-relaxed text-[var(--muted)]">
                   {applyMsg}
                 </p>
               )}

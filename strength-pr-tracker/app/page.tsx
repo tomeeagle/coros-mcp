@@ -23,6 +23,7 @@ type Review = {
   notes: string[];
   days: DayReview[];
   nextWeekSuggestions: Suggestion[];
+  refreshWarning?: string;
   stats: {
     plannedRunKm?: number;
     doneRunKm?: number;
@@ -179,6 +180,12 @@ export default function WeeklyCoachPage() {
             >
               {review.headline}
             </h1>
+
+            {review.refreshWarning && (
+              <p className="fade-up mb-8 max-w-xl text-[0.95rem] leading-relaxed text-[var(--muted)]">
+                {review.refreshWarning}
+              </p>
+            )}
 
             <ul className="fade-up-delay mb-20 space-y-4">
               {review.notes.map((note) => (

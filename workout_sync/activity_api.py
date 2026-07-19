@@ -33,9 +33,17 @@ def create_app() -> Flask:
             return ("", 204)
         week = request.args.get("week")
         refresh = request.args.get("refresh", "0") in ("1", "true", "yes")
+        refresh_warning = None
         if refresh:
-            _refresh_week(week)
+            try:
+                _refresh_week(week)
+            except Exception as exc:
+                # Fall back to cached data rather than failing the whole review.
+                refresh_warning = f"Couldn't refresh from Coros ({exc}). Showing cached data."
+                refresh = False
         data = build_week_review(week, refresh=refresh).to_dict()
+        if refresh_warning:
+            data["refreshWarning"] = refresh_warning
         return jsonify(data)
 
     @app.route("/review/apply", methods=["POST", "OPTIONS"])

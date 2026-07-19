@@ -174,35 +174,50 @@ export default function WeeklyCoachPage() {
     load(undefined, true);
   }, [load]);
 
-  const accent = useMemo(() => {
-    if (!review) return "var(--ink)";
+  const hero = useMemo(() => {
+    if (!review) return { bg: "#2B2244", fg: "#ffffff" };
     const h = review.headline.toLowerCase();
-    if (h.includes("hard")) return "var(--ease)";
-    if (h.includes("on track") || h.includes("nice")) return "var(--ok)";
-    return "var(--ink)";
+    if (h.includes("hard")) return { bg: "#D9532B", fg: "#ffffff" };
+    if (h.includes("on track") || h.includes("nice")) return { bg: "#169B62", fg: "#ffffff" };
+    if (h.includes("hasn't happened") || h.includes("lighter"))
+      return { bg: "#C3E4CD", fg: "#12291A" };
+    return { bg: "#2B2244", fg: "#ffffff" };
   }, [review]);
 
   const statItems = useMemo(() => {
     if (!review?.stats) return [];
     const s = review.stats;
-    const items: { key: string; icon: string; value: string; label: string }[] = [
+    const items: {
+      key: string;
+      icon: string;
+      value: string;
+      label: string;
+      bg: string;
+      fg: string;
+    }[] = [
       {
         key: "load",
         icon: "load",
         value: String(s.weekLoad ?? 0),
-        label: s.loadRatio != null ? `Load · ${s.loadRatio}×` : "Training load",
+        label: s.loadRatio != null ? `training load · ${s.loadRatio}×` : "training load",
+        bg: "#2B2244",
+        fg: "#ffffff",
       },
       {
         key: "run",
         icon: "run",
         value: `${fmtKm(s.doneRunKm)}`,
         label: `km run · ${fmtKm(s.plannedRunKm)} planned`,
+        bg: "#2E5BFF",
+        fg: "#ffffff",
       },
       {
         key: "bike",
         icon: "bike",
         value: `${fmtKm(s.bikeKm)}`,
         label: s.bikeMinutes ? `km bike · ${s.bikeMinutes} min` : "km bike",
+        bg: "#C3E4CD",
+        fg: "#12291A",
       },
     ];
     if (s.avgRunHr != null) {
@@ -211,6 +226,8 @@ export default function WeeklyCoachPage() {
         icon: "heart",
         value: String(s.avgRunHr),
         label: "avg run HR",
+        bg: "#E0524D",
+        fg: "#ffffff",
       });
     }
     if (s.avgRhr != null) {
@@ -219,6 +236,8 @@ export default function WeeklyCoachPage() {
         icon: "heart",
         value: String(s.avgRhr),
         label: "avg resting HR",
+        bg: "#F3B63F",
+        fg: "#2B2244",
       });
     }
     return items;
@@ -308,12 +327,14 @@ export default function WeeklyCoachPage() {
 
         {review && (
           <>
-            <h1
-              className="fade-up mb-10 max-w-[18ch] text-[clamp(2.6rem,7vw,4rem)] font-extrabold leading-[1.05] tracking-[-0.035em]"
-              style={{ color: accent }}
+            <div
+              className="fade-up mb-8 rounded-2xl px-8 py-10 sm:px-10 sm:py-12"
+              style={{ backgroundColor: hero.bg, color: hero.fg }}
             >
-              {review.headline}
-            </h1>
+              <h1 className="max-w-[16ch] text-[clamp(2.2rem,6vw,3.4rem)] font-extrabold leading-[1.05] tracking-[-0.035em]">
+                {review.headline}
+              </h1>
+            </div>
 
             {review.refreshWarning && (
               <p className="fade-up mb-8 max-w-xl text-[0.95rem] leading-relaxed text-[var(--muted)]">
@@ -322,16 +343,20 @@ export default function WeeklyCoachPage() {
             )}
 
             {statItems.length > 0 && (
-              <div className="fade-up mb-14 grid grid-cols-2 gap-x-6 gap-y-8 border-y border-[var(--line)] py-8 sm:grid-cols-3">
+              <div className="fade-up mb-14 grid grid-cols-2 gap-4 sm:grid-cols-3">
                 {statItems.map((item) => (
-                  <div key={item.key} className="min-w-0">
-                    <div className="mb-3 text-[var(--muted)]">
-                      <Icon kind={item.icon} className="h-5 w-5" />
+                  <div
+                    key={item.key}
+                    className="min-w-0 rounded-2xl px-5 py-6"
+                    style={{ backgroundColor: item.bg, color: item.fg }}
+                  >
+                    <div className="mb-4 opacity-90">
+                      <Icon kind={item.icon} className="h-6 w-6" />
                     </div>
                     <p className="text-[2rem] font-extrabold leading-none tracking-[-0.03em] sm:text-[2.25rem]">
                       {item.value}
                     </p>
-                    <p className="mt-2 text-[0.85rem] font-medium leading-snug text-[var(--muted)]">
+                    <p className="mt-2 text-[0.85rem] font-semibold leading-snug opacity-80">
                       {item.label}
                     </p>
                   </div>
@@ -354,7 +379,7 @@ export default function WeeklyCoachPage() {
               <h2 className="mb-8 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
                 This week
               </h2>
-              <div className="divide-y divide-[var(--line)] border-y border-[var(--line)]">
+              <div className="divide-y divide-[var(--line)] rounded-2xl bg-white px-6 py-2 sm:px-8">
                 {review.days.map((day) => (
                   <div
                     key={day.date}
@@ -410,17 +435,22 @@ export default function WeeklyCoachPage() {
                 Next week
               </h2>
               {review.nextWeekSuggestions.length === 0 ? (
-                <p className="text-[1.15rem] font-medium text-[var(--muted)]">
-                  No plan tweaks suggested — keep the schedule as written.
-                </p>
+                <div className="rounded-2xl bg-[#C3E4CD] px-8 py-8 text-[#12291A]">
+                  <p className="text-[1.25rem] font-bold leading-snug tracking-[-0.02em]">
+                    No plan tweaks suggested — keep the schedule as written.
+                  </p>
+                </div>
               ) : (
-                <ul className="mb-10 space-y-8">
+                <ul className="mb-10 space-y-4">
                   {review.nextWeekSuggestions.map((s) => (
-                    <li key={`${s.date}-${s.from}`}>
+                    <li
+                      key={`${s.date}-${s.from}`}
+                      className="rounded-2xl bg-[#2E5BFF] px-8 py-8 text-white"
+                    >
                       <p className="text-[1.35rem] font-bold leading-snug tracking-[-0.02em]">
                         {s.from} → {s.to}
                       </p>
-                      <p className="mt-2 max-w-lg text-[1.05rem] text-[var(--muted)]">{s.reason}</p>
+                      <p className="mt-2 max-w-lg text-[1.05rem] opacity-85">{s.reason}</p>
                     </li>
                   ))}
                 </ul>

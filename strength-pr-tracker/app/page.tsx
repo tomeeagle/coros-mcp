@@ -279,7 +279,7 @@ export default function WeeklyCoachPage() {
       <div className="mx-auto w-full max-w-[64rem]">
         <div className="fade-up mb-8 flex items-end justify-between gap-6">
           <div>
-            <p className="mb-1.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-[var(--muted)]">
+            <p className="mb-1.5 text-[0.875rem] font-medium uppercase tracking-[0.14em] text-[var(--muted)]">
               Weekly coach
             </p>
             {week && review && (
@@ -364,7 +364,7 @@ export default function WeeklyCoachPage() {
                     <p className="text-[2rem] font-extrabold leading-none tracking-[-0.03em] sm:text-[2.25rem]">
                       {item.value}
                     </p>
-                    <p className="mt-2 text-[0.85rem] font-semibold leading-snug opacity-80">
+                    <p className="mt-2 text-[0.875rem] font-semibold leading-snug opacity-80">
                       {item.label}
                     </p>
                   </div>
@@ -384,7 +384,7 @@ export default function WeeklyCoachPage() {
             </ul>
 
             <section className="fade-up-delay-2 mb-20">
-              <h2 className="mb-8 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+              <h2 className="mb-8 text-[0.875rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
                 This week
               </h2>
               <div className="divide-y divide-[var(--line)] rounded-2xl bg-white px-6 py-2 sm:px-8">
@@ -395,7 +395,7 @@ export default function WeeklyCoachPage() {
                   >
                     <div className="pt-0.5 text-[0.95rem] font-bold">{dayName(day.date)}</div>
                     <div>
-                      <p className="text-[0.75rem] font-medium uppercase tracking-wide text-[var(--muted)]">
+                      <p className="text-[0.875rem] font-medium uppercase tracking-wide text-[var(--muted)]">
                         Planned
                       </p>
                       <div className="mt-1 flex items-start gap-2">
@@ -411,7 +411,7 @@ export default function WeeklyCoachPage() {
                       </div>
                     </div>
                     <div className="col-span-2 sm:col-span-1">
-                      <p className="text-[0.75rem] font-medium uppercase tracking-wide text-[var(--muted)]">
+                      <p className="text-[0.875rem] font-medium uppercase tracking-wide text-[var(--muted)]">
                         Done
                       </p>
                       {day.activities && day.activities.length > 0 ? (
@@ -428,14 +428,14 @@ export default function WeeklyCoachPage() {
                                 <p className="flex flex-wrap items-center gap-x-2 text-[1.02rem] font-medium leading-snug text-[var(--muted)]">
                                   <span>{act.label}</span>
                                   {act.hard && (
-                                    <span className="inline-flex items-center gap-1 rounded-full bg-[#D9532B] px-2 py-0.5 text-[0.7rem] font-bold uppercase tracking-wide text-white">
+                                    <span className="inline-flex items-center gap-1 rounded-full bg-[#D9532B] px-2 py-0.5 text-[0.875rem] font-bold uppercase tracking-wide text-white">
                                       <Icon kind="flame" className="h-3 w-3" />
                                       Too hard
                                     </span>
                                   )}
                                 </p>
                                 {act.hard && act.reason && (
-                                  <p className="mt-1 text-[0.85rem] font-medium leading-snug text-[#D9532B]">
+                                  <p className="mt-1 text-[0.875rem] font-medium leading-snug text-[#D9532B]">
                                     {act.reason}
                                   </p>
                                 )}
@@ -455,7 +455,7 @@ export default function WeeklyCoachPage() {
             </section>
 
             <section className="fade-up-delay-2 mb-12">
-              <h2 className="mb-8 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+              <h2 className="mb-8 text-[0.875rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
                 Next week
               </h2>
               {review.nextWeekSuggestions.length === 0 ? (

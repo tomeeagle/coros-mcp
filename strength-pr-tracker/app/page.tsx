@@ -86,18 +86,19 @@ function Icon({
     case "run":
       return (
         <svg {...common}>
-          <circle cx="12" cy="5" r="2" />
-          <path d="M8 21l2-6 2 2 3-5" />
-          <path d="M14 12l-2-4-3 1-2 5" />
+          <circle cx="13" cy="4" r="1.6" />
+          <path d="M4 17l5 1 .75-1.5" />
+          <path d="M15 21v-4l-4-3 1-6" />
+          <path d="M7 12v-3l5-1 3 3 3 1" />
         </svg>
       );
     case "bike":
       return (
         <svg {...common}>
-          <circle cx="6.5" cy="16.5" r="3.5" />
-          <circle cx="17.5" cy="16.5" r="3.5" />
-          <path d="M6.5 16.5L10 8h4l3.5 8.5" />
-          <path d="M10 8l2 4h4" />
+          <circle cx="5" cy="17.5" r="3.2" />
+          <circle cx="19" cy="17.5" r="3.2" />
+          <circle cx="17" cy="5" r="1.4" />
+          <path d="M12 18.5v-4l-3-3 5-4 2 3h3" />
         </svg>
       );
     case "strength":
@@ -151,10 +152,10 @@ function KindChip({ kind, hard }: { kind: string; hard?: boolean }) {
   const c = hard ? { bg: "#FBE3DB", fg: "#D9532B" } : KIND_CHIP[kind] || KIND_CHIP.other;
   return (
     <span
-      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl"
+      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
       style={{ backgroundColor: c.bg, color: c.fg }}
     >
-      <Icon kind={kind} className="h-[1.15rem] w-[1.15rem]" />
+      <Icon kind={kind} className="h-6 w-6" />
     </span>
   );
 }
@@ -387,7 +388,7 @@ export default function WeeklyCoachPage() {
                     style={{ backgroundColor: item.bg, color: item.fg }}
                   >
                     <div className="mb-4 opacity-90">
-                      <Icon kind={item.icon} className="h-6 w-6" />
+                      <Icon kind={item.icon} className="h-8 w-8" />
                     </div>
                     <p className="text-[2rem] font-extrabold leading-none tracking-[-0.03em] sm:text-[2.25rem]">
                       {item.value}
@@ -471,7 +472,7 @@ export default function WeeklyCoachPage() {
                                         <span>{title}</span>
                                         {act.hard && (
                                           <span className="inline-flex items-center gap-1 rounded-full bg-[#D9532B] px-2 py-0.5 text-[1rem] font-bold text-white">
-                                            <Icon kind="flame" className="h-3.5 w-3.5" />
+                                            <Icon kind="flame" className="h-4 w-4" />
                                             Too hard
                                           </span>
                                         )}

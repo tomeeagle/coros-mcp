@@ -139,10 +139,38 @@ function Icon({
   }
 }
 
-function doneFallback(day: DayReview): string {
-  if (day.status === "upcoming") return "Upcoming";
-  if (day.status === "pending") return "Later today";
-  return "—";
+const KIND_CHIP: Record<string, { bg: string; fg: string }> = {
+  run: { bg: "#E4EAFF", fg: "#2E5BFF" },
+  bike: { bg: "#DCF0E3", fg: "#169B62" },
+  strength: { bg: "#E9E5F3", fg: "#2B2244" },
+  rest: { bg: "#F2F2F2", fg: "#9A9A9A" },
+  other: { bg: "#F2F2F2", fg: "#666666" },
+};
+
+function KindChip({ kind, hard }: { kind: string; hard?: boolean }) {
+  const c = hard ? { bg: "#FBE3DB", fg: "#D9532B" } : KIND_CHIP[kind] || KIND_CHIP.other;
+  return (
+    <span
+      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl"
+      style={{ backgroundColor: c.bg, color: c.fg }}
+    >
+      <Icon kind={kind} className="h-[1.15rem] w-[1.15rem]" />
+    </span>
+  );
+}
+
+const STATUS_PILL: Record<string, { text: string; bg: string; fg: string }> = {
+  missed: { text: "Missed", bg: "#FBE3DB", fg: "#C24216" },
+  extra: { text: "Extra", bg: "#E4EAFF", fg: "#2E5BFF" },
+  matched: { text: "Done", bg: "#DCF0E3", fg: "#12703F" },
+  upcoming: { text: "Upcoming", bg: "#F2F2F2", fg: "#8A8A8A" },
+  pending: { text: "Later today", bg: "#FDF1DC", fg: "#9A6A12" },
+};
+
+function splitLabel(label: string): { title: string; meta: string | null } {
+  const idx = label.indexOf(" · ");
+  if (idx === -1) return { title: label, meta: null };
+  return { title: label.slice(0, idx), meta: label.slice(idx + 3) };
 }
 
 function fmtKm(n: number | undefined | null): string {
@@ -387,70 +415,101 @@ export default function WeeklyCoachPage() {
               <h2 className="mb-8 text-[0.875rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
                 This week
               </h2>
-              <div className="divide-y divide-[var(--line)] rounded-2xl bg-white px-6 py-2 sm:px-8">
-                {review.days.map((day) => (
-                  <div
-                    key={day.date}
-                    className="grid grid-cols-[5.5rem_1fr] gap-4 py-5 sm:grid-cols-[6rem_1fr_1fr]"
-                  >
-                    <div className="pt-0.5 text-[0.95rem] font-bold">{dayName(day.date)}</div>
-                    <div>
-                      <p className="text-[0.875rem] font-medium uppercase tracking-wide text-[var(--muted)]">
-                        Planned
-                      </p>
-                      <div className="mt-1 flex items-start gap-2">
-                        <span className="mt-0.5 shrink-0 text-[var(--muted)]">
-                          <Icon
-                            kind={day.plannedKind || (day.planned ? "other" : "rest")}
-                            className="h-[1.1rem] w-[1.1rem]"
-                          />
-                        </span>
-                        <p className="text-[1.02rem] font-medium leading-snug">
-                          {day.planned || "Rest"}
-                        </p>
+              <div className="rounded-2xl bg-white px-6 py-2 sm:px-8">
+                <div className="hidden grid-cols-[4.5rem_1fr_1.4fr_6.5rem] gap-4 border-b border-[var(--line)] py-4 sm:grid">
+                  {["Day", "Planned", "Done", ""].map((h, i) => (
+                    <p
+                      key={i}
+                      className="text-[0.875rem] font-semibold uppercase tracking-[0.12em] text-[var(--muted)]"
+                    >
+                      {h}
+                    </p>
+                  ))}
+                </div>
+                <div className="divide-y divide-[var(--line)]">
+                  {review.days.map((day) => {
+                    const pill = STATUS_PILL[day.status];
+                    const [wd, num] = dayName(day.date).split(" ");
+                    return (
+                      <div
+                        key={day.date}
+                        className="grid grid-cols-[4.5rem_1fr] gap-4 py-5 sm:grid-cols-[4.5rem_1fr_1.4fr_6.5rem] sm:items-center"
+                      >
+                        <div>
+                          <p className="text-[0.875rem] font-semibold uppercase tracking-wide text-[var(--muted)]">
+                            {wd}
+                          </p>
+                          <p className="text-[1.5rem] font-extrabold leading-tight tracking-[-0.02em]">
+                            {num}
+                          </p>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <KindChip kind={day.plannedKind || (day.planned ? "other" : "rest")} />
+                          <p
+                            className={`text-[1.02rem] font-bold leading-snug ${
+                              day.planned ? "" : "text-[var(--muted)]"
+                            }`}
+                          >
+                            {day.planned || "Rest"}
+                          </p>
+                        </div>
+
+                        <div className="col-span-2 pl-[4.75rem] sm:col-span-1 sm:pl-0">
+                          {day.activities && day.activities.length > 0 ? (
+                            <ul className="space-y-3">
+                              {day.activities.map((act) => {
+                                const { title, meta } = splitLabel(act.label);
+                                return (
+                                  <li
+                                    key={`${day.date}-${act.label}`}
+                                    className="flex items-start gap-3"
+                                  >
+                                    <KindChip kind={act.kind} hard={act.hard} />
+                                    <div className="min-w-0">
+                                      <p className="flex flex-wrap items-center gap-x-2 text-[1.02rem] font-bold leading-snug">
+                                        <span>{title}</span>
+                                        {act.hard && (
+                                          <span className="inline-flex items-center gap-1 rounded-full bg-[#D9532B] px-2 py-0.5 text-[0.875rem] font-bold text-white">
+                                            <Icon kind="flame" className="h-3.5 w-3.5" />
+                                            Too hard
+                                          </span>
+                                        )}
+                                      </p>
+                                      {meta && (
+                                        <p className="text-[0.95rem] font-medium text-[var(--muted)]">
+                                          {meta}
+                                        </p>
+                                      )}
+                                      {act.hard && act.reason && (
+                                        <p className="mt-1 text-[0.875rem] font-medium leading-snug text-[#D9532B]">
+                                          {act.reason}
+                                        </p>
+                                      )}
+                                    </div>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          ) : (
+                            <p className="text-[1.02rem] font-medium text-[#c4c4c4]">—</p>
+                          )}
+                        </div>
+
+                        <div className="col-span-2 pl-[4.75rem] sm:col-span-1 sm:justify-self-end sm:pl-0">
+                          {pill && (
+                            <span
+                              className="inline-block rounded-full px-3 py-1 text-[0.875rem] font-bold"
+                              style={{ backgroundColor: pill.bg, color: pill.fg }}
+                            >
+                              {pill.text}
+                            </span>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    <div className="col-span-2 sm:col-span-1">
-                      <p className="text-[0.875rem] font-medium uppercase tracking-wide text-[var(--muted)]">
-                        Done
-                      </p>
-                      {day.activities && day.activities.length > 0 ? (
-                        <ul className="mt-1 space-y-2">
-                          {day.activities.map((act) => (
-                            <li key={`${day.date}-${act.label}`} className="flex items-start gap-2">
-                              <span
-                                className="mt-0.5 shrink-0"
-                                style={{ color: act.hard ? "#D9532B" : "var(--muted)" }}
-                              >
-                                <Icon kind={act.kind} className="h-[1.1rem] w-[1.1rem]" />
-                              </span>
-                              <div>
-                                <p className="flex flex-wrap items-center gap-x-2 text-[1.02rem] font-medium leading-snug text-[var(--muted)]">
-                                  <span>{act.label}</span>
-                                  {act.hard && (
-                                    <span className="inline-flex items-center gap-1 rounded-full bg-[#D9532B] px-2 py-0.5 text-[0.875rem] font-bold uppercase tracking-wide text-white">
-                                      <Icon kind="flame" className="h-3 w-3" />
-                                      Too hard
-                                    </span>
-                                  )}
-                                </p>
-                                {act.hard && act.reason && (
-                                  <p className="mt-1 text-[0.875rem] font-medium leading-snug text-[#D9532B]">
-                                    {act.reason}
-                                  </p>
-                                )}
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="mt-1 text-[1.02rem] font-medium leading-snug text-[var(--muted)]">
-                          {doneFallback(day)}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                    );
+                  })}
+                </div>
               </div>
             </section>
 

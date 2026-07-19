@@ -1,5 +1,7 @@
 .claude/
 .env
+google-calendar-client.json
+google-calendar-token.json
 .playwright-mcp/
 .venv/
 node_modules/

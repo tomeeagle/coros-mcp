@@ -1,84 +1,79 @@
 {
-  "title": "Tom's Plan — 8-week block",
-  "blockStart": "2026-06-18",
-  "blockEnd": "2026-08-09",
+  "title": "Tom's Plan — 8-week rebuild",
+  "blockStart": "2026-07-19",
+  "blockEnd": "2026-09-12",
   "timezone": "Europe/London",
-  "structure": "Tue quality · Wed club 8K · Fri progression · Sat long · Mon strength",
+  "structure": "Rebuild after layoff · Mon strength · Tue easy (BAC optional) · Wed easy/PFTC optional · Fri easy/progression · Sat long · no races",
   "weeks": [
     {
       "title": "Week 1",
-      "dates": "7–13 Jun",
-      "phase": "Build",
+      "dates": "19–25 Jul",
+      "phase": "Re-entry",
       "weekNumber": 1,
       "days": [
         {
-          "date": "2026-06-07",
-          "dayLabel": "Sun 7",
-          "note": "—",
+          "date": "2026-07-19",
+          "dayLabel": "Sun 19",
+          "note": "Shakeout — start here",
           "runPlan": "Easy 3K",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [
             {
               "key": "easy_3k",
-              "name": "Easy 3K — run streak",
+              "name": "Easy 3K",
               "kind": "run"
             }
           ],
           "rest": false
         },
         {
-          "date": "2026-06-08",
-          "dayLabel": "Mon 8",
-          "note": "💪 Strength WK2",
-          "runPlan": "Easy 3K (separate from strength)",
+          "date": "2026-07-20",
+          "dayLabel": "Mon 20",
+          "note": "💪 Strength WK1",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "strength_wk2",
-              "name": "Strength — Build (WK2)",
+              "key": "strength_wk1",
+              "name": "Strength — Foundation (WK1)",
               "kind": "strength"
-            },
-            {
-              "key": "easy_3k",
-              "name": "Easy 3K — run streak",
-              "kind": "run"
             }
           ],
           "rest": false
         },
         {
-          "date": "2026-06-09",
-          "dayLabel": "Tue 9",
-          "note": "BAC",
-          "runPlan": "BAC Hill Reps 6×800m · 6pm · Station Road",
+          "date": "2026-07-21",
+          "dayLabel": "Tue 21",
+          "note": "Optional BAC — skip if tired",
+          "runPlan": "Easy 4K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "bac_hill_6x800",
-              "name": "BAC — 6x800m hill reps",
+              "key": "easy_4k",
+              "name": "Easy 4K",
               "kind": "run"
             }
           ],
           "rest": false
         },
         {
-          "date": "2026-06-10",
-          "dayLabel": "Wed 10",
-          "note": "Run club",
-          "runPlan": "Run club 8K easy + strides",
+          "date": "2026-07-22",
+          "dayLabel": "Wed 22",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
           "rest": false
         },
         {
-          "date": "2026-06-11",
-          "dayLabel": "Thu 11",
+          "date": "2026-07-23",
+          "dayLabel": "Thu 23",
           "note": "—",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
@@ -86,30 +81,30 @@
           "rest": true
         },
         {
-          "date": "2026-06-12",
-          "dayLabel": "Fri 12",
+          "date": "2026-07-24",
+          "dayLabel": "Fri 24",
           "note": "—",
-          "runPlan": "Progression 8K (5K easy / 3K steady)",
+          "runPlan": "Easy 5K",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "progression_8k",
-              "name": "Progression 8K — 5K easy / 3K steady",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
           "rest": false
         },
         {
-          "date": "2026-06-13",
-          "dayLabel": "Sat 13",
-          "note": "—",
-          "runPlan": "Long run 10K easy",
-          "foodWeight": "Pudding ok tonight",
+          "date": "2026-07-25",
+          "dayLabel": "Sat 25",
+          "note": "First long of the rebuild",
+          "runPlan": "Easy 8K",
+          "foodWeight": "Pudding ok tonight. Fuel well after.",
           "workouts": [
             {
-              "key": "long_10k",
-              "name": "Long Run 10K easy",
+              "key": "easy_8k",
+              "name": "Easy 8K — conversational",
               "kind": "run"
             }
           ],
@@ -119,81 +114,76 @@
     },
     {
       "title": "Week 2",
-      "dates": "14–20 Jun",
-      "phase": "Peak",
+      "dates": "26 Jul–1 Aug",
+      "phase": "Settle",
       "weekNumber": 2,
       "days": [
         {
-          "date": "2026-06-14",
-          "dayLabel": "Sun 14",
-          "note": "BAC optional",
-          "runPlan": "BPR Recce · 9am · SUMMAT",
+          "date": "2026-07-26",
+          "dayLabel": "Sun 26",
+          "note": "—",
+          "runPlan": "Rest",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [],
-          "rest": false
+          "rest": true
         },
         {
-          "date": "2026-06-15",
-          "dayLabel": "Mon 15",
-          "note": "💪 Strength WK3",
-          "runPlan": "Easy 3K (separate from strength)",
+          "date": "2026-07-27",
+          "dayLabel": "Mon 27",
+          "note": "💪 Strength WK2",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "strength_wk3",
-              "name": "Strength — Intensity (WK3)",
+              "key": "strength_wk2",
+              "name": "Strength — Build (WK2)",
               "kind": "strength"
-            },
-            {
-              "key": "easy_3k",
-              "name": "Easy 3K — run streak",
-              "kind": "run"
             }
           ],
           "rest": false
         },
         {
-          "date": "2026-06-16",
-          "dayLabel": "Tue 16",
-          "note": "BAC",
-          "runPlan": "BAC Threshold 4×6min · 6pm · Agri Centre",
+          "date": "2026-07-28",
+          "dayLabel": "Tue 28",
+          "note": "Optional BAC — skip if tired",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "bac_threshold_4x6",
-              "name": "BAC — 4x6min threshold",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
           "rest": false
         },
         {
-          "date": "2026-06-17",
-          "dayLabel": "Wed 17",
-          "note": "Run club",
-          "runPlan": "Run club 8K easy + strides",
+          "date": "2026-07-29",
+          "dayLabel": "Wed 29",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
           "rest": false
         },
         {
-          "date": "2026-06-18",
-          "dayLabel": "Thu 18",
-          "note": "🏔️ Grindleford Fell Race",
-          "runPlan": "7.9K · 7:30pm · Bishop's Pavilion Grindleford",
-          "foodWeight": "Light meal before",
+          "date": "2026-07-30",
+          "dayLabel": "Thu 30",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
           "workouts": [],
-          "rest": false
+          "rest": true
         },
         {
-          "date": "2026-06-19",
-          "dayLabel": "Fri 19",
+          "date": "2026-07-31",
+          "dayLabel": "Fri 31",
           "note": "—",
           "runPlan": "Easy 6K",
           "foodWeight": "Pudding ok tonight",
@@ -207,288 +197,11 @@
           "rest": false
         },
         {
-          "date": "2026-06-20",
-          "dayLabel": "Sat 20",
-          "note": "—",
-          "runPlan": "Long run 12K easy",
-          "foodWeight": "Pudding ok tonight. Fuel well after.",
-          "workouts": [
-            {
-              "key": "long_12k",
-              "name": "Long Run 12K easy",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        }
-      ]
-    },
-    {
-      "title": "Week 3",
-      "dates": "22–28 Jun",
-      "phase": "Taper · Pudding Race",
-      "weekNumber": 3,
-      "days": [
-        {
-          "date": "2026-06-22",
-          "dayLabel": "Mon 22",
-          "note": "💪 Strength WK4",
-          "runPlan": "Easy 3K (separate from strength)",
-          "foodWeight": "Weigh in. No pudding.",
-          "workouts": [
-            {
-              "key": "strength_wk4",
-              "name": "Strength — Taper (WK4)",
-              "kind": "strength"
-            },
-            {
-              "key": "easy_3k",
-              "name": "Easy 3K — run streak",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-06-23",
-          "dayLabel": "Tue 23",
-          "note": "BAC optional",
-          "runPlan": "6K tempo · BAC Team Relays 6pm optional",
-          "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": false
-        },
-        {
-          "date": "2026-06-24",
-          "dayLabel": "Wed 24",
-          "note": "Run club",
-          "runPlan": "Run club 6K easy",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_6k",
-              "name": "Run club — easy 6K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-06-25",
-          "dayLabel": "Thu 25",
-          "note": "—",
-          "runPlan": "Easy 8K",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "easy_8k",
-              "name": "Easy 8K — conversational",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-06-26",
-          "dayLabel": "Fri 26",
-          "note": "Padel 7pm",
-          "runPlan": "Easy 5K shakeout (before padel)",
-          "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "easy_5k",
-              "name": "Easy 5K — run streak",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-06-27",
-          "dayLabel": "Sat 27",
-          "note": "Carsington optional ⚠️",
-          "runPlan": "Rest — day before race",
-          "foodWeight": "Carb load sensibly",
-          "workouts": [],
-          "rest": true
-        },
-        {
-          "date": "2026-06-28",
-          "dayLabel": "Sun 28",
-          "note": "🏔️ BAKEWELL PUDDING RACE  10.4K fell",
-          "runPlan": "11am · Recreation Ground, Bakewell DE45 1BH",
-          "foodWeight": "Race fuel. Enjoy every pudding at the finish. 🍮",
-          "workouts": [],
-          "rest": false
-        }
-      ]
-    },
-    {
-      "title": "Week 4",
-      "dates": "29 Jun–5 Jul",
-      "phase": "Hold week",
-      "weekNumber": 4,
-      "days": [
-        {
-          "date": "2026-06-29",
-          "dayLabel": "Mon 29",
-          "note": "💪 Strength WK3",
-          "runPlan": "Easy 3K (separate from strength)",
-          "foodWeight": "Weigh in. No pudding.",
-          "workouts": [
-            {
-              "key": "strength_wk3",
-              "name": "Strength — Intensity (WK3)",
-              "kind": "strength"
-            },
-            {
-              "key": "easy_3k",
-              "name": "Easy 3K — run streak",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-06-30",
-          "dayLabel": "Tue 30",
-          "note": "BAC 6pm SUMMAT Bakewell — threshold",
-          "runPlan": "BAC threshold — 4×6min (10min warmup / 10min cooldown)",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "bac_threshold_4x6",
-              "name": "BAC — 4x6min threshold",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-01",
-          "dayLabel": "Wed 1 Jul",
-          "note": "Run club",
-          "runPlan": "Run club 8K easy",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-02",
-          "dayLabel": "Thu 2",
-          "note": "Rest",
-          "runPlan": null,
-          "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
-        },
-        {
-          "date": "2026-07-03",
-          "dayLabel": "Fri 3 Jul",
-          "note": "Rest — biked instead · progression skipped",
-          "runPlan": null,
-          "foodWeight": "Pudding ok tonight",
-          "workouts": [],
-          "rest": true
-        },
-        {
-          "date": "2026-07-04",
-          "dayLabel": "Sat 4 Jul",
-          "note": "Rest",
-          "runPlan": null,
-          "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
-        },
-        {
-          "date": "2026-07-05",
-          "dayLabel": "Sun 5 Jul",
-          "note": "Long run moved from Sat",
-          "runPlan": "Long run 12K easy",
-          "foodWeight": "Pudding ok tonight. Fuel well after.",
-          "workouts": [
-            {
-              "key": "long_12k",
-              "name": "Long Run 12K easy",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        }
-      ]
-    },
-    {
-      "title": "Week 5",
-      "dates": "6–12 Jul",
-      "phase": "Recovery",
-      "weekNumber": 5,
-      "days": [
-        {
-          "date": "2026-07-06",
-          "dayLabel": "Mon 6",
-          "note": "Rest — strength moved to Tue (recovery)",
-          "runPlan": null,
-          "foodWeight": "Weigh in. No pudding.",
-          "workouts": [],
-          "rest": true
-        },
-        {
-          "date": "2026-07-07",
-          "dayLabel": "Tue 7",
-          "note": "💪 Strength WK4 — light · moved from Mon",
-          "runPlan": "Dumbbell strength — 45 mins max. Light this week.",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk4",
-              "name": "Strength — Taper (WK4)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-08",
-          "dayLabel": "Wed 8",
-          "note": "Run club",
-          "runPlan": "Run club 8K easy",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-10",
-          "dayLabel": "Fri 10",
-          "note": "—",
-          "runPlan": "Easy 5K",
-          "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "easy_5k",
-              "name": "Easy 5K — run streak",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-11",
-          "dayLabel": "Sat 11",
+          "date": "2026-08-01",
+          "dayLabel": "Sat 1 Aug",
           "note": "—",
           "runPlan": "Long run 10K easy",
-          "foodWeight": "Pudding ok tonight",
+          "foodWeight": "Pudding ok tonight. Fuel well after.",
           "workouts": [
             {
               "key": "long_10k",
@@ -501,183 +214,26 @@
       ]
     },
     {
-      "title": "Week 6",
-      "dates": "13–19 Jul",
+      "title": "Week 3",
+      "dates": "2–8 Aug",
       "phase": "Build",
-      "weekNumber": 6,
+      "weekNumber": 3,
       "days": [
         {
-          "date": "2026-07-13",
-          "dayLabel": "Mon 13",
-          "note": "💪 Strength WK1",
-          "runPlan": "Strength only",
+          "date": "2026-08-02",
+          "dayLabel": "Sun 2",
+          "note": "—",
+          "runPlan": "Rest",
           "foodWeight": "Weigh in. No pudding.",
-          "workouts": [
-            {
-              "key": "strength_wk1",
-              "name": "Strength — Foundation (WK1)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
-          "date": "2026-07-14",
-          "dayLabel": "Tue 14",
-          "note": "BAC",
-          "runPlan": "BAC Intervals — 4×(500, 300, 200, 100) · 6pm",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "bac_intervals",
-              "name": "BAC — 4x500,300,200,100",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-15",
-          "dayLabel": "Wed 15",
-          "note": "Run club",
-          "runPlan": "Run club 8K easy",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-17",
-          "dayLabel": "Fri 17",
-          "note": "—",
-          "runPlan": "Progression 8K — 5K easy / 3K steady",
-          "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "progression_8k",
-              "name": "Progression 8K — 5K easy / 3K steady",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-18",
-          "dayLabel": "Sat 18",
-          "note": "—",
-          "runPlan": "Long run 12K easy",
-          "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "long_12k",
-              "name": "Long Run 12K easy",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        }
-      ]
-    },
-    {
-      "title": "Week 7",
-      "dates": "20–26 Jul",
-      "phase": "Build",
-      "weekNumber": 7,
-      "days": [
-        {
-          "date": "2026-07-20",
-          "dayLabel": "Mon 20",
-          "note": "💪 Strength WK2",
-          "runPlan": "Strength only",
-          "foodWeight": "Weigh in. No pudding.",
-          "workouts": [
-            {
-              "key": "strength_wk2",
-              "name": "Strength — Build (WK2)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-21",
-          "dayLabel": "Tue 21",
-          "note": "BAC",
-          "runPlan": "BAC Hill Reps — 6×800m · 6pm · Station Road",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "bac_hill_6x800",
-              "name": "BAC — 6x800m hill reps",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-22",
-          "dayLabel": "Wed 22",
-          "note": "Run club",
-          "runPlan": "Run club 8K easy",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-24",
-          "dayLabel": "Fri 24",
-          "note": "—",
-          "runPlan": "Progression 10K — 6K easy / 4K steady",
-          "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "progression_10k",
-              "name": "Progression 10K — 6K easy / 4K steady",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-25",
-          "dayLabel": "Sat 25",
-          "note": "—",
-          "runPlan": "Long run 14K easy",
-          "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "long_14k",
-              "name": "Long Run 14K easy",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        }
-      ]
-    },
-    {
-      "title": "Week 8",
-      "dates": "27 Jul–2 Aug",
-      "phase": "Peak",
-      "weekNumber": 8,
-      "days": [
-        {
-          "date": "2026-07-27",
-          "dayLabel": "Mon 27",
+          "date": "2026-08-03",
+          "dayLabel": "Mon 3",
           "note": "💪 Strength WK3",
           "runPlan": "Strength only",
-          "foodWeight": "Weigh in. No pudding.",
+          "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "strength_wk3",
@@ -688,98 +244,15 @@
           "rest": false
         },
         {
-          "date": "2026-07-28",
-          "dayLabel": "Tue 28",
-          "note": "—",
-          "runPlan": "6K Tempo — 10min easy / 15min tempo / 10min easy",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "tempo_6k",
-              "name": "6K Tempo — taper",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-29",
-          "dayLabel": "Wed 29",
-          "note": "Run club",
-          "runPlan": "Run club 8K easy",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-31",
-          "dayLabel": "Fri 31",
-          "note": "—",
-          "runPlan": "Progression 8K — 5K easy / 3K steady",
-          "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "progression_8k",
-              "name": "Progression 8K — 5K easy / 3K steady",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-08-01",
-          "dayLabel": "Sat 1 Aug",
-          "note": "🏔️ Peak long run",
-          "runPlan": "Long run 16K easy — peak long of the block",
-          "foodWeight": "Fuel well after.",
-          "workouts": [
-            {
-              "key": "long_16k",
-              "name": "Long Run 16K easy",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        }
-      ]
-    },
-    {
-      "title": "Week 9",
-      "dates": "3–9 Aug",
-      "phase": "Deload",
-      "weekNumber": 9,
-      "days": [
-        {
-          "date": "2026-08-03",
-          "dayLabel": "Mon 3",
-          "note": "💪 Strength WK4",
-          "runPlan": "Strength only — light",
-          "foodWeight": "Weigh in. No pudding.",
-          "workouts": [
-            {
-              "key": "strength_wk4",
-              "name": "Strength — Taper (WK4)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
-        },
-        {
           "date": "2026-08-04",
           "dayLabel": "Tue 4",
-          "note": "BAC",
-          "runPlan": "BAC Threshold — 4×6min · 6pm · SUMMAT",
+          "note": "Optional BAC — skip if tired",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "bac_threshold_4x6",
-              "name": "BAC — 4x6min threshold",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -788,28 +261,37 @@
         {
           "date": "2026-08-05",
           "dayLabel": "Wed 5",
-          "note": "Run club",
-          "runPlan": "Run club 8K easy",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Run club 6K easy",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
+              "key": "run_club_6k",
+              "name": "Run club — easy 6K",
               "kind": "run"
             }
           ],
           "rest": false
         },
         {
+          "date": "2026-08-06",
+          "dayLabel": "Thu 6",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
           "date": "2026-08-07",
           "dayLabel": "Fri 7",
           "note": "—",
-          "runPlan": "Easy 10K",
+          "runPlan": "Easy 6K",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "easy_10k",
-              "name": "Easy 10K",
+              "key": "easy_6k",
+              "name": "Easy 6K + 5 strides",
               "kind": "run"
             }
           ],
@@ -829,569 +311,538 @@
             }
           ],
           "rest": false
-        },
+        }
+      ]
+    },
+    {
+      "title": "Week 4",
+      "dates": "9–15 Aug",
+      "phase": "Build",
+      "weekNumber": 4,
+      "days": [
         {
           "date": "2026-08-09",
           "dayLabel": "Sun 9",
-          "note": "Block complete 🎉",
-          "runPlan": "Rest — block complete",
-          "foodWeight": "Weigh in. Celebrate.",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Weigh in. No pudding.",
           "workouts": [],
           "rest": true
+        },
+        {
+          "date": "2026-08-10",
+          "dayLabel": "Mon 10",
+          "note": "💪 Strength WK4",
+          "runPlan": "Strength only",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "strength_wk4",
+              "name": "Strength — Taper (WK4)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-11",
+          "dayLabel": "Tue 11",
+          "note": "Optional BAC — skip if tired",
+          "runPlan": "Easy 6K",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "easy_6k",
+              "name": "Easy 6K + 5 strides",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-12",
+          "dayLabel": "Wed 12",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Run club 8K easy",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "run_club_8k",
+              "name": "Run club — easy 8K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-13",
+          "dayLabel": "Thu 13",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-08-14",
+          "dayLabel": "Fri 14",
+          "note": "—",
+          "runPlan": "Easy 6K",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [
+            {
+              "key": "easy_6k",
+              "name": "Easy 6K + 5 strides",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-15",
+          "dayLabel": "Sat 15",
+          "note": "—",
+          "runPlan": "Long run 12K easy",
+          "foodWeight": "Pudding ok tonight. Fuel well after.",
+          "workouts": [
+            {
+              "key": "long_12k",
+              "name": "Long Run 12K easy",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 5",
+      "dates": "16–22 Aug",
+      "phase": "Build",
+      "weekNumber": 5,
+      "days": [
+        {
+          "date": "2026-08-16",
+          "dayLabel": "Sun 16",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Weigh in. No pudding.",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-08-17",
+          "dayLabel": "Mon 17",
+          "note": "💪 Strength WK1",
+          "runPlan": "Strength only",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "strength_wk1",
+              "name": "Strength — Foundation (WK1)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-18",
+          "dayLabel": "Tue 18",
+          "note": "Optional BAC — skip if tired",
+          "runPlan": "Easy 6K",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "easy_6k",
+              "name": "Easy 6K + 5 strides",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-19",
+          "dayLabel": "Wed 19",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Run club 8K easy",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "run_club_8k",
+              "name": "Run club — easy 8K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-20",
+          "dayLabel": "Thu 20",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-08-21",
+          "dayLabel": "Fri 21",
+          "note": "First quality of the rebuild",
+          "runPlan": "Progression 8K — 5K easy / 3K steady",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [
+            {
+              "key": "progression_8k",
+              "name": "Progression 8K — 5K easy / 3K steady",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-22",
+          "dayLabel": "Sat 22",
+          "note": "—",
+          "runPlan": "Long run 12K easy",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [
+            {
+              "key": "long_12k",
+              "name": "Long Run 12K easy",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 6",
+      "dates": "23–29 Aug",
+      "phase": "Build",
+      "weekNumber": 6,
+      "days": [
+        {
+          "date": "2026-08-23",
+          "dayLabel": "Sun 23",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Weigh in. No pudding.",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-08-24",
+          "dayLabel": "Mon 24",
+          "note": "💪 Strength WK2",
+          "runPlan": "Strength only",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "strength_wk2",
+              "name": "Strength — Build (WK2)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-25",
+          "dayLabel": "Tue 25",
+          "note": "Optional BAC — skip if tired",
+          "runPlan": "Easy 6K",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "easy_6k",
+              "name": "Easy 6K + 5 strides",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-26",
+          "dayLabel": "Wed 26",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Run club 8K easy",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "run_club_8k",
+              "name": "Run club — easy 8K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-27",
+          "dayLabel": "Thu 27",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-08-28",
+          "dayLabel": "Fri 28",
+          "note": "—",
+          "runPlan": "Progression 8K — 5K easy / 3K steady",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [
+            {
+              "key": "progression_8k",
+              "name": "Progression 8K — 5K easy / 3K steady",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-29",
+          "dayLabel": "Sat 29",
+          "note": "—",
+          "runPlan": "Long run 14K easy",
+          "foodWeight": "Pudding ok tonight. Fuel well after.",
+          "workouts": [
+            {
+              "key": "long_14k",
+              "name": "Long Run 14K easy",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 7",
+      "dates": "30 Aug–5 Sep",
+      "phase": "Peak",
+      "weekNumber": 7,
+      "days": [
+        {
+          "date": "2026-08-30",
+          "dayLabel": "Sun 30",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Weigh in. No pudding.",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-08-31",
+          "dayLabel": "Mon 31",
+          "note": "💪 Strength WK3",
+          "runPlan": "Strength only",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "strength_wk3",
+              "name": "Strength — Intensity (WK3)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-01",
+          "dayLabel": "Tue 1 Sep",
+          "note": "Optional BAC — skip if tired",
+          "runPlan": "Easy 6K",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "easy_6k",
+              "name": "Easy 6K + 5 strides",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-02",
+          "dayLabel": "Wed 2",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Run club 8K easy",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "run_club_8k",
+              "name": "Run club — easy 8K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-03",
+          "dayLabel": "Thu 3",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-09-04",
+          "dayLabel": "Fri 4",
+          "note": "—",
+          "runPlan": "Progression 10K — 6K easy / 4K steady",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [
+            {
+              "key": "progression_10k",
+              "name": "Progression 10K — 6K easy / 4K steady",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-05",
+          "dayLabel": "Sat 5",
+          "note": "Peak long of the rebuild",
+          "runPlan": "Long run 14K easy",
+          "foodWeight": "Pudding ok tonight. Fuel well after.",
+          "workouts": [
+            {
+              "key": "long_14k",
+              "name": "Long Run 14K easy",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 8",
+      "dates": "6–12 Sep",
+      "phase": "Deload",
+      "weekNumber": 8,
+      "days": [
+        {
+          "date": "2026-09-06",
+          "dayLabel": "Sun 6",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Weigh in. No pudding.",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-09-07",
+          "dayLabel": "Mon 7",
+          "note": "💪 Strength WK5",
+          "runPlan": "Strength only — light",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "strength_wk5",
+              "name": "Strength — Light (WK5)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-08",
+          "dayLabel": "Tue 8",
+          "note": "Optional BAC — skip if tired",
+          "runPlan": "Easy 5K",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "easy_5k",
+              "name": "Easy 5K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-09",
+          "dayLabel": "Wed 9",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Easy 6K",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "easy_6k",
+              "name": "Easy 6K + 5 strides",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-10",
+          "dayLabel": "Thu 10",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-09-11",
+          "dayLabel": "Fri 11",
+          "note": "—",
+          "runPlan": "Easy 5K",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [
+            {
+              "key": "easy_5k",
+              "name": "Easy 5K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-12",
+          "dayLabel": "Sat 12",
+          "note": "Block complete 🎉",
+          "runPlan": "Long run 10K easy",
+          "foodWeight": "Weigh in after. Celebrate.",
+          "workouts": [
+            {
+              "key": "long_10k",
+              "name": "Long Run 10K easy",
+              "kind": "run"
+            }
+          ],
+          "rest": false
         }
       ]
     }
   ],
   "googleCalendar": {
-    "hint": "All-day events; set your own run times (BAC 6pm, etc.).",
+    "hint": "All-day events; set your own run times. BAC Tue + PFTC Wed are optional — calendar shows the easy default.",
     "events": [
       {
-        "summary": "Easy 3K — run streak",
-        "description": "—\nFood: Weigh in. No pudding.\nPlan: Easy 3K",
+        "summary": "Easy 3K",
+        "description": "Shakeout — start here\nFood: Weigh in. No pudding.\nPlan: Easy 3K",
         "start": {
-          "date": "2026-06-07",
-          "endDate": "2026-06-08"
+          "date": "2026-07-19",
+          "endDate": "2026-07-20"
         },
         "end": {
-          "date": "2026-06-07",
-          "endDate": "2026-06-08"
+          "date": "2026-07-19",
+          "endDate": "2026-07-20"
         },
-        "date": "2026-06-07",
-        "dayLabel": "Sun 7",
+        "date": "2026-07-19",
+        "dayLabel": "Sun 19",
         "weekTitle": "Week 1",
         "workoutKey": "easy_3k",
-        "category": "run"
-      },
-      {
-        "summary": "Strength — Build (WK2)",
-        "description": "💪 Strength WK2\nFood: Box portions\nPlan: Easy 3K (separate from strength)",
-        "start": {
-          "date": "2026-06-08",
-          "endDate": "2026-06-09"
-        },
-        "end": {
-          "date": "2026-06-08",
-          "endDate": "2026-06-09"
-        },
-        "date": "2026-06-08",
-        "dayLabel": "Mon 8",
-        "weekTitle": "Week 1",
-        "workoutKey": "strength_wk2",
-        "category": "strength"
-      },
-      {
-        "summary": "Easy 3K — run streak",
-        "description": "💪 Strength WK2\nFood: Box portions\nPlan: Easy 3K (separate from strength)",
-        "start": {
-          "date": "2026-06-08",
-          "endDate": "2026-06-09"
-        },
-        "end": {
-          "date": "2026-06-08",
-          "endDate": "2026-06-09"
-        },
-        "date": "2026-06-08",
-        "dayLabel": "Mon 8",
-        "weekTitle": "Week 1",
-        "workoutKey": "easy_3k",
-        "category": "run"
-      },
-      {
-        "summary": "BAC — 6x800m hill reps",
-        "description": "BAC\nFood: Box portions\nPlan: BAC Hill Reps 6×800m · 6pm · Station Road",
-        "start": {
-          "date": "2026-06-09",
-          "endDate": "2026-06-10"
-        },
-        "end": {
-          "date": "2026-06-09",
-          "endDate": "2026-06-10"
-        },
-        "date": "2026-06-09",
-        "dayLabel": "Tue 9",
-        "weekTitle": "Week 1",
-        "workoutKey": "bac_hill_6x800",
-        "category": "run"
-      },
-      {
-        "summary": "Run club — easy 8K",
-        "description": "Run club\nFood: Box portions\nPlan: Run club 8K easy + strides",
-        "start": {
-          "date": "2026-06-10",
-          "endDate": "2026-06-11"
-        },
-        "end": {
-          "date": "2026-06-10",
-          "endDate": "2026-06-11"
-        },
-        "date": "2026-06-10",
-        "dayLabel": "Wed 10",
-        "weekTitle": "Week 1",
-        "workoutKey": "run_club_8k",
-        "category": "run"
-      },
-      {
-        "summary": "Progression 8K — 5K easy / 3K steady",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Progression 8K (5K easy / 3K steady)",
-        "start": {
-          "date": "2026-06-12",
-          "endDate": "2026-06-13"
-        },
-        "end": {
-          "date": "2026-06-12",
-          "endDate": "2026-06-13"
-        },
-        "date": "2026-06-12",
-        "dayLabel": "Fri 12",
-        "weekTitle": "Week 1",
-        "workoutKey": "progression_8k",
-        "category": "run"
-      },
-      {
-        "summary": "Long Run 10K easy",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Long run 10K easy",
-        "start": {
-          "date": "2026-06-13",
-          "endDate": "2026-06-14"
-        },
-        "end": {
-          "date": "2026-06-13",
-          "endDate": "2026-06-14"
-        },
-        "date": "2026-06-13",
-        "dayLabel": "Sat 13",
-        "weekTitle": "Week 1",
-        "workoutKey": "long_10k",
-        "category": "run"
-      },
-      {
-        "summary": "Strength — Intensity (WK3)",
-        "description": "💪 Strength WK3\nFood: Box portions\nPlan: Easy 3K (separate from strength)",
-        "start": {
-          "date": "2026-06-15",
-          "endDate": "2026-06-16"
-        },
-        "end": {
-          "date": "2026-06-15",
-          "endDate": "2026-06-16"
-        },
-        "date": "2026-06-15",
-        "dayLabel": "Mon 15",
-        "weekTitle": "Week 2",
-        "workoutKey": "strength_wk3",
-        "category": "strength"
-      },
-      {
-        "summary": "Easy 3K — run streak",
-        "description": "💪 Strength WK3\nFood: Box portions\nPlan: Easy 3K (separate from strength)",
-        "start": {
-          "date": "2026-06-15",
-          "endDate": "2026-06-16"
-        },
-        "end": {
-          "date": "2026-06-15",
-          "endDate": "2026-06-16"
-        },
-        "date": "2026-06-15",
-        "dayLabel": "Mon 15",
-        "weekTitle": "Week 2",
-        "workoutKey": "easy_3k",
-        "category": "run"
-      },
-      {
-        "summary": "BAC — 4x6min threshold",
-        "description": "BAC\nFood: Box portions\nPlan: BAC Threshold 4×6min · 6pm · Agri Centre",
-        "start": {
-          "date": "2026-06-16",
-          "endDate": "2026-06-17"
-        },
-        "end": {
-          "date": "2026-06-16",
-          "endDate": "2026-06-17"
-        },
-        "date": "2026-06-16",
-        "dayLabel": "Tue 16",
-        "weekTitle": "Week 2",
-        "workoutKey": "bac_threshold_4x6",
-        "category": "run"
-      },
-      {
-        "summary": "Run club — easy 8K",
-        "description": "Run club\nFood: Box portions\nPlan: Run club 8K easy + strides",
-        "start": {
-          "date": "2026-06-17",
-          "endDate": "2026-06-18"
-        },
-        "end": {
-          "date": "2026-06-17",
-          "endDate": "2026-06-18"
-        },
-        "date": "2026-06-17",
-        "dayLabel": "Wed 17",
-        "weekTitle": "Week 2",
-        "workoutKey": "run_club_8k",
-        "category": "run"
-      },
-      {
-        "summary": "Easy 6K + 5 strides",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 6K",
-        "start": {
-          "date": "2026-06-19",
-          "endDate": "2026-06-20"
-        },
-        "end": {
-          "date": "2026-06-19",
-          "endDate": "2026-06-20"
-        },
-        "date": "2026-06-19",
-        "dayLabel": "Fri 19",
-        "weekTitle": "Week 2",
-        "workoutKey": "easy_6k",
-        "category": "run"
-      },
-      {
-        "summary": "Long Run 12K easy",
-        "description": "—\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 12K easy",
-        "start": {
-          "date": "2026-06-20",
-          "endDate": "2026-06-21"
-        },
-        "end": {
-          "date": "2026-06-20",
-          "endDate": "2026-06-21"
-        },
-        "date": "2026-06-20",
-        "dayLabel": "Sat 20",
-        "weekTitle": "Week 2",
-        "workoutKey": "long_12k",
-        "category": "run"
-      },
-      {
-        "summary": "Strength — Taper (WK4)",
-        "description": "💪 Strength WK4\nFood: Weigh in. No pudding.\nPlan: Easy 3K (separate from strength)",
-        "start": {
-          "date": "2026-06-22",
-          "endDate": "2026-06-23"
-        },
-        "end": {
-          "date": "2026-06-22",
-          "endDate": "2026-06-23"
-        },
-        "date": "2026-06-22",
-        "dayLabel": "Mon 22",
-        "weekTitle": "Week 3",
-        "workoutKey": "strength_wk4",
-        "category": "strength"
-      },
-      {
-        "summary": "Easy 3K — run streak",
-        "description": "💪 Strength WK4\nFood: Weigh in. No pudding.\nPlan: Easy 3K (separate from strength)",
-        "start": {
-          "date": "2026-06-22",
-          "endDate": "2026-06-23"
-        },
-        "end": {
-          "date": "2026-06-22",
-          "endDate": "2026-06-23"
-        },
-        "date": "2026-06-22",
-        "dayLabel": "Mon 22",
-        "weekTitle": "Week 3",
-        "workoutKey": "easy_3k",
-        "category": "run"
-      },
-      {
-        "summary": "Run club — easy 6K",
-        "description": "Run club\nFood: Box portions\nPlan: Run club 6K easy",
-        "start": {
-          "date": "2026-06-24",
-          "endDate": "2026-06-25"
-        },
-        "end": {
-          "date": "2026-06-24",
-          "endDate": "2026-06-25"
-        },
-        "date": "2026-06-24",
-        "dayLabel": "Wed 24",
-        "weekTitle": "Week 3",
-        "workoutKey": "run_club_6k",
-        "category": "run"
-      },
-      {
-        "summary": "Easy 8K — conversational",
-        "description": "—\nFood: Box portions\nPlan: Easy 8K",
-        "start": {
-          "date": "2026-06-25",
-          "endDate": "2026-06-26"
-        },
-        "end": {
-          "date": "2026-06-25",
-          "endDate": "2026-06-26"
-        },
-        "date": "2026-06-25",
-        "dayLabel": "Thu 25",
-        "weekTitle": "Week 3",
-        "workoutKey": "easy_8k",
-        "category": "run"
-      },
-      {
-        "summary": "Easy 5K — run streak",
-        "description": "Padel 7pm\nFood: Pudding ok tonight\nPlan: Easy 5K shakeout (before padel)",
-        "start": {
-          "date": "2026-06-26",
-          "endDate": "2026-06-27"
-        },
-        "end": {
-          "date": "2026-06-26",
-          "endDate": "2026-06-27"
-        },
-        "date": "2026-06-26",
-        "dayLabel": "Fri 26",
-        "weekTitle": "Week 3",
-        "workoutKey": "easy_5k",
-        "category": "run"
-      },
-      {
-        "summary": "Strength — Intensity (WK3)",
-        "description": "💪 Strength WK3\nFood: Weigh in. No pudding.\nPlan: Easy 3K (separate from strength)",
-        "start": {
-          "date": "2026-06-29",
-          "endDate": "2026-06-30"
-        },
-        "end": {
-          "date": "2026-06-29",
-          "endDate": "2026-06-30"
-        },
-        "date": "2026-06-29",
-        "dayLabel": "Mon 29",
-        "weekTitle": "Week 4",
-        "workoutKey": "strength_wk3",
-        "category": "strength"
-      },
-      {
-        "summary": "Easy 3K — run streak",
-        "description": "💪 Strength WK3\nFood: Weigh in. No pudding.\nPlan: Easy 3K (separate from strength)",
-        "start": {
-          "date": "2026-06-29",
-          "endDate": "2026-06-30"
-        },
-        "end": {
-          "date": "2026-06-29",
-          "endDate": "2026-06-30"
-        },
-        "date": "2026-06-29",
-        "dayLabel": "Mon 29",
-        "weekTitle": "Week 4",
-        "workoutKey": "easy_3k",
-        "category": "run"
-      },
-      {
-        "summary": "BAC — 4x6min threshold",
-        "description": "BAC 6pm SUMMAT Bakewell — threshold\nFood: Box portions\nPlan: BAC threshold — 4×6min (10min warmup / 10min cooldown)",
-        "start": {
-          "date": "2026-06-30",
-          "endDate": "2026-07-01"
-        },
-        "end": {
-          "date": "2026-06-30",
-          "endDate": "2026-07-01"
-        },
-        "date": "2026-06-30",
-        "dayLabel": "Tue 30",
-        "weekTitle": "Week 4",
-        "workoutKey": "bac_threshold_4x6",
-        "category": "run"
-      },
-      {
-        "summary": "Run club — easy 8K",
-        "description": "Run club\nFood: Box portions\nPlan: Run club 8K easy",
-        "start": {
-          "date": "2026-07-01",
-          "endDate": "2026-07-02"
-        },
-        "end": {
-          "date": "2026-07-01",
-          "endDate": "2026-07-02"
-        },
-        "date": "2026-07-01",
-        "dayLabel": "Wed 1 Jul",
-        "weekTitle": "Week 4",
-        "workoutKey": "run_club_8k",
-        "category": "run"
-      },
-      {
-        "summary": "Long Run 12K easy",
-        "description": "Long run moved from Sat\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 12K easy",
-        "start": {
-          "date": "2026-07-05",
-          "endDate": "2026-07-06"
-        },
-        "end": {
-          "date": "2026-07-05",
-          "endDate": "2026-07-06"
-        },
-        "date": "2026-07-05",
-        "dayLabel": "Sun 5 Jul",
-        "weekTitle": "Week 4",
-        "workoutKey": "long_12k",
-        "category": "run"
-      },
-      {
-        "summary": "Strength — Taper (WK4)",
-        "description": "💪 Strength WK4 — light · moved from Mon\nFood: Box portions\nPlan: Dumbbell strength — 45 mins max. Light this week.",
-        "start": {
-          "date": "2026-07-07",
-          "endDate": "2026-07-08"
-        },
-        "end": {
-          "date": "2026-07-07",
-          "endDate": "2026-07-08"
-        },
-        "date": "2026-07-07",
-        "dayLabel": "Tue 7",
-        "weekTitle": "Week 5",
-        "workoutKey": "strength_wk4",
-        "category": "strength"
-      },
-      {
-        "summary": "Run club — easy 8K",
-        "description": "Run club\nFood: Box portions\nPlan: Run club 8K easy",
-        "start": {
-          "date": "2026-07-08",
-          "endDate": "2026-07-09"
-        },
-        "end": {
-          "date": "2026-07-08",
-          "endDate": "2026-07-09"
-        },
-        "date": "2026-07-08",
-        "dayLabel": "Wed 8",
-        "weekTitle": "Week 5",
-        "workoutKey": "run_club_8k",
-        "category": "run"
-      },
-      {
-        "summary": "Easy 5K — run streak",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 5K",
-        "start": {
-          "date": "2026-07-10",
-          "endDate": "2026-07-11"
-        },
-        "end": {
-          "date": "2026-07-10",
-          "endDate": "2026-07-11"
-        },
-        "date": "2026-07-10",
-        "dayLabel": "Fri 10",
-        "weekTitle": "Week 5",
-        "workoutKey": "easy_5k",
-        "category": "run"
-      },
-      {
-        "summary": "Long Run 10K easy",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Long run 10K easy",
-        "start": {
-          "date": "2026-07-11",
-          "endDate": "2026-07-12"
-        },
-        "end": {
-          "date": "2026-07-11",
-          "endDate": "2026-07-12"
-        },
-        "date": "2026-07-11",
-        "dayLabel": "Sat 11",
-        "weekTitle": "Week 5",
-        "workoutKey": "long_10k",
         "category": "run"
       },
       {
         "summary": "Strength — Foundation (WK1)",
-        "description": "💪 Strength WK1\nFood: Weigh in. No pudding.\nPlan: Strength only",
-        "start": {
-          "date": "2026-07-13",
-          "endDate": "2026-07-14"
-        },
-        "end": {
-          "date": "2026-07-13",
-          "endDate": "2026-07-14"
-        },
-        "date": "2026-07-13",
-        "dayLabel": "Mon 13",
-        "weekTitle": "Week 6",
-        "workoutKey": "strength_wk1",
-        "category": "strength"
-      },
-      {
-        "summary": "BAC — 4x500,300,200,100",
-        "description": "BAC\nFood: Box portions\nPlan: BAC Intervals — 4×(500, 300, 200, 100) · 6pm",
-        "start": {
-          "date": "2026-07-14",
-          "endDate": "2026-07-15"
-        },
-        "end": {
-          "date": "2026-07-14",
-          "endDate": "2026-07-15"
-        },
-        "date": "2026-07-14",
-        "dayLabel": "Tue 14",
-        "weekTitle": "Week 6",
-        "workoutKey": "bac_intervals",
-        "category": "run"
-      },
-      {
-        "summary": "Run club — easy 8K",
-        "description": "Run club\nFood: Box portions\nPlan: Run club 8K easy",
-        "start": {
-          "date": "2026-07-15",
-          "endDate": "2026-07-16"
-        },
-        "end": {
-          "date": "2026-07-15",
-          "endDate": "2026-07-16"
-        },
-        "date": "2026-07-15",
-        "dayLabel": "Wed 15",
-        "weekTitle": "Week 6",
-        "workoutKey": "run_club_8k",
-        "category": "run"
-      },
-      {
-        "summary": "Progression 8K — 5K easy / 3K steady",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Progression 8K — 5K easy / 3K steady",
-        "start": {
-          "date": "2026-07-17",
-          "endDate": "2026-07-18"
-        },
-        "end": {
-          "date": "2026-07-17",
-          "endDate": "2026-07-18"
-        },
-        "date": "2026-07-17",
-        "dayLabel": "Fri 17",
-        "weekTitle": "Week 6",
-        "workoutKey": "progression_8k",
-        "category": "run"
-      },
-      {
-        "summary": "Long Run 12K easy",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Long run 12K easy",
-        "start": {
-          "date": "2026-07-18",
-          "endDate": "2026-07-19"
-        },
-        "end": {
-          "date": "2026-07-18",
-          "endDate": "2026-07-19"
-        },
-        "date": "2026-07-18",
-        "dayLabel": "Sat 18",
-        "weekTitle": "Week 6",
-        "workoutKey": "long_12k",
-        "category": "run"
-      },
-      {
-        "summary": "Strength — Build (WK2)",
-        "description": "💪 Strength WK2\nFood: Weigh in. No pudding.\nPlan: Strength only",
+        "description": "💪 Strength WK1\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-07-20",
           "endDate": "2026-07-21"
@@ -1402,13 +853,13 @@
         },
         "date": "2026-07-20",
         "dayLabel": "Mon 20",
-        "weekTitle": "Week 7",
-        "workoutKey": "strength_wk2",
+        "weekTitle": "Week 1",
+        "workoutKey": "strength_wk1",
         "category": "strength"
       },
       {
-        "summary": "BAC — 6x800m hill reps",
-        "description": "BAC\nFood: Box portions\nPlan: BAC Hill Reps — 6×800m · 6pm · Station Road",
+        "summary": "Easy 4K · BAC optional",
+        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 4K",
         "start": {
           "date": "2026-07-21",
           "endDate": "2026-07-22"
@@ -1419,13 +870,13 @@
         },
         "date": "2026-07-21",
         "dayLabel": "Tue 21",
-        "weekTitle": "Week 7",
-        "workoutKey": "bac_hill_6x800",
+        "weekTitle": "Week 1",
+        "workoutKey": "easy_4k",
         "category": "run"
       },
       {
-        "summary": "Run club — easy 8K",
-        "description": "Run club\nFood: Box portions\nPlan: Run club 8K easy",
+        "summary": "Easy 5K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-22",
           "endDate": "2026-07-23"
@@ -1436,13 +887,13 @@
         },
         "date": "2026-07-22",
         "dayLabel": "Wed 22",
-        "weekTitle": "Week 7",
-        "workoutKey": "run_club_8k",
+        "weekTitle": "Week 1",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Progression 10K — 6K easy / 4K steady",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Progression 10K — 6K easy / 4K steady",
+        "summary": "Easy 5K",
+        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-24",
           "endDate": "2026-07-25"
@@ -1453,13 +904,13 @@
         },
         "date": "2026-07-24",
         "dayLabel": "Fri 24",
-        "weekTitle": "Week 7",
-        "workoutKey": "progression_10k",
+        "weekTitle": "Week 1",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Long Run 14K easy",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Long run 14K easy",
+        "summary": "Easy 8K — conversational",
+        "description": "First long of the rebuild\nFood: Pudding ok tonight. Fuel well after.\nPlan: Easy 8K",
         "start": {
           "date": "2026-07-25",
           "endDate": "2026-07-26"
@@ -1470,13 +921,13 @@
         },
         "date": "2026-07-25",
         "dayLabel": "Sat 25",
-        "weekTitle": "Week 7",
-        "workoutKey": "long_14k",
+        "weekTitle": "Week 1",
+        "workoutKey": "easy_8k",
         "category": "run"
       },
       {
-        "summary": "Strength — Intensity (WK3)",
-        "description": "💪 Strength WK3\nFood: Weigh in. No pudding.\nPlan: Strength only",
+        "summary": "Strength — Build (WK2)",
+        "description": "💪 Strength WK2\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -1487,13 +938,13 @@
         },
         "date": "2026-07-27",
         "dayLabel": "Mon 27",
-        "weekTitle": "Week 8",
-        "workoutKey": "strength_wk3",
+        "weekTitle": "Week 2",
+        "workoutKey": "strength_wk2",
         "category": "strength"
       },
       {
-        "summary": "6K Tempo — taper",
-        "description": "—\nFood: Box portions\nPlan: 6K Tempo — 10min easy / 15min tempo / 10min easy",
+        "summary": "Easy 5K · BAC optional",
+        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-28",
           "endDate": "2026-07-29"
@@ -1504,13 +955,13 @@
         },
         "date": "2026-07-28",
         "dayLabel": "Tue 28",
-        "weekTitle": "Week 8",
-        "workoutKey": "tempo_6k",
+        "weekTitle": "Week 2",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Run club — easy 8K",
-        "description": "Run club\nFood: Box portions\nPlan: Run club 8K easy",
+        "summary": "Easy 5K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-29",
           "endDate": "2026-07-30"
@@ -1521,13 +972,13 @@
         },
         "date": "2026-07-29",
         "dayLabel": "Wed 29",
-        "weekTitle": "Week 8",
-        "workoutKey": "run_club_8k",
+        "weekTitle": "Week 2",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Progression 8K — 5K easy / 3K steady",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Progression 8K — 5K easy / 3K steady",
+        "summary": "Easy 6K + 5 strides",
+        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 6K",
         "start": {
           "date": "2026-07-31",
           "endDate": "2026-08-01"
@@ -1538,13 +989,13 @@
         },
         "date": "2026-07-31",
         "dayLabel": "Fri 31",
-        "weekTitle": "Week 8",
-        "workoutKey": "progression_8k",
+        "weekTitle": "Week 2",
+        "workoutKey": "easy_6k",
         "category": "run"
       },
       {
-        "summary": "Long Run 16K easy",
-        "description": "🏔️ Peak long run\nFood: Fuel well after.\nPlan: Long run 16K easy — peak long of the block",
+        "summary": "Long Run 10K easy",
+        "description": "—\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 10K easy",
         "start": {
           "date": "2026-08-01",
           "endDate": "2026-08-02"
@@ -1555,13 +1006,13 @@
         },
         "date": "2026-08-01",
         "dayLabel": "Sat 1 Aug",
-        "weekTitle": "Week 8",
-        "workoutKey": "long_16k",
+        "weekTitle": "Week 2",
+        "workoutKey": "long_10k",
         "category": "run"
       },
       {
-        "summary": "Strength — Taper (WK4)",
-        "description": "💪 Strength WK4\nFood: Weigh in. No pudding.\nPlan: Strength only — light",
+        "summary": "Strength — Intensity (WK3)",
+        "description": "💪 Strength WK3\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-08-03",
           "endDate": "2026-08-04"
@@ -1572,13 +1023,13 @@
         },
         "date": "2026-08-03",
         "dayLabel": "Mon 3",
-        "weekTitle": "Week 9",
-        "workoutKey": "strength_wk4",
+        "weekTitle": "Week 3",
+        "workoutKey": "strength_wk3",
         "category": "strength"
       },
       {
-        "summary": "BAC — 4x6min threshold",
-        "description": "BAC\nFood: Box portions\nPlan: BAC Threshold — 4×6min · 6pm · SUMMAT",
+        "summary": "Easy 5K · BAC optional",
+        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-08-04",
           "endDate": "2026-08-05"
@@ -1589,13 +1040,13 @@
         },
         "date": "2026-08-04",
         "dayLabel": "Tue 4",
-        "weekTitle": "Week 9",
-        "workoutKey": "bac_threshold_4x6",
+        "weekTitle": "Week 3",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Run club — easy 8K",
-        "description": "Run club\nFood: Box portions\nPlan: Run club 8K easy",
+        "summary": "Run club — easy 6K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 6K easy",
         "start": {
           "date": "2026-08-05",
           "endDate": "2026-08-06"
@@ -1606,13 +1057,13 @@
         },
         "date": "2026-08-05",
         "dayLabel": "Wed 5",
-        "weekTitle": "Week 9",
-        "workoutKey": "run_club_8k",
+        "weekTitle": "Week 3",
+        "workoutKey": "run_club_6k",
         "category": "run"
       },
       {
-        "summary": "Easy 10K",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 10K",
+        "summary": "Easy 6K + 5 strides",
+        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 6K",
         "start": {
           "date": "2026-08-07",
           "endDate": "2026-08-08"
@@ -1623,8 +1074,8 @@
         },
         "date": "2026-08-07",
         "dayLabel": "Fri 7",
-        "weekTitle": "Week 9",
-        "workoutKey": "easy_10k",
+        "weekTitle": "Week 3",
+        "workoutKey": "easy_6k",
         "category": "run"
       },
       {
@@ -1640,7 +1091,432 @@
         },
         "date": "2026-08-08",
         "dayLabel": "Sat 8",
-        "weekTitle": "Week 9",
+        "weekTitle": "Week 3",
+        "workoutKey": "long_10k",
+        "category": "run"
+      },
+      {
+        "summary": "Strength — Taper (WK4)",
+        "description": "💪 Strength WK4\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-08-10",
+          "endDate": "2026-08-11"
+        },
+        "end": {
+          "date": "2026-08-10",
+          "endDate": "2026-08-11"
+        },
+        "date": "2026-08-10",
+        "dayLabel": "Mon 10",
+        "weekTitle": "Week 4",
+        "workoutKey": "strength_wk4",
+        "category": "strength"
+      },
+      {
+        "summary": "Easy 6K + 5 strides · BAC optional",
+        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 6K",
+        "start": {
+          "date": "2026-08-11",
+          "endDate": "2026-08-12"
+        },
+        "end": {
+          "date": "2026-08-11",
+          "endDate": "2026-08-12"
+        },
+        "date": "2026-08-11",
+        "dayLabel": "Tue 11",
+        "weekTitle": "Week 4",
+        "workoutKey": "easy_6k",
+        "category": "run"
+      },
+      {
+        "summary": "Run club — easy 8K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "start": {
+          "date": "2026-08-12",
+          "endDate": "2026-08-13"
+        },
+        "end": {
+          "date": "2026-08-12",
+          "endDate": "2026-08-13"
+        },
+        "date": "2026-08-12",
+        "dayLabel": "Wed 12",
+        "weekTitle": "Week 4",
+        "workoutKey": "run_club_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Easy 6K + 5 strides",
+        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 6K",
+        "start": {
+          "date": "2026-08-14",
+          "endDate": "2026-08-15"
+        },
+        "end": {
+          "date": "2026-08-14",
+          "endDate": "2026-08-15"
+        },
+        "date": "2026-08-14",
+        "dayLabel": "Fri 14",
+        "weekTitle": "Week 4",
+        "workoutKey": "easy_6k",
+        "category": "run"
+      },
+      {
+        "summary": "Long Run 12K easy",
+        "description": "—\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 12K easy",
+        "start": {
+          "date": "2026-08-15",
+          "endDate": "2026-08-16"
+        },
+        "end": {
+          "date": "2026-08-15",
+          "endDate": "2026-08-16"
+        },
+        "date": "2026-08-15",
+        "dayLabel": "Sat 15",
+        "weekTitle": "Week 4",
+        "workoutKey": "long_12k",
+        "category": "run"
+      },
+      {
+        "summary": "Strength — Foundation (WK1)",
+        "description": "💪 Strength WK1\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-08-17",
+          "endDate": "2026-08-18"
+        },
+        "end": {
+          "date": "2026-08-17",
+          "endDate": "2026-08-18"
+        },
+        "date": "2026-08-17",
+        "dayLabel": "Mon 17",
+        "weekTitle": "Week 5",
+        "workoutKey": "strength_wk1",
+        "category": "strength"
+      },
+      {
+        "summary": "Easy 6K + 5 strides · BAC optional",
+        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 6K",
+        "start": {
+          "date": "2026-08-18",
+          "endDate": "2026-08-19"
+        },
+        "end": {
+          "date": "2026-08-18",
+          "endDate": "2026-08-19"
+        },
+        "date": "2026-08-18",
+        "dayLabel": "Tue 18",
+        "weekTitle": "Week 5",
+        "workoutKey": "easy_6k",
+        "category": "run"
+      },
+      {
+        "summary": "Run club — easy 8K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "start": {
+          "date": "2026-08-19",
+          "endDate": "2026-08-20"
+        },
+        "end": {
+          "date": "2026-08-19",
+          "endDate": "2026-08-20"
+        },
+        "date": "2026-08-19",
+        "dayLabel": "Wed 19",
+        "weekTitle": "Week 5",
+        "workoutKey": "run_club_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Progression 8K — 5K easy / 3K steady",
+        "description": "First quality of the rebuild\nFood: Pudding ok tonight\nPlan: Progression 8K — 5K easy / 3K steady",
+        "start": {
+          "date": "2026-08-21",
+          "endDate": "2026-08-22"
+        },
+        "end": {
+          "date": "2026-08-21",
+          "endDate": "2026-08-22"
+        },
+        "date": "2026-08-21",
+        "dayLabel": "Fri 21",
+        "weekTitle": "Week 5",
+        "workoutKey": "progression_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Long Run 12K easy",
+        "description": "—\nFood: Pudding ok tonight\nPlan: Long run 12K easy",
+        "start": {
+          "date": "2026-08-22",
+          "endDate": "2026-08-23"
+        },
+        "end": {
+          "date": "2026-08-22",
+          "endDate": "2026-08-23"
+        },
+        "date": "2026-08-22",
+        "dayLabel": "Sat 22",
+        "weekTitle": "Week 5",
+        "workoutKey": "long_12k",
+        "category": "run"
+      },
+      {
+        "summary": "Strength — Build (WK2)",
+        "description": "💪 Strength WK2\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-08-24",
+          "endDate": "2026-08-25"
+        },
+        "end": {
+          "date": "2026-08-24",
+          "endDate": "2026-08-25"
+        },
+        "date": "2026-08-24",
+        "dayLabel": "Mon 24",
+        "weekTitle": "Week 6",
+        "workoutKey": "strength_wk2",
+        "category": "strength"
+      },
+      {
+        "summary": "Easy 6K + 5 strides · BAC optional",
+        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 6K",
+        "start": {
+          "date": "2026-08-25",
+          "endDate": "2026-08-26"
+        },
+        "end": {
+          "date": "2026-08-25",
+          "endDate": "2026-08-26"
+        },
+        "date": "2026-08-25",
+        "dayLabel": "Tue 25",
+        "weekTitle": "Week 6",
+        "workoutKey": "easy_6k",
+        "category": "run"
+      },
+      {
+        "summary": "Run club — easy 8K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "start": {
+          "date": "2026-08-26",
+          "endDate": "2026-08-27"
+        },
+        "end": {
+          "date": "2026-08-26",
+          "endDate": "2026-08-27"
+        },
+        "date": "2026-08-26",
+        "dayLabel": "Wed 26",
+        "weekTitle": "Week 6",
+        "workoutKey": "run_club_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Progression 8K — 5K easy / 3K steady",
+        "description": "—\nFood: Pudding ok tonight\nPlan: Progression 8K — 5K easy / 3K steady",
+        "start": {
+          "date": "2026-08-28",
+          "endDate": "2026-08-29"
+        },
+        "end": {
+          "date": "2026-08-28",
+          "endDate": "2026-08-29"
+        },
+        "date": "2026-08-28",
+        "dayLabel": "Fri 28",
+        "weekTitle": "Week 6",
+        "workoutKey": "progression_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Long Run 14K easy",
+        "description": "—\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 14K easy",
+        "start": {
+          "date": "2026-08-29",
+          "endDate": "2026-08-30"
+        },
+        "end": {
+          "date": "2026-08-29",
+          "endDate": "2026-08-30"
+        },
+        "date": "2026-08-29",
+        "dayLabel": "Sat 29",
+        "weekTitle": "Week 6",
+        "workoutKey": "long_14k",
+        "category": "run"
+      },
+      {
+        "summary": "Strength — Intensity (WK3)",
+        "description": "💪 Strength WK3\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-08-31",
+          "endDate": "2026-09-01"
+        },
+        "end": {
+          "date": "2026-08-31",
+          "endDate": "2026-09-01"
+        },
+        "date": "2026-08-31",
+        "dayLabel": "Mon 31",
+        "weekTitle": "Week 7",
+        "workoutKey": "strength_wk3",
+        "category": "strength"
+      },
+      {
+        "summary": "Easy 6K + 5 strides · BAC optional",
+        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 6K",
+        "start": {
+          "date": "2026-09-01",
+          "endDate": "2026-09-02"
+        },
+        "end": {
+          "date": "2026-09-01",
+          "endDate": "2026-09-02"
+        },
+        "date": "2026-09-01",
+        "dayLabel": "Tue 1 Sep",
+        "weekTitle": "Week 7",
+        "workoutKey": "easy_6k",
+        "category": "run"
+      },
+      {
+        "summary": "Run club — easy 8K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "start": {
+          "date": "2026-09-02",
+          "endDate": "2026-09-03"
+        },
+        "end": {
+          "date": "2026-09-02",
+          "endDate": "2026-09-03"
+        },
+        "date": "2026-09-02",
+        "dayLabel": "Wed 2",
+        "weekTitle": "Week 7",
+        "workoutKey": "run_club_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Progression 10K — 6K easy / 4K steady",
+        "description": "—\nFood: Pudding ok tonight\nPlan: Progression 10K — 6K easy / 4K steady",
+        "start": {
+          "date": "2026-09-04",
+          "endDate": "2026-09-05"
+        },
+        "end": {
+          "date": "2026-09-04",
+          "endDate": "2026-09-05"
+        },
+        "date": "2026-09-04",
+        "dayLabel": "Fri 4",
+        "weekTitle": "Week 7",
+        "workoutKey": "progression_10k",
+        "category": "run"
+      },
+      {
+        "summary": "Long Run 14K easy",
+        "description": "Peak long of the rebuild\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 14K easy",
+        "start": {
+          "date": "2026-09-05",
+          "endDate": "2026-09-06"
+        },
+        "end": {
+          "date": "2026-09-05",
+          "endDate": "2026-09-06"
+        },
+        "date": "2026-09-05",
+        "dayLabel": "Sat 5",
+        "weekTitle": "Week 7",
+        "workoutKey": "long_14k",
+        "category": "run"
+      },
+      {
+        "summary": "Strength — Light (WK5)",
+        "description": "💪 Strength WK5\nFood: Box portions\nPlan: Strength only — light",
+        "start": {
+          "date": "2026-09-07",
+          "endDate": "2026-09-08"
+        },
+        "end": {
+          "date": "2026-09-07",
+          "endDate": "2026-09-08"
+        },
+        "date": "2026-09-07",
+        "dayLabel": "Mon 7",
+        "weekTitle": "Week 8",
+        "workoutKey": "strength_wk5",
+        "category": "strength"
+      },
+      {
+        "summary": "Easy 5K · BAC optional",
+        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
+        "start": {
+          "date": "2026-09-08",
+          "endDate": "2026-09-09"
+        },
+        "end": {
+          "date": "2026-09-08",
+          "endDate": "2026-09-09"
+        },
+        "date": "2026-09-08",
+        "dayLabel": "Tue 8",
+        "weekTitle": "Week 8",
+        "workoutKey": "easy_5k",
+        "category": "run"
+      },
+      {
+        "summary": "Easy 6K + 5 strides · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Easy 6K",
+        "start": {
+          "date": "2026-09-09",
+          "endDate": "2026-09-10"
+        },
+        "end": {
+          "date": "2026-09-09",
+          "endDate": "2026-09-10"
+        },
+        "date": "2026-09-09",
+        "dayLabel": "Wed 9",
+        "weekTitle": "Week 8",
+        "workoutKey": "easy_6k",
+        "category": "run"
+      },
+      {
+        "summary": "Easy 5K",
+        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 5K",
+        "start": {
+          "date": "2026-09-11",
+          "endDate": "2026-09-12"
+        },
+        "end": {
+          "date": "2026-09-11",
+          "endDate": "2026-09-12"
+        },
+        "date": "2026-09-11",
+        "dayLabel": "Fri 11",
+        "weekTitle": "Week 8",
+        "workoutKey": "easy_5k",
+        "category": "run"
+      },
+      {
+        "summary": "Long Run 10K easy",
+        "description": "Block complete 🎉\nFood: Weigh in after. Celebrate.\nPlan: Long run 10K easy",
+        "start": {
+          "date": "2026-09-12",
+          "endDate": "2026-09-13"
+        },
+        "end": {
+          "date": "2026-09-12",
+          "endDate": "2026-09-13"
+        },
+        "date": "2026-09-12",
+        "dayLabel": "Sat 12",
+        "weekTitle": "Week 8",
         "workoutKey": "long_10k",
         "category": "run"
       }

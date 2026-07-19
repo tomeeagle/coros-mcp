@@ -1,7 +1,6 @@
 """Tests for training plan HTML parsing."""
 
 from datetime import date
-from pathlib import Path
 
 import pytest
 
@@ -116,26 +115,27 @@ def test_map_build_8k():
 def test_parse_full_plan():
     plan = parse_plan_html(PLAN)
     assert plan.year == 2026
-    assert len(plan.weeks) == 9
+    assert len(plan.weeks) == 8
 
-    # Recovery week — strength Tue after Mon shuffle
-    assert "20260706" not in plan.schedule
-    assert plan.schedule["20260707"] == ["strength_wk4"]
-    assert plan.schedule["20260711"] == ["long_10k"]
+    # Re-entry week after 13 days off
+    assert plan.schedule["20260719"] == ["easy_3k"]
+    assert plan.schedule["20260720"] == ["strength_wk1"]
+    assert plan.schedule["20260725"] == ["easy_8k"]
 
-    # Build week
-    assert plan.schedule["20260713"] == ["strength_wk1"]
-    assert plan.schedule["20260714"] == ["bac_intervals"]
-    assert plan.schedule["20260718"] == ["long_12k"]
+    # BAC and PFTC days use the easy default
+    assert plan.schedule["20260721"] == ["easy_4k"]
+    assert plan.schedule["20260722"] == ["easy_5k"]
 
-    # Hold week (post Love Trails)
-    assert plan.schedule["20260629"] == ["strength_wk3", "easy_3k"]
-    assert plan.schedule["20260705"] == ["long_12k"]
+    # Peak and deload
+    assert plan.schedule["20260905"] == ["long_14k"]
+    assert plan.schedule["20260912"] == ["long_10k"]
 
 
 @pytest.mark.skipif(not PLAN.is_file(), reason="training_plan.html not in repo")
 def test_strength_mondays_from_html():
     html = PLAN.read_text(encoding="utf-8")
     mondays = _parse_strength_mondays(html, 2026)
-    assert mondays["20260706"] == "wk5"
-    assert mondays["20260608"] == "wk2"
+    assert mondays["20260720"] == "wk1"
+    assert mondays["20260727"] == "wk2"
+    assert mondays["20260810"] == "wk4"
+    assert mondays["20260907"] == "wk5"

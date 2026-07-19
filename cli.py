@@ -290,6 +290,58 @@ def cmd_export_calendar() -> int:
     return 0
 
 
+def cmd_calendar_auth() -> int:
+    """Authenticate direct Google Calendar access using installed-app OAuth."""
+    import argparse
+
+    from workout_sync.google_calendar import authenticate_google_calendar
+
+    parser = argparse.ArgumentParser(
+        prog="coros-mcp calendar-auth",
+        description="Connect Google Calendar using a Desktop app OAuth client.",
+    )
+    parser.add_argument("--force", action="store_true", help="Repeat OAuth even if a token exists")
+    parsed = parser.parse_args(sys.argv[2:])
+    try:
+        token_path = authenticate_google_calendar(force=parsed.force)
+        print("✓ Google Calendar connected")
+        print(f"  Token stored securely: {token_path}")
+        return 0
+    except Exception as e:
+        print(f"✗ Google Calendar authentication failed: {e}")
+        return 1
+
+
+def cmd_calendar_sync() -> int:
+    """Reconcile Google Calendar with the exported training plan."""
+    import argparse
+
+    from workout_sync.google_calendar import sync_google_calendar
+
+    parser = argparse.ArgumentParser(
+        prog="coros-mcp calendar-sync",
+        description="Sync project-managed training events to Google Calendar.",
+    )
+    parser.add_argument("--calendar-id", help="Calendar ID (default: GOOGLE_CALENDAR_ID or primary)")
+    parser.add_argument("--dry-run", action="store_true", help="Show changes without writing")
+    parsed = parser.parse_args(sys.argv[2:])
+    try:
+        result = sync_google_calendar(
+            calendar_id=parsed.calendar_id,
+            dry_run=parsed.dry_run,
+        )
+        prefix = "Would sync" if parsed.dry_run else "✓ Google Calendar synced"
+        print(prefix)
+        print(
+            f"  Created {result.created} · Updated {result.updated} · "
+            f"Deleted {result.deleted} · Unchanged {result.unchanged}"
+        )
+        return 0
+    except Exception as e:
+        print(f"✗ Google Calendar sync failed: {e}")
+        return 1
+
+
 def cmd_serve() -> int:
     """Start the MCP server (stdio mode)."""
     import server
@@ -311,6 +363,8 @@ Usage:
   coros-mcp sync [--from YYYYMMDD] [--to YYYYMMDD]  Sync to local cache (default: 2 years → today)
   coros-mcp runs [--from YYYYMMDD] [--to YYYYMMDD] [--refresh]  List runs from cache (fast)
   coros-mcp export-calendar          Export plan_calendar_export.json for GCal
+  coros-mcp calendar-auth [--force]  Connect Google Calendar using OAuth
+  coros-mcp calendar-sync [--dry-run] [--calendar-id ID]  Sync plan events to Google Calendar
   coros-mcp cache-status            Show local cache coverage
   coros-mcp help                    Show this help message
 """
@@ -333,6 +387,8 @@ def main() -> None:
         "sync": cmd_sync,
         "runs": cmd_runs,
         "export-calendar": cmd_export_calendar,
+        "calendar-auth": cmd_calendar_auth,
+        "calendar-sync": cmd_calendar_sync,
         "cache-status": cmd_cache_status,
         "help": cmd_help,
         "--help": cmd_help,

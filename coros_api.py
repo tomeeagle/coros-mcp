@@ -1627,22 +1627,18 @@ async def schedule_run_workout(
     """
     def _is_legacy(step_list: list[dict]) -> bool:
         for s in step_list:
-            if "duration_minutes" in s or "distance_meters" in s or "target_type" in s:
+            if "duration_minutes" in s or "distance_meters" in s:
                 return True
             if "repeat" in s:
                 for sub in s.get("steps", []):
                     if (
                         "duration_minutes" in sub
                         or "distance_meters" in sub
-                        or "target_type" in sub
                     ):
                         return True
         return False
 
-    if _is_legacy(steps):
-        run_steps = legacy_run_steps_to_run_steps(steps)
-    else:
-        run_steps = steps
+    run_steps = legacy_run_steps_to_run_steps(steps) if _is_legacy(steps) else steps
     program = build_run_workout_payload(name, run_steps)
     return await _post_schedule_inline(auth, program, happen_day, sort_no)
 

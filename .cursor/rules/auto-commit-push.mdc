@@ -1,0 +1,14 @@
+---
+description: Auto-commit and push after completing work
+alwaysApply: true
+---
+
+# Auto commit & push
+
+After finishing a task that changes files in this repo:
+
+1. **Commit** without waiting to be asked — follow the normal git safety protocol (status/diff/log, stage relevant files, HEREDOC message, no secrets).
+2. **Push** to the tracked remote branch immediately after a successful commit (`git push` or `git push -u origin HEAD` if needed).
+3. Skip empty commits. Do not commit `.env`, OAuth tokens, client secrets, or other credentials.
+4. If push fails (auth/network/hook), report the error and leave the local commit intact.
+5. Keep commit messages concise and focused on why, matching this repo’s style.

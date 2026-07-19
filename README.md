@@ -489,6 +489,30 @@ Returns per data type: `count`, `from` (earliest date), `to` (latest date). Also
 
 ---
 
+## Google Calendar plan sync
+
+Install the optional integration:
+
+```bash
+pip install -e '.[calendar]'
+```
+
+In Google Cloud, enable the Google Calendar API and create an OAuth client for a
+Desktop app. Download the client JSON to
+`~/.config/coros-mcp/google-calendar-client.json`, then connect and sync:
+
+```bash
+coros-mcp calendar-auth
+coros-mcp calendar-sync --dry-run
+coros-mcp calendar-sync
+```
+
+Set `GOOGLE_CALENDAR_ID` to target a calendar other than `primary`. The sync is
+idempotent and only updates or deletes events marked as managed by `coros-mcp`;
+it never deletes unrelated calendar events.
+
+---
+
 ## Requirements
 
 - Python ≥ 3.11

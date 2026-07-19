@@ -30,6 +30,10 @@ dev = [
 sync = [
     "flask>=3.0",
 ]
+calendar = [
+    "google-api-python-client>=2.198",
+    "google-auth-oauthlib>=1.4",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["."]

@@ -37,9 +37,9 @@ def _distance_run(
 
 
 WORKOUTS: dict[str, dict[str, Any]] = {
-    "easy_3k": _distance_run("Easy 3K — run streak", 3000),
-    "easy_4k": _distance_run("Easy 4K — run streak", 4000),
-    "easy_5k": _distance_run("Easy 5K — run streak", 5000),
+    "easy_3k": _distance_run("Easy 3K", 3000),
+    "easy_4k": _distance_run("Easy 4K", 4000),
+    "easy_5k": _distance_run("Easy 5K", 5000),
     "easy_6k": {
         "name": "Easy 6K + 5 strides",
         "kind": "run",

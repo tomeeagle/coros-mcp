@@ -113,9 +113,13 @@ def export_calendar_json(
             )
             for k in keys:
                 w = WORKOUTS.get(k, {})
+                summary = w.get("name", k)
+                optional = re.search(r"optional\s+(BAC|PFTC)", no, re.I)
+                if optional:
+                    summary = f"{summary} · {optional.group(1).upper()} optional"
                 events.append(
                     {
-                        "summary": w.get("name", k),
+                        "summary": summary,
                         "description": "\n".join(
                             x
                             for x in [
@@ -137,15 +141,29 @@ def export_calendar_json(
         if block["days"]:
             blocks.append(block)
 
+    dates = sorted(plan.schedule.keys()) if plan.schedule else []
+    block_start = (
+        f"{dates[0][:4]}-{dates[0][4:6]}-{dates[0][6:]}" if dates else None
+    )
+    block_end = (
+        f"{dates[-1][:4]}-{dates[-1][4:6]}-{dates[-1][6:]}" if dates else None
+    )
+
     payload = {
-        "title": "Tom's Plan — 8-week block",
-        "blockStart": "2026-06-18",
-        "blockEnd": "2026-08-09",
+        "title": "Tom's Plan — 8-week rebuild",
+        "blockStart": block_start or "2026-07-19",
+        "blockEnd": block_end or "2026-09-12",
         "timezone": "Europe/London",
-        "structure": "Tue quality · Wed club 8K · Fri progression · Sat long · Mon strength",
+        "structure": (
+            "Rebuild after layoff · Mon strength · Tue easy (BAC optional) · "
+            "Wed easy/PFTC optional · Fri easy/progression · Sat long · no races"
+        ),
         "weeks": blocks,
         "googleCalendar": {
-            "hint": "All-day events; set your own run times (BAC 6pm, etc.).",
+            "hint": (
+                "All-day events; set your own run times. "
+                "BAC Tue + PFTC Wed are optional — calendar shows the easy default."
+            ),
             "events": sorted(events, key=lambda e: e["date"]),
         },
     }

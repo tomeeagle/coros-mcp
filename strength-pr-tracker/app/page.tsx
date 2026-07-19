@@ -152,10 +152,10 @@ function KindChip({ kind, hard }: { kind: string; hard?: boolean }) {
   const c = hard ? { bg: "#FBE3DB", fg: "#D9532B" } : KIND_CHIP[kind] || KIND_CHIP.other;
   return (
     <span
-      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
       style={{ backgroundColor: c.bg, color: c.fg }}
     >
-      <Icon kind={kind} className="h-6 w-6" />
+      <Icon kind={kind} className="h-8 w-8" />
     </span>
   );
 }
@@ -388,7 +388,7 @@ export default function WeeklyCoachPage() {
                     style={{ backgroundColor: item.bg, color: item.fg }}
                   >
                     <div className="mb-4 opacity-90">
-                      <Icon kind={item.icon} className="h-8 w-8" />
+                      <Icon kind={item.icon} className="h-10 w-10" />
                     </div>
                     <p className="text-[2rem] font-extrabold leading-none tracking-[-0.03em] sm:text-[2.25rem]">
                       {item.value}

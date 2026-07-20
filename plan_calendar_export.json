@@ -29,17 +29,11 @@
         {
           "date": "2026-07-20",
           "dayLabel": "Mon 20",
-          "note": "💪 Strength WK1",
-          "runPlan": "Strength only",
+          "note": "Sore — strength moved to Thu",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk1",
-              "name": "Strength — Foundation (WK1)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-07-21",
@@ -74,11 +68,17 @@
         {
           "date": "2026-07-23",
           "dayLabel": "Thu 23",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "💪 Strength WK1 — moved from Mon (sore)",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_wk1",
+              "name": "Strength — Foundation (WK1)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-07-24",
@@ -841,23 +841,6 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Foundation (WK1)",
-        "description": "💪 Strength WK1\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-07-20",
-          "endDate": "2026-07-21"
-        },
-        "end": {
-          "date": "2026-07-20",
-          "endDate": "2026-07-21"
-        },
-        "date": "2026-07-20",
-        "dayLabel": "Mon 20",
-        "weekTitle": "Week 1",
-        "workoutKey": "strength_wk1",
-        "category": "strength"
-      },
-      {
         "summary": "Easy 4K · BAC optional",
         "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 4K",
         "start": {
@@ -890,6 +873,23 @@
         "weekTitle": "Week 1",
         "workoutKey": "easy_5k",
         "category": "run"
+      },
+      {
+        "summary": "Strength — Foundation (WK1)",
+        "description": "💪 Strength WK1 — moved from Mon (sore)\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-07-23",
+          "endDate": "2026-07-24"
+        },
+        "end": {
+          "date": "2026-07-23",
+          "endDate": "2026-07-24"
+        },
+        "date": "2026-07-23",
+        "dayLabel": "Thu 23",
+        "weekTitle": "Week 1",
+        "workoutKey": "strength_wk1",
+        "category": "strength"
       },
       {
         "summary": "Easy 5K",

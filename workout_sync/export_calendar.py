@@ -155,14 +155,14 @@ def export_calendar_json(
         "blockEnd": block_end or "2026-09-12",
         "timezone": "Europe/London",
         "structure": (
-            "Rebuild after layoff · Mon strength · Tue easy (BAC optional) · "
-            "Wed easy/PFTC optional · Fri easy/progression · Sat long · no races"
+            "Rebuild after layoff · Mon rest (optional Easy 3K) · Tue easy (BAC optional) · "
+            "Wed easy/PFTC optional · Thu strength · Fri easy/progression · Sat long · no races"
         ),
         "weeks": blocks,
         "googleCalendar": {
             "hint": (
                 "All-day events; set your own run times. "
-                "BAC Tue + PFTC Wed are optional — calendar shows the easy default."
+                "Mon rest · Thu strength. BAC Tue + PFTC Wed optional — calendar shows the easy default."
             ),
             "events": sorted(events, key=lambda e: e["date"]),
         },

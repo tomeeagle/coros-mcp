@@ -117,9 +117,10 @@ def test_parse_full_plan():
     assert plan.year == 2026
     assert len(plan.weeks) == 8
 
-    # Re-entry week after 13 days off
+    # Re-entry week after 13 days off — Mon rest, strength on Thu
     assert plan.schedule["20260719"] == ["easy_3k"]
-    assert plan.schedule["20260720"] == ["strength_wk1"]
+    assert "20260720" not in plan.schedule
+    assert plan.schedule["20260723"] == ["strength_wk1"]
     assert plan.schedule["20260725"] == ["easy_8k"]
 
     # BAC and PFTC days use the easy default
@@ -132,10 +133,10 @@ def test_parse_full_plan():
 
 
 @pytest.mark.skipif(not PLAN.is_file(), reason="training_plan.html not in repo")
-def test_strength_mondays_from_html():
+def test_strength_thursdays_from_html():
     html = PLAN.read_text(encoding="utf-8")
-    mondays = _parse_strength_mondays(html, 2026)
-    assert mondays["20260720"] == "wk1"
-    assert mondays["20260727"] == "wk2"
-    assert mondays["20260810"] == "wk4"
-    assert mondays["20260907"] == "wk5"
+    days = _parse_strength_mondays(html, 2026)
+    assert days["20260723"] == "wk1"
+    assert days["20260730"] == "wk2"
+    assert days["20260813"] == "wk4"
+    assert days["20260910"] == "wk5"

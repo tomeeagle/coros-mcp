@@ -3,7 +3,7 @@
   "blockStart": "2026-07-19",
   "blockEnd": "2026-09-12",
   "timezone": "Europe/London",
-  "structure": "Rebuild after layoff · Mon strength · Tue easy (BAC optional) · Wed easy/PFTC optional · Fri easy/progression · Sat long · no races",
+  "structure": "Rebuild after layoff · Mon rest (optional Easy 3K) · Tue easy (BAC optional) · Wed easy/PFTC optional · Thu strength · Fri easy/progression · Sat long · no races",
   "weeks": [
     {
       "title": "Week 1",
@@ -29,7 +29,7 @@
         {
           "date": "2026-07-20",
           "dayLabel": "Mon 20",
-          "note": "Sore — strength moved to Thu",
+          "note": "Optional Easy 3K if legs feel good — default is rest",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
@@ -68,7 +68,7 @@
         {
           "date": "2026-07-23",
           "dayLabel": "Thu 23",
-          "note": "💪 Strength WK1 — moved from Mon (sore)",
+          "note": "💪 Strength WK1",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -130,17 +130,11 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "💪 Strength WK2",
-          "runPlan": "Strength only",
+          "note": "Optional Easy 3K if legs feel good — default is rest",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk2",
-              "name": "Strength — Build (WK2)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-07-28",
@@ -175,11 +169,17 @@
         {
           "date": "2026-07-30",
           "dayLabel": "Thu 30",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "💪 Strength WK2",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_wk2",
+              "name": "Strength — Build (WK2)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-07-31",
@@ -231,17 +231,11 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "💪 Strength WK3",
-          "runPlan": "Strength only",
+          "note": "Optional Easy 3K if legs feel good — default is rest",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk3",
-              "name": "Strength — Intensity (WK3)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-04",
@@ -276,11 +270,17 @@
         {
           "date": "2026-08-06",
           "dayLabel": "Thu 6",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "💪 Strength WK3",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_wk3",
+              "name": "Strength — Intensity (WK3)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-08-07",
@@ -332,17 +332,11 @@
         {
           "date": "2026-08-10",
           "dayLabel": "Mon 10",
-          "note": "💪 Strength WK4",
-          "runPlan": "Strength only",
+          "note": "Optional Easy 3K if legs feel good — default is rest",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk4",
-              "name": "Strength — Taper (WK4)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-11",
@@ -377,11 +371,17 @@
         {
           "date": "2026-08-13",
           "dayLabel": "Thu 13",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "💪 Strength WK4",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_wk4",
+              "name": "Strength — Taper (WK4)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-08-14",
@@ -433,17 +433,11 @@
         {
           "date": "2026-08-17",
           "dayLabel": "Mon 17",
-          "note": "💪 Strength WK1",
-          "runPlan": "Strength only",
+          "note": "Optional Easy 3K if legs feel good — default is rest",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk1",
-              "name": "Strength — Foundation (WK1)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-18",
@@ -478,11 +472,17 @@
         {
           "date": "2026-08-20",
           "dayLabel": "Thu 20",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "💪 Strength WK1",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_wk1",
+              "name": "Strength — Foundation (WK1)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-08-21",
@@ -534,17 +534,11 @@
         {
           "date": "2026-08-24",
           "dayLabel": "Mon 24",
-          "note": "💪 Strength WK2",
-          "runPlan": "Strength only",
+          "note": "Optional Easy 3K if legs feel good — default is rest",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk2",
-              "name": "Strength — Build (WK2)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-25",
@@ -579,11 +573,17 @@
         {
           "date": "2026-08-27",
           "dayLabel": "Thu 27",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "💪 Strength WK2",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_wk2",
+              "name": "Strength — Build (WK2)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-08-28",
@@ -635,17 +635,11 @@
         {
           "date": "2026-08-31",
           "dayLabel": "Mon 31",
-          "note": "💪 Strength WK3",
-          "runPlan": "Strength only",
+          "note": "Optional Easy 3K if legs feel good — default is rest",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk3",
-              "name": "Strength — Intensity (WK3)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-09-01",
@@ -680,11 +674,17 @@
         {
           "date": "2026-09-03",
           "dayLabel": "Thu 3",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "💪 Strength WK3",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_wk3",
+              "name": "Strength — Intensity (WK3)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-09-04",
@@ -736,17 +736,11 @@
         {
           "date": "2026-09-07",
           "dayLabel": "Mon 7",
-          "note": "💪 Strength WK5",
-          "runPlan": "Strength only — light",
+          "note": "Optional Easy 3K if legs feel good — default is rest",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk5",
-              "name": "Strength — Light (WK5)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-09-08",
@@ -781,11 +775,17 @@
         {
           "date": "2026-09-10",
           "dayLabel": "Thu 10",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "💪 Strength WK5",
+          "runPlan": "Strength only — light",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_wk5",
+              "name": "Strength — Light (WK5)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-09-11",
@@ -821,7 +821,7 @@
     }
   ],
   "googleCalendar": {
-    "hint": "All-day events; set your own run times. BAC Tue + PFTC Wed are optional — calendar shows the easy default.",
+    "hint": "All-day events; set your own run times. Mon rest · Thu strength. BAC Tue + PFTC Wed optional — calendar shows the easy default.",
     "events": [
       {
         "summary": "Easy 3K",
@@ -876,7 +876,7 @@
       },
       {
         "summary": "Strength — Foundation (WK1)",
-        "description": "💪 Strength WK1 — moved from Mon (sore)\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength WK1\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-07-23",
           "endDate": "2026-07-24"
@@ -926,23 +926,6 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Build (WK2)",
-        "description": "💪 Strength WK2\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-07-27",
-          "endDate": "2026-07-28"
-        },
-        "end": {
-          "date": "2026-07-27",
-          "endDate": "2026-07-28"
-        },
-        "date": "2026-07-27",
-        "dayLabel": "Mon 27",
-        "weekTitle": "Week 2",
-        "workoutKey": "strength_wk2",
-        "category": "strength"
-      },
-      {
         "summary": "Easy 5K · BAC optional",
         "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
         "start": {
@@ -975,6 +958,23 @@
         "weekTitle": "Week 2",
         "workoutKey": "easy_5k",
         "category": "run"
+      },
+      {
+        "summary": "Strength — Build (WK2)",
+        "description": "💪 Strength WK2\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-07-30",
+          "endDate": "2026-07-31"
+        },
+        "end": {
+          "date": "2026-07-30",
+          "endDate": "2026-07-31"
+        },
+        "date": "2026-07-30",
+        "dayLabel": "Thu 30",
+        "weekTitle": "Week 2",
+        "workoutKey": "strength_wk2",
+        "category": "strength"
       },
       {
         "summary": "Easy 6K + 5 strides",
@@ -1011,23 +1011,6 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Intensity (WK3)",
-        "description": "💪 Strength WK3\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-08-03",
-          "endDate": "2026-08-04"
-        },
-        "end": {
-          "date": "2026-08-03",
-          "endDate": "2026-08-04"
-        },
-        "date": "2026-08-03",
-        "dayLabel": "Mon 3",
-        "weekTitle": "Week 3",
-        "workoutKey": "strength_wk3",
-        "category": "strength"
-      },
-      {
         "summary": "Easy 5K · BAC optional",
         "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
         "start": {
@@ -1060,6 +1043,23 @@
         "weekTitle": "Week 3",
         "workoutKey": "run_club_6k",
         "category": "run"
+      },
+      {
+        "summary": "Strength — Intensity (WK3)",
+        "description": "💪 Strength WK3\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-08-06",
+          "endDate": "2026-08-07"
+        },
+        "end": {
+          "date": "2026-08-06",
+          "endDate": "2026-08-07"
+        },
+        "date": "2026-08-06",
+        "dayLabel": "Thu 6",
+        "weekTitle": "Week 3",
+        "workoutKey": "strength_wk3",
+        "category": "strength"
       },
       {
         "summary": "Easy 6K + 5 strides",
@@ -1096,23 +1096,6 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Taper (WK4)",
-        "description": "💪 Strength WK4\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-08-10",
-          "endDate": "2026-08-11"
-        },
-        "end": {
-          "date": "2026-08-10",
-          "endDate": "2026-08-11"
-        },
-        "date": "2026-08-10",
-        "dayLabel": "Mon 10",
-        "weekTitle": "Week 4",
-        "workoutKey": "strength_wk4",
-        "category": "strength"
-      },
-      {
         "summary": "Easy 6K + 5 strides · BAC optional",
         "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 6K",
         "start": {
@@ -1145,6 +1128,23 @@
         "weekTitle": "Week 4",
         "workoutKey": "run_club_8k",
         "category": "run"
+      },
+      {
+        "summary": "Strength — Taper (WK4)",
+        "description": "💪 Strength WK4\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-08-13",
+          "endDate": "2026-08-14"
+        },
+        "end": {
+          "date": "2026-08-13",
+          "endDate": "2026-08-14"
+        },
+        "date": "2026-08-13",
+        "dayLabel": "Thu 13",
+        "weekTitle": "Week 4",
+        "workoutKey": "strength_wk4",
+        "category": "strength"
       },
       {
         "summary": "Easy 6K + 5 strides",
@@ -1181,23 +1181,6 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Foundation (WK1)",
-        "description": "💪 Strength WK1\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-08-17",
-          "endDate": "2026-08-18"
-        },
-        "end": {
-          "date": "2026-08-17",
-          "endDate": "2026-08-18"
-        },
-        "date": "2026-08-17",
-        "dayLabel": "Mon 17",
-        "weekTitle": "Week 5",
-        "workoutKey": "strength_wk1",
-        "category": "strength"
-      },
-      {
         "summary": "Easy 6K + 5 strides · BAC optional",
         "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 6K",
         "start": {
@@ -1230,6 +1213,23 @@
         "weekTitle": "Week 5",
         "workoutKey": "run_club_8k",
         "category": "run"
+      },
+      {
+        "summary": "Strength — Foundation (WK1)",
+        "description": "💪 Strength WK1\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-08-20",
+          "endDate": "2026-08-21"
+        },
+        "end": {
+          "date": "2026-08-20",
+          "endDate": "2026-08-21"
+        },
+        "date": "2026-08-20",
+        "dayLabel": "Thu 20",
+        "weekTitle": "Week 5",
+        "workoutKey": "strength_wk1",
+        "category": "strength"
       },
       {
         "summary": "Progression 8K — 5K easy / 3K steady",
@@ -1266,23 +1266,6 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Build (WK2)",
-        "description": "💪 Strength WK2\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-08-24",
-          "endDate": "2026-08-25"
-        },
-        "end": {
-          "date": "2026-08-24",
-          "endDate": "2026-08-25"
-        },
-        "date": "2026-08-24",
-        "dayLabel": "Mon 24",
-        "weekTitle": "Week 6",
-        "workoutKey": "strength_wk2",
-        "category": "strength"
-      },
-      {
         "summary": "Easy 6K + 5 strides · BAC optional",
         "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 6K",
         "start": {
@@ -1315,6 +1298,23 @@
         "weekTitle": "Week 6",
         "workoutKey": "run_club_8k",
         "category": "run"
+      },
+      {
+        "summary": "Strength — Build (WK2)",
+        "description": "💪 Strength WK2\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-08-27",
+          "endDate": "2026-08-28"
+        },
+        "end": {
+          "date": "2026-08-27",
+          "endDate": "2026-08-28"
+        },
+        "date": "2026-08-27",
+        "dayLabel": "Thu 27",
+        "weekTitle": "Week 6",
+        "workoutKey": "strength_wk2",
+        "category": "strength"
       },
       {
         "summary": "Progression 8K — 5K easy / 3K steady",
@@ -1351,23 +1351,6 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Intensity (WK3)",
-        "description": "💪 Strength WK3\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-08-31",
-          "endDate": "2026-09-01"
-        },
-        "end": {
-          "date": "2026-08-31",
-          "endDate": "2026-09-01"
-        },
-        "date": "2026-08-31",
-        "dayLabel": "Mon 31",
-        "weekTitle": "Week 7",
-        "workoutKey": "strength_wk3",
-        "category": "strength"
-      },
-      {
         "summary": "Easy 6K + 5 strides · BAC optional",
         "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 6K",
         "start": {
@@ -1400,6 +1383,23 @@
         "weekTitle": "Week 7",
         "workoutKey": "run_club_8k",
         "category": "run"
+      },
+      {
+        "summary": "Strength — Intensity (WK3)",
+        "description": "💪 Strength WK3\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-09-03",
+          "endDate": "2026-09-04"
+        },
+        "end": {
+          "date": "2026-09-03",
+          "endDate": "2026-09-04"
+        },
+        "date": "2026-09-03",
+        "dayLabel": "Thu 3",
+        "weekTitle": "Week 7",
+        "workoutKey": "strength_wk3",
+        "category": "strength"
       },
       {
         "summary": "Progression 10K — 6K easy / 4K steady",
@@ -1436,23 +1436,6 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Light (WK5)",
-        "description": "💪 Strength WK5\nFood: Box portions\nPlan: Strength only — light",
-        "start": {
-          "date": "2026-09-07",
-          "endDate": "2026-09-08"
-        },
-        "end": {
-          "date": "2026-09-07",
-          "endDate": "2026-09-08"
-        },
-        "date": "2026-09-07",
-        "dayLabel": "Mon 7",
-        "weekTitle": "Week 8",
-        "workoutKey": "strength_wk5",
-        "category": "strength"
-      },
-      {
         "summary": "Easy 5K · BAC optional",
         "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
         "start": {
@@ -1485,6 +1468,23 @@
         "weekTitle": "Week 8",
         "workoutKey": "easy_6k",
         "category": "run"
+      },
+      {
+        "summary": "Strength — Light (WK5)",
+        "description": "💪 Strength WK5\nFood: Box portions\nPlan: Strength only — light",
+        "start": {
+          "date": "2026-09-10",
+          "endDate": "2026-09-11"
+        },
+        "end": {
+          "date": "2026-09-10",
+          "endDate": "2026-09-11"
+        },
+        "date": "2026-09-10",
+        "dayLabel": "Thu 10",
+        "weekTitle": "Week 8",
+        "workoutKey": "strength_wk5",
+        "category": "strength"
       },
       {
         "summary": "Easy 5K",

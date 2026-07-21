@@ -38,17 +38,11 @@
         {
           "date": "2026-07-21",
           "dayLabel": "Tue 21",
-          "note": "Optional BAC — skip if tired",
-          "runPlan": "Easy 4K",
+          "note": "Skipped — too tired / run down",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "easy_4k",
-              "name": "Easy 4K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-07-22",
@@ -838,23 +832,6 @@
         "dayLabel": "Sun 19",
         "weekTitle": "Week 1",
         "workoutKey": "easy_3k",
-        "category": "run"
-      },
-      {
-        "summary": "Easy 4K · BAC optional",
-        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 4K",
-        "start": {
-          "date": "2026-07-21",
-          "endDate": "2026-07-22"
-        },
-        "end": {
-          "date": "2026-07-21",
-          "endDate": "2026-07-22"
-        },
-        "date": "2026-07-21",
-        "dayLabel": "Tue 21",
-        "weekTitle": "Week 1",
-        "workoutKey": "easy_4k",
         "category": "run"
       },
       {

@@ -244,6 +244,43 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {"name": "Cooldown", "duration_minutes": 8},
         ],
     },
+    # Technique only — not to failure
+    "shuttle_turns": {
+        "name": "Shuttle turns — technique",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy jog", "duration_minutes": 5},
+            {
+                "repeat": 12,
+                "steps": [
+                    {"name": "20m turn drill — smooth pivot", "duration_minutes": 1},
+                ],
+            },
+            {"name": "Easy jog", "duration_minutes": 5},
+        ],
+    },
+    # Skip early easy levels — more time near L7–8
+    "bleep_partial": _open_run(
+        "Bleep partial — start L5 → fail", 18, sport_type=100
+    ),
+    "easy_5k_shuttle": {
+        "name": "Easy 5K + L7 shuttle finisher",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy 5K", "distance_meters": 5000},
+            {
+                "repeat": 8,
+                "steps": [
+                    {"name": "20m @ L7 — 5:13/km (~6.3s)", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
+                ],
+            },
+        ],
+    },
     "5k_time_trial": {
         "name": "5K Time Trial",
         "kind": "run",

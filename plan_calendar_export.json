@@ -124,11 +124,17 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Optional Easy 3K if legs feel good — default is rest",
-          "runPlan": "Rest",
+          "note": "Technique only — smooth pivots, not to failure · ~15–20 min",
+          "runPlan": "Shuttle turns — technique",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "shuttle_turns",
+              "name": "Shuttle turns — technique",
+              "kind": "run"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-07-28",
@@ -148,13 +154,13 @@
         {
           "date": "2026-07-29",
           "dayLabel": "Wed 29",
-          "note": "Easy only — skip PFTC this week",
-          "runPlan": "Easy 5K",
+          "note": "Easy then 8× 20m @ L7 5:13/km (~6.3s) · full walk recoveries · skip PFTC",
+          "runPlan": "Easy 5K + L7 shuttle finisher",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "easy_5k",
-              "name": "Easy 5K",
+              "key": "easy_5k_shuttle",
+              "name": "Easy 5K + L7 shuttle finisher",
               "kind": "run"
             }
           ],
@@ -163,7 +169,7 @@
         {
           "date": "2026-07-30",
           "dayLabel": "Thu 30",
-          "note": "💪 Strength WK2 — keep it, don't smash legs",
+          "note": "💪 Strength WK2 — bias upper/core, light on legs · optional evening: bleep partial start L5 if fresh",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -178,13 +184,13 @@
         {
           "date": "2026-07-31",
           "dayLabel": "Fri 31",
-          "note": "Easy ahead of Saturday practice",
-          "runPlan": "Easy 5K",
+          "note": "Partial bleep — Spotify from level 5 to failure · more time near L7–8",
+          "runPlan": "Bleep partial — start L5 → fail",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "easy_5k",
-              "name": "Easy 5K",
+              "key": "bleep_partial",
+              "name": "Bleep partial — start L5 → fail",
               "kind": "run"
             }
           ],
@@ -225,11 +231,17 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "Optional Easy 3K if legs feel good — default is rest",
-          "runPlan": "Rest",
+          "note": "Technique only — smooth pivots, not to failure · ~15–20 min",
+          "runPlan": "Shuttle turns — technique",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "shuttle_turns",
+              "name": "Shuttle turns — technique",
+              "kind": "run"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-08-04",
@@ -249,13 +261,13 @@
         {
           "date": "2026-08-05",
           "dayLabel": "Wed 5",
-          "note": "Easy only — skip PFTC",
-          "runPlan": "Easy 5K",
+          "note": "Easy then 8× 20m @ L7 5:13/km · full walk recoveries · skip PFTC",
+          "runPlan": "Easy 5K + L7 shuttle finisher",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "easy_5k",
-              "name": "Easy 5K",
+              "key": "easy_5k_shuttle",
+              "name": "Easy 5K + L7 shuttle finisher",
               "kind": "run"
             }
           ],
@@ -891,6 +903,23 @@
         "category": "run"
       },
       {
+        "summary": "Shuttle turns — technique",
+        "description": "Technique only — smooth pivots, not to failure · ~15–20 min\nFood: Box portions\nPlan: Shuttle turns — technique",
+        "start": {
+          "date": "2026-07-27",
+          "endDate": "2026-07-28"
+        },
+        "end": {
+          "date": "2026-07-27",
+          "endDate": "2026-07-28"
+        },
+        "date": "2026-07-27",
+        "dayLabel": "Mon 27",
+        "weekTitle": "Week 2",
+        "workoutKey": "shuttle_turns",
+        "category": "run"
+      },
+      {
         "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
         "description": "20m turns: 4× @ L7 5:13/km then 4× @ L8 5:00/km\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
         "start": {
@@ -908,8 +937,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy 5K",
-        "description": "Easy only — skip PFTC this week\nFood: Box portions\nPlan: Easy 5K",
+        "summary": "Easy 5K + L7 shuttle finisher",
+        "description": "Easy then 8× 20m @ L7 5:13/km (~6.3s) · full walk recoveries · skip PFTC\nFood: Box portions\nPlan: Easy 5K + L7 shuttle finisher",
         "start": {
           "date": "2026-07-29",
           "endDate": "2026-07-30"
@@ -921,12 +950,12 @@
         "date": "2026-07-29",
         "dayLabel": "Wed 29",
         "weekTitle": "Week 2",
-        "workoutKey": "easy_5k",
+        "workoutKey": "easy_5k_shuttle",
         "category": "run"
       },
       {
         "summary": "Strength — Build (WK2)",
-        "description": "💪 Strength WK2 — keep it, don't smash legs\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength WK2 — bias upper/core, light on legs · optional evening: bleep partial start L5 if fresh\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-07-30",
           "endDate": "2026-07-31"
@@ -942,8 +971,8 @@
         "category": "strength"
       },
       {
-        "summary": "Easy 5K",
-        "description": "Easy ahead of Saturday practice\nFood: Pudding ok tonight\nPlan: Easy 5K",
+        "summary": "Bleep partial — start L5 → fail",
+        "description": "Partial bleep — Spotify from level 5 to failure · more time near L7–8\nFood: Pudding ok tonight\nPlan: Bleep partial — start L5 → fail",
         "start": {
           "date": "2026-07-31",
           "endDate": "2026-08-01"
@@ -955,7 +984,7 @@
         "date": "2026-07-31",
         "dayLabel": "Fri 31",
         "weekTitle": "Week 2",
-        "workoutKey": "easy_5k",
+        "workoutKey": "bleep_partial",
         "category": "run"
       },
       {
@@ -976,6 +1005,23 @@
         "category": "run"
       },
       {
+        "summary": "Shuttle turns — technique",
+        "description": "Technique only — smooth pivots, not to failure · ~15–20 min\nFood: Box portions\nPlan: Shuttle turns — technique",
+        "start": {
+          "date": "2026-08-03",
+          "endDate": "2026-08-04"
+        },
+        "end": {
+          "date": "2026-08-03",
+          "endDate": "2026-08-04"
+        },
+        "date": "2026-08-03",
+        "dayLabel": "Mon 3",
+        "weekTitle": "Week 3",
+        "workoutKey": "shuttle_turns",
+        "category": "run"
+      },
+      {
         "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
         "description": "Last hard session — 4× @ L7 5:13/km + 4× @ L8 5:00/km\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
         "start": {
@@ -993,8 +1039,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy 5K",
-        "description": "Easy only — skip PFTC\nFood: Box portions\nPlan: Easy 5K",
+        "summary": "Easy 5K + L7 shuttle finisher",
+        "description": "Easy then 8× 20m @ L7 5:13/km · full walk recoveries · skip PFTC\nFood: Box portions\nPlan: Easy 5K + L7 shuttle finisher",
         "start": {
           "date": "2026-08-05",
           "endDate": "2026-08-06"
@@ -1006,7 +1052,7 @@
         "date": "2026-08-05",
         "dayLabel": "Wed 5",
         "weekTitle": "Week 3",
-        "workoutKey": "easy_5k",
+        "workoutKey": "easy_5k_shuttle",
         "category": "run"
       },
       {

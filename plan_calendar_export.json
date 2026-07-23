@@ -62,13 +62,13 @@
         {
           "date": "2026-07-23",
           "dayLabel": "Thu 23",
-          "note": "🔥 Fire baseline — 5.2 then 6.2 · strength deferred",
-          "runPlan": "Bleep practice — full test to failure",
+          "note": "🔥 Fire baseline — 5.2 then 6.2 (~5:27/km at L6) · strength deferred",
+          "runPlan": "Bleep practice — full test (L8=5:00/km)",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "bleep_practice",
-              "name": "Bleep practice — full test to failure",
+              "name": "Bleep practice — full test (L8=5:00/km)",
               "kind": "run"
             }
           ],
@@ -92,13 +92,13 @@
         {
           "date": "2026-07-25",
           "dayLabel": "Sat 25",
-          "note": "Full practice — aim 6.5–7.0 · use app for beeps",
-          "runPlan": "Bleep practice — full test to failure",
+          "note": "Full practice — aim 6.5–7.0 (L7=5:13/km) · use app for beeps",
+          "runPlan": "Bleep practice — full test (L8=5:00/km)",
           "foodWeight": "Pudding ok tonight. Fuel well after.",
           "workouts": [
             {
               "key": "bleep_practice",
-              "name": "Bleep practice — full test to failure",
+              "name": "Bleep practice — full test (L8=5:00/km)",
               "kind": "run"
             }
           ],
@@ -133,13 +133,13 @@
         {
           "date": "2026-07-28",
           "dayLabel": "Tue 28",
-          "note": "20m turns at level 7–8 pace — practice the pivot",
-          "runPlan": "Shuttle pace — 20m turns",
+          "note": "20m turns: 4× @ L7 5:13/km then 4× @ L8 5:00/km",
+          "runPlan": "Shuttle pace — L7–8 (5:13–5:00/km)",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "shuttle_pace",
-              "name": "Shuttle pace — 20m turns",
+              "name": "Shuttle pace — L7–8 (5:13–5:00/km)",
               "kind": "run"
             }
           ],
@@ -193,13 +193,13 @@
         {
           "date": "2026-08-01",
           "dayLabel": "Sat 1 Aug",
-          "note": "Full practice — aim 7.5+ · same shoes/surface as test day",
-          "runPlan": "Bleep practice — full test to failure",
+          "note": "Full practice — aim 7.5+ (L8=5:00/km) · same shoes/surface as test day",
+          "runPlan": "Bleep practice — full test (L8=5:00/km)",
           "foodWeight": "Pudding ok tonight. Fuel well after.",
           "workouts": [
             {
               "key": "bleep_practice",
-              "name": "Bleep practice — full test to failure",
+              "name": "Bleep practice — full test (L8=5:00/km)",
               "kind": "run"
             }
           ],
@@ -234,13 +234,13 @@
         {
           "date": "2026-08-04",
           "dayLabel": "Tue 4",
-          "note": "Last hard session before test — keep turns sharp",
-          "runPlan": "Shuttle pace — 20m turns",
+          "note": "Last hard session — 4× @ L7 5:13/km + 4× @ L8 5:00/km",
+          "runPlan": "Shuttle pace — L7–8 (5:13–5:00/km)",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "shuttle_pace",
-              "name": "Shuttle pace — 20m turns",
+              "name": "Shuttle pace — L7–8 (5:13–5:00/km)",
               "kind": "run"
             }
           ],
@@ -282,13 +282,13 @@
         {
           "date": "2026-08-08",
           "dayLabel": "Sat 8",
-          "note": "🔥 FIRE SERVICE BLEEP — pass 8.8 · warm up well · aim 9.0+",
-          "runPlan": "Fire service bleep test — target 8.8+",
+          "note": "🔥 FIRE SERVICE BLEEP — pass 8.8 at L8 pace 5:00/km · warm up well · aim 9.0+ (4:48/km)",
+          "runPlan": "Fire service bleep — 8.8+ (L8=5:00/km)",
           "foodWeight": "Celebrate after. Fuel well.",
           "workouts": [
             {
               "key": "bleep_test",
-              "name": "Fire service bleep test — target 8.8+",
+              "name": "Fire service bleep — 8.8+ (L8=5:00/km)",
               "kind": "run"
             }
           ],
@@ -840,8 +840,8 @@
         "category": "run"
       },
       {
-        "summary": "Bleep practice — full test to failure",
-        "description": "🔥 Fire baseline — 5.2 then 6.2 · strength deferred\nFood: Box portions\nPlan: Bleep practice — full test to failure",
+        "summary": "Bleep practice — full test (L8=5:00/km)",
+        "description": "🔥 Fire baseline — 5.2 then 6.2 (~5:27/km at L6) · strength deferred\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
         "start": {
           "date": "2026-07-23",
           "endDate": "2026-07-24"
@@ -874,8 +874,8 @@
         "category": "run"
       },
       {
-        "summary": "Bleep practice — full test to failure",
-        "description": "Full practice — aim 6.5–7.0 · use app for beeps\nFood: Pudding ok tonight. Fuel well after.\nPlan: Bleep practice — full test to failure",
+        "summary": "Bleep practice — full test (L8=5:00/km)",
+        "description": "Full practice — aim 6.5–7.0 (L7=5:13/km) · use app for beeps\nFood: Pudding ok tonight. Fuel well after.\nPlan: Bleep practice — full test (L8=5:00/km)",
         "start": {
           "date": "2026-07-25",
           "endDate": "2026-07-26"
@@ -891,8 +891,8 @@
         "category": "run"
       },
       {
-        "summary": "Shuttle pace — 20m turns",
-        "description": "20m turns at level 7–8 pace — practice the pivot\nFood: Box portions\nPlan: Shuttle pace — 20m turns",
+        "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
+        "description": "20m turns: 4× @ L7 5:13/km then 4× @ L8 5:00/km\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
         "start": {
           "date": "2026-07-28",
           "endDate": "2026-07-29"
@@ -959,8 +959,8 @@
         "category": "run"
       },
       {
-        "summary": "Bleep practice — full test to failure",
-        "description": "Full practice — aim 7.5+ · same shoes/surface as test day\nFood: Pudding ok tonight. Fuel well after.\nPlan: Bleep practice — full test to failure",
+        "summary": "Bleep practice — full test (L8=5:00/km)",
+        "description": "Full practice — aim 7.5+ (L8=5:00/km) · same shoes/surface as test day\nFood: Pudding ok tonight. Fuel well after.\nPlan: Bleep practice — full test (L8=5:00/km)",
         "start": {
           "date": "2026-08-01",
           "endDate": "2026-08-02"
@@ -976,8 +976,8 @@
         "category": "run"
       },
       {
-        "summary": "Shuttle pace — 20m turns",
-        "description": "Last hard session before test — keep turns sharp\nFood: Box portions\nPlan: Shuttle pace — 20m turns",
+        "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
+        "description": "Last hard session — 4× @ L7 5:13/km + 4× @ L8 5:00/km\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
         "start": {
           "date": "2026-08-04",
           "endDate": "2026-08-05"
@@ -1010,8 +1010,8 @@
         "category": "run"
       },
       {
-        "summary": "Fire service bleep test — target 8.8+",
-        "description": "🔥 FIRE SERVICE BLEEP — pass 8.8 · warm up well · aim 9.0+\nFood: Celebrate after. Fuel well.\nPlan: Fire service bleep test — target 8.8+",
+        "summary": "Fire service bleep — 8.8+ (L8=5:00/km)",
+        "description": "🔥 FIRE SERVICE BLEEP — pass 8.8 at L8 pace 5:00/km · warm up well · aim 9.0+ (4:48/km)\nFood: Celebrate after. Fuel well.\nPlan: Fire service bleep — 8.8+ (L8=5:00/km)",
         "start": {
           "date": "2026-08-08",
           "endDate": "2026-08-09"

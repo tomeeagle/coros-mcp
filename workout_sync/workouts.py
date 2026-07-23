@@ -213,23 +213,31 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         ],
     },
     # Fire service MSFT (20m bleep) — use a phone app for the beeps; watch is a shell.
+    # Speeds: L6 11.0km/h (5:27/km) · L7 11.5 (5:13/km) · L8 12.0 (5:00/km) · L9 12.5 (4:48/km)
     "bleep_practice": _open_run(
-        "Bleep practice — full test to failure", 25, sport_type=100
+        "Bleep practice — full test (L8=5:00/km)", 25, sport_type=100
     ),
     "bleep_test": _open_run(
-        "Fire service bleep test — target 8.8+", 30, sport_type=100
+        "Fire service bleep — 8.8+ (L8=5:00/km)", 30, sport_type=100
     ),
     "shuttle_pace": {
-        "name": "Shuttle pace — 20m turns",
+        "name": "Shuttle pace — L7–8 (5:13–5:00/km)",
         "kind": "run",
         "sport_type": 100,
         "intensity_type": 0,
         "steps": [
-            {"name": "Warmup + turn drills", "duration_minutes": 12},
+            {"name": "Warmup + 20m turn drills", "duration_minutes": 12},
             {
-                "repeat": 8,
+                "repeat": 4,
                 "steps": [
-                    {"name": "Hard — level 7–8 pace", "duration_minutes": 1},
+                    {"name": "Hard L7 — 5:13/km", "duration_minutes": 1},
+                    {"name": "Jog recover", "duration_minutes": 1},
+                ],
+            },
+            {
+                "repeat": 4,
+                "steps": [
+                    {"name": "Hard L8 — 5:00/km", "duration_minutes": 1},
                     {"name": "Jog recover", "duration_minutes": 1},
                 ],
             },

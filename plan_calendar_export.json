@@ -3,12 +3,12 @@
   "blockStart": "2026-07-19",
   "blockEnd": "2026-09-12",
   "timezone": "Europe/London",
-  "structure": "Rebuild after layoff · Mon rest (optional Easy 3K) · Tue easy (BAC optional) · Wed easy/PFTC optional · Thu strength · Fri easy/progression · Sat long · no races",
+  "structure": "Fire service bleep prep to 8 Aug · Mon rest · shuttle/bleep quality · Thu strength · Fri easy · Sat practice/test · rebuild resumes after",
   "weeks": [
     {
       "title": "Week 1",
       "dates": "19–25 Jul",
-      "phase": "Re-entry",
+      "phase": "Bleep pivot",
       "weekNumber": 1,
       "days": [
         {
@@ -62,14 +62,14 @@
         {
           "date": "2026-07-23",
           "dayLabel": "Thu 23",
-          "note": "💪 Strength WK1",
-          "runPlan": "Strength only",
+          "note": "🔥 Fire baseline — 5.2 then 6.2 · strength deferred",
+          "runPlan": "Bleep practice — full test to failure",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "strength_wk1",
-              "name": "Strength — Foundation (WK1)",
-              "kind": "strength"
+              "key": "bleep_practice",
+              "name": "Bleep practice — full test to failure",
+              "kind": "run"
             }
           ],
           "rest": false
@@ -77,13 +77,13 @@
         {
           "date": "2026-07-24",
           "dayLabel": "Fri 24",
-          "note": "—",
-          "runPlan": "Easy 5K",
+          "note": "Recovery after bleep — keep it short",
+          "runPlan": "Easy 4K",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "easy_5k",
-              "name": "Easy 5K",
+              "key": "easy_4k",
+              "name": "Easy 4K",
               "kind": "run"
             }
           ],
@@ -92,13 +92,13 @@
         {
           "date": "2026-07-25",
           "dayLabel": "Sat 25",
-          "note": "First long of the rebuild",
-          "runPlan": "Easy 8K",
+          "note": "Full practice — aim 6.5–7.0 · use app for beeps",
+          "runPlan": "Bleep practice — full test to failure",
           "foodWeight": "Pudding ok tonight. Fuel well after.",
           "workouts": [
             {
-              "key": "easy_8k",
-              "name": "Easy 8K — conversational",
+              "key": "bleep_practice",
+              "name": "Bleep practice — full test to failure",
               "kind": "run"
             }
           ],
@@ -109,7 +109,7 @@
     {
       "title": "Week 2",
       "dates": "26 Jul–1 Aug",
-      "phase": "Settle",
+      "phase": "Bleep build",
       "weekNumber": 2,
       "days": [
         {
@@ -133,13 +133,13 @@
         {
           "date": "2026-07-28",
           "dayLabel": "Tue 28",
-          "note": "Optional BAC — skip if tired",
-          "runPlan": "Easy 5K",
+          "note": "20m turns at level 7–8 pace — practice the pivot",
+          "runPlan": "Shuttle pace — 20m turns",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "easy_5k",
-              "name": "Easy 5K",
+              "key": "shuttle_pace",
+              "name": "Shuttle pace — 20m turns",
               "kind": "run"
             }
           ],
@@ -148,7 +148,7 @@
         {
           "date": "2026-07-29",
           "dayLabel": "Wed 29",
-          "note": "Optional PFTC — skip if tired",
+          "note": "Easy only — skip PFTC this week",
           "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -163,7 +163,7 @@
         {
           "date": "2026-07-30",
           "dayLabel": "Thu 30",
-          "note": "💪 Strength WK2",
+          "note": "💪 Strength WK2 — keep it, don't smash legs",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -178,13 +178,13 @@
         {
           "date": "2026-07-31",
           "dayLabel": "Fri 31",
-          "note": "—",
-          "runPlan": "Easy 6K",
+          "note": "Easy ahead of Saturday practice",
+          "runPlan": "Easy 5K",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "easy_6k",
-              "name": "Easy 6K + 5 strides",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -193,13 +193,13 @@
         {
           "date": "2026-08-01",
           "dayLabel": "Sat 1 Aug",
-          "note": "—",
-          "runPlan": "Long run 10K easy",
+          "note": "Full practice — aim 7.5+ · same shoes/surface as test day",
+          "runPlan": "Bleep practice — full test to failure",
           "foodWeight": "Pudding ok tonight. Fuel well after.",
           "workouts": [
             {
-              "key": "long_10k",
-              "name": "Long Run 10K easy",
+              "key": "bleep_practice",
+              "name": "Bleep practice — full test to failure",
               "kind": "run"
             }
           ],
@@ -210,7 +210,7 @@
     {
       "title": "Week 3",
       "dates": "2–8 Aug",
-      "phase": "Build",
+      "phase": "Test week",
       "weekNumber": 3,
       "days": [
         {
@@ -234,7 +234,22 @@
         {
           "date": "2026-08-04",
           "dayLabel": "Tue 4",
-          "note": "Optional BAC — skip if tired",
+          "note": "Last hard session before test — keep turns sharp",
+          "runPlan": "Shuttle pace — 20m turns",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "shuttle_pace",
+              "name": "Shuttle pace — 20m turns",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-08-05",
+          "dayLabel": "Wed 5",
+          "note": "Easy only — skip PFTC",
           "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -247,60 +262,33 @@
           "rest": false
         },
         {
-          "date": "2026-08-05",
-          "dayLabel": "Wed 5",
-          "note": "Optional PFTC — skip if tired",
-          "runPlan": "Run club 6K easy",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_6k",
-              "name": "Run club — easy 6K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
           "date": "2026-08-06",
           "dayLabel": "Thu 6",
-          "note": "💪 Strength WK3",
-          "runPlan": "Strength only",
+          "note": "Strength deferred — legs fresh for Saturday",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk3",
-              "name": "Strength — Intensity (WK3)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-07",
           "dayLabel": "Fri 7",
-          "note": "—",
-          "runPlan": "Easy 6K",
-          "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "easy_6k",
-              "name": "Easy 6K + 5 strides",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "note": "Optional Easy 3K shakeout — default is rest",
+          "runPlan": "Rest",
+          "foodWeight": "Pudding ok tonight · early night",
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-08",
           "dayLabel": "Sat 8",
-          "note": "—",
-          "runPlan": "Long run 10K easy",
-          "foodWeight": "Pudding ok tonight",
+          "note": "🔥 FIRE SERVICE BLEEP — pass 8.8 · warm up well · aim 9.0+",
+          "runPlan": "Fire service bleep test — target 8.8+",
+          "foodWeight": "Celebrate after. Fuel well.",
           "workouts": [
             {
-              "key": "long_10k",
-              "name": "Long Run 10K easy",
+              "key": "bleep_test",
+              "name": "Fire service bleep test — target 8.8+",
               "kind": "run"
             }
           ],
@@ -815,7 +803,7 @@
     }
   ],
   "googleCalendar": {
-    "hint": "All-day events; set your own run times. Mon rest · Thu strength. BAC Tue + PFTC Wed optional — calendar shows the easy default.",
+    "hint": "All-day events; set your own run times. Bleep/MSFT sessions need a phone app for the beeps. Mon rest · Thu strength. BAC Tue + PFTC Wed optional after 8 Aug.",
     "events": [
       {
         "summary": "Easy 3K",
@@ -852,8 +840,8 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Foundation (WK1)",
-        "description": "💪 Strength WK1\nFood: Box portions\nPlan: Strength only",
+        "summary": "Bleep practice — full test to failure",
+        "description": "🔥 Fire baseline — 5.2 then 6.2 · strength deferred\nFood: Box portions\nPlan: Bleep practice — full test to failure",
         "start": {
           "date": "2026-07-23",
           "endDate": "2026-07-24"
@@ -865,12 +853,12 @@
         "date": "2026-07-23",
         "dayLabel": "Thu 23",
         "weekTitle": "Week 1",
-        "workoutKey": "strength_wk1",
-        "category": "strength"
+        "workoutKey": "bleep_practice",
+        "category": "run"
       },
       {
-        "summary": "Easy 5K",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 5K",
+        "summary": "Easy 4K",
+        "description": "Recovery after bleep — keep it short\nFood: Pudding ok tonight\nPlan: Easy 4K",
         "start": {
           "date": "2026-07-24",
           "endDate": "2026-07-25"
@@ -882,12 +870,12 @@
         "date": "2026-07-24",
         "dayLabel": "Fri 24",
         "weekTitle": "Week 1",
-        "workoutKey": "easy_5k",
+        "workoutKey": "easy_4k",
         "category": "run"
       },
       {
-        "summary": "Easy 8K — conversational",
-        "description": "First long of the rebuild\nFood: Pudding ok tonight. Fuel well after.\nPlan: Easy 8K",
+        "summary": "Bleep practice — full test to failure",
+        "description": "Full practice — aim 6.5–7.0 · use app for beeps\nFood: Pudding ok tonight. Fuel well after.\nPlan: Bleep practice — full test to failure",
         "start": {
           "date": "2026-07-25",
           "endDate": "2026-07-26"
@@ -899,12 +887,12 @@
         "date": "2026-07-25",
         "dayLabel": "Sat 25",
         "weekTitle": "Week 1",
-        "workoutKey": "easy_8k",
+        "workoutKey": "bleep_practice",
         "category": "run"
       },
       {
-        "summary": "Easy 5K · BAC optional",
-        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
+        "summary": "Shuttle pace — 20m turns",
+        "description": "20m turns at level 7–8 pace — practice the pivot\nFood: Box portions\nPlan: Shuttle pace — 20m turns",
         "start": {
           "date": "2026-07-28",
           "endDate": "2026-07-29"
@@ -916,12 +904,12 @@
         "date": "2026-07-28",
         "dayLabel": "Tue 28",
         "weekTitle": "Week 2",
-        "workoutKey": "easy_5k",
+        "workoutKey": "shuttle_pace",
         "category": "run"
       },
       {
-        "summary": "Easy 5K · PFTC optional",
-        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
+        "summary": "Easy 5K",
+        "description": "Easy only — skip PFTC this week\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-29",
           "endDate": "2026-07-30"
@@ -938,7 +926,7 @@
       },
       {
         "summary": "Strength — Build (WK2)",
-        "description": "💪 Strength WK2\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength WK2 — keep it, don't smash legs\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-07-30",
           "endDate": "2026-07-31"
@@ -954,8 +942,8 @@
         "category": "strength"
       },
       {
-        "summary": "Easy 6K + 5 strides",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 6K",
+        "summary": "Easy 5K",
+        "description": "Easy ahead of Saturday practice\nFood: Pudding ok tonight\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-31",
           "endDate": "2026-08-01"
@@ -967,12 +955,12 @@
         "date": "2026-07-31",
         "dayLabel": "Fri 31",
         "weekTitle": "Week 2",
-        "workoutKey": "easy_6k",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Long Run 10K easy",
-        "description": "—\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 10K easy",
+        "summary": "Bleep practice — full test to failure",
+        "description": "Full practice — aim 7.5+ · same shoes/surface as test day\nFood: Pudding ok tonight. Fuel well after.\nPlan: Bleep practice — full test to failure",
         "start": {
           "date": "2026-08-01",
           "endDate": "2026-08-02"
@@ -984,12 +972,12 @@
         "date": "2026-08-01",
         "dayLabel": "Sat 1 Aug",
         "weekTitle": "Week 2",
-        "workoutKey": "long_10k",
+        "workoutKey": "bleep_practice",
         "category": "run"
       },
       {
-        "summary": "Easy 5K · BAC optional",
-        "description": "Optional BAC — skip if tired\nFood: Box portions\nPlan: Easy 5K",
+        "summary": "Shuttle pace — 20m turns",
+        "description": "Last hard session before test — keep turns sharp\nFood: Box portions\nPlan: Shuttle pace — 20m turns",
         "start": {
           "date": "2026-08-04",
           "endDate": "2026-08-05"
@@ -1001,12 +989,12 @@
         "date": "2026-08-04",
         "dayLabel": "Tue 4",
         "weekTitle": "Week 3",
-        "workoutKey": "easy_5k",
+        "workoutKey": "shuttle_pace",
         "category": "run"
       },
       {
-        "summary": "Run club — easy 6K · PFTC optional",
-        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 6K easy",
+        "summary": "Easy 5K",
+        "description": "Easy only — skip PFTC\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-08-05",
           "endDate": "2026-08-06"
@@ -1018,46 +1006,12 @@
         "date": "2026-08-05",
         "dayLabel": "Wed 5",
         "weekTitle": "Week 3",
-        "workoutKey": "run_club_6k",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Strength — Intensity (WK3)",
-        "description": "💪 Strength WK3\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-08-06",
-          "endDate": "2026-08-07"
-        },
-        "end": {
-          "date": "2026-08-06",
-          "endDate": "2026-08-07"
-        },
-        "date": "2026-08-06",
-        "dayLabel": "Thu 6",
-        "weekTitle": "Week 3",
-        "workoutKey": "strength_wk3",
-        "category": "strength"
-      },
-      {
-        "summary": "Easy 6K + 5 strides",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Easy 6K",
-        "start": {
-          "date": "2026-08-07",
-          "endDate": "2026-08-08"
-        },
-        "end": {
-          "date": "2026-08-07",
-          "endDate": "2026-08-08"
-        },
-        "date": "2026-08-07",
-        "dayLabel": "Fri 7",
-        "weekTitle": "Week 3",
-        "workoutKey": "easy_6k",
-        "category": "run"
-      },
-      {
-        "summary": "Long Run 10K easy",
-        "description": "—\nFood: Pudding ok tonight\nPlan: Long run 10K easy",
+        "summary": "Fire service bleep test — target 8.8+",
+        "description": "🔥 FIRE SERVICE BLEEP — pass 8.8 · warm up well · aim 9.0+\nFood: Celebrate after. Fuel well.\nPlan: Fire service bleep test — target 8.8+",
         "start": {
           "date": "2026-08-08",
           "endDate": "2026-08-09"
@@ -1069,7 +1023,7 @@
         "date": "2026-08-08",
         "dayLabel": "Sat 8",
         "weekTitle": "Week 3",
-        "workoutKey": "long_10k",
+        "workoutKey": "bleep_test",
         "category": "run"
       },
       {

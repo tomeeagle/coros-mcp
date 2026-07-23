@@ -249,6 +249,9 @@ def _primary_run_key(
         (r"build 8k|5k easy.*1k moderate.*1k hard.*1k push", "build_8k"),
         (r"progression 10k|6k easy.*4k steady", "progression_10k"),
         (r"progression 8k|5k easy.*3k steady", "progression_8k"),
+        (r"fire service bleep|bleep test.*8\.8|bleep test day", "bleep_test"),
+        (r"bleep practice|full test to failure|msft practice", "bleep_practice"),
+        (r"shuttle pace|20m turns|shuttle intervals", "shuttle_pace"),
         (r"easy 10k", "easy_10k"),
         (r"easy 8k", "easy_8k"),
         (r"easy 6k|6k easy", "easy_6k"),
@@ -270,7 +273,18 @@ def _primary_run_key(
 
 def _is_run_workout_key(key: str) -> bool:
     return key.startswith(
-        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_", "progression_", "build_"),
+        (
+            "bac_",
+            "tempo_",
+            "easy_",
+            "long_",
+            "run_club_",
+            "race_",
+            "progression_",
+            "build_",
+            "bleep_",
+            "shuttle_",
+        ),
     )
 
 

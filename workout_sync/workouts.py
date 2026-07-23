@@ -212,6 +212,30 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {"name": "Cooldown", "duration_minutes": 10},
         ],
     },
+    # Fire service MSFT (20m bleep) — use a phone app for the beeps; watch is a shell.
+    "bleep_practice": _open_run(
+        "Bleep practice — full test to failure", 25, sport_type=100
+    ),
+    "bleep_test": _open_run(
+        "Fire service bleep test — target 8.8+", 30, sport_type=100
+    ),
+    "shuttle_pace": {
+        "name": "Shuttle pace — 20m turns",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Warmup + turn drills", "duration_minutes": 12},
+            {
+                "repeat": 8,
+                "steps": [
+                    {"name": "Hard — level 7–8 pace", "duration_minutes": 1},
+                    {"name": "Jog recover", "duration_minutes": 1},
+                ],
+            },
+            {"name": "Cooldown", "duration_minutes": 8},
+        ],
+    },
     "5k_time_trial": {
         "name": "5K Time Trial",
         "kind": "run",

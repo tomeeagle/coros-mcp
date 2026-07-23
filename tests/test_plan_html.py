@@ -117,15 +117,18 @@ def test_parse_full_plan():
     assert plan.year == 2026
     assert len(plan.weeks) == 8
 
-    # Re-entry week after 13 days off — Mon rest, strength on Thu
+    # Re-entry week — pivoted to fire service bleep after baseline 6.2
     assert plan.schedule["20260719"] == ["easy_3k"]
     assert "20260720" not in plan.schedule
-    assert plan.schedule["20260723"] == ["strength_wk1"]
-    assert plan.schedule["20260725"] == ["easy_8k"]
+    assert plan.schedule["20260723"] == ["bleep_practice"]
+    assert plan.schedule["20260725"] == ["bleep_practice"]
+    assert plan.schedule["20260808"] == ["bleep_test"]
 
-    # BAC and PFTC days use the easy default
-    assert plan.schedule["20260721"] == ["easy_4k"]
+    # Tue 21 skipped (rest); Wed still easy default
+    assert "20260721" not in plan.schedule
     assert plan.schedule["20260722"] == ["easy_5k"]
+    # Later BAC/PFTC weeks still use easy default when optional
+    assert plan.schedule["20260811"] == ["easy_6k"]
 
     # Peak and deload
     assert plan.schedule["20260905"] == ["long_14k"]

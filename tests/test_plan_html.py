@@ -121,7 +121,19 @@ def test_parse_full_plan():
     assert plan.schedule["20260719"] == ["easy_3k"]
     assert "20260720" not in plan.schedule
     assert plan.schedule["20260723"] == ["bleep_practice"]
-    assert plan.schedule["20260725"] == ["bleep_practice"]
+    assert plan.schedule["20260725"] == ["easy_4k_shuttle"]  # rough — no full MSFT
+    assert plan.schedule["20260727"] == ["shuttle_turns"]
+    assert plan.schedule["20260728"] == ["shuttle_pace"]
+    assert plan.schedule["20260729"] == ["bleep_practice"]
+    assert plan.schedule["20260730"] == ["bleep_partial"]
+    assert plan.schedule["20260731"] == ["easy_5k"]
+    assert "20260801" not in plan.schedule  # Gower optional — not prescribed
+    assert "20260802" not in plan.schedule
+    assert plan.schedule["20260803"] == ["shuttle_turns"]
+    assert plan.schedule["20260804"] == ["shuttle_pace"]
+    assert "20260805" not in plan.schedule  # taper rest
+    assert "20260806" not in plan.schedule
+    assert "20260807" not in plan.schedule
     assert plan.schedule["20260808"] == ["bleep_test"]
 
     # Tue 21 skipped (rest); Wed still easy default
@@ -139,7 +151,8 @@ def test_parse_full_plan():
 def test_strength_thursdays_from_html():
     html = PLAN.read_text(encoding="utf-8")
     days = _parse_strength_mondays(html, 2026)
-    assert days["20260723"] == "wk1"
-    assert days["20260730"] == "wk2"
+    # Bleep block: no strength 24 Jul–8 Aug. WK2 slides to Thu 27 Aug.
+    assert "20260730" not in days
     assert days["20260813"] == "wk4"
+    assert days["20260827"] == "wk2"
     assert days["20260910"] == "wk5"

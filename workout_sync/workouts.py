@@ -281,6 +281,22 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             },
         ],
     },
+    "easy_4k_shuttle": {
+        "name": "Easy 4K + L7 shuttle finisher",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy 4K", "distance_meters": 4000},
+            {
+                "repeat": 8,
+                "steps": [
+                    {"name": "20m @ L7 — 5:13/km (~6.3s)", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
+                ],
+            },
+        ],
+    },
     "5k_time_trial": {
         "name": "5K Time Trial",
         "kind": "run",

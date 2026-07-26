@@ -3,7 +3,7 @@
   "blockStart": "2026-07-19",
   "blockEnd": "2026-09-12",
   "timezone": "Europe/London",
-  "structure": "Fire service bleep prep to 8 Aug · Mon rest · shuttle/bleep quality · Thu strength · Fri easy · Sat practice/test · rebuild resumes after",
+  "structure": "Fire service bleep prep to 8 Aug · no BAC before test · last quality Tue 4 · Wed–Fri taper · Gower 1–2 Aug optional only · rebuild + BAC/PFTC after",
   "weeks": [
     {
       "title": "Week 1",
@@ -92,13 +92,13 @@
         {
           "date": "2026-07-25",
           "dayLabel": "Sat 25",
-          "note": "Full practice — aim 6.5–7.0 (L7=5:13/km) · use app for beeps",
-          "runPlan": "Bleep practice — full test (L8=5:00/km)",
-          "foodWeight": "Pudding ok tonight. Fuel well after.",
+          "note": "Feeling rough — skip full MSFT · Easy 4K then 6–8× 20m @ L7 5:13/km · full walk recoveries · stop early if flat",
+          "runPlan": "Easy 4K + L7 shuttle finisher",
+          "foodWeight": "Pudding ok tonight · sleep priority",
           "workouts": [
             {
-              "key": "bleep_practice",
-              "name": "Bleep practice — full test (L8=5:00/km)",
+              "key": "easy_4k_shuttle",
+              "name": "Easy 4K + L7 shuttle finisher",
               "kind": "run"
             }
           ],
@@ -154,13 +154,13 @@
         {
           "date": "2026-07-29",
           "dayLabel": "Wed 29",
-          "note": "Easy then 8× 20m @ L7 5:13/km (~6.3s) · full walk recoveries · skip PFTC",
-          "runPlan": "Easy 5K + L7 shuttle finisher",
-          "foodWeight": "Box portions",
+          "note": "Rolled from Sat 25 — full practice · aim 6.5–7.0 (L7=5:13/km) · use app for beeps · no BAC/PFTC",
+          "runPlan": "Bleep practice — full test (L8=5:00/km)",
+          "foodWeight": "Box portions · fuel well after",
           "workouts": [
             {
-              "key": "easy_5k_shuttle",
-              "name": "Easy 5K + L7 shuttle finisher",
+              "key": "bleep_practice",
+              "name": "Bleep practice — full test (L8=5:00/km)",
               "kind": "run"
             }
           ],
@@ -169,24 +169,9 @@
         {
           "date": "2026-07-30",
           "dayLabel": "Thu 30",
-          "note": "💪 Strength WK2 — bias upper/core, light on legs · optional evening: bleep partial start L5 if fresh",
-          "runPlan": "Strength only",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_wk2",
-              "name": "Strength — Build (WK2)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-07-31",
-          "dayLabel": "Fri 31",
-          "note": "Partial bleep — Spotify from level 5 to failure · more time near L7–8",
+          "note": "Partial bleep before drive to Gower — Spotify from level 5 to failure · strength deferred · no BAC",
           "runPlan": "Bleep partial — start L5 → fail",
-          "foodWeight": "Pudding ok tonight",
+          "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "bleep_partial",
@@ -197,32 +182,41 @@
           "rest": false
         },
         {
-          "date": "2026-08-01",
-          "dayLabel": "Sat 1 Aug",
-          "note": "Full practice — aim 7.5+ (L8=5:00/km) · same shoes/surface as test day",
-          "runPlan": "Bleep practice — full test (L8=5:00/km)",
-          "foodWeight": "Pudding ok tonight. Fuel well after.",
+          "date": "2026-07-31",
+          "dayLabel": "Fri 31",
+          "note": "Easy only — keep it light before Gower",
+          "runPlan": "Easy 5K",
+          "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "bleep_practice",
-              "name": "Bleep practice — full test (L8=5:00/km)",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
           "rest": false
+        },
+        {
+          "date": "2026-08-01",
+          "dayLabel": "Sat 1 Aug",
+          "note": "Gower — optional easy only if legs feel good · not prescribed",
+          "runPlan": "Rest",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [],
+          "rest": true
         }
       ]
     },
     {
       "title": "Week 3",
       "dates": "2–8 Aug",
-      "phase": "Test week",
+      "phase": "Taper → test",
       "weekNumber": 3,
       "days": [
         {
           "date": "2026-08-02",
           "dayLabel": "Sun 2",
-          "note": "—",
+          "note": "Gower — optional easy only if legs feel good · not prescribed",
           "runPlan": "Rest",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [],
@@ -246,7 +240,7 @@
         {
           "date": "2026-08-04",
           "dayLabel": "Tue 4",
-          "note": "Last hard session — 4× @ L7 5:13/km + 4× @ L8 5:00/km",
+          "note": "Last hard session — 4× @ L7 5:13/km + 4× @ L8 5:00/km · then full taper",
           "runPlan": "Shuttle pace — L7–8 (5:13–5:00/km)",
           "foodWeight": "Box portions",
           "workouts": [
@@ -261,22 +255,16 @@
         {
           "date": "2026-08-05",
           "dayLabel": "Wed 5",
-          "note": "Easy then 8× 20m @ L7 5:13/km · full walk recoveries · skip PFTC",
-          "runPlan": "Easy 5K + L7 shuttle finisher",
+          "note": "Taper begins — no quality · no BAC",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "easy_5k_shuttle",
-              "name": "Easy 5K + L7 shuttle finisher",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-06",
           "dayLabel": "Thu 6",
-          "note": "Strength deferred — legs fresh for Saturday",
+          "note": "Taper — strength deferred · legs fresh for Saturday",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
@@ -285,7 +273,7 @@
         {
           "date": "2026-08-07",
           "dayLabel": "Fri 7",
-          "note": "Optional Easy 3K shakeout — default is rest",
+          "note": "Taper — rest only · early night",
           "runPlan": "Rest",
           "foodWeight": "Pudding ok tonight · early night",
           "workouts": [],
@@ -294,7 +282,7 @@
         {
           "date": "2026-08-08",
           "dayLabel": "Sat 8",
-          "note": "🔥 FIRE SERVICE BLEEP — pass 8.8 at L8 pace 5:00/km · warm up well · aim 9.0+ (4:48/km)",
+          "note": "🔥 FIRE SERVICE BLEEP — target 8.8 (Derbyshire) · all-day event · time/location TBC · warm up well · aim 9.0+",
           "runPlan": "Fire service bleep — 8.8+ (L8=5:00/km)",
           "foodWeight": "Celebrate after. Fuel well.",
           "workouts": [
@@ -815,7 +803,7 @@
     }
   ],
   "googleCalendar": {
-    "hint": "All-day events; set your own run times. Bleep/MSFT sessions need a phone app for the beeps. Mon rest · Thu strength. BAC Tue + PFTC Wed optional after 8 Aug.",
+    "hint": "All-day events; set your own run times. Bleep/MSFT sessions need a phone app for the beeps. No BAC before 8 Aug. Last hard session Tue 4 Aug. Gower 1–2 Aug not prescribed. Strength resumes after test.",
     "events": [
       {
         "summary": "Easy 3K",
@@ -886,8 +874,8 @@
         "category": "run"
       },
       {
-        "summary": "Bleep practice — full test (L8=5:00/km)",
-        "description": "Full practice — aim 6.5–7.0 (L7=5:13/km) · use app for beeps\nFood: Pudding ok tonight. Fuel well after.\nPlan: Bleep practice — full test (L8=5:00/km)",
+        "summary": "Easy 4K + L7 shuttle finisher",
+        "description": "Feeling rough — skip full MSFT · Easy 4K then 6–8× 20m @ L7 5:13/km · full walk recoveries · stop early if flat\nFood: Pudding ok tonight · sleep priority\nPlan: Easy 4K + L7 shuttle finisher",
         "start": {
           "date": "2026-07-25",
           "endDate": "2026-07-26"
@@ -899,7 +887,7 @@
         "date": "2026-07-25",
         "dayLabel": "Sat 25",
         "weekTitle": "Week 1",
-        "workoutKey": "bleep_practice",
+        "workoutKey": "easy_4k_shuttle",
         "category": "run"
       },
       {
@@ -937,8 +925,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy 5K + L7 shuttle finisher",
-        "description": "Easy then 8× 20m @ L7 5:13/km (~6.3s) · full walk recoveries · skip PFTC\nFood: Box portions\nPlan: Easy 5K + L7 shuttle finisher",
+        "summary": "Bleep practice — full test (L8=5:00/km)",
+        "description": "Rolled from Sat 25 — full practice · aim 6.5–7.0 (L7=5:13/km) · use app for beeps · no BAC/PFTC\nFood: Box portions · fuel well after\nPlan: Bleep practice — full test (L8=5:00/km)",
         "start": {
           "date": "2026-07-29",
           "endDate": "2026-07-30"
@@ -950,12 +938,12 @@
         "date": "2026-07-29",
         "dayLabel": "Wed 29",
         "weekTitle": "Week 2",
-        "workoutKey": "easy_5k_shuttle",
+        "workoutKey": "bleep_practice",
         "category": "run"
       },
       {
-        "summary": "Strength — Build (WK2)",
-        "description": "💪 Strength WK2 — bias upper/core, light on legs · optional evening: bleep partial start L5 if fresh\nFood: Box portions\nPlan: Strength only",
+        "summary": "Bleep partial — start L5 → fail",
+        "description": "Partial bleep before drive to Gower — Spotify from level 5 to failure · strength deferred · no BAC\nFood: Box portions\nPlan: Bleep partial — start L5 → fail",
         "start": {
           "date": "2026-07-30",
           "endDate": "2026-07-31"
@@ -967,12 +955,12 @@
         "date": "2026-07-30",
         "dayLabel": "Thu 30",
         "weekTitle": "Week 2",
-        "workoutKey": "strength_wk2",
-        "category": "strength"
+        "workoutKey": "bleep_partial",
+        "category": "run"
       },
       {
-        "summary": "Bleep partial — start L5 → fail",
-        "description": "Partial bleep — Spotify from level 5 to failure · more time near L7–8\nFood: Pudding ok tonight\nPlan: Bleep partial — start L5 → fail",
+        "summary": "Easy 5K",
+        "description": "Easy only — keep it light before Gower\nFood: Pudding ok tonight\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-31",
           "endDate": "2026-08-01"
@@ -984,24 +972,7 @@
         "date": "2026-07-31",
         "dayLabel": "Fri 31",
         "weekTitle": "Week 2",
-        "workoutKey": "bleep_partial",
-        "category": "run"
-      },
-      {
-        "summary": "Bleep practice — full test (L8=5:00/km)",
-        "description": "Full practice — aim 7.5+ (L8=5:00/km) · same shoes/surface as test day\nFood: Pudding ok tonight. Fuel well after.\nPlan: Bleep practice — full test (L8=5:00/km)",
-        "start": {
-          "date": "2026-08-01",
-          "endDate": "2026-08-02"
-        },
-        "end": {
-          "date": "2026-08-01",
-          "endDate": "2026-08-02"
-        },
-        "date": "2026-08-01",
-        "dayLabel": "Sat 1 Aug",
-        "weekTitle": "Week 2",
-        "workoutKey": "bleep_practice",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
@@ -1023,7 +994,7 @@
       },
       {
         "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
-        "description": "Last hard session — 4× @ L7 5:13/km + 4× @ L8 5:00/km\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
+        "description": "Last hard session — 4× @ L7 5:13/km + 4× @ L8 5:00/km · then full taper\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
         "start": {
           "date": "2026-08-04",
           "endDate": "2026-08-05"
@@ -1039,25 +1010,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy 5K + L7 shuttle finisher",
-        "description": "Easy then 8× 20m @ L7 5:13/km · full walk recoveries · skip PFTC\nFood: Box portions\nPlan: Easy 5K + L7 shuttle finisher",
-        "start": {
-          "date": "2026-08-05",
-          "endDate": "2026-08-06"
-        },
-        "end": {
-          "date": "2026-08-05",
-          "endDate": "2026-08-06"
-        },
-        "date": "2026-08-05",
-        "dayLabel": "Wed 5",
-        "weekTitle": "Week 3",
-        "workoutKey": "easy_5k_shuttle",
-        "category": "run"
-      },
-      {
         "summary": "Fire service bleep — 8.8+ (L8=5:00/km)",
-        "description": "🔥 FIRE SERVICE BLEEP — pass 8.8 at L8 pace 5:00/km · warm up well · aim 9.0+ (4:48/km)\nFood: Celebrate after. Fuel well.\nPlan: Fire service bleep — 8.8+ (L8=5:00/km)",
+        "description": "🔥 FIRE SERVICE BLEEP — target 8.8 (Derbyshire) · all-day event · time/location TBC · warm up well · aim 9.0+\nFood: Celebrate after. Fuel well.\nPlan: Fire service bleep — 8.8+ (L8=5:00/km)",
         "start": {
           "date": "2026-08-08",
           "endDate": "2026-08-09"

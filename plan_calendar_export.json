@@ -124,7 +124,7 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Technique only — smooth pivots, not to failure · ~15–20 min",
+          "note": "Technique only — 12× 20m turn + walk recover · smooth pivots, not to failure · ~25–30 min",
           "runPlan": "Shuttle turns — technique",
           "foodWeight": "Box portions",
           "workouts": [
@@ -225,7 +225,7 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "Technique only — smooth pivots, not to failure · ~15–20 min",
+          "note": "Technique only — 12× 20m turn + walk recover · smooth pivots, not to failure · ~25–30 min",
           "runPlan": "Shuttle turns — technique",
           "foodWeight": "Box portions",
           "workouts": [
@@ -892,7 +892,7 @@
       },
       {
         "summary": "Shuttle turns — technique",
-        "description": "Technique only — smooth pivots, not to failure · ~15–20 min\nFood: Box portions\nPlan: Shuttle turns — technique",
+        "description": "Technique only — 12× 20m turn + walk recover · smooth pivots, not to failure · ~25–30 min\nFood: Box portions\nPlan: Shuttle turns — technique",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -977,7 +977,7 @@
       },
       {
         "summary": "Shuttle turns — technique",
-        "description": "Technique only — smooth pivots, not to failure · ~15–20 min\nFood: Box portions\nPlan: Shuttle turns — technique",
+        "description": "Technique only — 12× 20m turn + walk recover · smooth pivots, not to failure · ~25–30 min\nFood: Box portions\nPlan: Shuttle turns — technique",
         "start": {
           "date": "2026-08-03",
           "endDate": "2026-08-04"

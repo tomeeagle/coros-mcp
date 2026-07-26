@@ -253,6 +253,13 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "steps": [
             {"name": "Easy jog", "duration_minutes": 5},
             {
+                "repeat": 4,
+                "steps": [
+                    {"name": "Easy 20m — build gradually", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
+                ],
+            },
+            {
                 "repeat": 12,
                 "steps": [
                     {"name": "20m turn drill — smooth pivot", "duration_minutes": 1},

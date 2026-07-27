@@ -124,7 +124,7 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Technique — ankles/calves/swings off-watch, then 5' jog + 4× progressive 20m, then 12× turn + walk · not to failure · ~35–40 min",
+          "note": "Simple — 5' jog + 8× turn + walk · not to failure · ~20–25 min",
           "runPlan": "Shuttle turns — technique",
           "foodWeight": "Box portions",
           "workouts": [
@@ -225,7 +225,7 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "Technique — ankles/calves/swings off-watch, then 5' jog + 4× progressive 20m, then 12× turn + walk · not to failure · ~35–40 min",
+          "note": "Simple — 5' jog + 8× turn + walk · not to failure · ~20–25 min",
           "runPlan": "Shuttle turns — technique",
           "foodWeight": "Box portions",
           "workouts": [
@@ -892,7 +892,7 @@
       },
       {
         "summary": "Shuttle turns — technique",
-        "description": "Technique — ankles/calves/swings off-watch, then 5' jog + 4× progressive 20m, then 12× turn + walk · not to failure · ~35–40 min\nFood: Box portions\nPlan: Shuttle turns — technique",
+        "description": "Simple — 5' jog + 8× turn + walk · not to failure · ~20–25 min\nFood: Box portions\nPlan: Shuttle turns — technique",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -977,7 +977,7 @@
       },
       {
         "summary": "Shuttle turns — technique",
-        "description": "Technique — ankles/calves/swings off-watch, then 5' jog + 4× progressive 20m, then 12× turn + walk · not to failure · ~35–40 min\nFood: Box portions\nPlan: Shuttle turns — technique",
+        "description": "Simple — 5' jog + 8× turn + walk · not to failure · ~20–25 min\nFood: Box portions\nPlan: Shuttle turns — technique",
         "start": {
           "date": "2026-08-03",
           "endDate": "2026-08-04"

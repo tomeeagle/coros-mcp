@@ -122,7 +122,7 @@ def test_parse_full_plan():
     assert "20260720" not in plan.schedule
     assert plan.schedule["20260723"] == ["bleep_practice"]
     assert plan.schedule["20260725"] == ["easy_4k_shuttle"]  # rough — no full MSFT
-    assert plan.schedule["20260727"] == ["easy_4k"]
+    assert plan.schedule["20260727"] == ["bleep_partial"]
     assert plan.schedule["20260728"] == ["shuttle_pace"]
     assert plan.schedule["20260729"] == ["bleep_practice"]
     assert plan.schedule["20260730"] == ["bleep_partial"]

@@ -124,13 +124,13 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Skip turns — keep it easy before Tue pace",
-          "runPlan": "Easy 4K",
+          "note": "Shortened bleep — Spotify from level 5 to failure · no turns · stop when form goes",
+          "runPlan": "Bleep partial — start L5 → fail",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "easy_4k",
-              "name": "Easy 4K",
+              "key": "bleep_partial",
+              "name": "Bleep partial — start L5 → fail",
               "kind": "run"
             }
           ],
@@ -891,8 +891,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy 4K",
-        "description": "Skip turns — keep it easy before Tue pace\nFood: Box portions\nPlan: Easy 4K",
+        "summary": "Bleep partial — start L5 → fail",
+        "description": "Shortened bleep — Spotify from level 5 to failure · no turns · stop when form goes\nFood: Box portions\nPlan: Bleep partial — start L5 → fail",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -904,7 +904,7 @@
         "date": "2026-07-27",
         "dayLabel": "Mon 27",
         "weekTitle": "Week 2",
-        "workoutKey": "easy_4k",
+        "workoutKey": "bleep_partial",
         "category": "run"
       },
       {

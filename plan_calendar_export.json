@@ -124,13 +124,13 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Technique — ankles/calves/swings off-watch, then 5' jog + 4× progressive 20m, then 12× turn + walk · not to failure · ~35–40 min",
-          "runPlan": "Shuttle turns — technique",
+          "note": "Simple — warm up, play Spotify from level 5, run until you miss a beep · done",
+          "runPlan": "Mini bleep — start L5 → fail",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "shuttle_turns",
-              "name": "Shuttle turns — technique",
+              "key": "bleep_partial",
+              "name": "Mini bleep — start L5 → fail",
               "kind": "run"
             }
           ],
@@ -169,13 +169,13 @@
         {
           "date": "2026-07-30",
           "dayLabel": "Thu 30",
-          "note": "Partial bleep before drive to Gower — Spotify from level 5 to failure · strength deferred · no BAC",
-          "runPlan": "Bleep partial — start L5 → fail",
+          "note": "Easy only before Gower — strength deferred · no BAC",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "bleep_partial",
-              "name": "Bleep partial — start L5 → fail",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -225,13 +225,13 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "Technique — ankles/calves/swings off-watch, then 5' jog + 4× progressive 20m, then 12× turn + walk · not to failure · ~35–40 min",
-          "runPlan": "Shuttle turns — technique",
+          "note": "Simple — warm up, play Spotify from level 5, run until you miss a beep · done",
+          "runPlan": "Mini bleep — start L5 → fail",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "shuttle_turns",
-              "name": "Shuttle turns — technique",
+              "key": "bleep_partial",
+              "name": "Mini bleep — start L5 → fail",
               "kind": "run"
             }
           ],
@@ -891,8 +891,8 @@
         "category": "run"
       },
       {
-        "summary": "Shuttle turns — technique",
-        "description": "Technique — ankles/calves/swings off-watch, then 5' jog + 4× progressive 20m, then 12× turn + walk · not to failure · ~35–40 min\nFood: Box portions\nPlan: Shuttle turns — technique",
+        "summary": "Mini bleep — start L5 → fail",
+        "description": "Simple — warm up, play Spotify from level 5, run until you miss a beep · done\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -904,7 +904,7 @@
         "date": "2026-07-27",
         "dayLabel": "Mon 27",
         "weekTitle": "Week 2",
-        "workoutKey": "shuttle_turns",
+        "workoutKey": "bleep_partial",
         "category": "run"
       },
       {
@@ -942,8 +942,8 @@
         "category": "run"
       },
       {
-        "summary": "Bleep partial — start L5 → fail",
-        "description": "Partial bleep before drive to Gower — Spotify from level 5 to failure · strength deferred · no BAC\nFood: Box portions\nPlan: Bleep partial — start L5 → fail",
+        "summary": "Easy 5K",
+        "description": "Easy only before Gower — strength deferred · no BAC\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-30",
           "endDate": "2026-07-31"
@@ -955,7 +955,7 @@
         "date": "2026-07-30",
         "dayLabel": "Thu 30",
         "weekTitle": "Week 2",
-        "workoutKey": "bleep_partial",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
@@ -976,8 +976,8 @@
         "category": "run"
       },
       {
-        "summary": "Shuttle turns — technique",
-        "description": "Technique — ankles/calves/swings off-watch, then 5' jog + 4× progressive 20m, then 12× turn + walk · not to failure · ~35–40 min\nFood: Box portions\nPlan: Shuttle turns — technique",
+        "summary": "Mini bleep — start L5 → fail",
+        "description": "Simple — warm up, play Spotify from level 5, run until you miss a beep · done\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
         "start": {
           "date": "2026-08-03",
           "endDate": "2026-08-04"
@@ -989,7 +989,7 @@
         "date": "2026-08-03",
         "dayLabel": "Mon 3",
         "weekTitle": "Week 3",
-        "workoutKey": "shuttle_turns",
+        "workoutKey": "bleep_partial",
         "category": "run"
       },
       {

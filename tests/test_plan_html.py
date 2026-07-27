@@ -122,14 +122,14 @@ def test_parse_full_plan():
     assert "20260720" not in plan.schedule
     assert plan.schedule["20260723"] == ["bleep_practice"]
     assert plan.schedule["20260725"] == ["easy_4k_shuttle"]  # rough — no full MSFT
-    assert plan.schedule["20260727"] == ["shuttle_turns"]
+    assert plan.schedule["20260727"] == ["bleep_partial"]  # mini bleep
     assert plan.schedule["20260728"] == ["shuttle_pace"]
     assert plan.schedule["20260729"] == ["bleep_practice"]
-    assert plan.schedule["20260730"] == ["bleep_partial"]
+    assert plan.schedule["20260730"] == ["easy_5k"]
     assert plan.schedule["20260731"] == ["easy_5k"]
     assert "20260801" not in plan.schedule  # Gower optional — not prescribed
     assert "20260802" not in plan.schedule
-    assert plan.schedule["20260803"] == ["shuttle_turns"]
+    assert plan.schedule["20260803"] == ["bleep_partial"]  # mini bleep
     assert plan.schedule["20260804"] == ["shuttle_pace"]
     assert "20260805" not in plan.schedule  # taper rest
     assert "20260806" not in plan.schedule

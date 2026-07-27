@@ -250,7 +250,7 @@ def _primary_run_key(
         (r"progression 10k|6k easy.*4k steady", "progression_10k"),
         (r"progression 8k|5k easy.*3k steady", "progression_8k"),
         (r"fire service bleep|bleep test.*8\.8|bleep test day", "bleep_test"),
-        (r"bleep partial|start l5|start level 5", "bleep_partial"),
+        (r"mini bleep|bleep partial|start l5|start level 5", "bleep_partial"),
         (r"bleep practice|full test to failure|msft practice|full test \(l8", "bleep_practice"),
         (r"easy 4k \+ l7|easy 4k \+ shuttle|easy 3-?4k \+ l7", "easy_4k_shuttle"),
         (r"easy 5k \+ l7|easy 5k \+ shuttle|easy 5k.*l7 shuttle", "easy_5k_shuttle"),

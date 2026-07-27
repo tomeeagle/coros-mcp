@@ -271,7 +271,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     },
     # Skip early easy levels — more time near L7–8
     "bleep_partial": _open_run(
-        "Bleep partial — start L5 → fail", 18, sport_type=100
+        "Mini bleep — start L5 → fail", 18, sport_type=100
     ),
     "easy_5k_shuttle": {
         "name": "Easy 5K + L7 shuttle finisher",

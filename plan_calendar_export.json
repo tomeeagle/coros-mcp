@@ -124,13 +124,13 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Easy Zone 2 — conversational · save legs for Tue intervals + Wed full practice",
-          "runPlan": "Easy 5K",
+          "note": "Hard day today — 4× @ L7 5:13/km then 4× @ L8 5:00/km · full walk recoveries · Tue easy before Wed full",
+          "runPlan": "Shuttle pace — L7–8 (5:13–5:00/km)",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "easy_5k",
-              "name": "Easy 5K",
+              "key": "shuttle_pace",
+              "name": "Shuttle pace — L7–8 (5:13–5:00/km)",
               "kind": "run"
             }
           ],
@@ -139,13 +139,13 @@
         {
           "date": "2026-07-28",
           "dayLabel": "Tue 28",
-          "note": "Only hard day before Wed — 4× @ L7 5:13/km then 4× @ L8 5:00/km · full walk recoveries",
-          "runPlan": "Shuttle pace — L7–8 (5:13–5:00/km)",
+          "note": "Easy Zone 2 — conversational · freshen up for Wed full practice",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "shuttle_pace",
-              "name": "Shuttle pace — L7–8 (5:13–5:00/km)",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -891,8 +891,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy 5K",
-        "description": "Easy Zone 2 — conversational · save legs for Tue intervals + Wed full practice\nFood: Box portions\nPlan: Easy 5K",
+        "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
+        "description": "Hard day today — 4× @ L7 5:13/km then 4× @ L8 5:00/km · full walk recoveries · Tue easy before Wed full\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -904,12 +904,12 @@
         "date": "2026-07-27",
         "dayLabel": "Mon 27",
         "weekTitle": "Week 2",
-        "workoutKey": "easy_5k",
+        "workoutKey": "shuttle_pace",
         "category": "run"
       },
       {
-        "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
-        "description": "Only hard day before Wed — 4× @ L7 5:13/km then 4× @ L8 5:00/km · full walk recoveries\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
+        "summary": "Easy 5K",
+        "description": "Easy Zone 2 — conversational · freshen up for Wed full practice\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-28",
           "endDate": "2026-07-29"
@@ -921,7 +921,7 @@
         "date": "2026-07-28",
         "dayLabel": "Tue 28",
         "weekTitle": "Week 2",
-        "workoutKey": "shuttle_pace",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {

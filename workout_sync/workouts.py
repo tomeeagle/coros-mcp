@@ -226,22 +226,29 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "sport_type": 100,
         "intensity_type": 0,
         "steps": [
-            {"name": "Warmup + 20m turn drills", "duration_minutes": 12},
+            {"name": "Easy jog", "duration_minutes": 5},
             {
-                "repeat": 4,
+                "repeat": 6,
                 "steps": [
-                    {"name": "Hard L7 — 5:13/km", "duration_minutes": 1},
-                    {"name": "Jog recover", "duration_minutes": 1},
+                    {"name": "20m turn drill — smooth pivot", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
                 ],
             },
             {
                 "repeat": 4,
                 "steps": [
-                    {"name": "Hard L8 — 5:00/km", "duration_minutes": 1},
-                    {"name": "Jog recover", "duration_minutes": 1},
+                    {"name": "Hard L7 — 5:13/km (~6.3s)", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
                 ],
             },
-            {"name": "Cooldown", "duration_minutes": 8},
+            {
+                "repeat": 4,
+                "steps": [
+                    {"name": "Hard L8 — 5:00/km (6.0s)", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
+                ],
+            },
+            {"name": "Cooldown jog", "duration_minutes": 5},
         ],
     },
     # Technique only — not to failure

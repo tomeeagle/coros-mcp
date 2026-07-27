@@ -124,7 +124,7 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Hard day today — 4× @ L7 5:13/km then 4× @ L8 5:00/km · full walk recoveries · Tue easy before Wed full",
+          "note": "Warm up: 5' jog + 6× 20m turn drills (walk recover) · then 4× L7 (~6.3s) + 4× L8 (6.0s) with full walks · Tue easy before Wed full",
           "runPlan": "Shuttle pace — L7–8 (5:13–5:00/km)",
           "foodWeight": "Box portions",
           "workouts": [
@@ -240,7 +240,7 @@
         {
           "date": "2026-08-04",
           "dayLabel": "Tue 4",
-          "note": "Last hard session — 4× @ L7 5:13/km + 4× @ L8 5:00/km · then full taper",
+          "note": "Last hard session — warm up: 5' jog + 6× 20m turn drills · then 4× L7 (~6.3s) + 4× L8 (6.0s) · full walks · then taper",
           "runPlan": "Shuttle pace — L7–8 (5:13–5:00/km)",
           "foodWeight": "Box portions",
           "workouts": [
@@ -892,7 +892,7 @@
       },
       {
         "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
-        "description": "Hard day today — 4× @ L7 5:13/km then 4× @ L8 5:00/km · full walk recoveries · Tue easy before Wed full\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
+        "description": "Warm up: 5' jog + 6× 20m turn drills (walk recover) · then 4× L7 (~6.3s) + 4× L8 (6.0s) with full walks · Tue easy before Wed full\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -994,7 +994,7 @@
       },
       {
         "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
-        "description": "Last hard session — 4× @ L7 5:13/km + 4× @ L8 5:00/km · then full taper\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
+        "description": "Last hard session — warm up: 5' jog + 6× 20m turn drills · then 4× L7 (~6.3s) + 4× L8 (6.0s) · full walks · then taper\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
         "start": {
           "date": "2026-08-04",
           "endDate": "2026-08-05"

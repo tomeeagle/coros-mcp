@@ -124,13 +124,13 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Keep it simple — warm up, then 8× 20m @ L7 5:13/km with full walk recoveries · stop early if flat · save the max for Wed",
-          "runPlan": "Easy shuttles — 8× L7",
+          "note": "Easy Zone 2 — conversational · save legs for Tue intervals + Wed full practice",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "easy_shuttles_l7",
-              "name": "Easy shuttles — 8× L7",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -139,7 +139,7 @@
         {
           "date": "2026-07-28",
           "dayLabel": "Tue 28",
-          "note": "20m turns: 4× @ L7 5:13/km then 4× @ L8 5:00/km",
+          "note": "Only hard day before Wed — 4× @ L7 5:13/km then 4× @ L8 5:00/km · full walk recoveries",
           "runPlan": "Shuttle pace — L7–8 (5:13–5:00/km)",
           "foodWeight": "Box portions",
           "workouts": [
@@ -154,7 +154,7 @@
         {
           "date": "2026-07-29",
           "dayLabel": "Wed 29",
-          "note": "Rolled from Sat 25 — full practice · aim 6.5–7.0 (L7=5:13/km) · use app for beeps · no BAC/PFTC",
+          "note": "Full practice score check — aim 7.0+ · pace early levels easy · use app for beeps · no BAC/PFTC",
           "runPlan": "Bleep practice — full test (L8=5:00/km)",
           "foodWeight": "Box portions · fuel well after",
           "workouts": [
@@ -225,13 +225,13 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "Keep it simple — warm up, then 8× 20m @ L7 5:13/km with full walk recoveries · stop early if flat · save legs for Tue",
-          "runPlan": "Easy shuttles — 8× L7",
+          "note": "Easy Zone 2 — conversational · last sharpener is tomorrow",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "easy_shuttles_l7",
-              "name": "Easy shuttles — 8× L7",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -891,8 +891,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy shuttles — 8× L7",
-        "description": "Keep it simple — warm up, then 8× 20m @ L7 5:13/km with full walk recoveries · stop early if flat · save the max for Wed\nFood: Box portions\nPlan: Easy shuttles — 8× L7",
+        "summary": "Easy 5K",
+        "description": "Easy Zone 2 — conversational · save legs for Tue intervals + Wed full practice\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -904,12 +904,12 @@
         "date": "2026-07-27",
         "dayLabel": "Mon 27",
         "weekTitle": "Week 2",
-        "workoutKey": "easy_shuttles_l7",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
         "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
-        "description": "20m turns: 4× @ L7 5:13/km then 4× @ L8 5:00/km\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
+        "description": "Only hard day before Wed — 4× @ L7 5:13/km then 4× @ L8 5:00/km · full walk recoveries\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
         "start": {
           "date": "2026-07-28",
           "endDate": "2026-07-29"
@@ -926,7 +926,7 @@
       },
       {
         "summary": "Bleep practice — full test (L8=5:00/km)",
-        "description": "Rolled from Sat 25 — full practice · aim 6.5–7.0 (L7=5:13/km) · use app for beeps · no BAC/PFTC\nFood: Box portions · fuel well after\nPlan: Bleep practice — full test (L8=5:00/km)",
+        "description": "Full practice score check — aim 7.0+ · pace early levels easy · use app for beeps · no BAC/PFTC\nFood: Box portions · fuel well after\nPlan: Bleep practice — full test (L8=5:00/km)",
         "start": {
           "date": "2026-07-29",
           "endDate": "2026-07-30"
@@ -976,8 +976,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy shuttles — 8× L7",
-        "description": "Keep it simple — warm up, then 8× 20m @ L7 5:13/km with full walk recoveries · stop early if flat · save legs for Tue\nFood: Box portions\nPlan: Easy shuttles — 8× L7",
+        "summary": "Easy 5K",
+        "description": "Easy Zone 2 — conversational · last sharpener is tomorrow\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-08-03",
           "endDate": "2026-08-04"
@@ -989,7 +989,7 @@
         "date": "2026-08-03",
         "dayLabel": "Mon 3",
         "weekTitle": "Week 3",
-        "workoutKey": "easy_shuttles_l7",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {

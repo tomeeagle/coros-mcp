@@ -124,13 +124,13 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Simple — 5' jog + 8× turn + walk · not to failure · ~20–25 min",
-          "runPlan": "Shuttle turns — technique",
+          "note": "Skip turns — keep it easy before Tue pace",
+          "runPlan": "Easy 4K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "shuttle_turns",
-              "name": "Shuttle turns — technique",
+              "key": "easy_4k",
+              "name": "Easy 4K",
               "kind": "run"
             }
           ],
@@ -891,8 +891,8 @@
         "category": "run"
       },
       {
-        "summary": "Shuttle turns — technique",
-        "description": "Simple — 5' jog + 8× turn + walk · not to failure · ~20–25 min\nFood: Box portions\nPlan: Shuttle turns — technique",
+        "summary": "Easy 4K",
+        "description": "Skip turns — keep it easy before Tue pace\nFood: Box portions\nPlan: Easy 4K",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -904,7 +904,7 @@
         "date": "2026-07-27",
         "dayLabel": "Mon 27",
         "weekTitle": "Week 2",
-        "workoutKey": "shuttle_turns",
+        "workoutKey": "easy_4k",
         "category": "run"
       },
       {

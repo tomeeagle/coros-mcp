@@ -124,13 +124,13 @@
         {
           "date": "2026-07-27",
           "dayLabel": "Mon 27",
-          "note": "Simple — warm up, play Spotify from level 5, run until you miss a beep · done",
-          "runPlan": "Mini bleep — start L5 → fail",
+          "note": "Keep it simple — warm up, then 8× 20m @ L7 5:13/km with full walk recoveries · stop early if flat · save the max for Wed",
+          "runPlan": "Easy shuttles — 8× L7",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "bleep_partial",
-              "name": "Mini bleep — start L5 → fail",
+              "key": "easy_shuttles_l7",
+              "name": "Easy shuttles — 8× L7",
               "kind": "run"
             }
           ],
@@ -225,13 +225,13 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "Simple — warm up, play Spotify from level 5, run until you miss a beep · done",
-          "runPlan": "Mini bleep — start L5 → fail",
+          "note": "Keep it simple — warm up, then 8× 20m @ L7 5:13/km with full walk recoveries · stop early if flat · save legs for Tue",
+          "runPlan": "Easy shuttles — 8× L7",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "bleep_partial",
-              "name": "Mini bleep — start L5 → fail",
+              "key": "easy_shuttles_l7",
+              "name": "Easy shuttles — 8× L7",
               "kind": "run"
             }
           ],
@@ -891,8 +891,8 @@
         "category": "run"
       },
       {
-        "summary": "Mini bleep — start L5 → fail",
-        "description": "Simple — warm up, play Spotify from level 5, run until you miss a beep · done\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
+        "summary": "Easy shuttles — 8× L7",
+        "description": "Keep it simple — warm up, then 8× 20m @ L7 5:13/km with full walk recoveries · stop early if flat · save the max for Wed\nFood: Box portions\nPlan: Easy shuttles — 8× L7",
         "start": {
           "date": "2026-07-27",
           "endDate": "2026-07-28"
@@ -904,7 +904,7 @@
         "date": "2026-07-27",
         "dayLabel": "Mon 27",
         "weekTitle": "Week 2",
-        "workoutKey": "bleep_partial",
+        "workoutKey": "easy_shuttles_l7",
         "category": "run"
       },
       {
@@ -976,8 +976,8 @@
         "category": "run"
       },
       {
-        "summary": "Mini bleep — start L5 → fail",
-        "description": "Simple — warm up, play Spotify from level 5, run until you miss a beep · done\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
+        "summary": "Easy shuttles — 8× L7",
+        "description": "Keep it simple — warm up, then 8× 20m @ L7 5:13/km with full walk recoveries · stop early if flat · save legs for Tue\nFood: Box portions\nPlan: Easy shuttles — 8× L7",
         "start": {
           "date": "2026-08-03",
           "endDate": "2026-08-04"
@@ -989,7 +989,7 @@
         "date": "2026-08-03",
         "dayLabel": "Mon 3",
         "weekTitle": "Week 3",
-        "workoutKey": "bleep_partial",
+        "workoutKey": "easy_shuttles_l7",
         "category": "run"
       },
       {

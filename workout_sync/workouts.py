@@ -273,6 +273,23 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     "bleep_partial": _open_run(
         "Mini bleep — start L5 → fail", 18, sport_type=100
     ),
+    "easy_shuttles_l7": {
+        "name": "Easy shuttles — 8× L7",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy jog", "duration_minutes": 5},
+            {
+                "repeat": 8,
+                "steps": [
+                    {"name": "20m @ L7 — 5:13/km (~6.3s)", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
+                ],
+            },
+            {"name": "Easy jog", "duration_minutes": 5},
+        ],
+    },
     "easy_5k_shuttle": {
         "name": "Easy 5K + L7 shuttle finisher",
         "kind": "run",

@@ -169,7 +169,7 @@
         {
           "date": "2026-07-30",
           "dayLabel": "Thu 30",
-          "note": "Easy only — Camlin start Mon · strength deferred · no BAC",
+          "note": "Easy only — RM start Mon · strength deferred · no BAC",
           "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -184,7 +184,7 @@
         {
           "date": "2026-07-31",
           "dayLabel": "Fri 31",
-          "note": "Easy only — keep it light · travel/pack as needed",
+          "note": "Easy only — keep it light · kit/early nights for Mon start",
           "runPlan": "Easy 5K",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
@@ -199,7 +199,7 @@
         {
           "date": "2026-08-01",
           "dayLabel": "Sat 1 Aug",
-          "note": "Optional easy only if not travelling / packing for Camlin — default rest",
+          "note": "Rest — early night before Royal Mail start",
           "runPlan": "Rest",
           "foodWeight": "Pudding ok tonight",
           "workouts": [],
@@ -216,7 +216,7 @@
         {
           "date": "2026-08-02",
           "dayLabel": "Sun 2",
-          "note": "Travel / settle for Lisburn start — rest · early night",
+          "note": "Rest · early night · driving assessment / start prep",
           "runPlan": "Rest",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [],
@@ -225,7 +225,7 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "🔥 First day Camlin (Lisburn) — 12h shift · no run · sleep is the session",
+          "note": "🔥 Royal Mail Buxton day 1 — early shift + walking round · no extra run · legs already loaded",
           "runPlan": "Rest",
           "foodWeight": "Box portions · pack lunch",
           "workouts": [],
@@ -234,7 +234,7 @@
         {
           "date": "2026-08-04",
           "dayLabel": "Tue 4",
-          "note": "Camlin day 2 — sharpener cancelled · rest only · protect legs for Sat 8",
+          "note": "RM day 2 — sharpener cancelled · rest after shift · protect Achilles for Sat 8",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
@@ -243,7 +243,7 @@
         {
           "date": "2026-08-05",
           "dayLabel": "Wed 5",
-          "note": "Taper + new job — rest · no BAC",
+          "note": "Taper + early shifts — rest after work · no BAC",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
@@ -252,7 +252,7 @@
         {
           "date": "2026-08-06",
           "dayLabel": "Thu 6",
-          "note": "Taper — rest · plan travel back for Sat 8 if needed",
+          "note": "Taper — rest after shift · legs fresh for Saturday",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
@@ -261,7 +261,7 @@
         {
           "date": "2026-08-07",
           "dayLabel": "Fri 7",
-          "note": "Taper — rest only · early night · kit ready for test",
+          "note": "Taper — rest after shift · early night · kit ready for test",
           "runPlan": "Rest",
           "foodWeight": "Pudding ok tonight · early night",
           "workouts": [],
@@ -931,7 +931,7 @@
       },
       {
         "summary": "Easy 5K",
-        "description": "Easy only — Camlin start Mon · strength deferred · no BAC\nFood: Box portions\nPlan: Easy 5K",
+        "description": "Easy only — RM start Mon · strength deferred · no BAC\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-30",
           "endDate": "2026-07-31"
@@ -948,7 +948,7 @@
       },
       {
         "summary": "Easy 5K",
-        "description": "Easy only — keep it light · travel/pack as needed\nFood: Pudding ok tonight\nPlan: Easy 5K",
+        "description": "Easy only — keep it light · kit/early nights for Mon start\nFood: Pudding ok tonight\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-31",
           "endDate": "2026-08-01"

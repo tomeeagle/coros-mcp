@@ -169,7 +169,7 @@
         {
           "date": "2026-07-30",
           "dayLabel": "Thu 30",
-          "note": "Easy only before Gower — strength deferred · no BAC",
+          "note": "Easy only — Camlin start Mon · strength deferred · no BAC",
           "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -184,7 +184,7 @@
         {
           "date": "2026-07-31",
           "dayLabel": "Fri 31",
-          "note": "Easy only — keep it light before Gower",
+          "note": "Easy only — keep it light · travel/pack as needed",
           "runPlan": "Easy 5K",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
@@ -199,7 +199,7 @@
         {
           "date": "2026-08-01",
           "dayLabel": "Sat 1 Aug",
-          "note": "Gower — optional easy only if legs feel good · not prescribed",
+          "note": "Optional easy only if not travelling / packing for Camlin — default rest",
           "runPlan": "Rest",
           "foodWeight": "Pudding ok tonight",
           "workouts": [],
@@ -216,7 +216,7 @@
         {
           "date": "2026-08-02",
           "dayLabel": "Sun 2",
-          "note": "Gower — optional easy only if legs feel good · not prescribed",
+          "note": "Travel / settle for Lisburn start — rest · early night",
           "runPlan": "Rest",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [],
@@ -225,37 +225,25 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "Easy Zone 2 — conversational · last sharpener is tomorrow",
-          "runPlan": "Easy 5K",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "easy_5k",
-              "name": "Easy 5K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "note": "🔥 First day Camlin (Lisburn) — 12h shift · no run · sleep is the session",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions · pack lunch",
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-04",
           "dayLabel": "Tue 4",
-          "note": "Last hard session — warm up: 5' jog + 6× 20m turn drills · then 4× L7 (~6.3s) + 4× L8 (6.0s) · full walks · then taper",
-          "runPlan": "Shuttle pace — L7–8 (5:13–5:00/km)",
+          "note": "Camlin day 2 — sharpener cancelled · rest only · protect legs for Sat 8",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "shuttle_pace",
-              "name": "Shuttle pace — L7–8 (5:13–5:00/km)",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-05",
           "dayLabel": "Wed 5",
-          "note": "Taper begins — no quality · no BAC",
+          "note": "Taper + new job — rest · no BAC",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
@@ -264,7 +252,7 @@
         {
           "date": "2026-08-06",
           "dayLabel": "Thu 6",
-          "note": "Taper — strength deferred · legs fresh for Saturday",
+          "note": "Taper — rest · plan travel back for Sat 8 if needed",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
@@ -273,7 +261,7 @@
         {
           "date": "2026-08-07",
           "dayLabel": "Fri 7",
-          "note": "Taper — rest only · early night",
+          "note": "Taper — rest only · early night · kit ready for test",
           "runPlan": "Rest",
           "foodWeight": "Pudding ok tonight · early night",
           "workouts": [],
@@ -943,7 +931,7 @@
       },
       {
         "summary": "Easy 5K",
-        "description": "Easy only before Gower — strength deferred · no BAC\nFood: Box portions\nPlan: Easy 5K",
+        "description": "Easy only — Camlin start Mon · strength deferred · no BAC\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-30",
           "endDate": "2026-07-31"
@@ -960,7 +948,7 @@
       },
       {
         "summary": "Easy 5K",
-        "description": "Easy only — keep it light before Gower\nFood: Pudding ok tonight\nPlan: Easy 5K",
+        "description": "Easy only — keep it light · travel/pack as needed\nFood: Pudding ok tonight\nPlan: Easy 5K",
         "start": {
           "date": "2026-07-31",
           "endDate": "2026-08-01"
@@ -973,40 +961,6 @@
         "dayLabel": "Fri 31",
         "weekTitle": "Week 2",
         "workoutKey": "easy_5k",
-        "category": "run"
-      },
-      {
-        "summary": "Easy 5K",
-        "description": "Easy Zone 2 — conversational · last sharpener is tomorrow\nFood: Box portions\nPlan: Easy 5K",
-        "start": {
-          "date": "2026-08-03",
-          "endDate": "2026-08-04"
-        },
-        "end": {
-          "date": "2026-08-03",
-          "endDate": "2026-08-04"
-        },
-        "date": "2026-08-03",
-        "dayLabel": "Mon 3",
-        "weekTitle": "Week 3",
-        "workoutKey": "easy_5k",
-        "category": "run"
-      },
-      {
-        "summary": "Shuttle pace — L7–8 (5:13–5:00/km)",
-        "description": "Last hard session — warm up: 5' jog + 6× 20m turn drills · then 4× L7 (~6.3s) + 4× L8 (6.0s) · full walks · then taper\nFood: Box portions\nPlan: Shuttle pace — L7–8 (5:13–5:00/km)",
-        "start": {
-          "date": "2026-08-04",
-          "endDate": "2026-08-05"
-        },
-        "end": {
-          "date": "2026-08-04",
-          "endDate": "2026-08-05"
-        },
-        "date": "2026-08-04",
-        "dayLabel": "Tue 4",
-        "weekTitle": "Week 3",
-        "workoutKey": "shuttle_pace",
         "category": "run"
       },
       {

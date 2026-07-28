@@ -127,11 +127,11 @@ def test_parse_full_plan():
     assert plan.schedule["20260729"] == ["bleep_practice"]
     assert plan.schedule["20260730"] == ["easy_5k"]
     assert plan.schedule["20260731"] == ["easy_5k"]
-    assert "20260801" not in plan.schedule  # Gower optional — not prescribed
+    assert "20260801" not in plan.schedule  # travel/Camlin prep — not prescribed
     assert "20260802" not in plan.schedule
-    assert plan.schedule["20260803"] == ["easy_5k"]
-    assert plan.schedule["20260804"] == ["shuttle_pace"]
-    assert "20260805" not in plan.schedule  # taper rest
+    assert "20260803" not in plan.schedule  # Camlin day 1
+    assert "20260804" not in plan.schedule  # sharpener cancelled
+    assert "20260805" not in plan.schedule
     assert "20260806" not in plan.schedule
     assert "20260807" not in plan.schedule
     assert plan.schedule["20260808"] == ["bleep_test"]

@@ -212,11 +212,29 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {"name": "Cooldown", "duration_minutes": 10},
         ],
     },
-    # Fire service MSFT (20m bleep) — use a phone app for the beeps; watch is a shell.
+    # Fire service MSFT (20m bleep) — use a phone app for the beeps; watch paces the session.
     # Speeds: L6 11.0km/h (5:27/km) · L7 11.5 (5:13/km) · L8 12.0 (5:00/km) · L9 12.5 (4:48/km)
-    "bleep_practice": _open_run(
-        "Bleep practice — full test (L8=5:00/km)", 25, sport_type=100
-    ),
+    "bleep_practice": {
+        "name": "Bleep practice — full test (L8=5:00/km)",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy jog", "duration_minutes": 5},
+            {
+                "repeat": 4,
+                "steps": [
+                    {"name": "Easy 20m turn — light only", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
+                ],
+            },
+            {
+                "name": "Full MSFT — Spotify L1→fail · aim 7.0+",
+                "duration_minutes": 15,
+            },
+            {"name": "Easy jog cooldown", "duration_minutes": 5},
+        ],
+    },
     "bleep_test": _open_run(
         "Fire service bleep — 8.8+ (L8=5:00/km)", 30, sport_type=100
     ),

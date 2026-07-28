@@ -154,7 +154,7 @@
         {
           "date": "2026-07-29",
           "dayLabel": "Wed 29",
-          "note": "Full practice score check — aim 7.0+ · pace early levels easy · use app for beeps · no BAC/PFTC",
+          "note": "1) Inhaler · 2) ankles/calves/leg swings off-watch · 3) 5' easy jog · 4) 4× light 20m turns + walk · 5) Spotify full MSFT L1→fail — pace L1–4 easy, aim 7.0+ · 6) 5' easy jog cool-down · fuel after · no BAC/PFTC",
           "runPlan": "Bleep practice — full test (L8=5:00/km)",
           "foodWeight": "Box portions · fuel well after",
           "workouts": [
@@ -926,7 +926,7 @@
       },
       {
         "summary": "Bleep practice — full test (L8=5:00/km)",
-        "description": "Full practice score check — aim 7.0+ · pace early levels easy · use app for beeps · no BAC/PFTC\nFood: Box portions · fuel well after\nPlan: Bleep practice — full test (L8=5:00/km)",
+        "description": "1) Inhaler · 2) ankles/calves/leg swings off-watch · 3) 5' easy jog · 4) 4× light 20m turns + walk · 5) Spotify full MSFT L1→fail — pace L1–4 easy, aim 7.0+ · 6) 5' easy jog cool-down · fuel after · no BAC/PFTC\nFood: Box portions · fuel well after\nPlan: Bleep practice — full test (L8=5:00/km)",
         "start": {
           "date": "2026-07-29",
           "endDate": "2026-07-30"

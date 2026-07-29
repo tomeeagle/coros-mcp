@@ -269,6 +269,42 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {"name": "Cooldown jog", "duration_minutes": 5},
         ],
     },
+    # Lighter than shuttle_pace — Gower weekend sharpener / between quality days
+    "shuttle_short": {
+        "name": "Shuttle short — 4× L7 + 2× L8",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy jog", "duration_minutes": 5},
+            {
+                "repeat": 4,
+                "steps": [
+                    {"name": "20m turn drill — smooth pivot", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
+                ],
+            },
+            {
+                "repeat": 4,
+                "steps": [
+                    {"name": "Hard L7 — 5:13/km (~6.3s)", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
+                ],
+            },
+            {
+                "repeat": 2,
+                "steps": [
+                    {"name": "Hard L8 — 5:00/km (6.0s)", "duration_minutes": 1},
+                    {"name": "Walk recover", "duration_minutes": 1},
+                ],
+            },
+            {"name": "Cooldown jog", "duration_minutes": 5},
+        ],
+    },
+    # HIWFRS Chester treadmill — walk 6.2 kph; gradient protocol in plan notes
+    "chester_9": _open_run("Chester 9% — 6.2 kph walk", 28, sport_type=100),
+    "chester_12": _open_run("Chester 12% — 6.2 kph walk", 28, sport_type=100),
+    "chester_15": _open_run("Chester 15% — 6.2 kph walk", 28, sport_type=100),
     # Technique only — not to failure
     "shuttle_turns": {
         "name": "Shuttle turns — technique",

@@ -155,16 +155,17 @@ def export_calendar_json(
         "blockEnd": block_end or "2026-09-12",
         "timezone": "Europe/London",
         "structure": (
-            "Fire service bleep prep to 8 Aug · no BAC before test · last quality Tue 4 · "
-            "Wed–Fri taper · Gower 1–2 Aug optional only · rebuild + BAC/PFTC after"
+            "Derbyshire MSFT 8.8 on 8 Aug · Sun 2 short shuttles · last quality Tue 4 · "
+            "Wed–Fri taper · after 8 Aug HIWFRS Chester Tue+Fri + strength Thu"
         ),
         "weeks": blocks,
         "googleCalendar": {
             "hint": (
                 "All-day events; set your own run times. "
                 "Bleep/MSFT sessions need a phone app for the beeps. "
+                "Chester = treadmill walk 6.2 kph with gradient protocol in plan notes. "
                 "No BAC before 8 Aug. Last hard session Tue 4 Aug. "
-                "Gower 1–2 Aug not prescribed. Strength resumes after test."
+                "Gower Sat 1 rest · Sun 2 short shuttles. Strength + Chester after test."
             ),
             "events": sorted(events, key=lambda e: e["date"]),
         },

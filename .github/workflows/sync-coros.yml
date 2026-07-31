@@ -1,0 +1,30 @@
+name: Sync plan to COROS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "training_plan.html"
+  workflow_dispatch: {}
+
+concurrency:
+  group: sync-coros
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -e .
+      - name: Sync training plan to COROS
+        env:
+          COROS_EMAIL: ${{ secrets.COROS_EMAIL }}
+          COROS_PASSWORD: ${{ secrets.COROS_PASSWORD }}
+          COROS_REGION: ${{ secrets.COROS_REGION }}
+        run: python coros_sync.py sync -y

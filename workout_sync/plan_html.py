@@ -257,7 +257,7 @@ def _primary_run_key(
         (r"easy 5k \+ l7|easy 5k \+ shuttle|easy 5k.*l7 shuttle", "easy_5k_shuttle"),
         (r"shuttle short|4× l7 \+ 2× l8|4x l7 \+ 2x l8", "shuttle_short"),
         (r"shuttle turns|turn drill|technique", "shuttle_turns"),
-        (r"shuttle pace|20m turns|shuttle intervals", "shuttle_pace"),
+        (r"shuttle pace|20m turns|shuttle intervals|speed intervals", "shuttle_pace"),
         (r"chester 15%|chester 15", "chester_15"),
         (r"chester 12%|chester 12", "chester_12"),
         (r"chester 9%|chester 9|chester treadmill", "chester_9"),

@@ -129,30 +129,35 @@ def test_parse_full_plan():
     assert plan.schedule["20260731"] == ["easy_5k"]
     assert "20260801" not in plan.schedule  # Gower optional — not prescribed
     assert "20260802" not in plan.schedule
-    assert plan.schedule["20260803"] == ["easy_5k"]
-    assert plan.schedule["20260804"] == ["shuttle_pace"]
-    assert "20260805" not in plan.schedule  # taper rest
-    assert "20260806" not in plan.schedule
-    assert "20260807" not in plan.schedule
-    assert plan.schedule["20260808"] == ["bleep_test"]
+
+    # SYFRS failed — bleep test dropped, HIWFRS Chester pulled forward instead
+    assert plan.schedule["20260803"] == ["shuttle_pace"]  # weekly speed session, no test pressure
+    assert plan.schedule["20260804"] == ["chester_9"]  # Chester starts immediately
+    assert plan.schedule["20260805"] == ["run_club_8k"]
+    assert plan.schedule["20260806"] == ["strength_wk4"]
+    assert plan.schedule["20260807"] == ["chester_9"]
+    assert plan.schedule["20260808"] == ["long_12k"]
 
     # Tue 21 skipped (rest); Wed still easy default
     assert "20260721" not in plan.schedule
     assert plan.schedule["20260722"] == ["easy_5k"]
-    # Later BAC/PFTC weeks still use easy default when optional
-    assert plan.schedule["20260811"] == ["easy_6k"]
+    # Chester 12% week
+    assert plan.schedule["20260811"] == ["chester_12"]
 
-    # Peak and deload
-    assert plan.schedule["20260905"] == ["long_14k"]
-    assert plan.schedule["20260912"] == ["long_10k"]
+    # Deload, then hold at 15% awaiting Hampshire date
+    assert plan.schedule["20260905"] == ["long_10k"]
+    assert plan.schedule["20260912"] == ["long_12k"]
 
 
 @pytest.mark.skipif(not PLAN.is_file(), reason="training_plan.html not in repo")
 def test_strength_thursdays_from_html():
     html = PLAN.read_text(encoding="utf-8")
     days = _parse_strength_mondays(html, 2026)
-    # Bleep block: no strength 24 Jul–8 Aug. WK2 slides to Thu 27 Aug.
+    # Bleep test dropped — HIWFRS strength progression pulled forward a week.
     assert "20260730" not in days
-    assert days["20260813"] == "wk4"
-    assert days["20260827"] == "wk2"
-    assert days["20260910"] == "wk5"
+    assert days["20260806"] == "wk4"
+    assert days["20260813"] == "wk1"
+    assert days["20260820"] == "wk2"
+    assert days["20260827"] == "wk3"
+    assert days["20260903"] == "wk5"
+    assert "20260910" not in days

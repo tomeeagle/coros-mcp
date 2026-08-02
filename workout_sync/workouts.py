@@ -239,30 +239,24 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "Fire service bleep — 8.8+ (L8=5:00/km)", 30, sport_type=100
     ),
     "shuttle_pace": {
-        "name": "Shuttle pace — L7–8 (5:13–5:00/km)",
+        "name": "Speed intervals — L7–8 (5:13–5:00/km)",
         "kind": "run",
         "sport_type": 100,
         "intensity_type": 0,
         "steps": [
-            {"name": "Easy jog", "duration_minutes": 5},
+            {"name": "Easy jog", "duration_minutes": 8},
+            {"name": "Strides ×4", "duration_minutes": 2},
             {
-                "repeat": 6,
+                "repeat": 4,
                 "steps": [
-                    {"name": "20m turn drill — smooth pivot", "duration_minutes": 1},
+                    {"name": "Hard L7 — 5:13/km", "duration_minutes": 1},
                     {"name": "Walk recover", "duration_minutes": 1},
                 ],
             },
             {
                 "repeat": 4,
                 "steps": [
-                    {"name": "Hard L7 — 5:13/km (~6.3s)", "duration_minutes": 1},
-                    {"name": "Walk recover", "duration_minutes": 1},
-                ],
-            },
-            {
-                "repeat": 4,
-                "steps": [
-                    {"name": "Hard L8 — 5:00/km (6.0s)", "duration_minutes": 1},
+                    {"name": "Hard L8 — 5:00/km", "duration_minutes": 1},
                     {"name": "Walk recover", "duration_minutes": 1},
                 ],
             },

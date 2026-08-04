@@ -132,20 +132,34 @@ def test_parse_full_plan():
 
     # SYFRS failed — bleep test dropped, HIWFRS Chester pulled forward instead
     assert plan.schedule["20260803"] == ["shuttle_pace"]  # weekly speed session, no test pressure
-    assert plan.schedule["20260804"] == ["chester_9"]  # Chester starts immediately
+    assert plan.schedule["20260804"] == ["chester_9"]  # Chester 9% starts — week 1 of 3
     assert plan.schedule["20260805"] == ["run_club_8k"]
     assert plan.schedule["20260806"] == ["strength_wk4"]
     assert plan.schedule["20260807"] == ["chester_9"]
     assert plan.schedule["20260808"] == ["long_12k"]
 
+    # Chester 9% continues — week 2 of 3
+    assert plan.schedule["20260811"] == ["chester_9"]
+    assert plan.schedule["20260814"] == ["chester_9"]
+
+    # Chester 9% continues — week 3 of 3
+    assert plan.schedule["20260818"] == ["chester_9"]
+    assert plan.schedule["20260821"] == ["chester_9"]  # final 9% session
+
     # Tue 21 skipped (rest); Wed still easy default
     assert "20260721" not in plan.schedule
     assert plan.schedule["20260722"] == ["easy_5k"]
-    # Chester 12% week
-    assert plan.schedule["20260811"] == ["chester_12"]
+    
+    # Chester 12% starts week 6
+    assert plan.schedule["20260825"] == ["chester_12"]
+    assert plan.schedule["20260828"] == ["chester_12"]
 
-    # Deload, then hold at 15% awaiting Hampshire date
+    # Deload week 7 (soft deload)
     assert plan.schedule["20260905"] == ["long_10k"]
+
+    # Chester 15% starts week 8
+    assert plan.schedule["20260908"] == ["chester_15"]
+    assert plan.schedule["20260911"] == ["chester_15"]
     assert plan.schedule["20260912"] == ["long_12k"]
 
 

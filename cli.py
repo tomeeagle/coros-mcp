@@ -366,6 +366,69 @@ def cmd_weekly_api() -> int:
         return 1
 
 
+def cmd_weekly_report() -> int:
+    """Analyze the previous completed week: volume, HR, and training-load trends."""
+    import argparse
+    from pathlib import Path
+
+    parser = argparse.ArgumentParser(
+        prog="coros-mcp weekly-report",
+        description="Previous-week performance analysis (distance, HR, training load trends).",
+    )
+    parser.add_argument(
+        "--weeks-back",
+        type=int,
+        default=3,
+        help="Number of prior weeks to compare against (default: 3)",
+    )
+    parser.add_argument(
+        "--no-refresh",
+        action="store_true",
+        help="Use local cache only (skip Coros API refresh)",
+    )
+    parser.add_argument(
+        "--out",
+        metavar="PATH",
+        help="Write markdown report to PATH (directories created as needed)",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print JSON instead of markdown",
+    )
+    parsed = parser.parse_args(sys.argv[2:])
+
+    try:
+        from workout_sync.weekly_performance import collect_and_build_report, render_markdown
+
+        report = asyncio.run(
+            collect_and_build_report(
+                prior_week_count=max(1, parsed.weeks_back),
+                refresh=not parsed.no_refresh,
+            )
+        )
+        if parsed.json:
+            import json
+
+            text = json.dumps(report.to_dict(), indent=2)
+        else:
+            text = render_markdown(report)
+
+        print(text)
+        if parsed.out:
+            out = Path(parsed.out)
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(text, encoding="utf-8")
+            print(f"\n✓ Wrote {out}", file=sys.stderr)
+
+        if report.data_gaps and report.focus_week.activity_count == 0:
+            return 2
+        return 0
+    except Exception as e:
+        print(f"✗ weekly-report failed: {e}")
+        return 1
+
+
 def cmd_serve() -> int:
     """Start the MCP server (stdio mode)."""
     import server
@@ -390,6 +453,8 @@ Usage:
   coros-mcp calendar-auth [--force]  Connect Google Calendar using OAuth
   coros-mcp calendar-sync [--dry-run] [--calendar-id ID]  Sync plan events to Google Calendar
   coros-mcp weekly-api [--port 5055]  Local weekly coach API for the Next.js UI
+  coros-mcp weekly-report [--weeks-back N] [--no-refresh] [--out PATH] [--json]
+                          Previous-week volume / HR / training-load analysis
   coros-mcp cache-status            Show local cache coverage
   coros-mcp help                    Show this help message
 """
@@ -415,6 +480,7 @@ def main() -> None:
         "calendar-auth": cmd_calendar_auth,
         "calendar-sync": cmd_calendar_sync,
         "weekly-api": cmd_weekly_api,
+        "weekly-report": cmd_weekly_report,
         "cache-status": cmd_cache_status,
         "help": cmd_help,
         "--help": cmd_help,

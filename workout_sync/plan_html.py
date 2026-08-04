@@ -258,6 +258,7 @@ def _primary_run_key(
         (r"shuttle short|4× l7 \+ 2× l8|4x l7 \+ 2x l8", "shuttle_short"),
         (r"shuttle turns|turn drill|technique", "shuttle_turns"),
         (r"shuttle pace|20m turns|shuttle intervals|speed intervals", "shuttle_pace"),
+        (r"cooper 1\.5|cooper 1\.5 mile|1\.5 mile.*time trial|1\.5 mile.*cooper", "cooper_1_5_mile"),
         (r"chester 15%|chester 15", "chester_15"),
         (r"chester 12%|chester 12", "chester_12"),
         (r"chester 9%|chester 9|chester treadmill", "chester_9"),
@@ -294,6 +295,7 @@ def _is_run_workout_key(key: str) -> bool:
             "bleep_",
             "shuttle_",
             "chester_",
+            "cooper_",
         ),
     )
 

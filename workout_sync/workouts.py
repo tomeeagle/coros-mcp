@@ -299,6 +299,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     "chester_9": _open_run("Chester 9% — 6.2 kph walk", 28, sport_type=100),
     "chester_12": _open_run("Chester 12% — 6.2 kph walk", 28, sport_type=100),
     "chester_15": _open_run("Chester 15% — 6.2 kph walk", 28, sport_type=100),
+    "cooper_1_5_mile": _open_run("Cooper 1.5 mile — time trial", 20, sport_type=100),
     # Technique only — not to failure
     "shuttle_turns": {
         "name": "Shuttle turns — technique",

@@ -155,17 +155,17 @@ def export_calendar_json(
         "blockEnd": block_end or "2026-09-12",
         "timezone": "Europe/London",
         "structure": (
-            "Derbyshire MSFT 8.8 on 8 Aug · Sun 2 short shuttles · last quality Tue 4 · "
-            "Wed–Fri taper · after 8 Aug HIWFRS Chester Tue+Fri + strength Thu"
+            "Multi-FRS wholetime: NFRS bleep 8.8 · Avon Cooper 1.5 mile · HIWFRS Chester/strength · "
+            "Chester Tue/Fri · Mon speed/bleep · Cooper Sat 22 Aug + Sat 12 Sep"
         ),
         "weeks": blocks,
         "googleCalendar": {
             "hint": (
                 "All-day events; set your own run times. "
                 "Bleep/MSFT sessions need a phone app for the beeps. "
-                "Chester = treadmill walk 6.2 kph with gradient protocol in plan notes. "
-                "No BAC before 8 Aug. Last hard session Tue 4 Aug. "
-                "Gower Sat 1 rest · Sun 2 short shuttles. Strength + Chester after test."
+                "Chester = outdoor hill walk ~9:41/km (see plan notes). "
+                "Cooper = track 1.5 mile time trial for Avon WT. "
+                "Optional easy bike not on calendar."
             ),
             "events": sorted(events, key=lambda e: e["date"]),
         },

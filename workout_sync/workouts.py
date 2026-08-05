@@ -312,11 +312,15 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {"name": "Cooldown jog", "duration_minutes": 5},
         ],
     },
-    # HIWFRS Chester treadmill — walk 6.2 kph; gradient protocol in plan notes
-    "chester_9": _open_run("Chester 9% — 6.2 kph walk", 28, sport_type=100),
-    "chester_12": _open_run("Chester 12% — 6.2 kph walk", 28, sport_type=100),
-    "chester_15": _open_run("Chester 15% — 6.2 kph walk", 28, sport_type=100),
     "cooper_1_5_mile": _open_run("Cooper 1.5 mile — time trial", 20, sport_type=100),
+    # Fartlek sessions — varied pace work
+    "fartlek_20": _open_run("Fartlek 20' — varied pace", 35, sport_type=100),
+    "fartlek_22": _open_run("Fartlek 22' — varied pace", 37, sport_type=100),
+    "fartlek_25": _open_run("Fartlek 25' — varied pace", 40, sport_type=100),
+    # Tempo sessions — threshold work
+    "tempo_20": _open_run("Tempo 20' — threshold", 35, sport_type=100),
+    "tempo_22": _open_run("Tempo 22' — threshold", 37, sport_type=100),
+    "tempo_25": _open_run("Tempo 25' — threshold", 40, sport_type=100),
     # Technique only — not to failure
     "shuttle_turns": {
         "name": "Shuttle turns — technique",

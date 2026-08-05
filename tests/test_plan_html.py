@@ -130,36 +130,36 @@ def test_parse_full_plan():
     assert "20260801" not in plan.schedule  # Gower optional — not prescribed
     assert "20260802" not in plan.schedule
 
-    # SYFRS failed — bleep test dropped, HIWFRS Chester pulled forward instead
-    assert plan.schedule["20260803"] == ["shuttle_pace"]  # weekly speed session, no test pressure
-    assert plan.schedule["20260804"] == ["chester_9"]  # Chester 9% starts — week 1 of 3
+    # SYFRS failed — HIWFRS not proceeding, using fartlek + tempo instead
+    assert plan.schedule["20260803"] == ["shuttle_pace"]  # weekly speed session
+    assert plan.schedule["20260804"] == ["fartlek_20"]  # Fartlek starts
     assert plan.schedule["20260805"] == ["walk_jog_recovery"]
     assert plan.schedule["20260806"] == ["strength_wk4"]
-    assert plan.schedule["20260807"] == ["chester_9"]
+    assert plan.schedule["20260807"] == ["tempo_20"]
     assert plan.schedule["20260808"] == ["long_12k"]
 
-    # Chester 9% continues — week 2 of 3
-    assert plan.schedule["20260811"] == ["chester_9"]
-    assert plan.schedule["20260814"] == ["chester_9"]
+    # Fartlek + tempo continues — week 2
+    assert plan.schedule["20260811"] == ["fartlek_22"]
+    assert plan.schedule["20260814"] == ["tempo_22"]
 
-    # Chester 9% continues — week 3 of 3
-    assert plan.schedule["20260818"] == ["chester_9"]
-    assert plan.schedule["20260821"] == ["chester_9"]  # final 9% session
+    # Fartlek + tempo continues — week 3
+    assert plan.schedule["20260818"] == ["fartlek_25"]
+    assert plan.schedule["20260821"] == ["tempo_25"]
 
     # Tue 21 skipped (rest); Wed still easy default
     assert "20260721" not in plan.schedule
     assert plan.schedule["20260722"] == ["easy_5k"]
     
-    # Chester 12% starts week 6
-    assert plan.schedule["20260825"] == ["chester_12"]
-    assert plan.schedule["20260828"] == ["chester_12"]
+    # Fartlek + tempo continues — week 6
+    assert plan.schedule["20260825"] == ["fartlek_25"]
+    assert plan.schedule["20260828"] == ["tempo_25"]
 
     # Deload week 7 (soft deload)
     assert plan.schedule["20260905"] == ["long_10k"]
 
-    # Chester 15% starts week 8
-    assert plan.schedule["20260908"] == ["chester_15"]
-    assert plan.schedule["20260911"] == ["chester_15"]
+    # Fartlek + tempo continues — week 8
+    assert plan.schedule["20260908"] == ["fartlek_25"]
+    assert plan.schedule["20260911"] == ["tempo_25"]
     assert plan.schedule["20260912"] == ["cooper_1_5_mile"]
 
 
@@ -167,7 +167,7 @@ def test_parse_full_plan():
 def test_strength_thursdays_from_html():
     html = PLAN.read_text(encoding="utf-8")
     days = _parse_strength_mondays(html, 2026)
-    # Bleep test dropped — HIWFRS strength progression pulled forward a week.
+    # Bleep test dropped — strength progression adjusted.
     assert "20260730" not in days
     assert days["20260806"] == "wk4"
     assert days["20260813"] == "wk1"

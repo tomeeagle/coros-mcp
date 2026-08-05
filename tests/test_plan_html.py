@@ -115,7 +115,7 @@ def test_map_build_8k():
 def test_parse_full_plan():
     plan = parse_plan_html(PLAN)
     assert plan.year == 2026
-    assert len(plan.weeks) == 8
+    assert len(plan.weeks) == 9
 
     # Re-entry week — pivoted to fire service bleep after baseline 6.2
     assert plan.schedule["20260719"] == ["easy_3k"]
@@ -149,7 +149,7 @@ def test_parse_full_plan():
     # Tue 21 skipped (rest); Wed still easy default
     assert "20260721" not in plan.schedule
     assert plan.schedule["20260722"] == ["easy_5k"]
-    
+
     # Fartlek + tempo continues — week 6
     assert plan.schedule["20260825"] == ["fartlek_25"]
     assert plan.schedule["20260828"] == ["tempo_25"]

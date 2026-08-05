@@ -330,9 +330,8 @@ def _map_run_to_workouts(
     """Return workout keys for a day (max one run; BAC wins if note says 6pm)."""
     keys: list[str] = []
     primary, skip = _primary_run_key(run_text, note_text, yyyymmdd, strength_mondays)
-    if skip and skip != "empty":
-        if skip.startswith("unmapped") or skip == "rest_or_event":
-            return [], skip
+    if skip and skip != "empty" and (skip.startswith("unmapped") or skip == "rest_or_event"):
+        return [], skip
     if primary:
         keys.append(primary)
 

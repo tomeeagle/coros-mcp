@@ -4,10 +4,11 @@ from __future__ import annotations
 
 import asyncio
 from html import escape
+
+import coros_api
 from workout_sync import schedules as sched_mod
 from workout_sync.auth import auth_status_message, load_dotenv
 from workout_sync.plan_html import DEFAULT_PLAN_PATH
-import coros_api
 from workout_sync.sync import describe_session, full_resync, resolve_schedule
 
 
@@ -135,8 +136,8 @@ def create_app():
             ), 500
 
         lines = "".join(
-            f"<li class='{'ok' if not l.startswith('Failed') else 'err'}'>{escape(l)}</li>"
-            for l in result["messages"][-40:]
+            f"<li class='{'ok' if not line.startswith('Failed') else 'err'}'>{escape(line)}</li>"
+            for line in result["messages"][-40:]
         )
         summary = (
             f"<p class='ok'>Removed <strong>{result['removed']}</strong> calendar "

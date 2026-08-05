@@ -106,6 +106,23 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {"name": "Push 4:15-4:25/km", "distance_meters": 1000},
         ],
     },
+    "walk_jog_recovery": {
+        "name": "Walk/jog recovery — 2:1",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy jog warmup", "duration_minutes": 5},
+            {
+                "repeat": 10,
+                "steps": [
+                    {"name": "Walk", "duration_minutes": 2},
+                    {"name": "Very easy jog", "duration_minutes": 1},
+                ],
+            },
+            {"name": "Walk cooldown", "duration_minutes": 5},
+        ],
+    },
     "run_club_5k": _distance_run("Run club — easy 5K", 5000),
     "run_club_6k": _distance_run("Run club — easy 6K", 6000),
     "run_club_8k": _distance_run("Run club — easy 8K", 8000),

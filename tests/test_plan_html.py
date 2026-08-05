@@ -133,7 +133,7 @@ def test_parse_full_plan():
     # SYFRS failed — bleep test dropped, HIWFRS Chester pulled forward instead
     assert plan.schedule["20260803"] == ["shuttle_pace"]  # weekly speed session, no test pressure
     assert plan.schedule["20260804"] == ["chester_9"]  # Chester 9% starts — week 1 of 3
-    assert plan.schedule["20260805"] == ["run_club_8k"]
+    assert plan.schedule["20260805"] == ["walk_jog_recovery"]
     assert plan.schedule["20260806"] == ["strength_wk4"]
     assert plan.schedule["20260807"] == ["chester_9"]
     assert plan.schedule["20260808"] == ["long_12k"]
@@ -160,7 +160,7 @@ def test_parse_full_plan():
     # Chester 15% starts week 8
     assert plan.schedule["20260908"] == ["chester_15"]
     assert plan.schedule["20260911"] == ["chester_15"]
-    assert plan.schedule["20260912"] == ["long_12k"]
+    assert plan.schedule["20260912"] == ["cooper_1_5_mile"]
 
 
 @pytest.mark.skipif(not PLAN.is_file(), reason="training_plan.html not in repo")

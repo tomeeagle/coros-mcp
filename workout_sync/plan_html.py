@@ -225,6 +225,9 @@ def _primary_run_key(
         if re.search(pat, text):
             return None, "rest_or_event"
 
+    if re.search(r"walk.?/?.?jog|walk/jog recovery|walk jog", text, re.I):
+        return "walk_jog_recovery", None
+
     if re.search(r"run club", text):
         if re.search(r"6k", text):
             return "run_club_6k", None
@@ -296,6 +299,7 @@ def _is_run_workout_key(key: str) -> bool:
             "shuttle_",
             "chester_",
             "cooper_",
+            "walk_jog_",
         ),
     )
 

@@ -251,7 +251,7 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
     extras: list[str] = []
     high_hr_notes: list[str] = []
     hard_done = 0
-    mtb_minutes = 0
+    mtb_minutes = 0.0
 
     # Recent easy-run HR baseline (prior 28 days ending before week).
     # Needs a real sample — a couple of runs after a layoff is not a baseline.

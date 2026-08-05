@@ -540,3 +540,38 @@ async def test_catalog_cache_concurrent_calls_coalesce(clean_catalog_cache, monk
     assert call_count == 1
     for r in results:
         assert set(r.keys()) == {"T1010", "T1052", "T1120"}
+
+
+def test_tempo_20_has_warmup_tempo_cooldown():
+    from workout_sync.workouts import WORKOUTS
+
+    steps = WORKOUTS["tempo_20"]["steps"]
+    payload = build_run_workout_payload(
+        WORKOUTS["tempo_20"]["name"],
+        legacy_run_steps_to_run_steps(steps),
+    )
+    names = [e["name"] for e in payload["exercises"] if not e.get("isGroup")]
+    assert names[0] == "Easy warmup"
+    assert "Tempo" in names[1]
+    assert names[-1] == "Easy cooldown"
+    tempo = [e for e in payload["exercises"] if e.get("name", "").startswith("Tempo")][0]
+    assert tempo["targetType"] == 2
+    assert tempo["targetValue"] == 20 * 60
+
+
+def test_cooper_1_5_mile_has_strides_and_distance():
+    from workout_sync.workouts import WORKOUTS
+
+    steps = WORKOUTS["cooper_1_5_mile"]["steps"]
+    payload = build_run_workout_payload(
+        WORKOUTS["cooper_1_5_mile"]["name"],
+        legacy_run_steps_to_run_steps(steps),
+    )
+    groups = [e for e in payload["exercises"] if e.get("isGroup")]
+    assert groups[0]["sets"] == 3
+    main = [
+        e for e in payload["exercises"]
+        if e.get("name", "").startswith("Cooper 1.5 mile")
+    ][0]
+    assert main["targetType"] == 5
+    assert main["targetValue"] == 241_400  # 2414 m in COROS centimeters

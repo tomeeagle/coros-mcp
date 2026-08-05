@@ -36,6 +36,57 @@ def _distance_run(
     }
 
 
+def _tempo_session(name: str, tempo_min: int, pace: str) -> dict[str, Any]:
+    """10' easy + N' tempo + 5' cool — matches plan day-notes."""
+    return {
+        "name": name,
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy warmup", "duration_minutes": 10},
+            {"name": f"Tempo — {pace}", "duration_minutes": tempo_min},
+            {"name": "Easy cooldown", "duration_minutes": 5},
+        ],
+    }
+
+
+def _fartlek_session(
+    name: str,
+    *,
+    surge_min: int,
+    easy_min: int,
+    repeats: int,
+    extra_surge_min: int = 0,
+) -> dict[str, Any]:
+    """10' easy + surge/easy blocks + 5' cool — 1–3 min surges at L6–L8."""
+    steps: list[dict[str, Any]] = [
+        {"name": "Easy warmup", "duration_minutes": 10},
+        {
+            "repeat": repeats,
+            "steps": [
+                {"name": f"Surge L6–L8 — {surge_min}'", "duration_minutes": surge_min},
+                {"name": f"Easy jog — {easy_min}'", "duration_minutes": easy_min},
+            ],
+        },
+    ]
+    if extra_surge_min:
+        steps.append(
+            {"name": f"Surge L6–L8 — {extra_surge_min}'", "duration_minutes": extra_surge_min},
+        )
+    steps.append({"name": "Easy cooldown", "duration_minutes": 5})
+    return {
+        "name": name,
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": steps,
+    }
+
+
+_COOPER_METERS = 2414  # 1.5 miles
+
+
 WORKOUTS: dict[str, dict[str, Any]] = {
     "easy_3k": _distance_run("Easy 3K", 3000),
     "easy_4k": _distance_run("Easy 4K", 4000),
@@ -312,15 +363,41 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             {"name": "Cooldown jog", "duration_minutes": 5},
         ],
     },
-    "cooper_1_5_mile": _open_run("Cooper 1.5 mile — time trial", 20, sport_type=100),
-    # Fartlek sessions — varied pace work
-    "fartlek_20": _open_run("Fartlek 20' — varied pace", 35, sport_type=100),
-    "fartlek_22": _open_run("Fartlek 22' — varied pace", 37, sport_type=100),
-    "fartlek_25": _open_run("Fartlek 25' — varied pace", 40, sport_type=100),
-    # Tempo sessions — threshold work
-    "tempo_20": _open_run("Tempo 20' — threshold", 35, sport_type=100),
-    "tempo_22": _open_run("Tempo 22' — threshold", 37, sport_type=100),
-    "tempo_25": _open_run("Tempo 25' — threshold", 40, sport_type=100),
+    "cooper_1_5_mile": {
+        "name": "Cooper 1.5 mile — time trial",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {"name": "Easy jog warmup", "duration_minutes": 12},
+            {
+                "repeat": 3,
+                "steps": [
+                    {"name": "Stride — smooth pick-up", "duration_minutes": 1},
+                    {"name": "Walk/jog recover", "duration_minutes": 1},
+                ],
+            },
+            {
+                "name": "Cooper 1.5 mile — even split ~5:00/km",
+                "distance_meters": _COOPER_METERS,
+            },
+            {"name": "Easy jog cooldown", "duration_minutes": 10},
+        ],
+    },
+    # Fartlek — 10' warm + surges + 5' cool (matches plan Tue sessions)
+    "fartlek_20": _fartlek_session(
+        "Fartlek 20' — varied pace", surge_min=2, easy_min=2, repeats=5,
+    ),
+    "fartlek_22": _fartlek_session(
+        "Fartlek 22' — varied pace", surge_min=2, easy_min=2, repeats=5, extra_surge_min=2,
+    ),
+    "fartlek_25": _fartlek_session(
+        "Fartlek 25' — varied pace", surge_min=3, easy_min=2, repeats=5,
+    ),
+    # Tempo — 10' easy + N' threshold + 5' cool (matches plan Fri sessions)
+    "tempo_20": _tempo_session("Tempo 20' — threshold", 20, "~5:20–5:30/km"),
+    "tempo_22": _tempo_session("Tempo 22' — threshold", 22, "~5:15–5:25/km"),
+    "tempo_25": _tempo_session("Tempo 25' — threshold", 25, "~5:10–5:20/km"),
     # Technique only — not to failure
     "shuttle_turns": {
         "name": "Shuttle turns — technique",

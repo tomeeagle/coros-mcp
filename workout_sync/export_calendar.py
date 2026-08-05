@@ -155,15 +155,14 @@ def export_calendar_json(
         "blockEnd": block_end or "2026-09-12",
         "timezone": "Europe/London",
         "structure": (
-            "Multi-FRS wholetime: NFRS bleep 8.8 · Avon Cooper 1.5 mile · HIWFRS Chester/strength · "
-            "Chester Tue/Fri · Mon speed/bleep · Cooper Sat 22 Aug + Sat 12 Sep"
+            "NFRS bleep 8.8 · Avon Cooper 1.5 mile · Mon speed/bleep · "
+            "Tue fartlek · Fri tempo · Cooper Sat 22 Aug + Sat 12 Sep"
         ),
         "weeks": blocks,
         "googleCalendar": {
             "hint": (
                 "All-day events; set your own run times. "
                 "Bleep/MSFT sessions need a phone app for the beeps. "
-                "Chester = outdoor hill walk ~9:41/km (see plan notes). "
                 "Cooper = track 1.5 mile time trial for Avon WT. "
                 "Optional easy bike not on calendar."
             ),

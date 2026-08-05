@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - "training_plan.html"
+      - "workout_sync/workouts.py"
+      - "workout_sync/plan_html.py"
+      - "workout_sync/schedules.py"
   workflow_dispatch: {}
 
 concurrency:
@@ -16,15 +19,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install dependencies
-        run: pip install -e .
+      
+      - name: Install Python dependencies
+        run: python3 -m venv .venv && .venv/bin/pip install -e ".[sync]"
+      
       - name: Sync training plan to COROS
         env:
           COROS_EMAIL: ${{ secrets.COROS_EMAIL }}
           COROS_PASSWORD: ${{ secrets.COROS_PASSWORD }}
           COROS_REGION: ${{ secrets.COROS_REGION }}
-        run: python coros_sync.py sync -y
+        run: npm run sync:plan

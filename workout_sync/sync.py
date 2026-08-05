@@ -8,11 +8,10 @@ from pathlib import Path
 from typing import Any
 
 import coros_api
-
 from workout_sync import schedules as _schedules
 from workout_sync.auth import ensure_auth
-from workout_sync.plan_html import DEFAULT_PLAN_PATH, parse_plan_html
-from workout_sync.schedules import SCHEDULE, WEEKS
+from workout_sync.plan_html import DEFAULT_PLAN_PATH
+from workout_sync.schedules import SCHEDULE
 from workout_sync.strength import build_strength_exercises
 from workout_sync.workouts import WORKOUTS
 
@@ -25,7 +24,7 @@ def fmt_day(day_str: str) -> str:
 
 def _is_run_workout_key(key: str) -> bool:
     return key.startswith(
-        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_", "progression_", "build_", "walk_jog_"),
+        ("bac_", "tempo_", "easy_", "long_", "run_club_", "race_", "progression_", "build_", "walk_jog_", "fartlek_"),
     )
 
 
@@ -139,7 +138,6 @@ async def full_resync(
     """
     path = html_path or DEFAULT_PLAN_PATH
     _schedules.reload_schedules(path)
-    plan = parse_plan_html(path)
 
     schedule = resolve_schedule(upcoming_only=upcoming_only)
     clear_start, clear_end = schedule_date_bounds(schedule)

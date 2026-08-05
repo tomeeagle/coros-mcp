@@ -60,13 +60,48 @@ def _circuit(
 ) -> list[dict[str, Any]]:
     """One round of the plan circuit (matches plan HTML STR_WEEKS)."""
     return [
-        {"key": "goblet_squat", "target_type": 3, "target_value": 12, "sets": rounds, "rest_seconds": 20, "weight_kg": goblet},
-        {"key": "romanian_deadlift", "target_type": 3, "target_value": 10, "sets": rounds, "rest_seconds": 20, "weight_kg": rdl},
-        {"key": "overhead_press", "target_type": 3, "target_value": 10, "sets": rounds, "rest_seconds": 20, "weight_kg": press},
-        {"key": "dumbbell_row", "target_type": 3, "target_value": 10, "sets": rounds, "rest_seconds": 20, "weight_kg": row},
+        {
+            "key": "goblet_squat",
+            "target_type": 3,
+            "target_value": 12,
+            "sets": rounds,
+            "rest_seconds": 20,
+            "weight_kg": goblet,
+        },
+        {
+            "key": "romanian_deadlift",
+            "target_type": 3,
+            "target_value": 10,
+            "sets": rounds,
+            "rest_seconds": 20,
+            "weight_kg": rdl,
+        },
+        {
+            "key": "overhead_press",
+            "target_type": 3,
+            "target_value": 10,
+            "sets": rounds,
+            "rest_seconds": 20,
+            "weight_kg": press,
+        },
+        {
+            "key": "dumbbell_row",
+            "target_type": 3,
+            "target_value": 10,
+            "sets": rounds,
+            "rest_seconds": 20,
+            "weight_kg": row,
+        },
         {"key": "press_ups", "target_type": 3, "target_value": 15, "sets": rounds, "rest_seconds": 20},
         {"key": "calf_raise", "target_type": 3, "target_value": 15, "sets": rounds, "rest_seconds": 20},
-        {"key": "farmers_carry", "target_type": 2, "target_value": carry_seconds, "sets": rounds, "rest_seconds": 60, "weight_kg": carry},
+        {
+            "key": "farmers_carry",
+            "target_type": 2,
+            "target_value": carry_seconds,
+            "sets": rounds,
+            "rest_seconds": 60,
+            "weight_kg": carry,
+        },
     ]
 
 

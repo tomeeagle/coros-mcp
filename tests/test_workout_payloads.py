@@ -15,10 +15,10 @@ import coros_api
 from coros_api import (
     _build_strength_program_payload,
     _build_workout_program_payload,
-    build_run_workout_payload,
-    legacy_run_steps_to_run_steps,
     _load_strength_catalog,
     _reset_strength_catalog_cache,
+    build_run_workout_payload,
+    legacy_run_steps_to_run_steps,
 )
 
 

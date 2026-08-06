@@ -95,9 +95,18 @@ def _credentials() -> Any:
         )
     credentials = Credentials.from_authorized_user_file(token_path, SCOPES)
     if credentials.expired and credentials.refresh_token:
-        credentials.refresh(Request())
-        token_path.write_text(credentials.to_json(), encoding="utf-8")
-        token_path.chmod(0o600)
+        try:
+            credentials.refresh(Request())
+            token_path.write_text(credentials.to_json(), encoding="utf-8")
+            token_path.chmod(0o600)
+        except Exception as exc:
+            err = str(exc)
+            if "invalid_grant" in err:
+                raise RuntimeError(
+                    "Google Calendar token expired or revoked. "
+                    "Run: coros-mcp calendar-auth --force"
+                ) from exc
+            raise
     if not credentials.valid:
         raise RuntimeError("Google Calendar credentials are invalid. Run: coros-mcp calendar-auth --force")
     return credentials

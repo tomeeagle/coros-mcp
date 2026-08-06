@@ -48,6 +48,28 @@ STRENGTH_CATALOG: dict[str, dict[str, str]] = {
 }
 
 # target_type: 2 = time (seconds), 3 = reps
+ROUND_REST_SECONDS = 60
+
+
+def _timed_station(
+    key: str,
+    *,
+    work_seconds: int,
+    rest_seconds: int,
+    weight_kg: float | None = None,
+) -> dict[str, Any]:
+    block: dict[str, Any] = {
+        "key": key,
+        "target_type": 2,
+        "target_value": work_seconds,
+        "sets": 1,
+        "rest_seconds": rest_seconds,
+    }
+    if weight_kg is not None:
+        block["weight_kg"] = weight_kg
+    return block
+
+
 def _circuit(
     *,
     goblet: float = 12.5,
@@ -55,64 +77,101 @@ def _circuit(
     press: float = 12.5,
     row: float = 12.5,
     carry: float = 12.5,
-    rounds: int = 3,
+    work_seconds: int = 40,
+    rest_seconds: int = 20,
     carry_seconds: int = 45,
 ) -> list[dict[str, Any]]:
-    """One round of the plan circuit (matches plan HTML STR_WEEKS)."""
+    """One circuit lap — all stations for time (matches training_plan.html STR_WEEKS)."""
+    row_work = work_seconds * 2  # sided: L then R in one block
     return [
-        {
-            "key": "goblet_squat",
-            "target_type": 3,
-            "target_value": 12,
-            "sets": rounds,
-            "rest_seconds": 20,
-            "weight_kg": goblet,
-        },
-        {
-            "key": "romanian_deadlift",
-            "target_type": 3,
-            "target_value": 10,
-            "sets": rounds,
-            "rest_seconds": 20,
-            "weight_kg": rdl,
-        },
-        {
-            "key": "overhead_press",
-            "target_type": 3,
-            "target_value": 10,
-            "sets": rounds,
-            "rest_seconds": 20,
-            "weight_kg": press,
-        },
-        {
-            "key": "dumbbell_row",
-            "target_type": 3,
-            "target_value": 10,
-            "sets": rounds,
-            "rest_seconds": 20,
-            "weight_kg": row,
-        },
-        {"key": "press_ups", "target_type": 3, "target_value": 15, "sets": rounds, "rest_seconds": 20},
-        {"key": "calf_raise", "target_type": 3, "target_value": 15, "sets": rounds, "rest_seconds": 20},
-        {
-            "key": "farmers_carry",
-            "target_type": 2,
-            "target_value": carry_seconds,
-            "sets": rounds,
-            "rest_seconds": 60,
-            "weight_kg": carry,
-        },
+        _timed_station(
+            "goblet_squat",
+            work_seconds=work_seconds,
+            rest_seconds=rest_seconds,
+            weight_kg=goblet,
+        ),
+        _timed_station(
+            "romanian_deadlift",
+            work_seconds=work_seconds,
+            rest_seconds=rest_seconds,
+            weight_kg=rdl,
+        ),
+        _timed_station(
+            "overhead_press",
+            work_seconds=work_seconds,
+            rest_seconds=rest_seconds,
+            weight_kg=press,
+        ),
+        _timed_station(
+            "dumbbell_row",
+            work_seconds=row_work,
+            rest_seconds=rest_seconds,
+            weight_kg=row,
+        ),
+        _timed_station("press_ups", work_seconds=work_seconds, rest_seconds=rest_seconds),
+        _timed_station("calf_raise", work_seconds=work_seconds, rest_seconds=rest_seconds),
+        _timed_station(
+            "farmers_carry",
+            work_seconds=carry_seconds,
+            rest_seconds=ROUND_REST_SECONDS,
+            weight_kg=carry,
+        ),
     ]
 
 
-# Presets aligned with training_plan.html STR_WEEKS (Mon strength sessions)
+# Presets aligned with training_plan.html STR_WEEKS (Thu strength circuits)
 STRENGTH_PRESETS: dict[str, list[dict[str, Any]]] = {
     "full_body": _circuit(),
-    "wk1": _circuit(goblet=12.5, rdl=12.5, press=12.5, row=12.5, carry=12.5, rounds=3, carry_seconds=45),
-    "wk2": _circuit(goblet=12.5, rdl=12.5, press=12.5, row=12.5, carry=12.5, rounds=3, carry_seconds=50),
-    "wk3": _circuit(goblet=12.5, rdl=15.0, press=15.0, row=15.0, carry=15.0, rounds=4, carry_seconds=55),
-    "wk4": _circuit(goblet=12.5, rdl=15.0, press=15.0, row=15.0, carry=15.0, rounds=3, carry_seconds=50),
-    "wk5": _circuit(goblet=12.5, rdl=12.5, press=12.5, row=12.5, carry=12.5, rounds=2, carry_seconds=40),
+    "wk1": _circuit(
+        goblet=12.5,
+        rdl=12.5,
+        press=12.5,
+        row=12.5,
+        carry=12.5,
+        work_seconds=40,
+        rest_seconds=20,
+        carry_seconds=45,
+    ),
+    "wk2": _circuit(
+        goblet=12.5,
+        rdl=12.5,
+        press=12.5,
+        row=12.5,
+        carry=12.5,
+        work_seconds=45,
+        rest_seconds=15,
+        carry_seconds=50,
+    ),
+    "wk3": _circuit(
+        goblet=12.5,
+        rdl=15.0,
+        press=15.0,
+        row=15.0,
+        carry=15.0,
+        work_seconds=45,
+        rest_seconds=15,
+        carry_seconds=55,
+    ),
+    "wk4": _circuit(
+        goblet=12.5,
+        rdl=15.0,
+        press=15.0,
+        row=15.0,
+        carry=15.0,
+        work_seconds=40,
+        rest_seconds=20,
+        carry_seconds=50,
+    ),
+    "wk5": _circuit(
+        goblet=12.5,
+        rdl=12.5,
+        press=12.5,
+        row=12.5,
+        carry=12.5,
+        work_seconds=30,
+        rest_seconds=30,
+        carry_seconds=40,
+    ),
 }
 
 

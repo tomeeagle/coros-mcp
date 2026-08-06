@@ -507,37 +507,37 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "Long Run 16K easy", 16000, step_name="Easy long run", sport_type=101
     ),
     "strength_full_body": {
-        "name": "Strength — full body",
+        "name": "Strength — full body circuit",
         "kind": "strength",
         "strength_preset": "full_body",
         "circuit_sets": 1,
     },
     "strength_wk1": {
-        "name": "Strength — Foundation (WK1)",
+        "name": "Strength — Foundation circuit (WK1)",
         "kind": "strength",
         "strength_preset": "wk1",
         "circuit_sets": 3,
     },
     "strength_wk2": {
-        "name": "Strength — Build (WK2)",
+        "name": "Strength — Build circuit (WK2)",
         "kind": "strength",
         "strength_preset": "wk2",
         "circuit_sets": 3,
     },
     "strength_wk3": {
-        "name": "Strength — Intensity (WK3)",
+        "name": "Strength — Intensity circuit (WK3)",
         "kind": "strength",
         "strength_preset": "wk3",
         "circuit_sets": 4,
     },
     "strength_wk4": {
-        "name": "Strength — Taper (WK4)",
+        "name": "Strength — Taper circuit (WK4)",
         "kind": "strength",
         "strength_preset": "wk4",
         "circuit_sets": 3,
     },
     "strength_wk5": {
-        "name": "Strength — Light (WK5)",
+        "name": "Strength — Light circuit (WK5)",
         "kind": "strength",
         "strength_preset": "wk5",
         "circuit_sets": 2,

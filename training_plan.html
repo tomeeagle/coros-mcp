@@ -350,7 +350,7 @@
       <li><strong>NFRS WT</strong> — MSFT 8.8 · Mon speed/bleep rotation from 10 Aug</li>
       <li><strong>Avon WT</strong> — Cooper 1.5 mile · Sat 22 Aug + Sat 12 Sep markers (~12 min target)</li>
       <li>Tue fartlek + Fri tempo structure — aerobic speed + threshold for bleep test + Cooper prep</li>
-      <li>Thu strength — Avon press 30 kg / lateral pull + NFRS carries</li>
+      <li>Thu strength — timed circuit (plan timer) · Avon gym extras optional</li>
       <li>Optional easy bike 30–45 min Zone 2 — Sun afternoon or rest day only, skip if tired (not on calendar)</li>
       <li>Peak/taper when any FRS fitness date confirmed within 10 days</li>
       <li>Inhaler before every run · slow on every descent — Achilles</li>
@@ -711,7 +711,7 @@
   </div>
   <div class="day-row">
     <span class="day-label">Thu 6</span>
-    <span class="day-note">💪 Strength WK4 — Avon WT: press 30 kg + lateral pull 60 kg/reps at gym when possible · NFRS carries</span>
+    <span class="day-note">💪 Strength WK4 — circuit for time · Avon WT press/pull @ gym optional · NFRS carries</span>
     <span class="run-cell rest">Strength only</span>
     <span class="weight-cell neutral">Box portions</span>
   </div>
@@ -1146,7 +1146,7 @@
 ═══════════════════════════════════════════════════ -->
 <div id="strength-split" style="margin-bottom: 1rem;">
   <div style="font-family:'DM Sans',sans-serif; font-size: 28px; font-weight:600; margin-bottom: 2px;">Strength Sessions</div>
-  <div style="font-size: 12px; color: var(--text-mid); margin-bottom: 10px;">Thursday · 12.5kg + 15kg home · HIWFRS gym loads when possible · <a href="#hiwfrs-strength" style="color:#1A6B3C">benchmarks</a></div>
+  <div style="font-size: 12px; color: var(--text-mid); margin-bottom: 10px;">Thursday · circuit for time · 12.5kg + 15kg home · gym loads when possible · <a href="#hiwfrs-strength" style="color:#1A6B3C">benchmarks</a></div>
   <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px;">
     <button type="button" data-str-split="full" onclick="setStrSplit('full')" style="padding:6px 14px; border-radius:6px; border:1.5px solid #1a1a1a; background:#1a1a1a; color:#fff; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">Full body</button>
     <button type="button" data-str-split="upper" onclick="setStrSplit('upper')" style="padding:6px 14px; border-radius:6px; border:1.5px solid #ccc; background:transparent; color:#555; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer;">Upper</button>
@@ -1282,7 +1282,7 @@ const STR_WEEKS = {
       { n:'Romanian Deadlift',     t:'Slow lower — 3 secs down. HIWFRS DL target zone 20–32 kg when gym available.', w:'12.5kg ×2', wn:'both hands', tempo:'3s lower' },
       { n:'Overhead Press',        t:'Push-press pattern for HIWFRS. Stand tall, brace. Gym: work toward 30–32 kg.', w:'12.5kg ×2', wn:'both hands', tempo:'Controlled' },
       { n:'Dumbbell Row',          t:'Elbow close to body. Rope-pull pattern for HIWFRS cable work.', w:'12.5kg', wn:'each side', tempo:'Controlled', sided:true },
-      { n:'Press Ups',             t:'⭐ Max reps this week — push to failure.', w:'BW', wn:'bodyweight', tempo:'Max reps' },
+      { n:'Press Ups',             t:'AMRAP in work window — quality reps, chest to floor.', w:'BW', wn:'bodyweight', tempo:'For time' },
       { n:'Calf Raise',            t:'Edge of step. 3 secs down.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️' },
       { n:'Farmers Carry',         t:'FINISHER — HIWFRS ~75 m. Tall posture. Add high carry @ 12 kg if you have a KB.', w:'12.5kg ×2', wn:'both hands', tempo:'~75 m' },
     ]},
@@ -1292,7 +1292,7 @@ const STR_WEEKS = {
       { n:'Romanian Deadlift',     t:'Slow lower — 3 secs down. Heavier this week. Gym: 16 reps @ 20–32 kg = Session 3.', w:'15kg ×2 🔺', wn:'both hands', tempo:'3s lower' },
       { n:'Overhead Press',        t:'⭐ Heavier. HIWFRS Session 3 = 35 kg push press — gym day if you can.', w:'15kg ×2 🔺', wn:'both hands', tempo:'Controlled' },
       { n:'Dumbbell Row',          t:'Heavier. Gym: cable rope PD toward 60 kg / 23+/min @ 28 kg.', w:'15kg 🔺', wn:'each side', tempo:'Controlled', sided:true },
-      { n:'Press Ups',             t:'Max reps — chest to floor.', w:'BW', wn:'bodyweight', tempo:'Max reps' },
+      { n:'Press Ups',             t:'AMRAP in work window — quality reps.', w:'BW', wn:'bodyweight', tempo:'For time' },
       { n:'Single Leg Calf Raise', t:'⭐ 3 secs down each side.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️', sided:true },
       { n:'Farmers Carry',         t:'FINISHER — HIWFRS ~100 m at heaviest you can hold. Session 3 = 24 kg × 100 m.', w:'15kg ×2 🔺', wn:'both hands', tempo:'~100 m' },
     ]},
@@ -1302,7 +1302,7 @@ const STR_WEEKS = {
       { n:'Romanian Deadlift',     t:'Slow lower — keep the 15kg.', w:'15kg ×2 🔺', wn:'both hands', tempo:'3s lower' },
       { n:'Overhead Press',        t:'Keep the 15kg. Controlled reps — push-press pattern.', w:'15kg ×2 🔺', wn:'both hands', tempo:'Controlled' },
       { n:'Dumbbell Row',          t:'Keep the 15kg.', w:'15kg 🔺', wn:'each side', tempo:'Controlled', sided:true },
-      { n:'Press Ups',             t:'Controlled reps — not to failure this week.', w:'BW', wn:'bodyweight', tempo:'Controlled' },
+      { n:'Press Ups',             t:'For time — controlled reps, not to failure.', w:'BW', wn:'bodyweight', tempo:'For time' },
       { n:'Calf Raise',            t:'Both legs. 3 secs down.', w:'BW', wn:'bodyweight', tempo:'3s lower ⚠️' },
       { n:'Farmers Carry',         t:'FINISHER — ~50 m controlled. Start HIWFRS carry progression.', w:'15kg ×2 🔺', wn:'both hands', tempo:'~50 m' },
     ]},

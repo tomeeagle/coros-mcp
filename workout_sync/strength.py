@@ -175,14 +175,28 @@ STRENGTH_PRESETS: dict[str, list[dict[str, Any]]] = {
 }
 
 
-def build_strength_exercises(preset: str = "full_body") -> list[dict[str, Any]]:
-    """Expand a preset into COROS schedule_strength_workout exercise dicts."""
+def build_strength_exercises(preset: str = "full_body", *, rounds: int = 1) -> list[dict[str, Any]]:
+    """Expand a preset into COROS schedule_strength_workout exercise dicts.
+
+    rounds repeats the full lap — COROS watch ignores top-level program sets for
+    scheduled strength, so we duplicate stations instead of sets=3 on the program.
+    """
     blocks = STRENGTH_PRESETS.get(preset)
     if not blocks:
         raise KeyError(f"Unknown strength preset: {preset}")
 
+    laps = max(1, rounds)
+    expanded: list[dict[str, Any]] = []
+    for lap in range(laps):
+        for idx, block in enumerate(blocks):
+            entry_block = dict(block)
+            # No rest after the final station of the final lap.
+            if lap == laps - 1 and idx == len(blocks) - 1:
+                entry_block["rest_seconds"] = 0
+            expanded.append(entry_block)
+
     exercises: list[dict[str, Any]] = []
-    for block in blocks:
+    for block in expanded:
         key = block["key"]
         cat = STRENGTH_CATALOG.get(key)
         if not cat:

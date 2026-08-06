@@ -91,13 +91,14 @@ async def push_session(
     kind = w.get("kind", "run")
     if kind == "strength":
         preset = w.get("strength_preset", "full_body")
-        exercises = build_strength_exercises(preset)
+        circuit_rounds = int(w.get("circuit_sets", 1))
+        exercises = build_strength_exercises(preset, rounds=circuit_rounds)
         await coros_api.schedule_strength_workout(
             auth=auth,
             name=w["name"],
             exercises=exercises,
             happen_day=day,
-            sets=int(w.get("circuit_sets", 1)),
+            sets=1,
             sort_no=sort_no,
         )
     else:

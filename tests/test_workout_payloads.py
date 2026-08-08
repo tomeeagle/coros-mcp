@@ -570,11 +570,11 @@ def test_shuttle_pace_400m_steps_have_pace_alerts():
     ]
     assert len(reps) == 2
     assert reps[0]["intensityType"] == 3
-    assert reps[0]["intensityValue"] == 290_000
-    assert reps[0]["intensityValueExtend"] == 295_000
+    assert reps[0]["intensityValue"] == 290
+    assert reps[0]["intensityValueExtend"] == 295
     assert reps[0]["intensityDisplayUnit"] == 2
-    assert reps[1]["intensityValue"] == 280_000
-    assert reps[1]["intensityValueExtend"] == 285_000
+    assert reps[1]["intensityValue"] == 280
+    assert reps[1]["intensityValueExtend"] == 285
     rec = [
         e for e in payload["exercises"]
         if e.get("name", "").startswith("Walk recovery") and not e.get("isGroup")

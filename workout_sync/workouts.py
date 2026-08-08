@@ -88,13 +88,13 @@ _COOPER_METERS = 2414  # 1.5 miles
 
 
 def _pace_target(fast_m: int, fast_s: int, slow_m: int, slow_s: int) -> dict[str, Any]:
-    """COROS pace range — intensity_value in ms/km (fast = smaller)."""
-    fast_ms = int(round((fast_m * 60 + fast_s) * 1000))
-    slow_ms = int(round((slow_m * 60 + slow_s) * 1000))
+    """COROS pace range — intensity_value in seconds/km (fast = smaller)."""
+    fast_sec = fast_m * 60 + fast_s
+    slow_sec = slow_m * 60 + slow_s
     return {
         "intensity_type": 3,
-        "intensity_value": min(fast_ms, slow_ms),
-        "intensity_value_extend": max(fast_ms, slow_ms),
+        "intensity_value": min(fast_sec, slow_sec),
+        "intensity_value_extend": max(fast_sec, slow_sec),
         "intensity_display_unit": 2,
         "hr_type": 0,
         "is_intensity_percent": False,

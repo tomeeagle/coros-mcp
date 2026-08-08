@@ -87,6 +87,20 @@ def _fartlek_session(
 _COOPER_METERS = 2414  # 1.5 miles
 
 
+def _pace_target(fast_m: int, fast_s: int, slow_m: int, slow_s: int) -> dict[str, Any]:
+    """COROS pace range — intensity_value in ms/km (fast = smaller)."""
+    fast_ms = int(round((fast_m * 60 + fast_s) * 1000))
+    slow_ms = int(round((slow_m * 60 + slow_s) * 1000))
+    return {
+        "intensity_type": 3,
+        "intensity_value": min(fast_ms, slow_ms),
+        "intensity_value_extend": max(fast_ms, slow_ms),
+        "intensity_display_unit": 2,
+        "hr_type": 0,
+        "is_intensity_percent": False,
+    }
+
+
 WORKOUTS: dict[str, dict[str, Any]] = {
     "easy_3k": _distance_run("Easy 3K", 3000),
     "easy_4k": _distance_run("Easy 4K", 4000),
@@ -307,28 +321,79 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "Fire service bleep — 8.8+ (L8=5:00/km)", 30, sport_type=100
     ),
     "shuttle_pace": {
-        "name": "Speed intervals — L7–8 (5:13–5:00/km)",
+        "name": "Speed intervals — 400m reps",
         "kind": "run",
         "sport_type": 100,
         "intensity_type": 0,
         "steps": [
-            {"name": "Easy jog", "duration_minutes": 8},
-            {"name": "Strides ×4", "duration_minutes": 2},
+            {
+                "kind": "warmup",
+                "name": "Easy warmup",
+                "target_type": "time",
+                "target_duration_seconds": 600,
+            },
             {
                 "repeat": 4,
+                "name": "Strides",
                 "steps": [
-                    {"name": "Hard L7 — 5:13/km", "duration_minutes": 1},
-                    {"name": "Walk recover", "duration_minutes": 1},
+                    {
+                        "kind": "training",
+                        "name": "Stride",
+                        "target_type": "time",
+                        "target_duration_seconds": 60,
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Easy jog",
+                        "target_type": "time",
+                        "target_duration_seconds": 60,
+                    },
                 ],
             },
             {
                 "repeat": 4,
+                "name": "400m @ 4:50–4:55/km",
                 "steps": [
-                    {"name": "Hard L8 — 5:00/km", "duration_minutes": 1},
-                    {"name": "Walk recover", "duration_minutes": 1},
+                    {
+                        "kind": "training",
+                        "name": "400m @ 4:50–4:55/km",
+                        "target_type": "distance",
+                        "target_distance_meters": 400,
+                        **_pace_target(4, 50, 4, 55),
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Walk recovery ~90s",
+                        "target_type": "time",
+                        "target_duration_seconds": 90,
+                    },
                 ],
             },
-            {"name": "Cooldown jog", "duration_minutes": 5},
+            {
+                "repeat": 4,
+                "name": "400m @ 4:40–4:45/km",
+                "steps": [
+                    {
+                        "kind": "training",
+                        "name": "400m @ 4:40–4:45/km",
+                        "target_type": "distance",
+                        "target_distance_meters": 400,
+                        **_pace_target(4, 40, 4, 45),
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Walk recovery ~90s",
+                        "target_type": "time",
+                        "target_duration_seconds": 90,
+                    },
+                ],
+            },
+            {
+                "kind": "cooldown",
+                "name": "Easy cooldown",
+                "target_type": "time",
+                "target_duration_seconds": 300,
+            },
         ],
     },
     # Lighter than shuttle_pace — Gower weekend sharpener / between quality days

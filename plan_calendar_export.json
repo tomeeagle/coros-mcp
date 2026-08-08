@@ -130,7 +130,7 @@
           "workouts": [
             {
               "key": "shuttle_pace",
-              "name": "Speed intervals — L7–8 (5:13–5:00/km)",
+              "name": "Speed intervals — 400m reps",
               "kind": "run"
             }
           ],
@@ -225,13 +225,13 @@
         {
           "date": "2026-08-03",
           "dayLabel": "Mon 3",
-          "note": "Speed session — no test pressure, just enjoy it. No turn drills needed anymore — straight paced reps. Warm up: 8' easy jog + 4× strides · then 4× L7 (~5:13/km) + 4× L8 (~5:00/km) · full walk recoveries",
-          "runPlan": "Speed intervals — L7–8 (5:13–5:00/km)",
+          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · proper speed work",
+          "runPlan": "Speed Intervals (400m reps)",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "shuttle_pace",
-              "name": "Speed intervals — L7–8 (5:13–5:00/km)",
+              "name": "Speed intervals — 400m reps",
               "kind": "run"
             }
           ],
@@ -332,13 +332,13 @@
         {
           "date": "2026-08-10",
           "dayLabel": "Mon 10",
-          "note": "NFRS prep — speed intervals. Warm up: 8' easy jog + 4× strides · then 4× L7 (~5:13/km) + 4× L8 (~5:00/km) · full walk recoveries",
-          "runPlan": "Speed intervals — L7–8 (5:13–5:00/km)",
+          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep",
+          "runPlan": "Speed Intervals (400m reps)",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "shuttle_pace",
-              "name": "Speed intervals — L7–8 (5:13–5:00/km)",
+              "name": "Speed intervals — 400m reps",
               "kind": "run"
             }
           ],
@@ -439,13 +439,13 @@
         {
           "date": "2026-08-17",
           "dayLabel": "Mon 17",
-          "note": "NFRS prep — speed intervals. Warm up: 8' easy jog + 4× strides · then 4× L7 + 4× L8 · full walk recoveries",
-          "runPlan": "Speed intervals — L7–8 (5:13–5:00/km)",
+          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep",
+          "runPlan": "Speed Intervals (400m reps)",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "shuttle_pace",
-              "name": "Speed intervals — L7–8 (5:13–5:00/km)",
+              "name": "Speed intervals — 400m reps",
               "kind": "run"
             }
           ],
@@ -653,13 +653,13 @@
         {
           "date": "2026-08-31",
           "dayLabel": "Mon 31",
-          "note": "NFRS prep — speed intervals (soft deload week). Warm up: 8' easy jog + 4× strides · 4× L7 + 4× L8 · full walks",
-          "runPlan": "Speed intervals — L7–8 (5:13–5:00/km)",
+          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · soft deload week",
+          "runPlan": "Speed Intervals (400m reps)",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "shuttle_pace",
-              "name": "Speed intervals — L7–8 (5:13–5:00/km)",
+              "name": "Speed intervals — 400m reps",
               "kind": "run"
             }
           ],
@@ -867,13 +867,13 @@
         {
           "date": "2026-09-14",
           "dayLabel": "Mon 14",
-          "note": "NFRS prep — speed intervals. Warm up: 8' easy jog + 4× strides · then 4× L7 + 4× L8 · full walk recoveries",
-          "runPlan": "Speed intervals — L7–8 (5:13–5:00/km)",
+          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep",
+          "runPlan": "Speed Intervals (400m reps)",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "shuttle_pace",
-              "name": "Speed intervals — L7–8 (5:13–5:00/km)",
+              "name": "Speed intervals — 400m reps",
               "kind": "run"
             }
           ],
@@ -1046,7 +1046,7 @@
         "category": "run"
       },
       {
-        "summary": "Speed intervals — L7–8 (5:13–5:00/km)",
+        "summary": "Speed intervals — 400m reps",
         "description": "Warm up: 5' jog + 6× 20m turn drills (walk recover) · then 4× L7 (~6.3s) + 4× L8 (6.0s) with full walks · Tue easy before Wed full\nFood: Box portions\nPlan: Speed intervals — L7–8 (5:13–5:00/km)",
         "start": {
           "date": "2026-07-27",
@@ -1131,8 +1131,8 @@
         "category": "run"
       },
       {
-        "summary": "Speed intervals — L7–8 (5:13–5:00/km)",
-        "description": "Speed session — no test pressure, just enjoy it. No turn drills needed anymore — straight paced reps. Warm up: 8' easy jog + 4× strides · then 4× L7 (~5:13/km) + 4× L8 (~5:00/km) · full walk recoveries\nFood: Box portions\nPlan: Speed intervals — L7–8 (5:13–5:00/km)",
+        "summary": "Speed intervals — 400m reps",
+        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · proper speed work\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
         "start": {
           "date": "2026-08-03",
           "endDate": "2026-08-04"
@@ -1233,8 +1233,8 @@
         "category": "run"
       },
       {
-        "summary": "Speed intervals — L7–8 (5:13–5:00/km)",
-        "description": "NFRS prep — speed intervals. Warm up: 8' easy jog + 4× strides · then 4× L7 (~5:13/km) + 4× L8 (~5:00/km) · full walk recoveries\nFood: Box portions\nPlan: Speed intervals — L7–8 (5:13–5:00/km)",
+        "summary": "Speed intervals — 400m reps",
+        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
         "start": {
           "date": "2026-08-10",
           "endDate": "2026-08-11"
@@ -1335,8 +1335,8 @@
         "category": "run"
       },
       {
-        "summary": "Speed intervals — L7–8 (5:13–5:00/km)",
-        "description": "NFRS prep — speed intervals. Warm up: 8' easy jog + 4× strides · then 4× L7 + 4× L8 · full walk recoveries\nFood: Box portions\nPlan: Speed intervals — L7–8 (5:13–5:00/km)",
+        "summary": "Speed intervals — 400m reps",
+        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
         "start": {
           "date": "2026-08-17",
           "endDate": "2026-08-18"
@@ -1539,8 +1539,8 @@
         "category": "run"
       },
       {
-        "summary": "Speed intervals — L7–8 (5:13–5:00/km)",
-        "description": "NFRS prep — speed intervals (soft deload week). Warm up: 8' easy jog + 4× strides · 4× L7 + 4× L8 · full walks\nFood: Box portions\nPlan: Speed intervals — L7–8 (5:13–5:00/km)",
+        "summary": "Speed intervals — 400m reps",
+        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · soft deload week\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
         "start": {
           "date": "2026-08-31",
           "endDate": "2026-09-01"
@@ -1743,8 +1743,8 @@
         "category": "run"
       },
       {
-        "summary": "Speed intervals — L7–8 (5:13–5:00/km)",
-        "description": "NFRS prep — speed intervals. Warm up: 8' easy jog + 4× strides · then 4× L7 + 4× L8 · full walk recoveries\nFood: Box portions\nPlan: Speed intervals — L7–8 (5:13–5:00/km)",
+        "summary": "Speed intervals — 400m reps",
+        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
         "start": {
           "date": "2026-09-14",
           "endDate": "2026-09-15"

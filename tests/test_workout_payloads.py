@@ -559,6 +559,30 @@ def test_tempo_20_has_warmup_tempo_cooldown():
     assert tempo["targetValue"] == 20 * 60
 
 
+def test_shuttle_pace_400m_steps_have_pace_alerts():
+    from workout_sync.workouts import WORKOUTS
+
+    steps = WORKOUTS["shuttle_pace"]["steps"]
+    payload = build_run_workout_payload(WORKOUTS["shuttle_pace"]["name"], steps)
+    reps = [
+        e for e in payload["exercises"]
+        if e.get("name", "").startswith("400m @") and not e.get("isGroup")
+    ]
+    assert len(reps) == 2
+    assert reps[0]["intensityType"] == 3
+    assert reps[0]["intensityValue"] == 290_000
+    assert reps[0]["intensityValueExtend"] == 295_000
+    assert reps[0]["intensityDisplayUnit"] == 2
+    assert reps[1]["intensityValue"] == 280_000
+    assert reps[1]["intensityValueExtend"] == 285_000
+    rec = [
+        e for e in payload["exercises"]
+        if e.get("name", "").startswith("Walk recovery") and not e.get("isGroup")
+    ][0]
+    assert rec["exerciseType"] == 4
+    assert rec["targetValue"] == 90
+
+
 def test_cooper_1_5_mile_has_strides_and_distance():
     from workout_sync.workouts import WORKOUTS
 

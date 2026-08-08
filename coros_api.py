@@ -617,7 +617,7 @@ def _run_kind_from_step_name(name: str) -> str:
         return "warmup"
     if "cool" in lower and "down" in lower:
         return "cooldown"
-    if "recovery" in lower or "jog" in lower or lower.strip() == "rest":
+    if "recovery" in lower or "recover" in lower or "jog" in lower or lower.strip() == "rest":
         return "rest"
     if "interval" in lower or "effort" in lower or "threshold" in lower or "tempo" in lower:
         return "training"

@@ -317,7 +317,7 @@
     {
       "title": "Week 4",
       "dates": "9–15 Aug",
-      "phase": "Fartlek + tempo continues",
+      "phase": "Heat + DOMS deload",
       "weekNumber": 4,
       "days": [
         {
@@ -332,7 +332,7 @@
         {
           "date": "2026-08-10",
           "dayLabel": "Mon 10",
-          "note": "Cancelled — rest. Pick up Tue if legs allow; don't chase the missed speed work this week",
+          "note": "Cancelled — rest. Heat + DOMS week — do not chase missed speed",
           "runPlan": "Rest",
           "foodWeight": "Box portions · fuel properly",
           "workouts": [],
@@ -341,13 +341,13 @@
         {
           "date": "2026-08-11",
           "dayLabel": "Tue 11",
-          "note": "Fartlek — 10' easy warm-up + 22' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~37' total · building aerobic speed",
-          "runPlan": "Fartlek 22' — varied pace",
-          "foodWeight": "Box portions",
+          "note": "Heat deload — easy conversational only, early or shade · skip if still wiped · no surges",
+          "runPlan": "Easy 5K",
+          "foodWeight": "Box portions · hydrate",
           "workouts": [
             {
-              "key": "fartlek_22",
-              "name": "Fartlek 22' — varied pace",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -356,13 +356,13 @@
         {
           "date": "2026-08-12",
           "dayLabel": "Wed 12",
-          "note": "Optional PFTC — skip if tired",
-          "runPlan": "Run club 8K easy",
-          "foodWeight": "Box portions",
+          "note": "Optional easy only — skip run club / PFTC if hot or tired · early morning if you go",
+          "runPlan": "Easy 5K",
+          "foodWeight": "Box portions · hydrate",
           "workouts": [
             {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -371,13 +371,13 @@
         {
           "date": "2026-08-13",
           "dayLabel": "Thu 13",
-          "note": "💪 Strength WK1 — Avon WT press 30 kg + lateral pull 60 kg/reps @ gym · NFRS farmers ~50 m",
+          "note": "💪 Strength WK5 light circuit — cut rounds if legs still sore · cool gym, no hero lifts",
           "runPlan": "Strength only",
-          "foodWeight": "Box portions",
+          "foodWeight": "Box portions · hydrate",
           "workouts": [
             {
-              "key": "strength_wk1",
-              "name": "Strength — Foundation circuit (WK1)",
+              "key": "strength_wk5",
+              "name": "Strength — Light circuit (WK5)",
               "kind": "strength"
             }
           ],
@@ -386,13 +386,13 @@
         {
           "date": "2026-08-14",
           "dayLabel": "Fri 14",
-          "note": "Tempo — 10' easy + 22' tempo (~5:15-5:25/km) + 5' cool = ~37' total · threshold work for Cooper + bleep",
-          "runPlan": "Tempo 22' — threshold",
+          "note": "Heat deload — easy only, no tempo · early/shade · skip if HR feels high for pace",
+          "runPlan": "Easy 5K",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "tempo_22",
-              "name": "Tempo 22' — threshold",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -401,13 +401,13 @@
         {
           "date": "2026-08-15",
           "dayLabel": "Sat 15",
-          "note": "—",
-          "runPlan": "Long run 12K easy",
-          "foodWeight": "Pudding ok tonight. Fuel well after.",
+          "note": "Short long — easy, early start · shade routes · walk breaks fine · heat &gt; ego",
+          "runPlan": "Long run 10K easy",
+          "foodWeight": "Pudding ok tonight. Fuel + fluids after.",
           "workouts": [
             {
-              "key": "long_12k",
-              "name": "Long Run 12K easy",
+              "key": "long_10k",
+              "name": "Long Run 10K easy",
               "kind": "run"
             }
           ],
@@ -1227,8 +1227,8 @@
         "category": "run"
       },
       {
-        "summary": "Fartlek 22' — varied pace",
-        "description": "Fartlek — 10' easy warm-up + 22' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~37' total · building aerobic speed\nFood: Box portions\nPlan: Fartlek 22' — varied pace",
+        "summary": "Easy 5K",
+        "description": "Heat deload — easy conversational only, early or shade · skip if still wiped · no surges\nFood: Box portions · hydrate\nPlan: Easy 5K",
         "start": {
           "date": "2026-08-11",
           "endDate": "2026-08-12"
@@ -1240,12 +1240,12 @@
         "date": "2026-08-11",
         "dayLabel": "Tue 11",
         "weekTitle": "Week 4",
-        "workoutKey": "fartlek_22",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Run club — easy 8K · PFTC optional",
-        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "summary": "Easy 5K",
+        "description": "Optional easy only — skip run club / PFTC if hot or tired · early morning if you go\nFood: Box portions · hydrate\nPlan: Easy 5K",
         "start": {
           "date": "2026-08-12",
           "endDate": "2026-08-13"
@@ -1257,12 +1257,12 @@
         "date": "2026-08-12",
         "dayLabel": "Wed 12",
         "weekTitle": "Week 4",
-        "workoutKey": "run_club_8k",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Strength — Foundation circuit (WK1)",
-        "description": "💪 Strength WK1 — Avon WT press 30 kg + lateral pull 60 kg/reps @ gym · NFRS farmers ~50 m\nFood: Box portions\nPlan: Strength only",
+        "summary": "Strength — Light circuit (WK5)",
+        "description": "💪 Strength WK5 light circuit — cut rounds if legs still sore · cool gym, no hero lifts\nFood: Box portions · hydrate\nPlan: Strength only",
         "start": {
           "date": "2026-08-13",
           "endDate": "2026-08-14"
@@ -1274,12 +1274,12 @@
         "date": "2026-08-13",
         "dayLabel": "Thu 13",
         "weekTitle": "Week 4",
-        "workoutKey": "strength_wk1",
+        "workoutKey": "strength_wk5",
         "category": "strength"
       },
       {
-        "summary": "Tempo 22' — threshold",
-        "description": "Tempo — 10' easy + 22' tempo (~5:15-5:25/km) + 5' cool = ~37' total · threshold work for Cooper + bleep\nFood: Pudding ok tonight\nPlan: Tempo 22' — threshold",
+        "summary": "Easy 5K",
+        "description": "Heat deload — easy only, no tempo · early/shade · skip if HR feels high for pace\nFood: Pudding ok tonight\nPlan: Easy 5K",
         "start": {
           "date": "2026-08-14",
           "endDate": "2026-08-15"
@@ -1291,12 +1291,12 @@
         "date": "2026-08-14",
         "dayLabel": "Fri 14",
         "weekTitle": "Week 4",
-        "workoutKey": "tempo_22",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Long Run 12K easy",
-        "description": "—\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 12K easy",
+        "summary": "Long Run 10K easy",
+        "description": "Short long — easy, early start · shade routes · walk breaks fine · heat &gt; ego\nFood: Pudding ok tonight. Fuel + fluids after.\nPlan: Long run 10K easy",
         "start": {
           "date": "2026-08-15",
           "endDate": "2026-08-16"
@@ -1308,7 +1308,7 @@
         "date": "2026-08-15",
         "dayLabel": "Sat 15",
         "weekTitle": "Week 4",
-        "workoutKey": "long_12k",
+        "workoutKey": "long_10k",
         "category": "run"
       },
       {

@@ -138,9 +138,13 @@ def test_parse_full_plan():
     assert plan.schedule["20260807"] == ["tempo_20"]
     assert plan.schedule["20260808"] == ["long_12k"]
 
-    # Fartlek + tempo continues — week 2
-    assert plan.schedule["20260811"] == ["fartlek_22"]
-    assert plan.schedule["20260814"] == ["tempo_22"]
+    # Heat + DOMS deload — week of 9–15 Aug (no quality)
+    assert "20260810" not in plan.schedule  # cancelled rest
+    assert plan.schedule["20260811"] == ["easy_5k"]
+    assert plan.schedule["20260812"] == ["easy_5k"]
+    assert plan.schedule["20260813"] == ["strength_wk5"]
+    assert plan.schedule["20260814"] == ["easy_5k"]
+    assert plan.schedule["20260815"] == ["long_10k"]
 
     # Fartlek + tempo continues — week 3
     assert plan.schedule["20260818"] == ["fartlek_25"]

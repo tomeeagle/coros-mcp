@@ -332,17 +332,11 @@
         {
           "date": "2026-08-10",
           "dayLabel": "Mon 10",
-          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep",
-          "runPlan": "Speed Intervals (400m reps)",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "shuttle_pace",
-              "name": "Speed intervals — 400m reps",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "note": "Cancelled — rest. Pick up Tue if legs allow; don't chase the missed speed work this week",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions · fuel properly",
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-11",
@@ -1230,23 +1224,6 @@
         "dayLabel": "Sat 8",
         "weekTitle": "Week 3",
         "workoutKey": "long_12k",
-        "category": "run"
-      },
-      {
-        "summary": "Speed intervals — 400m reps",
-        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
-        "start": {
-          "date": "2026-08-10",
-          "endDate": "2026-08-11"
-        },
-        "end": {
-          "date": "2026-08-10",
-          "endDate": "2026-08-11"
-        },
-        "date": "2026-08-10",
-        "dayLabel": "Mon 10",
-        "weekTitle": "Week 4",
-        "workoutKey": "shuttle_pace",
         "category": "run"
       },
       {

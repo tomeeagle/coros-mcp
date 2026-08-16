@@ -356,13 +356,13 @@
         {
           "date": "2026-08-12",
           "dayLabel": "Wed 12",
-          "note": "Optional easy only — skip run club / PFTC if hot or tired · early morning if you go",
-          "runPlan": "Easy 5K",
+          "note": "Feeling recovered — back to structured speed · 10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · still heat/DOMS week so ease off if it doesn't feel right",
+          "runPlan": "Speed Intervals (400m reps)",
           "foodWeight": "Box portions · hydrate",
           "workouts": [
             {
-              "key": "easy_5k",
-              "name": "Easy 5K",
+              "key": "shuttle_pace",
+              "name": "Speed intervals — 400m reps",
               "kind": "run"
             }
           ],
@@ -448,17 +448,11 @@
         {
           "date": "2026-08-18",
           "dayLabel": "Tue 18",
-          "note": "Fartlek — 10' easy warm-up + 25' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~40' total · building aerobic speed",
-          "runPlan": "Fartlek 25' — varied pace",
+          "note": "Rest — dropped to 4 runs/week",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "fartlek_25",
-              "name": "Fartlek 25' — varied pace",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-19",
@@ -493,13 +487,13 @@
         {
           "date": "2026-08-21",
           "dayLabel": "Fri 21",
-          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work for Cooper + bleep",
-          "runPlan": "Tempo 25' — threshold",
+          "note": "Easy only — shakeout or skip. Cooper TT is tomorrow; no tempo, no surges",
+          "runPlan": "Easy 5K",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "tempo_25",
-              "name": "Tempo 25' — threshold",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -555,17 +549,11 @@
         {
           "date": "2026-08-25",
           "dayLabel": "Tue 25",
-          "note": "Fartlek — 10' easy warm-up + 25' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~40' total · aerobic speed",
-          "runPlan": "Fartlek 25' — varied pace",
+          "note": "Rest — dropped to 4 runs/week",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "fartlek_25",
-              "name": "Fartlek 25' — varied pace",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-26",
@@ -615,7 +603,7 @@
         {
           "date": "2026-08-29",
           "dayLabel": "Sat 29",
-          "note": "—",
+          "note": "Trail long run — hilly route, ~258m gain over ~14K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm",
           "runPlan": "Long run 14K easy",
           "foodWeight": "Pudding ok tonight. Fuel well after.",
           "workouts": [
@@ -662,17 +650,11 @@
         {
           "date": "2026-09-01",
           "dayLabel": "Tue 1 Sep",
-          "note": "Optional light fartlek if legs good — else easy 5K",
-          "runPlan": "Light fartlek — or easy 5K",
+          "note": "Rest — dropped to 4 runs/week",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "easy_5k",
-              "name": "Easy 5K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-09-02",
@@ -769,17 +751,11 @@
         {
           "date": "2026-09-08",
           "dayLabel": "Tue 8",
-          "note": "Fartlek — 10' easy warm-up + 25' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~40' total · aerobic speed",
-          "runPlan": "Fartlek 25' — varied pace",
+          "note": "Rest — dropped to 4 runs/week",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "fartlek_25",
-              "name": "Fartlek 25' — varied pace",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-09-09",
@@ -876,17 +852,11 @@
         {
           "date": "2026-09-15",
           "dayLabel": "Tue 15",
-          "note": "Fartlek — 10' easy warm-up + 25' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~40' total · aerobic speed",
-          "runPlan": "Fartlek 25' — varied pace",
+          "note": "Rest — dropped to 4 runs/week",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "fartlek_25",
-              "name": "Fartlek 25' — varied pace",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-09-16",
@@ -936,7 +906,7 @@
         {
           "date": "2026-09-19",
           "dayLabel": "Sat 19",
-          "note": "—",
+          "note": "Trail long run — hilly route, ~258m gain over ~12K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm",
           "runPlan": "Long run 12K easy",
           "foodWeight": "Fuel well after.",
           "workouts": [
@@ -1244,8 +1214,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy 5K",
-        "description": "Optional easy only — skip run club / PFTC if hot or tired · early morning if you go\nFood: Box portions · hydrate\nPlan: Easy 5K",
+        "summary": "Speed intervals — 400m reps",
+        "description": "Feeling recovered — back to structured speed · 10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · still heat/DOMS week so ease off if it doesn't feel right\nFood: Box portions · hydrate\nPlan: Speed Intervals (400m reps)",
         "start": {
           "date": "2026-08-12",
           "endDate": "2026-08-13"
@@ -1257,7 +1227,7 @@
         "date": "2026-08-12",
         "dayLabel": "Wed 12",
         "weekTitle": "Week 4",
-        "workoutKey": "easy_5k",
+        "workoutKey": "shuttle_pace",
         "category": "run"
       },
       {
@@ -1329,23 +1299,6 @@
         "category": "run"
       },
       {
-        "summary": "Fartlek 25' — varied pace",
-        "description": "Fartlek — 10' easy warm-up + 25' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~40' total · building aerobic speed\nFood: Box portions\nPlan: Fartlek 25' — varied pace",
-        "start": {
-          "date": "2026-08-18",
-          "endDate": "2026-08-19"
-        },
-        "end": {
-          "date": "2026-08-18",
-          "endDate": "2026-08-19"
-        },
-        "date": "2026-08-18",
-        "dayLabel": "Tue 18",
-        "weekTitle": "Week 5",
-        "workoutKey": "fartlek_25",
-        "category": "run"
-      },
-      {
         "summary": "Run club — easy 8K · PFTC optional",
         "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
         "start": {
@@ -1380,8 +1333,8 @@
         "category": "strength"
       },
       {
-        "summary": "Tempo 25' — threshold",
-        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work for Cooper + bleep\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
+        "summary": "Easy 5K",
+        "description": "Easy only — shakeout or skip. Cooper TT is tomorrow; no tempo, no surges\nFood: Pudding ok tonight\nPlan: Easy 5K",
         "start": {
           "date": "2026-08-21",
           "endDate": "2026-08-22"
@@ -1393,7 +1346,7 @@
         "date": "2026-08-21",
         "dayLabel": "Fri 21",
         "weekTitle": "Week 5",
-        "workoutKey": "tempo_25",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
@@ -1428,23 +1381,6 @@
         "dayLabel": "Mon 24",
         "weekTitle": "Week 6",
         "workoutKey": "bleep_partial",
-        "category": "run"
-      },
-      {
-        "summary": "Fartlek 25' — varied pace",
-        "description": "Fartlek — 10' easy warm-up + 25' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~40' total · aerobic speed\nFood: Box portions\nPlan: Fartlek 25' — varied pace",
-        "start": {
-          "date": "2026-08-25",
-          "endDate": "2026-08-26"
-        },
-        "end": {
-          "date": "2026-08-25",
-          "endDate": "2026-08-26"
-        },
-        "date": "2026-08-25",
-        "dayLabel": "Tue 25",
-        "weekTitle": "Week 6",
-        "workoutKey": "fartlek_25",
         "category": "run"
       },
       {
@@ -1500,7 +1436,7 @@
       },
       {
         "summary": "Long Run 14K easy",
-        "description": "—\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 14K easy",
+        "description": "Trail long run — hilly route, ~258m gain over ~14K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 14K easy",
         "start": {
           "date": "2026-08-29",
           "endDate": "2026-08-30"
@@ -1530,23 +1466,6 @@
         "dayLabel": "Mon 31",
         "weekTitle": "Week 7",
         "workoutKey": "shuttle_pace",
-        "category": "run"
-      },
-      {
-        "summary": "Easy 5K",
-        "description": "Optional light fartlek if legs good — else easy 5K\nFood: Box portions\nPlan: Light fartlek — or easy 5K",
-        "start": {
-          "date": "2026-09-01",
-          "endDate": "2026-09-02"
-        },
-        "end": {
-          "date": "2026-09-01",
-          "endDate": "2026-09-02"
-        },
-        "date": "2026-09-01",
-        "dayLabel": "Tue 1 Sep",
-        "weekTitle": "Week 7",
-        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
@@ -1635,23 +1554,6 @@
         "category": "run"
       },
       {
-        "summary": "Fartlek 25' — varied pace",
-        "description": "Fartlek — 10' easy warm-up + 25' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~40' total · aerobic speed\nFood: Box portions\nPlan: Fartlek 25' — varied pace",
-        "start": {
-          "date": "2026-09-08",
-          "endDate": "2026-09-09"
-        },
-        "end": {
-          "date": "2026-09-08",
-          "endDate": "2026-09-09"
-        },
-        "date": "2026-09-08",
-        "dayLabel": "Tue 8",
-        "weekTitle": "Week 8",
-        "workoutKey": "fartlek_25",
-        "category": "run"
-      },
-      {
         "summary": "Run club — easy 8K · PFTC optional",
         "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
         "start": {
@@ -1737,23 +1639,6 @@
         "category": "run"
       },
       {
-        "summary": "Fartlek 25' — varied pace",
-        "description": "Fartlek — 10' easy warm-up + 25' fartlek: mix 1-3 min surges at L6-L8 pace, easy jog recoveries between + 5' cool-down = ~40' total · aerobic speed\nFood: Box portions\nPlan: Fartlek 25' — varied pace",
-        "start": {
-          "date": "2026-09-15",
-          "endDate": "2026-09-16"
-        },
-        "end": {
-          "date": "2026-09-15",
-          "endDate": "2026-09-16"
-        },
-        "date": "2026-09-15",
-        "dayLabel": "Tue 15",
-        "weekTitle": "Week 9",
-        "workoutKey": "fartlek_25",
-        "category": "run"
-      },
-      {
         "summary": "Run club — easy 8K · PFTC optional",
         "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
         "start": {
@@ -1806,7 +1691,7 @@
       },
       {
         "summary": "Long Run 12K easy",
-        "description": "—\nFood: Fuel well after.\nPlan: Long run 12K easy",
+        "description": "Trail long run — hilly route, ~258m gain over ~12K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm\nFood: Fuel well after.\nPlan: Long run 12K easy",
         "start": {
           "date": "2026-09-19",
           "endDate": "2026-09-20"

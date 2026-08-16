@@ -110,3 +110,33 @@ def test_easy_run_not_flagged():
 
     tue_day = next(d for d in review.to_dict()["days"] if d["date"] == "2026-07-14")
     assert tue_day["activities"][0]["hard"] is False
+
+
+def test_protect_test_eve_keeps_easy_friday():
+    from workout_sync.weekly_coach import _protect_test_eve
+
+    nxt = {
+        "20260817": ["shuttle_pace"],
+        "20260821": ["easy_5k"],
+        "20260822": ["cooper_1_5_mile"],
+    }
+    sugg = _protect_test_eve(nxt)
+    assert len(sugg) == 1
+    assert sugg[0].action == "keep"
+    assert sugg[0].date == "20260821"
+    assert sugg[0].to_label == "Easy 5K"
+    assert "Cooper" in sugg[0].reason
+
+
+def test_protect_test_eve_swaps_tempo_before_cooper():
+    from workout_sync.weekly_coach import _protect_test_eve
+
+    nxt = {
+        "20260821": ["tempo_25"],
+        "20260822": ["cooper_1_5_mile"],
+    }
+    sugg = _protect_test_eve(nxt)
+    assert len(sugg) == 1
+    assert sugg[0].action == "change"
+    assert sugg[0].from_label.startswith("Tempo")
+    assert sugg[0].to_label == "Easy 5K"

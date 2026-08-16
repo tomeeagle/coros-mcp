@@ -25,6 +25,7 @@ type Suggestion = {
   from: string;
   to: string;
   reason: string;
+  action?: "change" | "keep" | string;
 };
 
 type Review = {
@@ -291,13 +292,15 @@ export default function WeeklyCoachPage() {
 
   async function applyTweaks() {
     if (!review?.nextWeekSuggestions?.length) return;
+    const changes = review.nextWeekSuggestions.filter((s) => (s.action || "change") !== "keep");
+    if (!changes.length) return;
     setApplying(true);
     setApplyMsg(null);
     try {
       const res = await fetch("/api/coach/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ suggestions: review.nextWeekSuggestions }),
+        body: JSON.stringify({ suggestions: changes }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Apply failed");
@@ -537,21 +540,28 @@ export default function WeeklyCoachPage() {
                 </div>
               ) : (
                 <ul className="mb-10 space-y-4">
-                  {review.nextWeekSuggestions.map((s) => (
-                    <li
-                      key={`${s.date}-${s.from}`}
-                      className="rounded-2xl bg-[#2E5BFF] px-8 py-8 text-white"
-                    >
-                      <p className="text-[1.35rem] font-bold leading-snug tracking-[-0.02em]">
-                        {s.from} → {s.to}
-                      </p>
-                      <p className="mt-2 max-w-lg text-[1.05rem] opacity-85">{s.reason}</p>
-                    </li>
-                  ))}
+                  {review.nextWeekSuggestions.map((s) => {
+                    const keep = (s.action || "change") === "keep";
+                    return (
+                      <li
+                        key={`${s.date}-${s.from}`}
+                        className="rounded-2xl px-8 py-8"
+                        style={{
+                          backgroundColor: keep ? "#C3E4CD" : "#2E5BFF",
+                          color: keep ? "#12291A" : "#ffffff",
+                        }}
+                      >
+                        <p className="text-[1.35rem] font-bold leading-snug tracking-[-0.02em]">
+                          {keep ? `Keep ${s.to}` : `${s.from} → ${s.to}`}
+                        </p>
+                        <p className="mt-2 max-w-lg text-[1.05rem] opacity-85">{s.reason}</p>
+                      </li>
+                    );
+                  })}
                 </ul>
               )}
 
-              {review.nextWeekSuggestions.length > 0 && (
+              {review.nextWeekSuggestions.some((s) => (s.action || "change") !== "keep") && (
                 <button
                   type="button"
                   onClick={applyTweaks}

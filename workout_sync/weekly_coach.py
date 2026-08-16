@@ -43,6 +43,7 @@ class Suggestion:
     from_label: str
     to_label: str
     reason: str
+    action: str = "change"  # change | keep
 
 
 @dataclass
@@ -86,6 +87,7 @@ class WeekReview:
                     "from": s.from_label,
                     "to": s.to_label,
                     "reason": s.reason,
+                    "action": s.action,
                 }
                 for s in self.next_week_suggestions
             ],
@@ -451,9 +453,16 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
     if not week_ending:
         soften = False  # too early to rewrite next week
 
+    if week_ending:
+        suggestions.extend(_protect_test_eve(next_keys_by_day))
+
+    taken_dates = {s.date for s in suggestions}
+
     if soften:
         # Find first progression/tempo/bac in next week → ease to Easy 5K
         for ymd, keys in next_keys_by_day.items():
+            if ymd in taken_dates:
+                continue
             for k in keys:
                 if k.startswith(("progression_", "tempo_", "bac_", "build_")):
                     suggestions.append(
@@ -464,8 +473,9 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
                             reason="Ease quality after a harder week.",
                         )
                     )
+                    taken_dates.add(ymd)
                     break
-            if suggestions:
+            if ymd in taken_dates:
                 break
         # Cap long run if present and long
         for ymd, keys in next_keys_by_day.items():
@@ -518,6 +528,53 @@ def build_week_review(week: str | None = None, *, refresh: bool = False) -> Week
             "activityCount": len(activities),
         },
     )
+
+
+def _protect_test_eve(next_keys_by_day: dict[str, list[str]]) -> list[Suggestion]:
+    """Keep the day before Cooper / bleep-test easy — or say so if it already is."""
+    out: list[Suggestion] = []
+    for ymd, keys in next_keys_by_day.items():
+        if not any(k.startswith(("cooper_", "bleep_test")) for k in keys):
+            continue
+        prev = (datetime.strptime(ymd, "%Y%m%d") - timedelta(days=1)).strftime("%Y%m%d")
+        prev_keys = next_keys_by_day.get(prev, [])
+        test_label = _label_for_keys(keys)
+        if not prev_keys:
+            out.append(
+                Suggestion(
+                    date=prev,
+                    from_label="Rest",
+                    to_label="Rest",
+                    reason=f"Day before {test_label} is already rest — keep it that way.",
+                    action="keep",
+                )
+            )
+            break
+        for k in prev_keys:
+            label = _label_for_keys([k])
+            if k.startswith(
+                ("tempo_", "fartlek_", "progression_", "bac_", "build_", "shuttle_")
+            ):
+                out.append(
+                    Suggestion(
+                        date=prev,
+                        from_label=label,
+                        to_label="Easy 5K",
+                        reason=f"Don't do quality the day before {test_label}.",
+                    )
+                )
+            elif k.startswith(("easy_", "run_club_", "long_")):
+                out.append(
+                    Suggestion(
+                        date=prev,
+                        from_label=label,
+                        to_label=label,
+                        reason=f"Keep this easy — {test_label} is the next day.",
+                        action="keep",
+                    )
+                )
+        break
+    return out
 
 
 def _friendly_day(d: date) -> str:
@@ -627,9 +684,11 @@ def apply_suggestions(suggestions: list[dict[str, str]]) -> dict[str, Any]:
     changed = 0
 
     for s in suggestions:
+        if s.get("action") == "keep":
+            continue
         to_label = s["to"]
         from_label = (s.get("from") or "").strip()
-        if not from_label:
+        if not from_label or from_label == to_label:
             continue
         pattern = re.compile(
             rf'(<span class="run-cell[^"]*">)\s*{re.escape(from_label)}\s*(</span>)',

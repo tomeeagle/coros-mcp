@@ -138,31 +138,32 @@ def test_parse_full_plan():
     assert plan.schedule["20260807"] == ["tempo_20"]
     assert plan.schedule["20260808"] == ["long_12k"]
 
-    # Heat + DOMS deload — week of 9–15 Aug (no quality)
+    # Heat + DOMS deload — week of 9–15 Aug (speed returned Wed 12)
     assert "20260810" not in plan.schedule  # cancelled rest
     assert plan.schedule["20260811"] == ["easy_5k"]
-    assert plan.schedule["20260812"] == ["easy_5k"]
+    assert plan.schedule["20260812"] == ["shuttle_pace"]
     assert plan.schedule["20260813"] == ["strength_wk5"]
     assert plan.schedule["20260814"] == ["easy_5k"]
     assert plan.schedule["20260815"] == ["long_10k"]
 
-    # Fartlek + tempo continues — week 3
-    assert plan.schedule["20260818"] == ["fartlek_25"]
-    assert plan.schedule["20260821"] == ["tempo_25"]
+    # Week 5 — Tue rest, Fri easy before Cooper
+    assert "20260818" not in plan.schedule
+    assert plan.schedule["20260821"] == ["easy_5k"]
+    assert plan.schedule["20260822"] == ["cooper_1_5_mile"]
 
     # Tue 21 skipped (rest); Wed still easy default
     assert "20260721" not in plan.schedule
     assert plan.schedule["20260722"] == ["easy_5k"]
 
-    # Fartlek + tempo continues — week 6
-    assert plan.schedule["20260825"] == ["fartlek_25"]
+    # Week 6 — Tue rest; Fri still tempo
+    assert "20260825" not in plan.schedule
     assert plan.schedule["20260828"] == ["tempo_25"]
 
     # Deload week 7 (soft deload)
     assert plan.schedule["20260905"] == ["long_10k"]
 
-    # Fartlek + tempo continues — week 8
-    assert plan.schedule["20260908"] == ["fartlek_25"]
+    # Week 8 — Tue rest; Fri tempo; Sat Cooper repeat
+    assert "20260908" not in plan.schedule
     assert plan.schedule["20260911"] == ["tempo_25"]
     assert plan.schedule["20260912"] == ["cooper_1_5_mile"]
 

@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 
+import TrendsPanel, { type Trends } from "./TrendsPanel";
+
 type DayActivity = {
   kind: string;
   label: string;
@@ -182,6 +184,7 @@ function fmtKm(n: number | undefined | null): string {
 export default function WeeklyCoachPage() {
   const [week, setWeek] = useState<string | null>(null);
   const [review, setReview] = useState<Review | null>(null);
+  const [trends, setTrends] = useState<Trends | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [applying, setApplying] = useState(false);
@@ -195,11 +198,17 @@ export default function WeeklyCoachPage() {
       const q = new URLSearchParams();
       if (weekParam) q.set("week", weekParam.replace(/-/g, ""));
       if (refresh) q.set("refresh", "1");
-      const res = await fetch(`/api/coach/review?${q}`);
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to load review");
+      const [revRes, trRes] = await Promise.all([
+        fetch(`/api/coach/review?${q}`),
+        fetch(`/api/coach/trends?${q}`),
+      ]);
+      const data = await revRes.json();
+      if (!revRes.ok) throw new Error(data.error || "Failed to load review");
       setReview(data);
       setWeek(data.weekStart);
+      if (trRes.ok) {
+        setTrends(await trRes.json());
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
@@ -401,7 +410,7 @@ export default function WeeklyCoachPage() {
               </div>
             )}
 
-            <ul className="fade-up-delay mb-20 space-y-4">
+            <ul className="fade-up-delay mb-14 space-y-4">
               {review.notes.map((note) => (
                 <li
                   key={note}
@@ -411,6 +420,8 @@ export default function WeeklyCoachPage() {
                 </li>
               ))}
             </ul>
+
+            {trends && <TrendsPanel trends={trends} />}
 
             <section className="fade-up-delay-2 mb-20">
               <h2 className="mb-8 text-[1rem] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">

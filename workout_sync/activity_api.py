@@ -36,12 +36,46 @@ def create_app() -> Flask:
         refresh_warning = None
         if refresh:
             try:
-                _refresh_week(week)
+                _refresh_range(week, weeks_back=1)
             except Exception as exc:
                 # Fall back to cached data rather than failing the whole review.
                 refresh_warning = f"Couldn't refresh from Coros ({exc}). Showing cached data."
                 refresh = False
         data = build_week_review(week, refresh=refresh).to_dict()
+        if refresh_warning:
+            data["refreshWarning"] = refresh_warning
+        return jsonify(data)
+
+    @app.route("/trends", methods=["GET", "OPTIONS"])
+    def trends():
+        if request.method == "OPTIONS":
+            return ("", 204)
+        week = request.args.get("week")
+        week_count = 12
+        raw_count = request.args.get("weeks", "12")
+        if raw_count.isdigit():
+            week_count = max(4, min(20, int(raw_count)))
+        refresh = request.args.get("refresh", "0") in ("1", "true", "yes")
+        refresh_warning = None
+        if refresh:
+            try:
+                _refresh_range(week, weeks_back=week_count)
+            except Exception as exc:
+                refresh_warning = f"Couldn't refresh from Coros ({exc}). Showing cached data."
+        from cache.store import get_activities, get_daily_records, get_sleep_records, init_db
+        from workout_sync.weekly_performance import build_coach_trends
+
+        init_db()
+        start, end = week_bounds(week)
+        range_start = start - timedelta(days=7 * (week_count - 1))
+        start_s, end_s = _ymd(range_start), _ymd(end)
+        data = build_coach_trends(
+            get_activities(start_s, end_s),
+            get_daily_records(start_s, end_s),
+            get_sleep_records(start_s, end_s),
+            week=week,
+            week_count=week_count,
+        )
         if refresh_warning:
             data["refreshWarning"] = refresh_warning
         return jsonify(data)
@@ -60,22 +94,23 @@ def create_app() -> Flask:
     return app
 
 
-def _refresh_week(week: str | None) -> None:
-    """Pull activities + daily metrics for the week into cache."""
+def _refresh_range(week: str | None, *, weeks_back: int = 1) -> None:
+    """Pull activities, daily metrics, and sleep into cache."""
     from cache.store import init_db
-    from cache.sync import fetch_activities_cached, fetch_daily_records_cached
+    from cache.sync import fetch_activities_cached, fetch_daily_records_cached, fetch_sleep_cached
     from workout_sync.auth import ensure_auth
 
     async def _run():
         auth = await ensure_auth()
         start, end = week_bounds(week)
-        # pad a day each side
-        s = _ymd(start - timedelta(days=1))
+        s = _ymd(start - timedelta(days=7 * max(0, weeks_back - 1) + 1))
         e = _ymd(end + timedelta(days=1))
         init_db()
         await fetch_activities_cached(auth, s, e, size=100)
         with contextlib.suppress(Exception):
             await fetch_daily_records_cached(auth, s, e)
+        with contextlib.suppress(Exception):
+            await fetch_sleep_cached(auth, s, e)
 
     asyncio.run(_run())
 

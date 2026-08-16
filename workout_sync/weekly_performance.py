@@ -7,7 +7,7 @@ from datetime import UTC, date, datetime, timedelta
 from statistics import mean
 from typing import Any
 
-from models import ActivitySummary, DailyRecord
+from models import ActivitySummary, DailyRecord, SleepRecord
 from workout_sync.weekly_coach import (
     _activity_day,
     _is_bike,
@@ -485,6 +485,304 @@ def render_markdown(report: PerformanceReport) -> str:
 
     lines.extend(["", f"_Generated {report.generated_at}_", ""])
     return "\n".join(lines)
+
+
+def _week_axis_label(start: date) -> str:
+    end = start + timedelta(days=6)
+    if start.month == end.month:
+        return f"{start.day}–{end.day} {start.strftime('%b')}"
+    return f"{start.day} {start.strftime('%b')}–{end.day} {end.strftime('%b')}"
+
+
+def _sleep_stats(
+    sleeps: list[SleepRecord], start: date, end: date
+) -> tuple[int, float | None, float | None, float | None]:
+    hours: list[float] = []
+    awake: list[float] = []
+    naps: list[float] = []
+    start_s, end_s = _ymd(start), _ymd(end)
+    for s in sleeps:
+        if not (start_s <= s.date <= end_s):
+            continue
+        dur = s.total_duration_minutes or 0
+        if dur < 30:
+            continue
+        hours.append(dur / 60)
+        if s.phases and s.phases.awake_minutes:
+            awake.append(s.phases.awake_minutes / 60)
+        if s.phases and s.phases.nap_minutes:
+            naps.append(s.phases.nap_minutes / 60)
+    return (
+        len(hours),
+        mean(hours) if hours else None,
+        mean(awake) if awake else None,
+        mean(naps) if naps else None,
+    )
+
+
+def _week_trend_point(
+    snap: WeekSnapshot, sleeps: list[SleepRecord]
+) -> dict[str, Any]:
+    nights, sleep_h, awake_h, nap_h = _sleep_stats(sleeps, snap.week_start, snap.week_end)
+    load = snap.daily_training_load or snap.activity_training_load
+    gap = snap.activity_count == 0 and nights == 0 and load == 0
+    return {
+        "weekStart": snap.week_start.isoformat(),
+        "weekEnd": snap.week_end.isoformat(),
+        "label": _week_axis_label(snap.week_start),
+        "runKm": round(snap.sports["run"].distance_km, 1),
+        "bikeKm": round(snap.sports["bike"].distance_km, 1),
+        "strengthCount": snap.sports["strength"].count,
+        "load": round(load),
+        "loadRatio": round(snap.load_ratio, 2) if snap.load_ratio is not None else None,
+        "avgRhr": round(snap.avg_rhr, 1) if snap.avg_rhr is not None else None,
+        "avgHrv": round(snap.avg_hrv, 1) if snap.avg_hrv is not None else None,
+        "sleepNights": nights,
+        "avgSleepHours": round(sleep_h, 1) if sleep_h is not None else None,
+        "avgAwakeHours": round(awake_h, 1) if awake_h is not None else None,
+        "avgNapHours": round(nap_h, 1) if nap_h is not None else None,
+        "vo2max": snap.vo2max,
+        "gap": gap,
+    }
+
+
+def _focus_daily_series(
+    start: date,
+    daily: list[DailyRecord],
+    sleeps: list[SleepRecord],
+) -> list[dict[str, Any]]:
+    by_day = {d.date: d for d in daily}
+    by_sleep = {s.date: s for s in sleeps}
+    points = []
+    for i in range(7):
+        d = start + timedelta(days=i)
+        ymd = _ymd(d)
+        rec = by_day.get(ymd)
+        sl = by_sleep.get(ymd)
+        sleep_h = None
+        awake_h = None
+        if sl and (sl.total_duration_minutes or 0) >= 30:
+            sleep_h = round((sl.total_duration_minutes or 0) / 60, 1)
+            if sl.phases and sl.phases.awake_minutes:
+                awake_h = round(sl.phases.awake_minutes / 60, 1)
+        points.append(
+            {
+                "date": d.isoformat(),
+                "label": d.strftime("%a"),
+                "load": rec.training_load if rec and rec.training_load else 0,
+                "rhr": rec.rhr if rec else None,
+                "hrv": rec.avg_sleep_hrv if rec else None,
+                "sleepHours": sleep_h,
+                "awakeHours": awake_h,
+            }
+        )
+    return points
+
+
+def build_fatigue_read(
+    weeks: list[dict[str, Any]],
+    daily: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Plain-English read on why this week may feel exhausting."""
+    if not weeks:
+        return {
+            "headline": "Not enough history to judge fatigue yet.",
+            "summary": "Need a few weeks of Coros data first.",
+            "factors": [],
+        }
+
+    focus = weeks[-1]
+    prior = [w for w in weeks[:-1] if not w.get("gap")]
+    factors: list[dict[str, str]] = []
+
+    prior_sleep = [w["avgSleepHours"] for w in prior if w.get("avgSleepHours") is not None]
+    prior_awake = [w["avgAwakeHours"] for w in prior if w.get("avgAwakeHours") is not None]
+    prior_nap = [w["avgNapHours"] for w in prior if w.get("avgNapHours") is not None]
+    prior_rhr = [w["avgRhr"] for w in prior if w.get("avgRhr") is not None]
+    prior_load = [w["load"] for w in prior if w.get("load")]
+
+    sleep_h = focus.get("avgSleepHours")
+    awake_h = focus.get("avgAwakeHours")
+    if sleep_h is not None and prior_sleep and sleep_h <= mean(prior_sleep) - 0.6:
+        factors.append(
+            {
+                "title": "Nights got shorter",
+                "detail": (
+                    f"This week averaged {sleep_h:.1f} h of sleep vs "
+                    f"~{mean(prior_sleep):.1f} h recently."
+                ),
+                "weight": "high",
+            }
+        )
+    if awake_h is not None and (
+        awake_h >= 0.9 or (prior_awake and awake_h >= mean(prior_awake) + 0.4)
+    ):
+        factors.append(
+            {
+                "title": "Sleep was fragmented",
+                "detail": (
+                    f"About {awake_h:.1f} h awake per night this week"
+                    + (
+                        f" vs ~{mean(prior_awake):.1f} h recently."
+                        if prior_awake
+                        else "."
+                    )
+                ),
+                "weight": "high",
+            }
+        )
+
+    if prior_nap and mean(prior_nap) >= 1.0:
+        factors.append(
+            {
+                "title": "Naps have been covering a sleep debt for months",
+                "detail": (
+                    f"Recent weeks average ~{mean(prior_nap):.1f} h of daytime naps. "
+                    "That's paying back nights, not extra recovery on top of good sleep."
+                ),
+                "weight": "medium",
+            }
+        )
+
+    if len(weeks) >= 2 and weeks[-2].get("gap") and (focus.get("load") or 0) >= 120:
+        factors.append(
+            {
+                "title": "Sharp return after a blank week",
+                "detail": (
+                    f"The week before logged no training or sleep, then this week hit "
+                    f"load {focus.get('load')}. Coming back that fast feels harder than "
+                    "the same load in a steady block."
+                ),
+                "weight": "high",
+            }
+        )
+
+    if daily:
+        weekend_load = sum(p.get("load") or 0 for p in daily[-3:])  # Fri–Sun
+        week_load = sum(p.get("load") or 0 for p in daily)
+        if week_load >= 80 and weekend_load >= week_load * 0.7:
+            factors.append(
+                {
+                    "title": "The week was back-loaded",
+                    "detail": (
+                        f"{weekend_load:.0f} of {week_load:.0f} training load landed Fri–Sun. "
+                        "Two long days after rest feel like a smash, even if weekly volume is modest."
+                    ),
+                    "weight": "high",
+                }
+            )
+        rhrs = [p["rhr"] for p in daily if p.get("rhr") is not None]
+        if rhrs and prior_rhr and max(rhrs) >= mean(prior_rhr) + 8:
+            factors.append(
+                {
+                    "title": "Resting HR spiked",
+                    "detail": (
+                        f"A morning RHR of {max(rhrs):.0f} vs a recent average around "
+                        f"{mean(prior_rhr):.0f}."
+                    ),
+                    "weight": "medium",
+                }
+            )
+
+    if prior_rhr and focus.get("avgRhr") is not None:
+        best = min(prior_rhr)
+        if focus["avgRhr"] >= best + 5 and best <= 52:
+            factors.append(
+                {
+                    "title": "Resting HR has drifted up since you were fresher",
+                    "detail": (
+                        f"Weekly average is {focus['avgRhr']:.0f} bpm; it was down around "
+                        f"{best:.0f} earlier in this block."
+                    ),
+                    "weight": "medium",
+                }
+            )
+
+    ratio = focus.get("loadRatio")
+    if ratio is not None and ratio < 0.8:
+        factors.append(
+            {
+                "title": "This is not an overtraining week",
+                "detail": (
+                    f"Load ratio {ratio:.2f} is below the 0.8–1.3 build band. "
+                    "The drain is recovery (sleep, heat, a stacked weekend), not too much training."
+                ),
+                "weight": "low",
+            }
+        )
+    elif ratio is not None and ratio > 1.5:
+        factors.append(
+            {
+                "title": "Load is ramping faster than your base",
+                "detail": f"Load ratio {ratio:.2f} is in the injury-risk zone (>1.5).",
+                "weight": "high",
+            }
+        )
+
+    if prior_load and (focus.get("load") or 0) > 0:
+        avg_load = mean(prior_load)
+        if focus["load"] <= avg_load * 0.85:
+            pass  # already covered by ratio; don't double-say "light week"
+
+    high = sum(1 for f in factors if f["weight"] == "high")
+    if any("blank week" in f["title"] for f in factors) and any(
+        "Sleep" in f["title"] or "Nights" in f["title"] or "fragmented" in f["title"]
+        for f in factors
+    ):
+        headline = "Not overtrained — under-slept, then a sharp weekend after a layoff."
+    elif high >= 2 and any(
+        "Sleep" in f["title"] or "Nights" in f["title"] or "fragmented" in f["title"]
+        for f in factors
+    ):
+        headline = "Sleep is the main reason this week feels heavy."
+    elif ratio is not None and ratio > 1.5:
+        headline = "Load is ramping fast — recover on purpose this week."
+    elif factors:
+        headline = "Fatigue looks like recovery debt, not a huge training block."
+    else:
+        headline = "No strong fatigue flags in the numbers we have."
+
+    bits = [f["title"].rstrip(".") for f in factors[:3]]
+    summary = ("; ".join(bits) + ".") if bits else "Nothing dramatic in the weekly averages."
+
+    weight_rank = {"high": 0, "medium": 1, "low": 2}
+    factors.sort(key=lambda f: weight_rank.get(f["weight"], 1))
+    ratio_notes = [
+        f
+        for f in factors
+        if "overtraining" in f["title"].lower() or "ramping faster" in f["title"].lower()
+    ]
+    core = [f for f in factors if f not in ratio_notes][:5]
+    return {"headline": headline, "summary": summary, "factors": core + ratio_notes}
+
+
+def build_coach_trends(
+    activities: list[ActivitySummary],
+    daily: list[DailyRecord],
+    sleeps: list[SleepRecord],
+    *,
+    week: str | None = None,
+    week_count: int = 12,
+) -> dict[str, Any]:
+    """Last N Mon–Sun weeks ending at the reviewed week, plus a fatigue read."""
+    from workout_sync.weekly_coach import week_bounds
+
+    focus_start, _ = week_bounds(week)
+    points = []
+    for i in range(week_count - 1, -1, -1):
+        start = focus_start - timedelta(days=7 * i)
+        snap = build_week_snapshot(start, activities, daily)
+        points.append(_week_trend_point(snap, sleeps))
+
+    daily_series = _focus_daily_series(focus_start, daily, sleeps)
+    fatigue = build_fatigue_read(points, daily_series)
+    return {
+        "weekStart": focus_start.isoformat(),
+        "weekEnd": (focus_start + timedelta(days=6)).isoformat(),
+        "weeks": points,
+        "daily": daily_series,
+        "fatigue": fatigue,
+    }
 
 
 async def collect_and_build_report(

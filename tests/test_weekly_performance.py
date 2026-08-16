@@ -2,8 +2,10 @@
 
 from datetime import UTC, date, datetime, timedelta
 
-from models import ActivitySummary, DailyRecord
+from models import ActivitySummary, DailyRecord, SleepPhases, SleepRecord
 from workout_sync.weekly_performance import (
+    build_coach_trends,
+    build_fatigue_read,
     build_performance_report,
     build_week_snapshot,
     previous_week_bounds,
@@ -122,3 +124,97 @@ def test_empty_week_reports_gap():
     assert report.focus_week.activity_count == 0
     assert report.data_gaps
     assert "No activity data" in report.headline or report.data_gaps
+
+
+def test_coach_trends_marks_gap_week_and_fatigue():
+    focus = date(2026, 8, 10)
+    prior = date(2026, 8, 3)
+    acts = [
+        _run(date(2026, 8, 15), 12.0, 132, load=87),
+        _bike(date(2026, 8, 14), 20.0),
+    ]
+    daily = []
+    for i in range(7):
+        d = focus + timedelta(days=i)
+        load = 84 if i == 4 else 87 if i == 5 else 0
+        daily.append(
+            DailyRecord(
+                date=d.strftime("%Y%m%d"),
+                rhr=64 if i == 4 else 54,
+                avg_sleep_hrv=24.0 if i == 3 else 38.0,
+                training_load=load,
+                training_load_ratio=0.66 if i == 6 else None,
+            )
+        )
+    sleeps = [
+        SleepRecord(
+            date="20260813",
+            total_duration_minutes=240,
+            phases=SleepPhases(awake_minutes=37, nap_minutes=91),
+        ),
+        SleepRecord(
+            date="20260816",
+            total_duration_minutes=426,
+            phases=SleepPhases(awake_minutes=69, nap_minutes=30),
+        ),
+        # Prior-prior week has normal sleep so "nights got shorter" can fire
+        SleepRecord(date="20260728", total_duration_minutes=450, phases=SleepPhases(awake_minutes=20)),
+        SleepRecord(date="20260729", total_duration_minutes=480, phases=SleepPhases(awake_minutes=15)),
+    ]
+    # A populated week two weeks back so prior[] is not empty
+    acts.append(_run(date(2026, 7, 28), 10.0, 140, load=40))
+    daily.append(DailyRecord(date="20260728", rhr=48, avg_sleep_hrv=40.0, training_load=40))
+
+    payload = build_coach_trends(acts, daily, sleeps, week="20260816", week_count=3)
+    assert payload["weekStart"] == "2026-08-10"
+    assert len(payload["weeks"]) == 3
+    gap = next(w for w in payload["weeks"] if w["weekStart"] == prior.isoformat())
+    assert gap["gap"] is True
+    focus_w = payload["weeks"][-1]
+    assert focus_w["runKm"] == 12.0
+    assert focus_w["bikeKm"] == 20.0
+    assert payload["fatigue"]["headline"]
+    titles = [f["title"] for f in payload["fatigue"]["factors"]]
+    assert any("blank week" in t for t in titles)
+    assert any("back-loaded" in t for t in titles)
+    assert any("not an overtraining" in t for t in titles)
+
+
+def test_fatigue_read_sleep_fragmentation():
+    weeks = [
+        {
+            "gap": False,
+            "avgSleepHours": 7.2,
+            "avgAwakeHours": 0.4,
+            "avgNapHours": 1.4,
+            "avgRhr": 48,
+            "load": 200,
+            "loadRatio": 0.7,
+        },
+        {
+            "gap": False,
+            "avgSleepHours": 6.0,
+            "avgAwakeHours": 1.2,
+            "avgNapHours": 0.9,
+            "avgRhr": 54,
+            "load": 180,
+            "loadRatio": 0.66,
+        },
+    ]
+    daily = [
+        {"load": 0, "rhr": 53},
+        {"load": 0, "rhr": 55},
+        {"load": 0, "rhr": 55},
+        {"load": 4, "rhr": 50},
+        {"load": 84, "rhr": 64},
+        {"load": 87, "rhr": 48},
+        {"load": 0, "rhr": 56},
+    ]
+    read = build_fatigue_read(weeks, daily)
+    titles = " ".join(f["title"] for f in read["factors"])
+    assert "Nights got shorter" in titles
+    assert "fragmented" in titles
+    assert "Naps" in titles
+    assert "overtraining" in titles.lower()
+    hl = read["headline"].lower()
+    assert "under-slept" in hl or "recovery" in hl or "Sleep" in read["headline"]

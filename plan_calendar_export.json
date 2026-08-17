@@ -418,7 +418,7 @@
     {
       "title": "Week 5",
       "dates": "16–22 Aug",
-      "phase": "Fartlek + tempo continues + Cooper",
+      "phase": "Illness — no makeup 400s",
       "weekNumber": 5,
       "days": [
         {
@@ -433,31 +433,25 @@
         {
           "date": "2026-08-17",
           "dayLabel": "Mon 17",
-          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep",
-          "runPlan": "Speed Intervals (400m reps)",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "shuttle_pace",
-              "name": "Speed intervals — 400m reps",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "note": "Illness — skipped speed 400s. Do not make this up later in the week",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions · fluids",
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-18",
           "dayLabel": "Tue 18",
-          "note": "Rest — dropped to 4 runs/week",
+          "note": "Rest — still illness week. Stay in if symptoms linger",
           "runPlan": "Rest",
-          "foodWeight": "Box portions",
+          "foodWeight": "Box portions · fluids",
           "workouts": [],
           "rest": true
         },
         {
           "date": "2026-08-19",
           "dayLabel": "Wed 19",
-          "note": "Optional PFTC — skip if tired",
+          "note": "Skip unless clearly better (no fever, energy back). If you go: easy conversational only, cut short is fine · no PFTC",
           "runPlan": "Run club 8K easy",
           "foodWeight": "Box portions",
           "workouts": [
@@ -472,7 +466,7 @@
         {
           "date": "2026-08-20",
           "dayLabel": "Thu 20",
-          "note": "💪 Strength WK2 — Build · Avon WT press/pull at gym · NFRS farmers ~75 m",
+          "note": "💪 Strength WK2 — skip or cut to light circuit if still unwell · no hero lifts",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -487,7 +481,7 @@
         {
           "date": "2026-08-21",
           "dayLabel": "Fri 21",
-          "note": "Easy only — shakeout or skip. Cooper TT is tomorrow; no tempo, no surges",
+          "note": "Easy shakeout or skip. If still ill, rest. No tempo, no surges",
           "runPlan": "Easy 5K",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
@@ -502,7 +496,7 @@
         {
           "date": "2026-08-22",
           "dayLabel": "Sat 22",
-          "note": "Avon WT — Cooper 1.5 mile time trial on track. Warm up 10–15 min + strides · log time · aim toward 12 min (~5:00/km)",
+          "note": "Avon WT Cooper marker — only if 24h+ symptom-free. If still ill: rest or easy 20'. Warm up 10–15 min + strides · log time · aim toward 12 min (~5:00/km)",
           "runPlan": "Cooper 1.5 mile — time trial",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
@@ -1282,25 +1276,8 @@
         "category": "run"
       },
       {
-        "summary": "Speed intervals — 400m reps",
-        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
-        "start": {
-          "date": "2026-08-17",
-          "endDate": "2026-08-18"
-        },
-        "end": {
-          "date": "2026-08-17",
-          "endDate": "2026-08-18"
-        },
-        "date": "2026-08-17",
-        "dayLabel": "Mon 17",
-        "weekTitle": "Week 5",
-        "workoutKey": "shuttle_pace",
-        "category": "run"
-      },
-      {
-        "summary": "Run club — easy 8K · PFTC optional",
-        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "summary": "Run club — easy 8K",
+        "description": "Skip unless clearly better (no fever, energy back). If you go: easy conversational only, cut short is fine · no PFTC\nFood: Box portions\nPlan: Run club 8K easy",
         "start": {
           "date": "2026-08-19",
           "endDate": "2026-08-20"
@@ -1317,7 +1294,7 @@
       },
       {
         "summary": "Strength — Build circuit (WK2)",
-        "description": "💪 Strength WK2 — Build · Avon WT press/pull at gym · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength WK2 — skip or cut to light circuit if still unwell · no hero lifts\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-08-20",
           "endDate": "2026-08-21"
@@ -1334,7 +1311,7 @@
       },
       {
         "summary": "Easy 5K",
-        "description": "Easy only — shakeout or skip. Cooper TT is tomorrow; no tempo, no surges\nFood: Pudding ok tonight\nPlan: Easy 5K",
+        "description": "Easy shakeout or skip. If still ill, rest. No tempo, no surges\nFood: Pudding ok tonight\nPlan: Easy 5K",
         "start": {
           "date": "2026-08-21",
           "endDate": "2026-08-22"
@@ -1351,7 +1328,7 @@
       },
       {
         "summary": "Cooper 1.5 mile — time trial",
-        "description": "Avon WT — Cooper 1.5 mile time trial on track. Warm up 10–15 min + strides · log time · aim toward 12 min (~5:00/km)\nFood: Pudding ok tonight\nPlan: Cooper 1.5 mile — time trial",
+        "description": "Avon WT Cooper marker — only if 24h+ symptom-free. If still ill: rest or easy 20'. Warm up 10–15 min + strides · log time · aim toward 12 min (~5:00/km)\nFood: Pudding ok tonight\nPlan: Cooper 1.5 mile — time trial",
         "start": {
           "date": "2026-08-22",
           "endDate": "2026-08-23"

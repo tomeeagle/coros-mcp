@@ -146,7 +146,8 @@ def test_parse_full_plan():
     assert plan.schedule["20260814"] == ["easy_5k"]
     assert plan.schedule["20260815"] == ["long_10k"]
 
-    # Week 5 — Tue rest, Fri easy before Cooper
+    # Week 5 — Mon 17 illness rest; Tue rest; Fri easy before Cooper
+    assert "20260817" not in plan.schedule
     assert "20260818" not in plan.schedule
     assert plan.schedule["20260821"] == ["easy_5k"]
     assert plan.schedule["20260822"] == ["cooper_1_5_mile"]

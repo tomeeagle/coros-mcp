@@ -460,6 +460,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "Fartlek 25' — varied pace", surge_min=3, easy_min=2, repeats=5,
     ),
     # Tempo — 10' easy + N' threshold + 5' cool (matches plan Fri sessions)
+    "tempo_15": _tempo_session("Tempo 15' — threshold", 15, "~5:30–5:45/km"),
     "tempo_20": _tempo_session("Tempo 20' — threshold", 20, "~5:20–5:30/km"),
     "tempo_22": _tempo_session("Tempo 22' — threshold", 22, "~5:15–5:25/km"),
     "tempo_25": _tempo_session("Tempo 25' — threshold", 25, "~5:10–5:20/km"),

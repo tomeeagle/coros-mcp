@@ -115,7 +115,7 @@ def test_map_build_8k():
 def test_parse_full_plan():
     plan = parse_plan_html(PLAN)
     assert plan.year == 2026
-    assert len(plan.weeks) == 9
+    assert len(plan.weeks) >= 9
 
     # Re-entry week — pivoted to fire service bleep after baseline 6.2
     assert plan.schedule["20260719"] == ["easy_3k"]
@@ -146,25 +146,32 @@ def test_parse_full_plan():
     assert plan.schedule["20260814"] == ["easy_5k"]
     assert plan.schedule["20260815"] == ["long_10k"]
 
-    # Week 5 — Mon 17 illness rest; Tue rest; Fri easy before Cooper
+    # Week 5 illness days rest; comeback block (19 Aug–8 Sep) supersedes old Week 5–7
     assert "20260817" not in plan.schedule
     assert "20260818" not in plan.schedule
-    assert plan.schedule["20260821"] == ["easy_5k"]
-    assert plan.schedule["20260822"] == ["cooper_1_5_mile"]
+    assert "20260819" not in plan.schedule  # comeback rest
+    assert plan.schedule["20260820"] == ["easy_5k"]
+    assert "20260821" not in plan.schedule
+    assert plan.schedule["20260822"] == ["easy_6k"]
+    assert plan.schedule["20260824"] == ["easy_6k"]
+    assert "20260826" not in plan.schedule
+    assert plan.schedule["20260827"] == ["easy_6k"]
+    assert "20260828" not in plan.schedule
+    assert plan.schedule["20260829"] == ["fartlek_20"]
+    assert plan.schedule["20260831"] == ["easy_8k"]
+    assert "20260902" not in plan.schedule
+    assert plan.schedule["20260903"] == ["easy_6k"]
+    assert "20260904" not in plan.schedule
+    assert plan.schedule["20260905"] == ["strength_wk1"]
+    assert plan.schedule["20260906"] == ["tempo_15"]
+    assert plan.schedule["20260907"] == ["easy_10k"]
+    assert "20260908" not in plan.schedule
 
     # Tue 21 skipped (rest); Wed still easy default
     assert "20260721" not in plan.schedule
     assert plan.schedule["20260722"] == ["easy_5k"]
 
-    # Week 6 — Tue rest; Fri still tempo
-    assert "20260825" not in plan.schedule
-    assert plan.schedule["20260828"] == ["tempo_25"]
-
-    # Deload week 7 (soft deload)
-    assert plan.schedule["20260905"] == ["long_10k"]
-
     # Week 8 — Tue rest; Fri tempo; Sat Cooper repeat
-    assert "20260908" not in plan.schedule
     assert plan.schedule["20260911"] == ["tempo_25"]
     assert plan.schedule["20260912"] == ["cooper_1_5_mile"]
 

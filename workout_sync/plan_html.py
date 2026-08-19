@@ -182,7 +182,7 @@ def _primary_run_key(
     if not text or text in ("—", "-"):
         return None, "empty"
 
-    if re.search(r"^rest|^full rest", text, re.I):
+    if re.search(r"^rest|^full rest|^rest or", text, re.I):
         return None, "empty"
 
     combined = f"{text} {note}"
@@ -263,14 +263,21 @@ def _primary_run_key(
         (r"shuttle pace|20m turns|shuttle intervals|speed intervals", "shuttle_pace"),
         (r"fartlek 25|fartlek.*25'", "fartlek_25"),
         (r"fartlek 22|fartlek.*22'", "fartlek_22"),
+        (r"light fartlek 30|light fartlek", "fartlek_20"),
         (r"fartlek 20|fartlek.*20'", "fartlek_20"),
         (r"tempo 25|tempo.*25'", "tempo_25"),
         (r"tempo 22|tempo.*22'", "tempo_22"),
         (r"tempo 20|tempo.*20'", "tempo_20"),
+        (r"tempo 15|tempo.*15'", "tempo_15"),
         (r"cooper 1\.5|cooper 1\.5 mile|1\.5 mile.*time trial|1\.5 mile.*cooper", "cooper_1_5_mile"),
         (r"easy 10k", "easy_10k"),
+        (r"easy 8-10k", "easy_8k"),
         (r"easy 8k", "easy_8k"),
+        (r"easy 6-8k", "easy_6k"),
+        (r"easy 6k \+ stride|easy 6k\+ stride", "easy_6k"),
         (r"easy 6k|6k easy", "easy_6k"),
+        (r"easy 5-7k", "easy_6k"),
+        (r"easy 4-6k", "easy_5k"),
         (r"easy 5k", "easy_5k"),
         (r"3.×8min tempo|3×8min tempo", "tempo_8k"),
         (r"6k.*15min tempo", "tempo_6k"),
@@ -472,6 +479,10 @@ def _parse_week_blocks_ordered(
             if workout_keys:
                 pw.days[yyyymmdd] = workout_keys
                 schedule[yyyymmdd] = workout_keys
+            elif skip == "empty":
+                # Later week blocks (e.g. comeback) supersede earlier sessions on rest days.
+                schedule.pop(yyyymmdd, None)
+                pw.skipped.append(pd)
             else:
                 pw.skipped.append(pd)
                 if skip and skip.startswith("unmapped"):

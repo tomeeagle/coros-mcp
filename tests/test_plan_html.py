@@ -146,26 +146,23 @@ def test_parse_full_plan():
     assert plan.schedule["20260814"] == ["easy_5k"]
     assert plan.schedule["20260815"] == ["long_10k"]
 
-    # Week 5 illness days rest; comeback block (19 Aug–8 Sep) supersedes old Week 5–7
+    # Week 5 illness (16–22 Aug) — numbered weeks are live; comeback block is archive
     assert "20260817" not in plan.schedule
     assert "20260818" not in plan.schedule
-    assert "20260819" not in plan.schedule  # comeback rest
-    assert plan.schedule["20260820"] == ["easy_5k"]
-    assert "20260821" not in plan.schedule
-    assert plan.schedule["20260822"] == ["easy_6k"]
-    assert plan.schedule["20260824"] == ["easy_6k"]
-    assert "20260826" not in plan.schedule
-    assert plan.schedule["20260827"] == ["easy_6k"]
-    assert "20260828" not in plan.schedule
-    assert plan.schedule["20260829"] == ["fartlek_20"]
-    assert plan.schedule["20260831"] == ["easy_8k"]
-    assert "20260902" not in plan.schedule
-    assert plan.schedule["20260903"] == ["easy_6k"]
-    assert "20260904" not in plan.schedule
-    assert plan.schedule["20260905"] == ["strength_wk1"]
-    assert plan.schedule["20260906"] == ["tempo_15"]
-    assert plan.schedule["20260907"] == ["easy_10k"]
-    assert "20260908" not in plan.schedule
+    assert plan.schedule["20260819"] == ["run_club_8k"]
+    assert plan.schedule["20260820"] == ["speed_400m_controlled"]
+    assert plan.schedule["20260821"] == ["strength_wk2"]
+    assert plan.schedule["20260822"] == ["cooper_1_5_mile"]
+
+    # Staffs/NFRS slow bleep ladder — capped minis, not stacked full MSFTs
+    assert plan.schedule["20260824"] == ["bleep_partial"]  # cap ~7.0
+    assert plan.schedule["20260831"] == ["shuttle_pace"]  # speed 400s
+    assert plan.schedule["20260907"] == ["bleep_partial"]  # cap ~7.2, not full; Cooper Sat 12
+    assert plan.schedule["20260912"] == ["cooper_1_5_mile"]
+    assert plan.schedule["20260914"] == ["shuttle_pace"]
+    assert plan.schedule["20260921"] == ["bleep_partial"]  # cap ~7.5
+    assert plan.schedule["20261005"] == ["bleep_practice"]  # first full diagnostic
+    assert plan.schedule["20261026"] == ["bleep_practice"]  # second full
 
     # Tue 21 skipped (rest); Wed still easy default
     assert "20260721" not in plan.schedule
@@ -173,7 +170,6 @@ def test_parse_full_plan():
 
     # Week 8 — Tue rest; Fri tempo; Sat Cooper repeat
     assert plan.schedule["20260911"] == ["tempo_25"]
-    assert plan.schedule["20260912"] == ["cooper_1_5_mile"]
 
 
 @pytest.mark.skipif(not PLAN.is_file(), reason="training_plan.html not in repo")

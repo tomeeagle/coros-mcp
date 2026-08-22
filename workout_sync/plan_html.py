@@ -260,6 +260,7 @@ def _primary_run_key(
         (r"easy 5k \+ l7|easy 5k \+ shuttle|easy 5k.*l7 shuttle", "easy_5k_shuttle"),
         (r"shuttle short|4× l7 \+ 2× l8|4x l7 \+ 2x l8", "shuttle_short"),
         (r"shuttle turns|turn drill|technique", "shuttle_turns"),
+        (r"5×400m \(5:00-5:10|5x400m \(5:00-5:10|controlled, not max", "speed_400m_controlled"),
         (r"shuttle pace|20m turns|shuttle intervals|speed intervals", "shuttle_pace"),
         (r"fartlek 25|fartlek.*25'", "fartlek_25"),
         (r"fartlek 22|fartlek.*22'", "fartlek_22"),

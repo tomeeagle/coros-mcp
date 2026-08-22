@@ -197,7 +197,7 @@
   .section-label.both { background: var(--text); color: white; }
 
   /* WEEK BLOCKS */
-  .week-block { margin-bottom: 2rem; }
+    .week-block, .archive-week { margin-bottom: 2rem; }
   .week-title {
     font-family: 'DM Sans', sans-serif;
     font-size: 22px;
@@ -329,12 +329,12 @@
   <div class="header-top">
     <h1>Tom's Plan</h1>
     <div class="header-meta">
-      HIWFRS (not proceeding) · Avon WT · NFRS WT — wholetime applications<br>
-      Mon bleep/speed · Tue fartlek · Fri tempo · Sat Cooper markers · strength Thu<br>
+      Staffs WT · Avon WT · NFRS WT — wholetime applications<br>
+      Mon capped bleep / speed · Fri tempo · Sat Cooper markers · strength Thu<br>
       Padel 1×/week max · optional easy bike Sun/rest (not on calendar)
     </div>
   </div>
-  <p class="header-sub">Dual-track FF prep: NFRS MSFT 8.8 + Avon Cooper 1.5 mile.</p>
+  <p class="header-sub">NFRS + Staffs MSFT 8.8 + Avon Cooper 1.5 mile. Slow bleep build — no SYFRS cram.</p>
   <button onclick="document.getElementById('frs-summary').scrollIntoView({behavior:'smooth'})" style="margin-top:0.75rem; margin-right:8px; padding:7px 16px; background:#1A4A7A; color:white; border:none; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">FRS tests</button>
   <button onclick="document.getElementById('bleep-table').scrollIntoView({behavior:'smooth'})" style="margin-top:0.75rem; margin-right:8px; padding:7px 16px; background:#1A6B3C; color:white; border:none; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">🔥 Bleep table</button>
   <button onclick="document.getElementById('cooper-table').scrollIntoView({behavior:'smooth'})" style="margin-top:0.75rem; margin-right:8px; padding:7px 16px; background:#7A1A4A; color:white; border:none; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">Cooper</button>
@@ -347,12 +347,13 @@
   <div class="strategy-band run">
     <h3>🏃 Running / FF fitness</h3>
     <ul>
-      <li><strong>NFRS WT</strong> — MSFT 8.8 · Mon speed/bleep rotation from 10 Aug</li>
+      <li><strong>Staffs WT</strong> — apps late Sep, fitness likely Nov · MSFT 8.8 + JRTs · <strong>slow MSFT, no SYFRS cram</strong></li>
+      <li><strong>NFRS WT</strong> — MSFT 8.8 · same aerobic bar · Mon speed / capped mini-bleep</li>
       <li><strong>Avon WT</strong> — Cooper 1.5 mile · Sat 22 Aug + Sat 12 Sep markers (~12 min target)</li>
-      <li>Tue fartlek + Fri tempo structure — aerobic speed + threshold for bleep test + Cooper prep</li>
-      <li>Thu strength — timed circuit (plan timer) · Avon gym extras optional</li>
+      <li>At most one full L1→fail MSFT every 3–4 weeks · never pair a full bleep with a Cooper TT in the same week</li>
+      <li>Tue rest + Fri tempo — threshold for bleep + Cooper · Thu strength (JRTs / Avon gym extras)</li>
       <li>Optional easy bike 30–45 min Zone 2 — Sun afternoon or rest day only, skip if tired (not on calendar)</li>
-      <li>Peak/taper when any FRS fitness date confirmed within 10 days</li>
+      <li>Taper only when a Staffs/NFRS/Avon date is inside 10 days · 8.8 is a November target, not September</li>
       <li>Inhaler before every run · slow on every descent — Achilles</li>
     </ul>
   </div>
@@ -376,8 +377,9 @@
   <h3>🔥 20m Bleep test (MSFT)</h3>
   <p class="msft-sub">
     Pace is constant within a level — it only jumps when the level changes.
-    <strong>NFRS WT pass = 8.8</strong> (~42 VO2). Mon rotation builds toward this from baseline <strong>6.2</strong> (23 Jul).
-    Speed sessions use L7/L8 paces below; full/partial tests log your level.
+    <strong>NFRS WT and Staffs WT pass = 8.8</strong> (~42 VO2). Baseline <strong>6.2</strong> (23 Jul).
+    Full MSFT to fail is monthly, not weekly — most Mondays are capped mini-bleeps or shuttle pace. Stop at the cap even if you have more.
+    Speed sessions use L7/L8 paces below; Oct diagnostics log your level.
   </p>
   <div class="msft-table-wrap">
     <table class="msft">
@@ -423,7 +425,9 @@
       </thead>
       <tbody>
         <tr class="msft-pass"><td><strong>NFRS WT</strong></td><td>MSFT <strong>8.8</strong></td><td>Carries, ladder (~25/32 kg), hose, grip</td></tr>
+        <tr class="msft-pass"><td><strong>Staffs WT</strong></td><td>MSFT <strong>8.8</strong></td><td>National JRTs — ladder lift/climb, equipment carry/assembly, casualty evac, confined space</td></tr>
         <tr><td><strong>Avon WT</strong></td><td><strong>Cooper 1.5 mile</strong> — VO2 ≥ 42.3 (~12 min)</td><td>Press <strong>30 kg</strong> ×1; lateral pull <strong>60 kg</strong> ×1 + reps @ 30 kg (cap 24)</td></tr>
+        <tr><td><strong>Staffs Chester</strong></td><td>Treadmill VO2 — <strong>in-service only</strong></td><td>Not the entry test. After you join, not before.</td></tr>
       </tbody>
     </table>
   </div>
@@ -815,14 +819,14 @@
   </div>
   <div class="day-row">
     <span class="day-label">Thu 20</span>
-    <span class="day-note">💪 Strength WK2 — skip or cut to light circuit if still unwell · no hero lifts</span>
-    <span class="run-cell rest">Strength only</span>
+    <span class="day-note">Cautious return to speed — 10' easy + 4× strides · 5× 400m @ 5:00-5:10/km (controlled, not max) · full 2' walk recoveries · 5' cool · stop early if breathing/legs flare</span>
+    <span class="run-cell">Speed intervals — 5×400m (5:00-5:10/km)</span>
     <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
     <span class="day-label">Fri 21</span>
-    <span class="day-note">Easy shakeout or skip. If still ill, rest. No tempo, no surges</span>
-    <span class="run-cell">Easy 5K</span>
+    <span class="day-note">💪 Strength WK2 — Build circuit, carried over from Thu (bumped for speed work) · no hero lifts</span>
+    <span class="run-cell rest">Strength only</span>
     <span class="weight-cell neutral">Pudding ok tonight</span>
   </div>
   <div class="day-row">
@@ -838,8 +842,8 @@
   <div class="week-title">
     Week 6
     <span class="week-dates">23–29 Aug</span>
-    <span class="week-phase phase-build">Fartlek + tempo continues</span>
-    <span class="week-total">~30K · continued varied pace work</span>
+    <span class="week-phase phase-build">Capped mini bleep · Staffs/NFRS</span>
+    <span class="week-total">Mon 24 cap ~7.0 · not to fail</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Sun 23</span>
@@ -849,7 +853,7 @@
   </div>
   <div class="day-row">
     <span class="day-label">Mon 24</span>
-    <span class="day-note">NFRS score check — mini bleep from L5 → fail (or cap ~7.5). Log level · Spotify MSFT · full walks between early levels</span>
+    <span class="day-note">Staffs/NFRS — mini bleep from L5, <strong>stop at ~7.0</strong> even if you have more. Illness just ended · not 7.5-to-fail. Log level · Spotify MSFT · full walks between early levels</span>
     <span class="run-cell">Mini bleep — start L5 → fail</span>
     <span class="weight-cell neutral">Box portions</span>
   </div>
@@ -942,8 +946,8 @@
   <div class="week-title">
     Week 8
     <span class="week-dates">6–12 Sep</span>
-    <span class="week-phase phase-build">Fartlek + tempo + Cooper repeat</span>
-    <span class="week-total">NFRS full bleep Mon 7 · varied pace work</span>
+    <span class="week-phase phase-build">Capped mini bleep · Cooper is the max</span>
+    <span class="week-total">NFRS/Staffs/Avon · no full MSFT this week</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Sun 6</span>
@@ -953,8 +957,8 @@
   </div>
   <div class="day-row">
     <span class="day-label">Mon 7</span>
-    <span class="day-note">NFRS prep — full MSFT practice. Spotify L1→fail · aim 7.5+ building toward 8.8 · log score · easy day before if legs heavy</span>
-    <span class="run-cell">Bleep practice — full test (L8=5:00/km)</span>
+    <span class="day-note">Staffs/NFRS — mini bleep from L5, <strong>stop at ~7.2</strong>. Not a full test — Cooper Sat 12 is the only max aerobic this week. Spotify MSFT · full walks · log level</span>
+    <span class="run-cell">Mini bleep — start L5 → fail</span>
     <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row rest-day">
@@ -989,13 +993,13 @@
   </div>
 </div>
 
-<!-- WEEK 9 — 13–19 SEP (FARTLEK + TEMPO CONTINUES) -->
+<!-- WEEK 9 — 13–19 SEP (NFRS / STAFFS / AVON) -->
 <div class="week-block">
   <div class="week-title">
     Week 9
     <span class="week-dates">13–19 Sep</span>
-    <span class="week-phase phase-build">Fartlek + tempo continues</span>
-    <span class="week-total">NFRS/Avon focus</span>
+    <span class="week-phase phase-build">NFRS / Staffs / Avon</span>
+    <span class="week-total">Speed 400s Mon 14</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Sun 13</span>
@@ -1041,13 +1045,13 @@
   </div>
 </div>
 
-<!-- WEEK 10+ — FROM 20 SEP (HIWFRS FALLBACK: FARTLEK) -->
+<!-- WEEK 10 — 20–26 SEP (NFRS / STAFFS / AVON) -->
 <div class="week-block">
   <div class="week-title">
-    Week 10+
-    <span class="week-dates">From 20 Sep</span>
-    <span class="week-phase phase-build">Fartlek + tempo continues</span>
-    <span class="week-total">NFRS/Avon focus</span>
+    Week 10
+    <span class="week-dates">20–26 Sep</span>
+    <span class="week-phase phase-build">NFRS / Staffs / Avon</span>
+    <span class="week-total">Mini bleep Mon 21 · cap ~7.5</span>
   </div>
   <div class="day-row rest-day">
     <span class="day-label">Sun 20</span>
@@ -1057,8 +1061,8 @@
   </div>
   <div class="day-row">
     <span class="day-label">Mon 21</span>
-    <span class="day-note">10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep</span>
-    <span class="run-cell">Speed Intervals (400m reps)</span>
+    <span class="day-note">Staffs apps-open window — mini bleep from L5, <strong>stop at ~7.5</strong>. Still not a full test. Log level · Spotify MSFT · full walks between early levels</span>
+    <span class="run-cell">Mini bleep — start L5 → fail</span>
     <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row rest-day">
@@ -1075,7 +1079,7 @@
   </div>
   <div class="day-row">
     <span class="day-label">Thu 24</span>
-    <span class="day-note">💪 Strength WK4 — Taper · lighter loads, maintain HIWFRS patterns if test imminent, otherwise Avon WT + NFRS focus</span>
+    <span class="day-note">💪 Strength WK4 — Taper · JRTs + Avon WT press/pull · NFRS carries</span>
     <span class="run-cell rest">Strength only</span>
     <span class="weight-cell neutral">Box portions</span>
   </div>
@@ -1091,28 +1095,126 @@
     <span class="run-cell">Long run 14K easy</span>
     <span class="weight-cell neutral">Fuel well after.</span>
   </div>
-  <div class="day-row" style="background: var(--run-light); border-color: var(--run);">
-    <span class="day-label" style="color: var(--run); font-weight: 600;">Week 10+ pattern</span>
-    <span class="day-note" style="color: var(--run);">See 2-week rotation below for dual FRS + 5K goal (20-min 5K target). Maintains FRS readiness while building 5K speed.</span>
-    <span class="run-cell" style="color: var(--run);"></span>
-    <span class="weight-cell" style="color: var(--run);"></span>
+</div>
+
+<!-- WEEK 12 — 4–10 OCT (FIRST FULL MSFT) -->
+<div class="week-block">
+  <div class="week-title">
+    Week 12
+    <span class="week-dates">4–10 Oct</span>
+    <span class="week-phase phase-build">NFRS / Staffs / Avon</span>
+    <span class="week-total">First full MSFT Mon 5 · diagnostic</span>
+  </div>
+  <div class="day-row rest-day">
+    <span class="day-label">Sun 4 Oct</span>
+    <span class="day-note">—</span>
+    <span class="run-cell rest">Rest</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Mon 5</span>
+    <span class="day-note">First full MSFT — Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November. Easy day before if legs heavy · no Cooper this week</span>
+    <span class="run-cell">Bleep practice — full test (L8=5:00/km)</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row rest-day">
+    <span class="day-label">Tue 6</span>
+    <span class="day-note">Rest — dropped to 4 runs/week</span>
+    <span class="run-cell rest">Rest</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Wed 7</span>
+    <span class="day-note">Optional PFTC — skip if tired</span>
+    <span class="run-cell">Run club 8K easy</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Thu 8</span>
+    <span class="day-note">💪 Strength WK2 — Build · JRTs + Avon WT press/pull · NFRS farmers ~75 m</span>
+    <span class="run-cell rest">Strength only</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Fri 9</span>
+    <span class="day-note">Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work</span>
+    <span class="run-cell">Tempo 25' — threshold</span>
+    <span class="weight-cell neutral">Pudding ok tonight</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Sat 10</span>
+    <span class="day-note">Trail long run — easy conversational · walk the steep bits</span>
+    <span class="run-cell">Long run 12K easy</span>
+    <span class="weight-cell neutral">Fuel well after.</span>
+  </div>
+</div>
+
+<!-- WEEK 15 — 25–31 OCT (SECOND FULL MSFT) -->
+<div class="week-block">
+  <div class="week-title">
+    Week 15
+    <span class="week-dates">25–31 Oct</span>
+    <span class="week-phase phase-build">NFRS / Staffs / Avon</span>
+    <span class="week-total">Second full MSFT Mon 26 · judge 8.8</span>
+  </div>
+  <div class="day-row rest-day">
+    <span class="day-label">Sun 25</span>
+    <span class="day-note">—</span>
+    <span class="run-cell rest">Rest</span>
+    <span class="weight-cell neutral">Weigh in. No pudding.</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Mon 26</span>
+    <span class="day-note">Second full MSFT — Spotify L1→fail · log score. Only now judge proximity to 8.8. Taper if a real Staffs/NFRS date is inside 10 days</span>
+    <span class="run-cell">Bleep practice — full test (L8=5:00/km)</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row rest-day">
+    <span class="day-label">Tue 27</span>
+    <span class="day-note">Rest — dropped to 4 runs/week</span>
+    <span class="run-cell rest">Rest</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Wed 28</span>
+    <span class="day-note">Optional PFTC — skip if tired</span>
+    <span class="run-cell">Run club 8K easy</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Thu 29</span>
+    <span class="day-note">💪 Strength WK3 — Intensity · JRTs + Avon WT press/pull · NFRS farmers ~100 m</span>
+    <span class="run-cell rest">Strength only</span>
+    <span class="weight-cell neutral">Box portions</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Fri 30</span>
+    <span class="day-note">Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work</span>
+    <span class="run-cell">Tempo 25' — threshold</span>
+    <span class="weight-cell neutral">Pudding ok tonight</span>
+  </div>
+  <div class="day-row">
+    <span class="day-label">Sat 31</span>
+    <span class="day-note">Trail long run — easy conversational · walk the steep bits</span>
+    <span class="run-cell">Long run 14K easy</span>
+    <span class="weight-cell neutral">Fuel well after.</span>
   </div>
 </div>
 
 <hr style="margin: 3rem 0; border-color: #7A1A4A; border-width: 2px;">
 
 <!-- ═══════════════════════════════════════════════════
-     COMEBACK BLOCK (19 AUG - 8 SEP)
+     COMEBACK BLOCK (19 AUG - 8 SEP) — historical archive, not synced
 ═══════════════════════════════════════════════════ -->
 <div style="margin-bottom: 2rem;">
   <div style="font-family:'DM Sans',sans-serif; font-size: 32px; font-weight:700; margin-bottom: 8px; color: #FF6B35;">Comeback Block</div>
   <div style="font-size: 15px; color: var(--text-mid); margin-bottom: 1.5rem; line-height: 1.6;">
-    <strong>3-Week Gradual Return</strong> — After SSRI taper break (11 days off). Week 1: easy only. Week 2: add light efforts. Week 3: reintroduce quality. Then resume dual-track rotation.
+    <strong>Historical</strong> — SSRI taper return. Numbered weeks above are the live calendar (illness week 5, then Staffs/NFRS slow bleep). This block is not synced to COROS.
   </div>
 </div>
 
 <!-- COMEBACK WEEK 1 — REBUILD BASE -->
-<div class="week-block">
+<div class="archive-week">
   <div class="week-title">
     Comeback Week 1
     <span class="week-dates">19-25 Aug</span>
@@ -1126,14 +1228,14 @@
   </div>
   <div class="day-row">
     <span class="day-label">Tue 20</span>
-    <span class="day-note">First run back — truly easy, 7:00-7:30/km · stop if dizzy · walk breaks ok</span>
-    <span class="run-cell">Easy 4-6K</span>
+    <span class="day-note">Overriding easy first-run-back — cautious speed instead: 10' easy + 4× strides · 5× 400m @ 5:00-5:10/km (controlled, not max) · full 2' walk recoveries · 5' cool · stop if dizzy or anything flares, walk breaks ok</span>
+    <span class="run-cell">Speed intervals — 5×400m (5:00-5:10/km)</span>
     <span class="weight-cell neutral">Hydrate well</span>
   </div>
-  <div class="day-row rest-day">
+  <div class="day-row">
     <span class="day-label">Wed 21</span>
-    <span class="day-note">—</span>
-    <span class="run-cell rest">Rest</span>
+    <span class="day-note">💪 Strength WK2 — Build circuit, carried over from Thu (bumped for speed work) · no hero lifts</span>
+    <span class="run-cell rest">Strength only</span>
     <span class="weight-cell neutral">Box portions</span>
   </div>
   <div class="day-row">
@@ -1163,7 +1265,7 @@
 </div>
 
 <!-- COMEBACK WEEK 2 — ADD LIGHT EFFORTS -->
-<div class="week-block">
+<div class="archive-week">
   <div class="week-title">
     Comeback Week 2
     <span class="week-dates">26 Aug-1 Sep</span>
@@ -1214,7 +1316,7 @@
 </div>
 
 <!-- COMEBACK WEEK 3 — QUALITY REINTRODUCTION -->
-<div class="week-block">
+<div class="archive-week">
   <div class="week-title">
     Comeback Week 3
     <span class="week-dates">2-8 Sep</span>
@@ -1267,7 +1369,7 @@
 <div style="background: #E8F5EE; border: 2px solid #1A6B3C; border-radius: 10px; padding: 1.25rem; margin-bottom: 2rem;">
   <div style="font-size: 16px; font-weight: 600; color: #1A6B3C; margin-bottom: 8px;">After Comeback Block</div>
   <div style="font-size: 14px; color: #555; line-height: 1.6;">
-    From <strong>Mon 9 Sep</strong> onwards, resume the dual-track <strong>Week A / Week B rotation</strong> below. Start with Week A (FRS focus with speed intervals). You'll be ready for quality work again.
+    Dated weeks 8–10 plus Oct MSFT diagnostics are live. Dual-track Week A / Week B below fills undated weeks. Start with Week A (FRS focus) between those markers.
   </div>
 </div>
 
@@ -1277,7 +1379,7 @@
 <div style="margin-bottom: 2rem;">
   <div style="font-family:'DM Sans',sans-serif; font-size: 32px; font-weight:700; margin-bottom: 8px; color: #7A1A4A;">Dual-Track Rotation</div>
   <div style="font-size: 15px; color: var(--text-mid); margin-bottom: 1.5rem; line-height: 1.6;">
-    <strong>FRS-Ready + 20-Min 5K Build</strong> — Alternate Week A (FRS focus) and Week B (5K focus). Maintains bleep/Cooper fitness while building toward 4:00/km 5K pace. Resume from 9 Sep after comeback block.
+    <strong>FRS-Ready + 20-Min 5K Build</strong> — Alternate Week A (FRS focus) and Week B (5K focus). Maintains bleep/Cooper fitness while building toward 4:00/km 5K pace. Fills weeks between the dated Staffs/NFRS MSFT markers.
   </div>
 </div>
 
@@ -1402,7 +1504,7 @@
       <tbody>
         <tr><td>Aug 2026</td><td>Cooper 1.5 mile baseline</td><td>~26 min (5:15/km)</td><td>98 kg → 96 kg</td></tr>
         <tr><td>Sep 2026</td><td>Parkrun 5K #1</td><td>24-25 min (4:48-5:00/km)</td><td>94 kg</td></tr>
-        <tr><td>Oct 2026</td><td>Bleep test check</td><td>23-24 min (4:36-4:48/km)</td><td>91 kg</td></tr>
+        <tr><td>Oct 2026</td><td>Staffs/NFRS full MSFT (Mon 5 + Mon 26)</td><td>23-24 min (4:36-4:48/km)</td><td>91 kg</td></tr>
         <tr><td>Nov 2026</td><td>Parkrun 5K #2</td><td>22-23 min (4:24-4:36/km)</td><td>89 kg ✓ interim</td></tr>
         <tr><td>Dec 2026</td><td>Cooper + 5K double</td><td>21-22 min (4:12-4:24/km)</td><td>86 kg</td></tr>
         <tr class="msft-pass"><td>Jan-Mar 2027</td><td>Parkrun 5K series</td><td>20-21 min (4:00-4:12/km)</td><td>82-80 kg ✓ goal</td></tr>
@@ -1471,10 +1573,11 @@
   — Box up dinner portions before you sit down — what goes in the fridge stays there<br>
   — Crisps AND Snickers at lunch is the double-hit to cut. One or neither.<br>
   — Pudding max 3–4 nights/week — Friday and Saturday are the ones to keep<br>
-  — <strong>Dual goals (from 9 Sep):</strong> FRS-ready (Avon WT · NFRS WT) + 20-min 5K (Apr 2027 target) — alternate Week A (speed intervals 4:40-4:55/km) and Week B (5K pace 4:00-4:10/km)<br>
+  — <strong>Dual goals (from 9 Sep):</strong> FRS-ready (Staffs WT · Avon WT · NFRS WT) + 20-min 5K (Apr 2027 target) — alternate Week A (speed intervals 4:40-4:55/km) and Week B (5K pace 4:00-4:10/km)<br>
   — Tempo Friday is sacred — never skip, it's the backbone for both goals<br>
   — Test monthly: rotate Cooper 1.5 mile / Parkrun 5K / Bleep test to track both FRS readiness and 5K progress<br>
-  — Thu strength: Avon press 30 kg / lateral pull 60 kg + NFRS carries<br>
+  — Full MSFT at most every 3–4 weeks — no SYFRS cram · never pair full bleep with Cooper in the same week<br>
+  — Thu strength: Avon press 30 kg / lateral pull 60 kg + NFRS carries + Staffs JRTs<br>
   — Optional easy bike 30–45 min — Sun or rest day only, not on calendar · skip if tired<br>
   — Peak/taper when any FRS fitness date confirmed within 10 days<br>
   — Home DBs maintain base · gym for true test loads when possible<br>

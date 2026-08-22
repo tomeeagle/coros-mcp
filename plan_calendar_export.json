@@ -1,9 +1,9 @@
 {
   "title": "Tom's Plan — 8-week rebuild",
   "blockStart": "2026-07-19",
-  "blockEnd": "2026-09-19",
+  "blockEnd": "2026-10-31",
   "timezone": "Europe/London",
-  "structure": "NFRS bleep 8.8 · Avon Cooper 1.5 mile · Mon speed/bleep · Tue fartlek · Fri tempo · Cooper Sat 22 Aug + Sat 12 Sep",
+  "structure": "Staffs + NFRS bleep 8.8 · Avon Cooper 1.5 mile · Mon capped bleep/speed · Fri tempo · Cooper Sat 22 Aug + Sat 12 Sep · full MSFT Oct 5 + Oct 26",
   "weeks": [
     {
       "title": "Week 1",
@@ -466,14 +466,14 @@
         {
           "date": "2026-08-20",
           "dayLabel": "Thu 20",
-          "note": "💪 Strength WK2 — skip or cut to light circuit if still unwell · no hero lifts",
-          "runPlan": "Strength only",
+          "note": "Cautious return to speed — 10' easy + 4× strides · 5× 400m @ 5:00-5:10/km (controlled, not max) · full 2' walk recoveries · 5' cool · stop early if breathing/legs flare",
+          "runPlan": "Speed intervals — 5×400m (5:00-5:10/km)",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "strength_wk2",
-              "name": "Strength — Build circuit (WK2)",
-              "kind": "strength"
+              "key": "speed_400m_controlled",
+              "name": "Speed intervals — 5×400m (controlled)",
+              "kind": "run"
             }
           ],
           "rest": false
@@ -481,14 +481,14 @@
         {
           "date": "2026-08-21",
           "dayLabel": "Fri 21",
-          "note": "Easy shakeout or skip. If still ill, rest. No tempo, no surges",
-          "runPlan": "Easy 5K",
+          "note": "💪 Strength WK2 — Build circuit, carried over from Thu (bumped for speed work) · no hero lifts",
+          "runPlan": "Strength only",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "easy_5k",
-              "name": "Easy 5K",
-              "kind": "run"
+              "key": "strength_wk2",
+              "name": "Strength — Build circuit (WK2)",
+              "kind": "strength"
             }
           ],
           "rest": false
@@ -513,7 +513,7 @@
     {
       "title": "Week 6",
       "dates": "23–29 Aug",
-      "phase": "Fartlek + tempo continues",
+      "phase": "Capped mini bleep · Staffs/NFRS",
       "weekNumber": 6,
       "days": [
         {
@@ -528,7 +528,7 @@
         {
           "date": "2026-08-24",
           "dayLabel": "Mon 24",
-          "note": "NFRS score check — mini bleep from L5 → fail (or cap ~7.5). Log level · Spotify MSFT · full walks between early levels",
+          "note": "Staffs/NFRS — mini bleep from L5,  stop at ~7.0  even if you have more. Illness just ended · not 7.5-to-fail. Log level · Spotify MSFT · full walks between early levels",
           "runPlan": "Mini bleep — start L5 → fail",
           "foodWeight": "Box portions",
           "workouts": [
@@ -715,7 +715,7 @@
     {
       "title": "Week 8",
       "dates": "6–12 Sep",
-      "phase": "Fartlek + tempo + Cooper repeat",
+      "phase": "Capped mini bleep · Cooper is the max",
       "weekNumber": 8,
       "days": [
         {
@@ -730,13 +730,13 @@
         {
           "date": "2026-09-07",
           "dayLabel": "Mon 7",
-          "note": "NFRS prep — full MSFT practice. Spotify L1→fail · aim 7.5+ building toward 8.8 · log score · easy day before if legs heavy",
-          "runPlan": "Bleep practice — full test (L8=5:00/km)",
+          "note": "Staffs/NFRS — mini bleep from L5,  stop at ~7.2 . Not a full test — Cooper Sat 12 is the only max aerobic this week. Spotify MSFT · full walks · log level",
+          "runPlan": "Mini bleep — start L5 → fail",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "bleep_practice",
-              "name": "Bleep practice — full test (L8=5:00/km)",
+              "key": "bleep_partial",
+              "name": "Mini bleep — start L5 → fail",
               "kind": "run"
             }
           ],
@@ -816,7 +816,7 @@
     {
       "title": "Week 9",
       "dates": "13–19 Sep",
-      "phase": "Fartlek + tempo continues",
+      "phase": "NFRS / Staffs / Avon",
       "weekNumber": 9,
       "days": [
         {
@@ -907,6 +907,309 @@
             {
               "key": "long_12k",
               "name": "Long Run 12K easy",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 10",
+      "dates": "20–26 Sep",
+      "phase": "NFRS / Staffs / Avon",
+      "weekNumber": 10,
+      "days": [
+        {
+          "date": "2026-09-20",
+          "dayLabel": "Sun 20",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Weigh in. No pudding.",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-09-21",
+          "dayLabel": "Mon 21",
+          "note": "Staffs apps-open window — mini bleep from L5,  stop at ~7.5 . Still not a full test. Log level · Spotify MSFT · full walks between early levels",
+          "runPlan": "Mini bleep — start L5 → fail",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "bleep_partial",
+              "name": "Mini bleep — start L5 → fail",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-22",
+          "dayLabel": "Tue 22",
+          "note": "Rest — dropped to 4 runs/week",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-09-23",
+          "dayLabel": "Wed 23",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Run club 8K easy",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "run_club_8k",
+              "name": "Run club — easy 8K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-24",
+          "dayLabel": "Thu 24",
+          "note": "💪 Strength WK4 — Taper · JRTs + Avon WT press/pull · NFRS carries",
+          "runPlan": "Strength only",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "strength_wk4",
+              "name": "Strength — Taper circuit (WK4)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-25",
+          "dayLabel": "Fri 25",
+          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km, comfortably hard) + 5' cool = ~40' total · threshold work for Cooper + bleep",
+          "runPlan": "Tempo 25' — threshold",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [
+            {
+              "key": "tempo_25",
+              "name": "Tempo 25' — threshold",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-09-26",
+          "dayLabel": "Sat 26",
+          "note": "Trail long run — hilly route, ~258m gain over ~14K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm",
+          "runPlan": "Long run 14K easy",
+          "foodWeight": "Fuel well after.",
+          "workouts": [
+            {
+              "key": "long_14k",
+              "name": "Long Run 14K easy",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 12",
+      "dates": "4–10 Oct",
+      "phase": "NFRS / Staffs / Avon",
+      "weekNumber": 12,
+      "days": [
+        {
+          "date": "2026-10-04",
+          "dayLabel": "Sun 4 Oct",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Weigh in. No pudding.",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-05",
+          "dayLabel": "Mon 5",
+          "note": "First full MSFT — Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November. Easy day before if legs heavy · no Cooper this week",
+          "runPlan": "Bleep practice — full test (L8=5:00/km)",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "bleep_practice",
+              "name": "Bleep practice — full test (L8=5:00/km)",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-06",
+          "dayLabel": "Tue 6",
+          "note": "Rest — dropped to 4 runs/week",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-07",
+          "dayLabel": "Wed 7",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Run club 8K easy",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "run_club_8k",
+              "name": "Run club — easy 8K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-08",
+          "dayLabel": "Thu 8",
+          "note": "💪 Strength WK2 — Build · JRTs + Avon WT press/pull · NFRS farmers ~75 m",
+          "runPlan": "Strength only",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "strength_wk2",
+              "name": "Strength — Build circuit (WK2)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-09",
+          "dayLabel": "Fri 9",
+          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work",
+          "runPlan": "Tempo 25' — threshold",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [
+            {
+              "key": "tempo_25",
+              "name": "Tempo 25' — threshold",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-10",
+          "dayLabel": "Sat 10",
+          "note": "Trail long run — easy conversational · walk the steep bits",
+          "runPlan": "Long run 12K easy",
+          "foodWeight": "Fuel well after.",
+          "workouts": [
+            {
+              "key": "long_12k",
+              "name": "Long Run 12K easy",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 15",
+      "dates": "25–31 Oct",
+      "phase": "NFRS / Staffs / Avon",
+      "weekNumber": 15,
+      "days": [
+        {
+          "date": "2026-10-25",
+          "dayLabel": "Sun 25",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Weigh in. No pudding.",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-26",
+          "dayLabel": "Mon 26",
+          "note": "Second full MSFT — Spotify L1→fail · log score. Only now judge proximity to 8.8. Taper if a real Staffs/NFRS date is inside 10 days",
+          "runPlan": "Bleep practice — full test (L8=5:00/km)",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "bleep_practice",
+              "name": "Bleep practice — full test (L8=5:00/km)",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-27",
+          "dayLabel": "Tue 27",
+          "note": "Rest — dropped to 4 runs/week",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-28",
+          "dayLabel": "Wed 28",
+          "note": "Optional PFTC — skip if tired",
+          "runPlan": "Run club 8K easy",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "run_club_8k",
+              "name": "Run club — easy 8K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-29",
+          "dayLabel": "Thu 29",
+          "note": "💪 Strength WK3 — Intensity · JRTs + Avon WT press/pull · NFRS farmers ~100 m",
+          "runPlan": "Strength only",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "strength_wk3",
+              "name": "Strength — Intensity circuit (WK3)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-30",
+          "dayLabel": "Fri 30",
+          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work",
+          "runPlan": "Tempo 25' — threshold",
+          "foodWeight": "Pudding ok tonight",
+          "workouts": [
+            {
+              "key": "tempo_25",
+              "name": "Tempo 25' — threshold",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-31",
+          "dayLabel": "Sat 31",
+          "note": "Trail long run — easy conversational · walk the steep bits",
+          "runPlan": "Long run 14K easy",
+          "foodWeight": "Fuel well after.",
+          "workouts": [
+            {
+              "key": "long_14k",
+              "name": "Long Run 14K easy",
               "kind": "run"
             }
           ],
@@ -1293,8 +1596,8 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Build circuit (WK2)",
-        "description": "💪 Strength WK2 — skip or cut to light circuit if still unwell · no hero lifts\nFood: Box portions\nPlan: Strength only",
+        "summary": "Speed intervals — 5×400m (controlled)",
+        "description": "Cautious return to speed — 10' easy + 4× strides · 5× 400m @ 5:00-5:10/km (controlled, not max) · full 2' walk recoveries · 5' cool · stop early if breathing/legs flare\nFood: Box portions\nPlan: Speed intervals — 5×400m (5:00-5:10/km)",
         "start": {
           "date": "2026-08-20",
           "endDate": "2026-08-21"
@@ -1306,12 +1609,12 @@
         "date": "2026-08-20",
         "dayLabel": "Thu 20",
         "weekTitle": "Week 5",
-        "workoutKey": "strength_wk2",
-        "category": "strength"
+        "workoutKey": "speed_400m_controlled",
+        "category": "run"
       },
       {
-        "summary": "Easy 5K",
-        "description": "Easy shakeout or skip. If still ill, rest. No tempo, no surges\nFood: Pudding ok tonight\nPlan: Easy 5K",
+        "summary": "Strength — Build circuit (WK2)",
+        "description": "💪 Strength WK2 — Build circuit, carried over from Thu (bumped for speed work) · no hero lifts\nFood: Pudding ok tonight\nPlan: Strength only",
         "start": {
           "date": "2026-08-21",
           "endDate": "2026-08-22"
@@ -1323,8 +1626,8 @@
         "date": "2026-08-21",
         "dayLabel": "Fri 21",
         "weekTitle": "Week 5",
-        "workoutKey": "easy_5k",
-        "category": "run"
+        "workoutKey": "strength_wk2",
+        "category": "strength"
       },
       {
         "summary": "Cooper 1.5 mile — time trial",
@@ -1345,7 +1648,7 @@
       },
       {
         "summary": "Mini bleep — start L5 → fail",
-        "description": "NFRS score check — mini bleep from L5 → fail (or cap ~7.5). Log level · Spotify MSFT · full walks between early levels\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
+        "description": "Staffs/NFRS — mini bleep from L5,  stop at ~7.0  even if you have more. Illness just ended · not 7.5-to-fail. Log level · Spotify MSFT · full walks between early levels\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
         "start": {
           "date": "2026-08-24",
           "endDate": "2026-08-25"
@@ -1514,8 +1817,8 @@
         "category": "run"
       },
       {
-        "summary": "Bleep practice — full test (L8=5:00/km)",
-        "description": "NFRS prep — full MSFT practice. Spotify L1→fail · aim 7.5+ building toward 8.8 · log score · easy day before if legs heavy\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
+        "summary": "Mini bleep — start L5 → fail",
+        "description": "Staffs/NFRS — mini bleep from L5,  stop at ~7.2 . Not a full test — Cooper Sat 12 is the only max aerobic this week. Spotify MSFT · full walks · log level\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
         "start": {
           "date": "2026-09-07",
           "endDate": "2026-09-08"
@@ -1527,7 +1830,7 @@
         "date": "2026-09-07",
         "dayLabel": "Mon 7",
         "weekTitle": "Week 8",
-        "workoutKey": "bleep_practice",
+        "workoutKey": "bleep_partial",
         "category": "run"
       },
       {
@@ -1681,6 +1984,261 @@
         "dayLabel": "Sat 19",
         "weekTitle": "Week 9",
         "workoutKey": "long_12k",
+        "category": "run"
+      },
+      {
+        "summary": "Mini bleep — start L5 → fail",
+        "description": "Staffs apps-open window — mini bleep from L5,  stop at ~7.5 . Still not a full test. Log level · Spotify MSFT · full walks between early levels\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
+        "start": {
+          "date": "2026-09-21",
+          "endDate": "2026-09-22"
+        },
+        "end": {
+          "date": "2026-09-21",
+          "endDate": "2026-09-22"
+        },
+        "date": "2026-09-21",
+        "dayLabel": "Mon 21",
+        "weekTitle": "Week 10",
+        "workoutKey": "bleep_partial",
+        "category": "run"
+      },
+      {
+        "summary": "Run club — easy 8K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "start": {
+          "date": "2026-09-23",
+          "endDate": "2026-09-24"
+        },
+        "end": {
+          "date": "2026-09-23",
+          "endDate": "2026-09-24"
+        },
+        "date": "2026-09-23",
+        "dayLabel": "Wed 23",
+        "weekTitle": "Week 10",
+        "workoutKey": "run_club_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Strength — Taper circuit (WK4)",
+        "description": "💪 Strength WK4 — Taper · JRTs + Avon WT press/pull · NFRS carries\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-09-24",
+          "endDate": "2026-09-25"
+        },
+        "end": {
+          "date": "2026-09-24",
+          "endDate": "2026-09-25"
+        },
+        "date": "2026-09-24",
+        "dayLabel": "Thu 24",
+        "weekTitle": "Week 10",
+        "workoutKey": "strength_wk4",
+        "category": "strength"
+      },
+      {
+        "summary": "Tempo 25' — threshold",
+        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km, comfortably hard) + 5' cool = ~40' total · threshold work for Cooper + bleep\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
+        "start": {
+          "date": "2026-09-25",
+          "endDate": "2026-09-26"
+        },
+        "end": {
+          "date": "2026-09-25",
+          "endDate": "2026-09-26"
+        },
+        "date": "2026-09-25",
+        "dayLabel": "Fri 25",
+        "weekTitle": "Week 10",
+        "workoutKey": "tempo_25",
+        "category": "run"
+      },
+      {
+        "summary": "Long Run 14K easy",
+        "description": "Trail long run — hilly route, ~258m gain over ~14K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm\nFood: Fuel well after.\nPlan: Long run 14K easy",
+        "start": {
+          "date": "2026-09-26",
+          "endDate": "2026-09-27"
+        },
+        "end": {
+          "date": "2026-09-26",
+          "endDate": "2026-09-27"
+        },
+        "date": "2026-09-26",
+        "dayLabel": "Sat 26",
+        "weekTitle": "Week 10",
+        "workoutKey": "long_14k",
+        "category": "run"
+      },
+      {
+        "summary": "Bleep practice — full test (L8=5:00/km)",
+        "description": "First full MSFT — Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November. Easy day before if legs heavy · no Cooper this week\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
+        "start": {
+          "date": "2026-10-05",
+          "endDate": "2026-10-06"
+        },
+        "end": {
+          "date": "2026-10-05",
+          "endDate": "2026-10-06"
+        },
+        "date": "2026-10-05",
+        "dayLabel": "Mon 5",
+        "weekTitle": "Week 12",
+        "workoutKey": "bleep_practice",
+        "category": "run"
+      },
+      {
+        "summary": "Run club — easy 8K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "start": {
+          "date": "2026-10-07",
+          "endDate": "2026-10-08"
+        },
+        "end": {
+          "date": "2026-10-07",
+          "endDate": "2026-10-08"
+        },
+        "date": "2026-10-07",
+        "dayLabel": "Wed 7",
+        "weekTitle": "Week 12",
+        "workoutKey": "run_club_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Strength — Build circuit (WK2)",
+        "description": "💪 Strength WK2 — Build · JRTs + Avon WT press/pull · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-10-08",
+          "endDate": "2026-10-09"
+        },
+        "end": {
+          "date": "2026-10-08",
+          "endDate": "2026-10-09"
+        },
+        "date": "2026-10-08",
+        "dayLabel": "Thu 8",
+        "weekTitle": "Week 12",
+        "workoutKey": "strength_wk2",
+        "category": "strength"
+      },
+      {
+        "summary": "Tempo 25' — threshold",
+        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
+        "start": {
+          "date": "2026-10-09",
+          "endDate": "2026-10-10"
+        },
+        "end": {
+          "date": "2026-10-09",
+          "endDate": "2026-10-10"
+        },
+        "date": "2026-10-09",
+        "dayLabel": "Fri 9",
+        "weekTitle": "Week 12",
+        "workoutKey": "tempo_25",
+        "category": "run"
+      },
+      {
+        "summary": "Long Run 12K easy",
+        "description": "Trail long run — easy conversational · walk the steep bits\nFood: Fuel well after.\nPlan: Long run 12K easy",
+        "start": {
+          "date": "2026-10-10",
+          "endDate": "2026-10-11"
+        },
+        "end": {
+          "date": "2026-10-10",
+          "endDate": "2026-10-11"
+        },
+        "date": "2026-10-10",
+        "dayLabel": "Sat 10",
+        "weekTitle": "Week 12",
+        "workoutKey": "long_12k",
+        "category": "run"
+      },
+      {
+        "summary": "Bleep practice — full test (L8=5:00/km)",
+        "description": "Second full MSFT — Spotify L1→fail · log score. Only now judge proximity to 8.8. Taper if a real Staffs/NFRS date is inside 10 days\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
+        "start": {
+          "date": "2026-10-26",
+          "endDate": "2026-10-27"
+        },
+        "end": {
+          "date": "2026-10-26",
+          "endDate": "2026-10-27"
+        },
+        "date": "2026-10-26",
+        "dayLabel": "Mon 26",
+        "weekTitle": "Week 15",
+        "workoutKey": "bleep_practice",
+        "category": "run"
+      },
+      {
+        "summary": "Run club — easy 8K · PFTC optional",
+        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "start": {
+          "date": "2026-10-28",
+          "endDate": "2026-10-29"
+        },
+        "end": {
+          "date": "2026-10-28",
+          "endDate": "2026-10-29"
+        },
+        "date": "2026-10-28",
+        "dayLabel": "Wed 28",
+        "weekTitle": "Week 15",
+        "workoutKey": "run_club_8k",
+        "category": "run"
+      },
+      {
+        "summary": "Strength — Intensity circuit (WK3)",
+        "description": "💪 Strength WK3 — Intensity · JRTs + Avon WT press/pull · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
+        "start": {
+          "date": "2026-10-29",
+          "endDate": "2026-10-30"
+        },
+        "end": {
+          "date": "2026-10-29",
+          "endDate": "2026-10-30"
+        },
+        "date": "2026-10-29",
+        "dayLabel": "Thu 29",
+        "weekTitle": "Week 15",
+        "workoutKey": "strength_wk3",
+        "category": "strength"
+      },
+      {
+        "summary": "Tempo 25' — threshold",
+        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
+        "start": {
+          "date": "2026-10-30",
+          "endDate": "2026-10-31"
+        },
+        "end": {
+          "date": "2026-10-30",
+          "endDate": "2026-10-31"
+        },
+        "date": "2026-10-30",
+        "dayLabel": "Fri 30",
+        "weekTitle": "Week 15",
+        "workoutKey": "tempo_25",
+        "category": "run"
+      },
+      {
+        "summary": "Long Run 14K easy",
+        "description": "Trail long run — easy conversational · walk the steep bits\nFood: Fuel well after.\nPlan: Long run 14K easy",
+        "start": {
+          "date": "2026-10-31",
+          "endDate": "2026-11-01"
+        },
+        "end": {
+          "date": "2026-10-31",
+          "endDate": "2026-11-01"
+        },
+        "date": "2026-10-31",
+        "dayLabel": "Sat 31",
+        "weekTitle": "Week 15",
+        "workoutKey": "long_14k",
         "category": "run"
       }
     ]

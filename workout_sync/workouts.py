@@ -396,6 +396,64 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             },
         ],
     },
+    # Scaled-back version of shuttle_pace — return-to-speed after illness/taper break
+    "speed_400m_controlled": {
+        "name": "Speed intervals — 5×400m (controlled)",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {
+                "kind": "warmup",
+                "name": "Easy warmup",
+                "target_type": "time",
+                "target_duration_seconds": 600,
+            },
+            {
+                "repeat": 4,
+                "name": "Strides",
+                "steps": [
+                    {
+                        "kind": "training",
+                        "name": "Stride",
+                        "target_type": "time",
+                        "target_duration_seconds": 60,
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Easy jog",
+                        "target_type": "time",
+                        "target_duration_seconds": 60,
+                    },
+                ],
+            },
+            {
+                "repeat": 5,
+                "name": "400m @ 5:00–5:10/km",
+                "steps": [
+                    {
+                        "kind": "training",
+                        "name": "400m @ 5:00–5:10/km",
+                        "target_type": "distance",
+                        "target_distance_meters": 400,
+                        **_pace_target(5, 0, 5, 10),
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Walk recovery ~2min",
+                        "target_type": "time",
+                        "target_duration_seconds": 120,
+                    },
+                ],
+            },
+            {
+                "kind": "cooldown",
+                "name": "Easy cooldown",
+                "target_type": "time",
+                "target_duration_seconds": 300,
+            },
+        ],
+    },
     # Lighter than shuttle_pace — Gower weekend sharpener / between quality days
     "shuttle_short": {
         "name": "Shuttle short — 4× L7 + 2× L8",

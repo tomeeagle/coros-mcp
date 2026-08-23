@@ -583,6 +583,42 @@ def test_shuttle_pace_400m_steps_have_pace_alerts():
     assert rec["targetValue"] == 90
 
 
+def test_speed_200_400_has_pace_alerts():
+    from workout_sync.workouts import WORKOUTS
+
+    steps = WORKOUTS["speed_200_400"]["steps"]
+    payload = build_run_workout_payload(WORKOUTS["speed_200_400"]["name"], steps)
+    two = [
+        e for e in payload["exercises"]
+        if e.get("name", "").startswith("200m @") and not e.get("isGroup")
+    ]
+    four = [
+        e for e in payload["exercises"]
+        if e.get("name", "").startswith("400m @") and not e.get("isGroup")
+    ]
+    assert len(two) == 1
+    assert len(four) == 1
+    assert two[0]["intensityType"] == 3
+    assert two[0]["intensityValue"] == 270
+    assert two[0]["intensityValueExtend"] == 280
+    assert four[0]["intensityValue"] == 285
+    assert four[0]["intensityValueExtend"] == 295
+
+
+def test_speed_pyramid_has_600_and_pace_alerts():
+    from workout_sync.workouts import WORKOUTS
+
+    steps = WORKOUTS["speed_pyramid"]["steps"]
+    payload = build_run_workout_payload(WORKOUTS["speed_pyramid"]["name"], steps)
+    six = [
+        e for e in payload["exercises"]
+        if e.get("name", "").startswith("600m @") and not e.get("isGroup")
+    ]
+    assert len(six) == 1
+    assert six[0]["intensityValue"] == 295
+    assert six[0]["intensityValueExtend"] == 305
+
+
 def test_cooper_1_5_mile_has_strides_and_distance():
     from workout_sync.workouts import WORKOUTS
 

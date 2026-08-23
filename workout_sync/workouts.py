@@ -396,6 +396,180 @@ WORKOUTS: dict[str, dict[str, Any]] = {
             },
         ],
     },
+    # Same wrapper as shuttle_pace (warmup / strides / walk recoveries) — mixed distances
+    "speed_200_400": {
+        "name": "Speed mix — 6×200 + 4×400",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {
+                "kind": "warmup",
+                "name": "Easy warmup",
+                "target_type": "time",
+                "target_duration_seconds": 600,
+            },
+            {
+                "repeat": 4,
+                "name": "Strides",
+                "steps": [
+                    {
+                        "kind": "training",
+                        "name": "Stride",
+                        "target_type": "time",
+                        "target_duration_seconds": 60,
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Easy jog",
+                        "target_type": "time",
+                        "target_duration_seconds": 60,
+                    },
+                ],
+            },
+            {
+                "repeat": 6,
+                "name": "200m @ 4:30–4:40/km",
+                "steps": [
+                    {
+                        "kind": "training",
+                        "name": "200m @ 4:30–4:40/km",
+                        "target_type": "distance",
+                        "target_distance_meters": 200,
+                        **_pace_target(4, 30, 4, 40),
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Walk recovery ~90s",
+                        "target_type": "time",
+                        "target_duration_seconds": 90,
+                    },
+                ],
+            },
+            {
+                "repeat": 4,
+                "name": "400m @ 4:45–4:55/km",
+                "steps": [
+                    {
+                        "kind": "training",
+                        "name": "400m @ 4:45–4:55/km",
+                        "target_type": "distance",
+                        "target_distance_meters": 400,
+                        **_pace_target(4, 45, 4, 55),
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Walk recovery ~90s",
+                        "target_type": "time",
+                        "target_duration_seconds": 90,
+                    },
+                ],
+            },
+            {
+                "kind": "cooldown",
+                "name": "Easy cooldown",
+                "target_type": "time",
+                "target_duration_seconds": 300,
+            },
+        ],
+    },
+    "speed_pyramid": {
+        "name": "Speed pyramid — 200-400-600-400-200",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [
+            {
+                "kind": "warmup",
+                "name": "Easy warmup",
+                "target_type": "time",
+                "target_duration_seconds": 600,
+            },
+            {
+                "repeat": 4,
+                "name": "Strides",
+                "steps": [
+                    {
+                        "kind": "training",
+                        "name": "Stride",
+                        "target_type": "time",
+                        "target_duration_seconds": 60,
+                    },
+                    {
+                        "kind": "rest",
+                        "name": "Easy jog",
+                        "target_type": "time",
+                        "target_duration_seconds": 60,
+                    },
+                ],
+            },
+            {
+                "kind": "training",
+                "name": "200m @ 4:30–4:40/km",
+                "target_type": "distance",
+                "target_distance_meters": 200,
+                **_pace_target(4, 30, 4, 40),
+            },
+            {
+                "kind": "rest",
+                "name": "Walk recovery ~90s",
+                "target_type": "time",
+                "target_duration_seconds": 90,
+            },
+            {
+                "kind": "training",
+                "name": "400m @ 4:45–4:55/km",
+                "target_type": "distance",
+                "target_distance_meters": 400,
+                **_pace_target(4, 45, 4, 55),
+            },
+            {
+                "kind": "rest",
+                "name": "Walk recovery ~90s",
+                "target_type": "time",
+                "target_duration_seconds": 90,
+            },
+            {
+                "kind": "training",
+                "name": "600m @ 4:55–5:05/km",
+                "target_type": "distance",
+                "target_distance_meters": 600,
+                **_pace_target(4, 55, 5, 5),
+            },
+            {
+                "kind": "rest",
+                "name": "Walk recovery ~2min",
+                "target_type": "time",
+                "target_duration_seconds": 120,
+            },
+            {
+                "kind": "training",
+                "name": "400m @ 4:45–4:55/km",
+                "target_type": "distance",
+                "target_distance_meters": 400,
+                **_pace_target(4, 45, 4, 55),
+            },
+            {
+                "kind": "rest",
+                "name": "Walk recovery ~90s",
+                "target_type": "time",
+                "target_duration_seconds": 90,
+            },
+            {
+                "kind": "training",
+                "name": "200m @ 4:30–4:40/km",
+                "target_type": "distance",
+                "target_distance_meters": 200,
+                **_pace_target(4, 30, 4, 40),
+            },
+            {
+                "kind": "cooldown",
+                "name": "Easy cooldown",
+                "target_type": "time",
+                "target_duration_seconds": 300,
+            },
+        ],
+    },
     # Scaled-back version of shuttle_pace — return-to-speed after illness/taper break
     "speed_400m_controlled": {
         "name": "Speed intervals — 5×400m (controlled)",

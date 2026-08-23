@@ -513,7 +513,7 @@
     {
       "title": "Week 6",
       "dates": "23–29 Aug",
-      "phase": "Easy 6K landed Sun · easy Mon, no bleep",
+      "phase": "Easy 6K landed Sun · intervals Mon, no bleep",
       "weekNumber": 6,
       "days": [
         {
@@ -534,13 +534,13 @@
         {
           "date": "2026-08-24",
           "dayLabel": "Mon 24",
-          "note": "Easy only — skip the mini bleep. Conversational, walk if you want. Next capped bleep is Mon 7 Sep",
-          "runPlan": "Easy 5K",
+          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · skip the bleep, intervals instead. Stop if it feels grim",
+          "runPlan": "Speed Intervals (400m reps)",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "easy_5k",
-              "name": "Easy 5K",
+              "key": "shuttle_pace",
+              "name": "Speed intervals — 400m reps",
               "kind": "run"
             }
           ],
@@ -1670,8 +1670,8 @@
         "category": "run"
       },
       {
-        "summary": "Easy 5K",
-        "description": "Easy only — skip the mini bleep. Conversational, walk if you want. Next capped bleep is Mon 7 Sep\nFood: Box portions\nPlan: Easy 5K",
+        "summary": "Speed intervals — 400m reps",
+        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · skip the bleep, intervals instead. Stop if it feels grim\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
         "start": {
           "date": "2026-08-24",
           "endDate": "2026-08-25"
@@ -1683,7 +1683,7 @@
         "date": "2026-08-24",
         "dayLabel": "Mon 24",
         "weekTitle": "Week 6",
-        "workoutKey": "easy_5k",
+        "workoutKey": "shuttle_pace",
         "category": "run"
       },
       {

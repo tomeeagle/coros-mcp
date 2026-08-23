@@ -513,13 +513,13 @@
     {
       "title": "Week 6",
       "dates": "23–29 Aug",
-      "phase": "Easy 6K landed Sun · no Mon bleep",
+      "phase": "Easy 6K landed Sun · easy Mon, no bleep",
       "weekNumber": 6,
       "days": [
         {
           "date": "2026-08-23",
           "dayLabel": "Sun 23",
-          "note": "Unplanned easy 6K — fancied it. Counts as the run. No make-up rest needed besides Mon",
+          "note": "Unplanned easy 6K — fancied it. Counts as the run",
           "runPlan": "Easy 6K",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [
@@ -534,11 +534,17 @@
         {
           "date": "2026-08-24",
           "dayLabel": "Mon 24",
-          "note": "Rest — skip the mini bleep. Legs already had a 6K yesterday. Next capped bleep is Mon 7 Sep",
-          "runPlan": "Rest",
+          "note": "Easy only — skip the mini bleep. Conversational, walk if you want. Next capped bleep is Mon 7 Sep",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "easy_5k",
+              "name": "Easy 5K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-08-25",
@@ -1648,7 +1654,7 @@
       },
       {
         "summary": "Easy 6K + 5 strides",
-        "description": "Unplanned easy 6K — fancied it. Counts as the run. No make-up rest needed besides Mon\nFood: Weigh in. No pudding.\nPlan: Easy 6K",
+        "description": "Unplanned easy 6K — fancied it. Counts as the run\nFood: Weigh in. No pudding.\nPlan: Easy 6K",
         "start": {
           "date": "2026-08-23",
           "endDate": "2026-08-24"
@@ -1661,6 +1667,23 @@
         "dayLabel": "Sun 23",
         "weekTitle": "Week 6",
         "workoutKey": "easy_6k",
+        "category": "run"
+      },
+      {
+        "summary": "Easy 5K",
+        "description": "Easy only — skip the mini bleep. Conversational, walk if you want. Next capped bleep is Mon 7 Sep\nFood: Box portions\nPlan: Easy 5K",
+        "start": {
+          "date": "2026-08-24",
+          "endDate": "2026-08-25"
+        },
+        "end": {
+          "date": "2026-08-24",
+          "endDate": "2026-08-25"
+        },
+        "date": "2026-08-24",
+        "dayLabel": "Mon 24",
+        "weekTitle": "Week 6",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {

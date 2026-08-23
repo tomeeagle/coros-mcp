@@ -581,6 +581,11 @@ def test_shuttle_pace_400m_steps_have_pace_alerts():
     ][0]
     assert rec["exerciseType"] == 4
     assert rec["targetValue"] == 90
+    stride = [
+        e for e in payload["exercises"]
+        if e.get("name") == "Stride" and not e.get("isGroup")
+    ][0]
+    assert stride["targetValue"] == 20
 
 
 def test_speed_200_400_has_pace_alerts():

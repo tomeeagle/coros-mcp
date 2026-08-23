@@ -340,7 +340,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
                         "kind": "training",
                         "name": "Stride",
                         "target_type": "time",
-                        "target_duration_seconds": 60,
+                        "target_duration_seconds": 20,
                     },
                     {
                         "kind": "rest",
@@ -417,7 +417,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
                         "kind": "training",
                         "name": "Stride",
                         "target_type": "time",
-                        "target_duration_seconds": 60,
+                        "target_duration_seconds": 20,
                     },
                     {
                         "kind": "rest",
@@ -493,7 +493,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
                         "kind": "training",
                         "name": "Stride",
                         "target_type": "time",
-                        "target_duration_seconds": 60,
+                        "target_duration_seconds": 20,
                     },
                     {
                         "kind": "rest",
@@ -591,7 +591,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
                         "kind": "training",
                         "name": "Stride",
                         "target_type": "time",
-                        "target_duration_seconds": 60,
+                        "target_duration_seconds": 20,
                     },
                     {
                         "kind": "rest",

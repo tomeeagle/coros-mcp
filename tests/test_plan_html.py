@@ -155,7 +155,8 @@ def test_parse_full_plan():
     assert plan.schedule["20260822"] == ["cooper_1_5_mile"]
 
     # Staffs/NFRS slow bleep ladder — capped minis, not stacked full MSFTs
-    assert plan.schedule["20260824"] == ["bleep_partial"]  # cap ~5.5, dialled back (wiped out)
+    assert plan.schedule["20260823"] == ["easy_6k"]  # unplanned, fancied it
+    assert "20260824" not in plan.schedule  # rest — no mini bleep after Sunday 6K
     assert plan.schedule["20260831"] == ["shuttle_pace"]  # speed 400s
     assert plan.schedule["20260907"] == ["bleep_partial"]  # cap ~7.2, not full; Cooper Sat 12
     assert plan.schedule["20260912"] == ["cooper_1_5_mile"]

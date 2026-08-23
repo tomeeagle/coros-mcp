@@ -513,32 +513,32 @@
     {
       "title": "Week 6",
       "dates": "23–29 Aug",
-      "phase": "Capped mini bleep · Staffs/NFRS",
+      "phase": "Easy 6K landed Sun · no Mon bleep",
       "weekNumber": 6,
       "days": [
         {
           "date": "2026-08-23",
           "dayLabel": "Sun 23",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "Unplanned easy 6K — fancied it. Counts as the run. No make-up rest needed besides Mon",
+          "runPlan": "Easy 6K",
           "foodWeight": "Weigh in. No pudding.",
-          "workouts": [],
-          "rest": true
-        },
-        {
-          "date": "2026-08-24",
-          "dayLabel": "Mon 24",
-          "note": "Staffs/NFRS — mini bleep from L5,  stop at ~5.5 . Wiped out (not illness this time) — dropped the cap further, treat it as an easy shuttle session not a test. Log level · Spotify MSFT · full walks between early levels",
-          "runPlan": "Mini bleep — start L5, cap 5.5 (easy)",
-          "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "bleep_partial",
-              "name": "Mini bleep — start L5 → fail",
+              "key": "easy_6k",
+              "name": "Easy 6K + 5 strides",
               "kind": "run"
             }
           ],
           "rest": false
+        },
+        {
+          "date": "2026-08-24",
+          "dayLabel": "Mon 24",
+          "note": "Rest — skip the mini bleep. Legs already had a 6K yesterday. Next capped bleep is Mon 7 Sep",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-25",
@@ -1647,20 +1647,20 @@
         "category": "run"
       },
       {
-        "summary": "Mini bleep — start L5 → fail",
-        "description": "Staffs/NFRS — mini bleep from L5,  stop at ~5.5 . Wiped out (not illness this time) — dropped the cap further, treat it as an easy shuttle session not a test. Log level · Spotify MSFT · full walks between early levels\nFood: Box portions\nPlan: Mini bleep — start L5, cap 5.5 (easy)",
+        "summary": "Easy 6K + 5 strides",
+        "description": "Unplanned easy 6K — fancied it. Counts as the run. No make-up rest needed besides Mon\nFood: Weigh in. No pudding.\nPlan: Easy 6K",
         "start": {
-          "date": "2026-08-24",
-          "endDate": "2026-08-25"
+          "date": "2026-08-23",
+          "endDate": "2026-08-24"
         },
         "end": {
-          "date": "2026-08-24",
-          "endDate": "2026-08-25"
+          "date": "2026-08-23",
+          "endDate": "2026-08-24"
         },
-        "date": "2026-08-24",
-        "dayLabel": "Mon 24",
+        "date": "2026-08-23",
+        "dayLabel": "Sun 23",
         "weekTitle": "Week 6",
-        "workoutKey": "bleep_partial",
+        "workoutKey": "easy_6k",
         "category": "run"
       },
       {

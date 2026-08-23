@@ -528,8 +528,8 @@
         {
           "date": "2026-08-24",
           "dayLabel": "Mon 24",
-          "note": "Staffs/NFRS — mini bleep from L5,  stop at ~7.0  even if you have more. Illness just ended · not 7.5-to-fail. Log level · Spotify MSFT · full walks between early levels",
-          "runPlan": "Mini bleep — start L5 → fail",
+          "note": "Staffs/NFRS — mini bleep from L5,  stop at ~5.5 . Wiped out (not illness this time) — dropped the cap further, treat it as an easy shuttle session not a test. Log level · Spotify MSFT · full walks between early levels",
+          "runPlan": "Mini bleep — start L5, cap 5.5 (easy)",
           "foodWeight": "Box portions",
           "workouts": [
             {
@@ -1648,7 +1648,7 @@
       },
       {
         "summary": "Mini bleep — start L5 → fail",
-        "description": "Staffs/NFRS — mini bleep from L5,  stop at ~7.0  even if you have more. Illness just ended · not 7.5-to-fail. Log level · Spotify MSFT · full walks between early levels\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
+        "description": "Staffs/NFRS — mini bleep from L5,  stop at ~5.5 . Wiped out (not illness this time) — dropped the cap further, treat it as an easy shuttle session not a test. Log level · Spotify MSFT · full walks between early levels\nFood: Box portions\nPlan: Mini bleep — start L5, cap 5.5 (easy)",
         "start": {
           "date": "2026-08-24",
           "endDate": "2026-08-25"

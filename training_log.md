@@ -4,13 +4,20 @@ A record of actual training sessions, how they felt, and any adjustments made.
 
 ---
 
-## Week: 19-25 Aug 2026 (Comeback Week 1)
+## Week: 23-29 Aug 2026 (Week 6)
 
-### Sunday, 25 Aug 2026
-**Planned:** Rest or light strength  
+### Wednesday, 26 Aug 2026
+**Planned:** Run club 8K easy (optional)  
+**Actual:** Rest - skipped  
+**Notes:** Skipping due to fatigue from poor sleep and heavy legs. Better to recover properly.
+
+---
+
+### Tuesday, 25 Aug 2026
+**Planned:** Rest  
 **Actual:** 3K run  
 **How it felt:** Legs felt heavy from the start. Crashed hard. Very fatigued - likely due to poor sleep last night.  
-**Notes:** Skipping run club Mon 26 (already a rest day in plan anyway).
+**Notes:** Pushed through a run on a rest day - body clearly needed the recovery instead.
 
 ---
 

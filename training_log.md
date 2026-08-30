@@ -4,7 +4,24 @@ A record of actual training sessions, how they felt, and any adjustments made.
 
 ---
 
+## Week: 30 Aug-5 Sep 2026 (Week 7)
+
+### Sunday, 30 Aug 2026
+**Planned:** Rest (was: Sat's 14K long run, swapped)
+**Actual:** Easy 8K
+**How it felt:** TBD
+**Notes:** Swapped Sat 29's 14K trail long run down to an easy 8K — body still recovering from a fatiguing week (poor sleep, heavy legs). Kept the long-run habit alive at half the load.
+
+---
+
 ## Week: 23-29 Aug 2026 (Week 6)
+
+### Saturday, 29 Aug 2026
+**Planned:** Long run 14K easy (trail, ~258m gain)
+**Actual:** Rest - swapped to easy 8K on Sun 30
+**Notes:** Not up to it — fatigue from the week (poor sleep, heavy legs). Scaled down rather than skip entirely.
+
+---
 
 ### Wednesday, 26 Aug 2026
 **Planned:** Run club 8K easy (optional)  

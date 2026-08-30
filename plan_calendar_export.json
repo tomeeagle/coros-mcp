@@ -558,17 +558,11 @@
         {
           "date": "2026-08-26",
           "dayLabel": "Wed 26",
-          "note": "Optional PFTC — skip if tired",
-          "runPlan": "Run club 8K easy",
+          "note": "Skipped run club — fatigued from poor sleep Sun night, legs heavy from 3K Tue",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-08-27",
@@ -603,17 +597,11 @@
         {
           "date": "2026-08-29",
           "dayLabel": "Sat 29",
-          "note": "Trail long run — hilly route, ~258m gain over ~14K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm",
-          "runPlan": "Long run 14K easy",
-          "foodWeight": "Pudding ok tonight. Fuel well after.",
-          "workouts": [
-            {
-              "key": "long_14k",
-              "name": "Long Run 14K easy",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "note": "14K trail long run — wasn't up to it (fatigue, heavy legs from poor sleep week) → swapped for easy 8K on Sun 30",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
         }
       ]
     },
@@ -626,11 +614,17 @@
         {
           "date": "2026-08-30",
           "dayLabel": "Sun 30",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "Easy 8K — swapped for Sat's 14K (fatigue) · very easy conversational effort, walk if needed · stop at 6K if legs still heavy · hydrate",
+          "runPlan": "Easy 8K",
           "foodWeight": "Weigh in. No pudding.",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "easy_8k",
+              "name": "Easy 8K — conversational",
+              "kind": "run"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-08-31",
@@ -1687,23 +1681,6 @@
         "category": "run"
       },
       {
-        "summary": "Run club — easy 8K · PFTC optional",
-        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
-        "start": {
-          "date": "2026-08-26",
-          "endDate": "2026-08-27"
-        },
-        "end": {
-          "date": "2026-08-26",
-          "endDate": "2026-08-27"
-        },
-        "date": "2026-08-26",
-        "dayLabel": "Wed 26",
-        "weekTitle": "Week 6",
-        "workoutKey": "run_club_8k",
-        "category": "run"
-      },
-      {
         "summary": "Strength — Intensity circuit (WK3)",
         "description": "💪 Strength WK3 — Intensity · Avon WT press/pull · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
         "start": {
@@ -1738,20 +1715,20 @@
         "category": "run"
       },
       {
-        "summary": "Long Run 14K easy",
-        "description": "Trail long run — hilly route, ~258m gain over ~14K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm\nFood: Pudding ok tonight. Fuel well after.\nPlan: Long run 14K easy",
+        "summary": "Easy 8K — conversational",
+        "description": "Easy 8K — swapped for Sat's 14K (fatigue) · very easy conversational effort, walk if needed · stop at 6K if legs still heavy · hydrate\nFood: Weigh in. No pudding.\nPlan: Easy 8K",
         "start": {
-          "date": "2026-08-29",
-          "endDate": "2026-08-30"
+          "date": "2026-08-30",
+          "endDate": "2026-08-31"
         },
         "end": {
-          "date": "2026-08-29",
-          "endDate": "2026-08-30"
+          "date": "2026-08-30",
+          "endDate": "2026-08-31"
         },
-        "date": "2026-08-29",
-        "dayLabel": "Sat 29",
-        "weekTitle": "Week 6",
-        "workoutKey": "long_14k",
+        "date": "2026-08-30",
+        "dayLabel": "Sun 30",
+        "weekTitle": "Week 7",
+        "workoutKey": "easy_8k",
         "category": "run"
       },
       {

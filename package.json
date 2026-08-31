@@ -10,7 +10,8 @@
     "sync:import": "bash scripts/sync-run.sh import-plan",
     "plan:serve": "bash scripts/serve-plan.sh",
     "weekly-api": ".venv/bin/coros-mcp weekly-api",
-    "coach:dev": "npm --prefix strength-pr-tracker run dev"
+    "coach:dev": "npm --prefix strength-pr-tracker run dev",
+    "auth": ".venv/bin/coros-mcp auth"
   }
 }
 

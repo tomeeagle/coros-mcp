@@ -635,7 +635,7 @@
           "workouts": [
             {
               "key": "speed_pyramid",
-              "name": "Speed pyramid — 200-400-600-400-200",
+              "name": "Speed double pyramid — 2x(200-400-600-400-200)",
               "kind": "run"
             }
           ],
@@ -1732,7 +1732,7 @@
         "category": "run"
       },
       {
-        "summary": "Speed pyramid — 200-400-600-400-200",
+        "summary": "Speed double pyramid — 2x(200-400-600-400-200)",
         "description": "10' easy + 4× strides · pyramid 200-400-600-400-200 · 200s @ 4:30-4:40 · 400s @ 4:45-4:55 · 600 @ 4:55-5:05 · 90s walks (2' after the 600) · 5' cool · mixed, slightly less volume for deload\nFood: Box portions\nPlan: Speed pyramid — 200-400-600-400-200",
         "start": {
           "date": "2026-08-31",

@@ -522,6 +522,8 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     "tempo_20": _tempo_session("Tempo 20' — threshold", 20, "~5:20–5:30/km"),
     "tempo_22": _tempo_session("Tempo 22' — threshold", 22, "~5:15–5:25/km"),
     "tempo_25": _tempo_session("Tempo 25' — threshold", 25, "~5:10–5:20/km"),
+    "tempo_25b": _tempo_session("Tempo 25' — threshold (5:05-5:15/km)", 25, "~5:05–5:15/km"),
+    "tempo_25c": _tempo_session("Tempo 25' — threshold (5:00-5:10/km)", 25, "~5:00–5:10/km"),
     # Technique only — not to failure
     "shuttle_turns": {
         "name": "Shuttle turns — technique",

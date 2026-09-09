@@ -164,12 +164,16 @@ def test_parse_full_plan():
     assert plan.schedule["20261005"] == ["bleep_practice"]  # first full diagnostic
     assert plan.schedule["20261026"] == ["bleep_practice"]  # second full
 
+    # Fri tempo pace progression — was flat at 5:10-5:20/km for 6 weeks straight
+    assert plan.schedule["20260911"] == ["tempo_25"]  # 5:10-5:20/km (unchanged)
+    assert plan.schedule["20260918"] == ["tempo_25"]  # 5:10-5:20/km (unchanged)
+    assert plan.schedule["20260925"] == ["tempo_25b"]  # step to 5:05-5:15/km
+    assert plan.schedule["20261009"] == ["tempo_25b"]  # 5:05-5:15/km
+    assert plan.schedule["20261030"] == ["tempo_25c"]  # step to 5:00-5:10/km
+
     # Tue 21 skipped (rest); Wed still easy default
     assert "20260721" not in plan.schedule
     assert plan.schedule["20260722"] == ["easy_5k"]
-
-    # Week 8 — Tue rest; Fri tempo; Sat Cooper repeat
-    assert plan.schedule["20260911"] == ["tempo_25"]
 
 
 @pytest.mark.skipif(not PLAN.is_file(), reason="training_plan.html not in repo")

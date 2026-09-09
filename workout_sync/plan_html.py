@@ -266,6 +266,8 @@ def _primary_run_key(
         (r"fartlek 22|fartlek.*22'", "fartlek_22"),
         (r"light fartlek 30|light fartlek", "fartlek_20"),
         (r"fartlek 20|fartlek.*20'", "fartlek_20"),
+        (r"tempo 25.*5:05|tempo.*25'.*5:05", "tempo_25b"),
+        (r"tempo 25.*5:00|tempo.*25'.*5:00", "tempo_25c"),
         (r"tempo 25|tempo.*25'", "tempo_25"),
         (r"tempo 22|tempo.*22'", "tempo_22"),
         (r"tempo 20|tempo.*20'", "tempo_20"),

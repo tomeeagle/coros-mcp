@@ -20,6 +20,17 @@ Session data pulled from COROS on 9 Sep 2026. On interval days, pace is the movi
 
 ## Week 8: 6–12 Sep 2026
 
+### Friday, 11 Sep 2026
+**Planned:** Tempo 20' — 10' easy + 20' tempo @ 5:10-5:20/km + 5' cool
+**Actual:** 20:00 tempo, 4.11 km, distance-weighted ~4:52/km avg. Splits: 5:09 (HR 141) → 4:46 (158) → 4:57 (164) → 4:37 (171) → 4:30 partial (167). Hilly 1km warmup (+83m) at 7:40/km, easy cooldown.
+**How it felt:** "Felt good, not that hard."
+**Notes:** Ran 20-30s/km faster than prescribed with a clear progressive build, HR climbing to 171 by lap 4 — threshold/VO2 territory, not "comfortably hard" tempo. Subjective effort ("not that hard") doesn't match the HR data, extending the pattern in [[easy-runs-run-too-hard]] to hard sessions too: this user's RPE reads lower than the physiological effort actually shows, in both directions (easy runs too hard, hard runs feel not-that-hard).
+
+### Thursday, 10 Sep 2026
+**Planned:** Strength — Lower (WK2)
+**Actual:** Not done — no activity logged.
+**Notes:** Skipped, confirmed by user.
+
 ### Wednesday, 9 Sep 2026
 **Planned:** Run club 8K easy
 **Actual:** —

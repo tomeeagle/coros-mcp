@@ -165,7 +165,7 @@ def test_parse_full_plan():
     assert plan.schedule["20261026"] == ["bleep_practice"]  # second full
 
     # Fri tempo pace progression — was flat at 5:10-5:20/km for 6 weeks straight
-    assert plan.schedule["20260911"] == ["tempo_25"]  # 5:10-5:20/km (unchanged)
+    assert plan.schedule["20260911"] == ["tempo_20"]  # tempered down, felt rough; Cooper TT next day
     assert plan.schedule["20260918"] == ["tempo_25"]  # 5:10-5:20/km (unchanged)
     assert plan.schedule["20260925"] == ["tempo_25b"]  # step to 5:05-5:15/km
     assert plan.schedule["20261009"] == ["tempo_25b"]  # 5:05-5:15/km

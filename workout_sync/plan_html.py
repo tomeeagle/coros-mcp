@@ -138,20 +138,39 @@ def _slug_week(title: str, dates: str) -> str:
 
 
 def _parse_strength_mondays(html: str, year: int) -> dict[str, str]:
-    """STR_WEEKS in the HTML: Mon 1 Jun -> wk1."""
+    """Map each strength day in the plan's week blocks to its wkN block phase.
+
+    Fallback for _primary_run_key when a strength day-note omits the WK number.
+    Reads the plan calendar directly (day-label + day-note) rather than the JS
+    STR_SESSIONS data block.
+    """
     out: dict[str, str] = {}
-    for m in re.finditer(
-        r"(\d+):\s*\{[^}]*?date:'([^']+)'",
-        html,
-        re.DOTALL,
-    ):
-        wk_num = m.group(1)
-        date_str = m.group(2)  # Mon 1 Jun
-        dm = re.search(r"(\d{1,2})\s+(\w+)", date_str)
+    for chunk in _iter_week_block_chunks(html):
+        dm = re.search(r'<span class="week-dates">([^<]+)</span>', chunk)
         if not dm:
             continue
-        d = date(year, _parse_month_token(dm.group(2)), int(dm.group(1)))
-        out[d.strftime("%Y%m%d")] = f"wk{wk_num}"
+        try:
+            wk_start, wk_end = _parse_week_dates(dm.group(1).strip())
+        except ValueError:
+            continue
+        for rm in re.finditer(
+            r'<div class="day-row[^"]*">(.*?)</div>', chunk, re.DOTALL
+        ):
+            row = rm.group(1)
+            lm = re.search(r'<span class="day-label">([^<]+)</span>', row)
+            nm = re.search(
+                r'<span class="day-note">(.*?)</span>', row, re.DOTALL
+            )
+            if not lm or not nm or "strength" not in nm.group(1).lower():
+                continue
+            wk_m = re.search(r"wk\s*(\d)", nm.group(1), re.I)
+            if not wk_m:
+                continue
+            try:
+                d = _parse_day_label(lm.group(1).strip(), wk_start, wk_end, year)
+            except (ValueError, TypeError):
+                continue
+            out[d.strftime("%Y%m%d")] = f"wk{wk_m.group(1)}"
     return out
 
 
@@ -236,8 +255,17 @@ def _primary_run_key(
         return "run_club_8k", None
 
     if "dumbbell strength" in text or ("strength" in note and "💪" in note_text):
-        wk_m = re.search(r"strength\s+wk(\d+)", note, re.I)
-        preset = f"wk{wk_m.group(1)}" if wk_m else strength_mondays.get(yyyymmdd, "wk1")
+        wk_m = re.search(r"wk\s*(\d)", note, re.I)
+        phase = wk_m.group(1) if wk_m else None
+        sess_m = re.search(
+            r"strength[^a-z]*(lower|push[\s·+-]*pull|carry|conditioning)", note, re.I
+        )
+        if sess_m:
+            raw = sess_m.group(1).lower()
+            session = "pushpull" if raw.startswith("push") else raw
+            return f"strength_{session}_wk{phase or '1'}", None
+        # legacy "Strength WK3" with no session label -> conditioning circuit
+        preset = f"wk{phase}" if phase else strength_mondays.get(yyyymmdd, "wk1")
         return f"strength_{preset}", None
 
     bac_only = _bac_key_from_text(text)

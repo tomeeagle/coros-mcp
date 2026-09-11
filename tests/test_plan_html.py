@@ -158,8 +158,9 @@ def test_parse_full_plan():
     assert plan.schedule["20260823"] == ["easy_6k"]  # unplanned, fancied it
     assert plan.schedule["20260824"] == ["speed_200_400"]  # mixed 200s+400s, no mini bleep
     assert plan.schedule["20260831"] == ["speed_pyramid"]  # mixed pyramid, deload volume
-    assert plan.schedule["20260907"] == ["bleep_partial"]  # cap ~7.2, not full; Cooper Sat 12
-    assert plan.schedule["20260912"] == ["cooper_1_5_mile"]
+    assert plan.schedule["20260907"] == ["bleep_partial"]  # cap ~7.2, not full
+    assert plan.schedule["20260912"] == ["easy_10k"]  # Cooper deferred to Sat 19 (illness)
+    assert plan.schedule["20260919"] == ["cooper_1_5_mile"]  # first Cooper baseline
     assert plan.schedule["20260914"] == ["shuttle_pace"]
     assert plan.schedule["20260921"] == ["bleep_partial"]  # cap ~7.5
     assert plan.schedule["20261005"] == ["bleep_practice"]  # first full diagnostic
@@ -177,11 +178,13 @@ def test_parse_full_plan():
 def test_strength_thursdays_from_html():
     html = PLAN.read_text(encoding="utf-8")
     days = _parse_strength_mondays(html, 2026)
-    # Bleep test dropped — strength progression adjusted.
+    # Derived from the plan's own week-block strength day-notes (date -> block phase).
     assert "20260730" not in days
     assert days["20260806"] == "wk4"
-    assert days["20260813"] == "wk1"
-    assert days["20260820"] == "wk2"
     assert days["20260827"] == "wk3"
     assert days["20260903"] == "wk5"
-    assert "20260910" not in days
+    # Rotating Thursday sessions still carry a WK block phase in the note.
+    assert days["20260910"] == "wk2"   # Lower (WK2)
+    assert days["20260917"] == "wk3"   # Push·Pull (WK3)
+    assert days["20260924"] == "wk4"   # Carry (WK4)
+    assert days["20261008"] == "wk2"   # Conditioning (WK2)

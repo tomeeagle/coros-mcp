@@ -853,3 +853,28 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "circuit_sets": 2,
     },
 }
+
+# ── Rotating Thursday sessions: 4 types × 5 block phases.
+# The plan HTML day-notes carry e.g. "Strength — Carry (WK2)"; plan_html.py maps
+# that to strength_carry_wk2 here. Rounds match PHASES in strength.py.
+_STRENGTH_SESSIONS = {
+    "lower": "Lower · Posterior",
+    "pushpull": "Push · Pull",
+    "carry": "Carry & Grip",
+    "conditioning": "Conditioning",
+}
+_STRENGTH_PHASES = {
+    1: ("Foundation", 3),
+    2: ("Build", 3),
+    3: ("Intensity", 4),
+    4: ("Taper", 3),
+    5: ("Light", 2),
+}
+for _sess_key, _sess_label in _STRENGTH_SESSIONS.items():
+    for _ph, (_ph_label, _rounds) in _STRENGTH_PHASES.items():
+        WORKOUTS[f"strength_{_sess_key}_wk{_ph}"] = {
+            "name": f"Strength — {_sess_label} ({_ph_label} WK{_ph})",
+            "kind": "strength",
+            "strength_preset": f"{_sess_key}_wk{_ph}",
+            "circuit_sets": _rounds,
+        }

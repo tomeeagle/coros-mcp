@@ -45,6 +45,82 @@ STRENGTH_CATALOG: dict[str, dict[str, str]] = {
         "name": "T1310",
         "overview": "sid_strength_farmers_walk",
     },
+    # --- added for the rotating session types (lower / push-pull / carry) ---
+    "deadlift": {
+        "origin_id": "425832295182811136",
+        "name": "T1067",
+        "overview": "sid_strength_deadlifts",
+    },
+    "single_leg_rdl": {
+        "origin_id": "426612348485287936",
+        "name": "T1144",
+        "overview": "sid_strength_one_leg_deadlifts_and_knee_lifting",
+    },
+    "split_squat": {
+        "origin_id": "425832124457861121",
+        "name": "T1064",
+        "overview": "sid_strength_dumbbell_lunges",
+    },
+    "step_up": {
+        "origin_id": "425832054396207104",
+        "name": "T1060",
+        "overview": "sid_strength_step_up_jumps",
+    },
+    "band_lateral_walk": {
+        "origin_id": "425845955863166977",
+        "name": "T1103",
+        "overview": "sid_strength_lateral_band_walks",
+    },
+    "floor_press": {
+        "origin_id": "425831217146019840",
+        "name": "T1041",
+        "overview": "sid_strength_bench_press",
+    },
+    "band_face_pull": {
+        "origin_id": "425867974013009920",
+        "name": "T1106",
+        "overview": "sid_strength_reverse_flys_with_bands",
+    },
+    "db_shrug": {
+        "origin_id": "425831979771150336",
+        "name": "T1058",
+        "overview": "sid_strength_dumbbell_shrugs",
+    },
+    "db_side_bend": {
+        "origin_id": "425827936327876608",
+        "name": "T1011",
+        "overview": "sid_strength_dumbbell_side_bends",
+    },
+    "plank": {
+        "origin_id": "425827856334110721",
+        "name": "T1010",
+        "overview": "sid_strength_planks",
+    },
+    "side_plank": {
+        "origin_id": "426611709340467200",
+        "name": "T1143",
+        "overview": "sid_strength_side_bridge_wing_arm_and_swing_leg",
+    },
+    "bicycle_crunch": {
+        "origin_id": "425832906678779905",
+        "name": "T1076",
+        "overview": "sid_strength_bicycle_crunches",
+    },
+    "burpee": {
+        "origin_id": "425827765602926593",
+        "name": "T1007",
+        "overview": "sid_strength_burpees",
+    },
+    "mountain_climber": {
+        "origin_id": "425844786826756096",
+        "name": "T1079",
+        "overview": "sid_strength_mountain_climbers",
+    },
+    "squat_jump": {
+        "origin_id": "425844691263733761",
+        "name": "T1078",
+        "overview": "sid_strength_squat_jumps",
+    },
 }
 
 # target_type: 2 = time (seconds), 3 = reps
@@ -119,60 +195,97 @@ def _circuit(
     ]
 
 
-# Presets aligned with training_plan.html STR_WEEKS (Thu strength circuits)
+# ── Block phases (WK1..WK5) — timing/load knob shared by every session type.
+# Matches the original training_plan.html STR_WEEKS timings so the conditioning
+# circuit is byte-for-byte unchanged from the old wk1..wk5 presets.
+PHASES: dict[int, dict[str, Any]] = {
+    1: {"work": 40, "rest": 20, "carry": 45, "heavy": 12.5, "light": 12.5},
+    2: {"work": 45, "rest": 15, "carry": 50, "heavy": 12.5, "light": 12.5},
+    3: {"work": 45, "rest": 15, "carry": 55, "heavy": 15.0, "light": 12.5},
+    4: {"work": 40, "rest": 20, "carry": 50, "heavy": 15.0, "light": 12.5},
+    5: {"work": 30, "rest": 30, "carry": 40, "heavy": 12.5, "light": 12.5},
+}
+
+
+def _lower_circuit(p: dict[str, Any]) -> list[dict[str, Any]]:
+    """One lap — squat / hinge / single-leg / calves / glute-med / core."""
+    w, r = p["work"], p["rest"]
+    return [
+        _timed_station("goblet_squat", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("romanian_deadlift", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("split_squat", work_seconds=w * 2, rest_seconds=r, weight_kg=p["light"]),
+        _timed_station("step_up", work_seconds=w * 2, rest_seconds=r, weight_kg=p["light"]),
+        _timed_station("calf_raise", work_seconds=w * 2, rest_seconds=r),
+        _timed_station("band_lateral_walk", work_seconds=w, rest_seconds=r),
+        _timed_station("plank", work_seconds=w, rest_seconds=ROUND_REST_SECONDS),
+    ]
+
+
+def _pushpull_circuit(p: dict[str, Any]) -> list[dict[str, Any]]:
+    """One lap — vertical/horizontal press + row + rear-delt + core."""
+    w, r = p["work"], p["rest"]
+    return [
+        _timed_station("overhead_press", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("floor_press", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("dumbbell_row", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("dumbbell_row", work_seconds=w * 2, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("band_face_pull", work_seconds=w, rest_seconds=r),
+        _timed_station("press_ups", work_seconds=w, rest_seconds=r),
+        _timed_station("side_plank", work_seconds=w * 2, rest_seconds=ROUND_REST_SECONDS),
+    ]
+
+
+def _carry_circuit(p: dict[str, Any]) -> list[dict[str, Any]]:
+    """One lap — loaded carries, hinge, grip, climb (firefighter-specific)."""
+    w, r, c = p["work"], p["rest"], p["carry"]
+    return [
+        _timed_station("farmers_carry", work_seconds=c, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("farmers_carry", work_seconds=c * 2, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("farmers_carry", work_seconds=c, rest_seconds=r, weight_kg=p["light"]),
+        _timed_station("deadlift", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("db_shrug", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("step_up", work_seconds=w * 2, rest_seconds=r, weight_kg=p["light"]),
+        _timed_station("db_side_bend", work_seconds=w * 2, rest_seconds=ROUND_REST_SECONDS,
+                       weight_kg=p["light"]),
+    ]
+
+
+# Phase-rotated finisher for the conditioning circuit (replaces the old calf slot).
+_COND_FINISHER = {1: "mountain_climber", 2: "squat_jump", 3: "burpee",
+                  4: "squat_jump", 5: "mountain_climber"}
+
+
+def _conditioning_circuit(phase: int, p: dict[str, Any]) -> list[dict[str, Any]]:
+    """The original full-body circuit-for-time, calf slot swapped for a finisher."""
+    w, r = p["work"], p["rest"]
+    return [
+        _timed_station("goblet_squat", work_seconds=w, rest_seconds=r, weight_kg=12.5),
+        _timed_station("romanian_deadlift", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("overhead_press", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("dumbbell_row", work_seconds=w * 2, rest_seconds=r, weight_kg=p["heavy"]),
+        _timed_station("press_ups", work_seconds=w, rest_seconds=r),
+        _timed_station(_COND_FINISHER[phase], work_seconds=w, rest_seconds=r),
+        _timed_station("farmers_carry", work_seconds=p["carry"], rest_seconds=ROUND_REST_SECONDS,
+                       weight_kg=p["heavy"]),
+    ]
+
+
+_SESSION_BUILDERS = {
+    "lower": lambda phase, p: _lower_circuit(p),
+    "pushpull": lambda phase, p: _pushpull_circuit(p),
+    "carry": lambda phase, p: _carry_circuit(p),
+    "conditioning": _conditioning_circuit,
+}
+
+# Presets aligned with training_plan.html STR_SESSIONS (Thu strength circuits).
+# Legacy wk1..wk5 keys are kept as aliases for the conditioning circuit.
 STRENGTH_PRESETS: dict[str, list[dict[str, Any]]] = {
     "full_body": _circuit(),
-    "wk1": _circuit(
-        goblet=12.5,
-        rdl=12.5,
-        press=12.5,
-        row=12.5,
-        carry=12.5,
-        work_seconds=40,
-        rest_seconds=20,
-        carry_seconds=45,
-    ),
-    "wk2": _circuit(
-        goblet=12.5,
-        rdl=12.5,
-        press=12.5,
-        row=12.5,
-        carry=12.5,
-        work_seconds=45,
-        rest_seconds=15,
-        carry_seconds=50,
-    ),
-    "wk3": _circuit(
-        goblet=12.5,
-        rdl=15.0,
-        press=15.0,
-        row=15.0,
-        carry=15.0,
-        work_seconds=45,
-        rest_seconds=15,
-        carry_seconds=55,
-    ),
-    "wk4": _circuit(
-        goblet=12.5,
-        rdl=15.0,
-        press=15.0,
-        row=15.0,
-        carry=15.0,
-        work_seconds=40,
-        rest_seconds=20,
-        carry_seconds=50,
-    ),
-    "wk5": _circuit(
-        goblet=12.5,
-        rdl=12.5,
-        press=12.5,
-        row=12.5,
-        carry=12.5,
-        work_seconds=30,
-        rest_seconds=30,
-        carry_seconds=40,
-    ),
 }
+for _phase, _p in PHASES.items():
+    STRENGTH_PRESETS[f"wk{_phase}"] = _conditioning_circuit(_phase, _p)
+    for _session, _builder in _SESSION_BUILDERS.items():
+        STRENGTH_PRESETS[f"{_session}_wk{_phase}"] = _builder(_phase, _p)
 
 
 def build_strength_exercises(preset: str = "full_body", *, rounds: int = 1) -> list[dict[str, Any]]:

@@ -496,7 +496,7 @@
         {
           "date": "2026-08-22",
           "dayLabel": "Sat 22",
-          "note": "Avon WT Cooper marker — only if 24h+ symptom-free. If still ill: rest or easy 20'. Warm up 10–15 min + strides · log time · aim toward 12 min (~5:00/km)",
+          "note": "Avon WT Cooper marker —  not done, still ill . First Cooper moved to Sat 19 Sep.",
           "runPlan": "Cooper 1.5 mile — time trial",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
@@ -715,7 +715,7 @@
     {
       "title": "Week 8",
       "dates": "6–12 Sep",
-      "phase": "Capped mini bleep · Cooper is the max",
+      "phase": "Capped mini bleep · rebuild week",
       "weekNumber": 8,
       "days": [
         {
@@ -730,7 +730,7 @@
         {
           "date": "2026-09-07",
           "dayLabel": "Mon 7",
-          "note": "Staffs/NFRS — mini bleep from L5,  stop at ~7.2 . Not a full test — Cooper Sat 12 is the only max aerobic this week. Spotify MSFT · full walks · log level",
+          "note": "Staffs/NFRS — mini bleep from L5,  stop at ~7.2 . Not a full test — only hard aerobic effort this week. Spotify MSFT · full walks · log level",
           "runPlan": "Mini bleep — start L5 → fail",
           "foodWeight": "Box portions",
           "workouts": [
@@ -769,13 +769,13 @@
         {
           "date": "2026-09-10",
           "dayLabel": "Thu 10",
-          "note": "💪 Strength WK2 — Build (repeat) · Avon WT press/pull · NFRS farmers ~75 m",
+          "note": "💪 Strength — Lower (WK2) · squat / hinge / single-leg · Avon WT press/pull · NFRS farmers ~75 m",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "strength_wk2",
-              "name": "Strength — Build circuit (WK2)",
+              "key": "strength_lower_wk2",
+              "name": "Strength — Lower · Posterior (Build WK2)",
               "kind": "strength"
             }
           ],
@@ -799,13 +799,13 @@
         {
           "date": "2026-09-12",
           "dayLabel": "Sat 12",
-          "note": "Avon WT — Cooper 1.5 mile repeat. Compare to Sat 22 Aug · even split · log time",
-          "runPlan": "Cooper 1.5 mile — time trial",
+          "note": "Easy 10K — conversational, rebuild the long run. Walk if legs go. Cooper deferred to Sat 19 (illness-disrupted week)",
+          "runPlan": "Easy 10K",
           "foodWeight": "Weigh in after. Fuel well.",
           "workouts": [
             {
-              "key": "cooper_1_5_mile",
-              "name": "Cooper 1.5 mile — time trial",
+              "key": "easy_10k",
+              "name": "Easy 10K",
               "kind": "run"
             }
           ],
@@ -831,7 +831,7 @@
         {
           "date": "2026-09-14",
           "dayLabel": "Mon 14",
-          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep",
+          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep · keep it controlled, Cooper baseline is Sat 19",
           "runPlan": "Speed Intervals (400m reps)",
           "foodWeight": "Box portions",
           "workouts": [
@@ -870,13 +870,13 @@
         {
           "date": "2026-09-17",
           "dayLabel": "Thu 17",
-          "note": "💪 Strength WK3 — general focus · Avon WT press/pull · NFRS farmers ~100 m",
+          "note": "💪 Strength — Push·Pull (WK3) · press + row + band face-pull · Avon WT press/pull · NFRS farmers ~100 m",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "strength_wk3",
-              "name": "Strength — Intensity circuit (WK3)",
+              "key": "strength_pushpull_wk3",
+              "name": "Strength — Push · Pull (Intensity WK3)",
               "kind": "strength"
             }
           ],
@@ -885,13 +885,13 @@
         {
           "date": "2026-09-18",
           "dayLabel": "Fri 18",
-          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work",
-          "runPlan": "Tempo 25' — threshold",
+          "note": "Easy 5K + 4× strides · prime the legs before tomorrow's Cooper — nothing hard",
+          "runPlan": "Easy 5K + strides",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "tempo_25",
-              "name": "Tempo 25' — threshold",
+              "key": "easy_5k",
+              "name": "Easy 5K",
               "kind": "run"
             }
           ],
@@ -900,13 +900,13 @@
         {
           "date": "2026-09-19",
           "dayLabel": "Sat 19",
-          "note": "Trail long run — hilly route, ~258m gain over ~12K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm",
-          "runPlan": "Long run 12K easy",
-          "foodWeight": "Fuel well after.",
+          "note": "Avon WT —  Cooper 1.5 mile, first one . Track, 6 laps continuous. Warm up 10–15 min + 2–3 strides · even split, don't go out like a bleep · log the time as your baseline · aim toward 12 min (~5:00/km)",
+          "runPlan": "Cooper 1.5 mile — time trial",
+          "foodWeight": "Weigh in after. Fuel well.",
           "workouts": [
             {
-              "key": "long_12k",
-              "name": "Long Run 12K easy",
+              "key": "cooper_1_5_mile",
+              "name": "Cooper 1.5 mile — time trial",
               "kind": "run"
             }
           ],
@@ -971,13 +971,13 @@
         {
           "date": "2026-09-24",
           "dayLabel": "Thu 24",
-          "note": "💪 Strength WK4 — Taper · JRTs + Avon WT press/pull · NFRS carries",
+          "note": "💪 Strength — Carry (WK4) · farmers / suitcase / front-rack · JRTs + Avon WT press/pull · NFRS carries",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "strength_wk4",
-              "name": "Strength — Taper circuit (WK4)",
+              "key": "strength_carry_wk4",
+              "name": "Strength — Carry & Grip (Taper WK4)",
               "kind": "strength"
             }
           ],
@@ -1072,13 +1072,13 @@
         {
           "date": "2026-10-08",
           "dayLabel": "Thu 8",
-          "note": "💪 Strength WK2 — Build · JRTs + Avon WT press/pull · NFRS farmers ~75 m",
+          "note": "💪 Strength — Conditioning (WK2) · full-body circuit for time · JRTs + Avon WT press/pull · NFRS farmers ~75 m",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "strength_wk2",
-              "name": "Strength — Build circuit (WK2)",
+              "key": "strength_conditioning_wk2",
+              "name": "Strength — Conditioning (Build WK2)",
               "kind": "strength"
             }
           ],
@@ -1173,13 +1173,13 @@
         {
           "date": "2026-10-29",
           "dayLabel": "Thu 29",
-          "note": "💪 Strength WK3 — Intensity · JRTs + Avon WT press/pull · NFRS farmers ~100 m",
+          "note": "💪 Strength — Lower (WK3) · squat / hinge / single-leg · JRTs + Avon WT press/pull · NFRS farmers ~100 m",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "strength_wk3",
-              "name": "Strength — Intensity circuit (WK3)",
+              "key": "strength_lower_wk3",
+              "name": "Strength — Lower · Posterior (Intensity WK3)",
               "kind": "strength"
             }
           ],
@@ -1631,7 +1631,7 @@
       },
       {
         "summary": "Cooper 1.5 mile — time trial",
-        "description": "Avon WT Cooper marker — only if 24h+ symptom-free. If still ill: rest or easy 20'. Warm up 10–15 min + strides · log time · aim toward 12 min (~5:00/km)\nFood: Pudding ok tonight\nPlan: Cooper 1.5 mile — time trial",
+        "description": "Avon WT Cooper marker —  not done, still ill . First Cooper moved to Sat 19 Sep.\nFood: Pudding ok tonight\nPlan: Cooper 1.5 mile — time trial",
         "start": {
           "date": "2026-08-22",
           "endDate": "2026-08-23"
@@ -1818,7 +1818,7 @@
       },
       {
         "summary": "Mini bleep — start L5 → fail",
-        "description": "Staffs/NFRS — mini bleep from L5,  stop at ~7.2 . Not a full test — Cooper Sat 12 is the only max aerobic this week. Spotify MSFT · full walks · log level\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
+        "description": "Staffs/NFRS — mini bleep from L5,  stop at ~7.2 . Not a full test — only hard aerobic effort this week. Spotify MSFT · full walks · log level\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
         "start": {
           "date": "2026-09-07",
           "endDate": "2026-09-08"
@@ -1851,8 +1851,8 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Build circuit (WK2)",
-        "description": "💪 Strength WK2 — Build (repeat) · Avon WT press/pull · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
+        "summary": "Strength — Lower · Posterior (Build WK2)",
+        "description": "💪 Strength — Lower (WK2) · squat / hinge / single-leg · Avon WT press/pull · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-09-10",
           "endDate": "2026-09-11"
@@ -1864,7 +1864,7 @@
         "date": "2026-09-10",
         "dayLabel": "Thu 10",
         "weekTitle": "Week 8",
-        "workoutKey": "strength_wk2",
+        "workoutKey": "strength_lower_wk2",
         "category": "strength"
       },
       {
@@ -1885,8 +1885,8 @@
         "category": "run"
       },
       {
-        "summary": "Cooper 1.5 mile — time trial",
-        "description": "Avon WT — Cooper 1.5 mile repeat. Compare to Sat 22 Aug · even split · log time\nFood: Weigh in after. Fuel well.\nPlan: Cooper 1.5 mile — time trial",
+        "summary": "Easy 10K",
+        "description": "Easy 10K — conversational, rebuild the long run. Walk if legs go. Cooper deferred to Sat 19 (illness-disrupted week)\nFood: Weigh in after. Fuel well.\nPlan: Easy 10K",
         "start": {
           "date": "2026-09-12",
           "endDate": "2026-09-13"
@@ -1898,12 +1898,12 @@
         "date": "2026-09-12",
         "dayLabel": "Sat 12",
         "weekTitle": "Week 8",
-        "workoutKey": "cooper_1_5_mile",
+        "workoutKey": "easy_10k",
         "category": "run"
       },
       {
         "summary": "Speed intervals — 400m reps",
-        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
+        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep · keep it controlled, Cooper baseline is Sat 19\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
         "start": {
           "date": "2026-09-14",
           "endDate": "2026-09-15"
@@ -1936,8 +1936,8 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Intensity circuit (WK3)",
-        "description": "💪 Strength WK3 — general focus · Avon WT press/pull · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
+        "summary": "Strength — Push · Pull (Intensity WK3)",
+        "description": "💪 Strength — Push·Pull (WK3) · press + row + band face-pull · Avon WT press/pull · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-09-17",
           "endDate": "2026-09-18"
@@ -1949,12 +1949,12 @@
         "date": "2026-09-17",
         "dayLabel": "Thu 17",
         "weekTitle": "Week 9",
-        "workoutKey": "strength_wk3",
+        "workoutKey": "strength_pushpull_wk3",
         "category": "strength"
       },
       {
-        "summary": "Tempo 25' — threshold",
-        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
+        "summary": "Easy 5K",
+        "description": "Easy 5K + 4× strides · prime the legs before tomorrow's Cooper — nothing hard\nFood: Pudding ok tonight\nPlan: Easy 5K + strides",
         "start": {
           "date": "2026-09-18",
           "endDate": "2026-09-19"
@@ -1966,12 +1966,12 @@
         "date": "2026-09-18",
         "dayLabel": "Fri 18",
         "weekTitle": "Week 9",
-        "workoutKey": "tempo_25",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Long Run 12K easy",
-        "description": "Trail long run — hilly route, ~258m gain over ~12K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm\nFood: Fuel well after.\nPlan: Long run 12K easy",
+        "summary": "Cooper 1.5 mile — time trial",
+        "description": "Avon WT —  Cooper 1.5 mile, first one . Track, 6 laps continuous. Warm up 10–15 min + 2–3 strides · even split, don't go out like a bleep · log the time as your baseline · aim toward 12 min (~5:00/km)\nFood: Weigh in after. Fuel well.\nPlan: Cooper 1.5 mile — time trial",
         "start": {
           "date": "2026-09-19",
           "endDate": "2026-09-20"
@@ -1983,7 +1983,7 @@
         "date": "2026-09-19",
         "dayLabel": "Sat 19",
         "weekTitle": "Week 9",
-        "workoutKey": "long_12k",
+        "workoutKey": "cooper_1_5_mile",
         "category": "run"
       },
       {
@@ -2021,8 +2021,8 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Taper circuit (WK4)",
-        "description": "💪 Strength WK4 — Taper · JRTs + Avon WT press/pull · NFRS carries\nFood: Box portions\nPlan: Strength only",
+        "summary": "Strength — Carry & Grip (Taper WK4)",
+        "description": "💪 Strength — Carry (WK4) · farmers / suitcase / front-rack · JRTs + Avon WT press/pull · NFRS carries\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-09-24",
           "endDate": "2026-09-25"
@@ -2034,7 +2034,7 @@
         "date": "2026-09-24",
         "dayLabel": "Thu 24",
         "weekTitle": "Week 10",
-        "workoutKey": "strength_wk4",
+        "workoutKey": "strength_carry_wk4",
         "category": "strength"
       },
       {
@@ -2106,8 +2106,8 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Build circuit (WK2)",
-        "description": "💪 Strength WK2 — Build · JRTs + Avon WT press/pull · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
+        "summary": "Strength — Conditioning (Build WK2)",
+        "description": "💪 Strength — Conditioning (WK2) · full-body circuit for time · JRTs + Avon WT press/pull · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-10-08",
           "endDate": "2026-10-09"
@@ -2119,7 +2119,7 @@
         "date": "2026-10-08",
         "dayLabel": "Thu 8",
         "weekTitle": "Week 12",
-        "workoutKey": "strength_wk2",
+        "workoutKey": "strength_conditioning_wk2",
         "category": "strength"
       },
       {
@@ -2191,8 +2191,8 @@
         "category": "run"
       },
       {
-        "summary": "Strength — Intensity circuit (WK3)",
-        "description": "💪 Strength WK3 — Intensity · JRTs + Avon WT press/pull · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
+        "summary": "Strength — Lower · Posterior (Intensity WK3)",
+        "description": "💪 Strength — Lower (WK3) · squat / hinge / single-leg · JRTs + Avon WT press/pull · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-10-29",
           "endDate": "2026-10-30"
@@ -2204,7 +2204,7 @@
         "date": "2026-10-29",
         "dayLabel": "Thu 29",
         "weekTitle": "Week 15",
-        "workoutKey": "strength_wk3",
+        "workoutKey": "strength_lower_wk3",
         "category": "strength"
       },
       {

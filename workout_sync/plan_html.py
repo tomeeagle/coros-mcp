@@ -301,6 +301,7 @@ def _primary_run_key(
         (r"tempo 20|tempo.*20'", "tempo_20"),
         (r"tempo 15|tempo.*15'", "tempo_15"),
         (r"cooper 1\.5|cooper 1\.5 mile|1\.5 mile.*time trial|1\.5 mile.*cooper", "cooper_1_5_mile"),
+        (r"parkrun", "parkrun_5k"),
         (r"easy 10k", "easy_10k"),
         (r"easy 8-10k", "easy_8k"),
         (r"easy 8k", "easy_8k"),
@@ -342,6 +343,7 @@ def _is_run_workout_key(key: str) -> bool:
             "fartlek_",
             "tempo_",
             "cooper_",
+            "parkrun_",
             "walk_jog_",
         ),
     )

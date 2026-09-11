@@ -769,7 +769,7 @@
         {
           "date": "2026-09-10",
           "dayLabel": "Thu 10",
-          "note": "💪 Strength — Lower (WK2) · squat / hinge / single-leg · Avon WT press/pull · NFRS farmers ~75 m",
+          "note": "💪 Strength — Lower (WK2) · squat / hinge / single-leg · NFRS farmers ~75 m",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -784,13 +784,13 @@
         {
           "date": "2026-09-11",
           "dayLabel": "Fri 11",
-          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work",
-          "runPlan": "Tempo 25' — threshold",
+          "note": "Tempo — 10' easy + 20' tempo (~5:10-5:20/km) + 5' cool = ~35' total · threshold work",
+          "runPlan": "Tempo 20' — threshold",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
             {
-              "key": "tempo_25",
-              "name": "Tempo 25' — threshold",
+              "key": "tempo_20",
+              "name": "Tempo 20' — threshold",
               "kind": "run"
             }
           ],
@@ -799,7 +799,7 @@
         {
           "date": "2026-09-12",
           "dayLabel": "Sat 12",
-          "note": "Easy 10K — conversational, rebuild the long run. Walk if legs go. Cooper deferred to Sat 19 (illness-disrupted week)",
+          "note": "Easy 10K — conversational, rebuild the long run. Walk if legs go",
           "runPlan": "Easy 10K",
           "foodWeight": "Weigh in after. Fuel well.",
           "workouts": [
@@ -816,7 +816,7 @@
     {
       "title": "Week 9",
       "dates": "13–19 Sep",
-      "phase": "NFRS / Staffs / Avon",
+      "phase": "NFRS / Staffs / Shropshire",
       "weekNumber": 9,
       "days": [
         {
@@ -831,7 +831,7 @@
         {
           "date": "2026-09-14",
           "dayLabel": "Mon 14",
-          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep · keep it controlled, Cooper baseline is Sat 19",
+          "note": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep · keep it controlled, Parkrun test is Sat 19",
           "runPlan": "Speed Intervals (400m reps)",
           "foodWeight": "Box portions",
           "workouts": [
@@ -870,7 +870,7 @@
         {
           "date": "2026-09-17",
           "dayLabel": "Thu 17",
-          "note": "💪 Strength — Push·Pull (WK3) · press + row + band face-pull · Avon WT press/pull · NFRS farmers ~100 m",
+          "note": "💪 Strength — Push·Pull (WK3) · press + row + band face-pull · NFRS farmers ~100 m",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -885,7 +885,7 @@
         {
           "date": "2026-09-18",
           "dayLabel": "Fri 18",
-          "note": "Easy 5K + 4× strides · prime the legs before tomorrow's Cooper — nothing hard",
+          "note": "Easy 5K + 4× strides · prime the legs before tomorrow's Parkrun — nothing hard",
           "runPlan": "Easy 5K + strides",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
@@ -900,13 +900,13 @@
         {
           "date": "2026-09-19",
           "dayLabel": "Sat 19",
-          "note": "Avon WT —  Cooper 1.5 mile, first one . Track, 6 laps continuous. Warm up 10–15 min + 2–3 strides · even split, don't go out like a bleep · log the time as your baseline · aim toward 12 min (~5:00/km)",
-          "runPlan": "Cooper 1.5 mile — time trial",
+          "note": "Parkrun 5K — progress tracker. Warm up 10–15 min + 2–3 strides · race it, log the time",
+          "runPlan": "Parkrun 5K — time trial",
           "foodWeight": "Weigh in after. Fuel well.",
           "workouts": [
             {
-              "key": "cooper_1_5_mile",
-              "name": "Cooper 1.5 mile — time trial",
+              "key": "parkrun_5k",
+              "name": "Parkrun 5K — time trial",
               "kind": "run"
             }
           ],
@@ -917,7 +917,7 @@
     {
       "title": "Week 10",
       "dates": "20–26 Sep",
-      "phase": "NFRS / Staffs / Avon",
+      "phase": "NFRS / Staffs / Shropshire",
       "weekNumber": 10,
       "days": [
         {
@@ -971,7 +971,7 @@
         {
           "date": "2026-09-24",
           "dayLabel": "Thu 24",
-          "note": "💪 Strength — Carry (WK4) · farmers / suitcase / front-rack · JRTs + Avon WT press/pull · NFRS carries",
+          "note": "💪 Strength — Carry (WK4) · farmers / suitcase / front-rack · JRTs · NFRS carries",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -986,7 +986,7 @@
         {
           "date": "2026-09-25",
           "dayLabel": "Fri 25",
-          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km, comfortably hard) + 5' cool = ~40' total · threshold work for Cooper + bleep",
+          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km, comfortably hard) + 5' cool = ~40' total · threshold work for bleep",
           "runPlan": "Tempo 25' — threshold",
           "foodWeight": "Pudding ok tonight",
           "workouts": [
@@ -1018,7 +1018,7 @@
     {
       "title": "Week 12",
       "dates": "4–10 Oct",
-      "phase": "NFRS / Staffs / Avon",
+      "phase": "NFRS / Staffs / Shropshire",
       "weekNumber": 12,
       "days": [
         {
@@ -1033,7 +1033,7 @@
         {
           "date": "2026-10-05",
           "dayLabel": "Mon 5",
-          "note": "First full MSFT — Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November. Easy day before if legs heavy · no Cooper this week",
+          "note": "First full MSFT — Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November. Easy day before if legs heavy",
           "runPlan": "Bleep practice — full test (L8=5:00/km)",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1072,7 +1072,7 @@
         {
           "date": "2026-10-08",
           "dayLabel": "Thu 8",
-          "note": "💪 Strength — Conditioning (WK2) · full-body circuit for time · JRTs + Avon WT press/pull · NFRS farmers ~75 m",
+          "note": "💪 Strength — Conditioning (WK2) · full-body circuit for time · JRTs · NFRS farmers ~75 m",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1119,7 +1119,7 @@
     {
       "title": "Week 15",
       "dates": "25–31 Oct",
-      "phase": "NFRS / Staffs / Avon",
+      "phase": "NFRS / Staffs / Shropshire",
       "weekNumber": 15,
       "days": [
         {
@@ -1173,7 +1173,7 @@
         {
           "date": "2026-10-29",
           "dayLabel": "Thu 29",
-          "note": "💪 Strength — Lower (WK3) · squat / hinge / single-leg · JRTs + Avon WT press/pull · NFRS farmers ~100 m",
+          "note": "💪 Strength — Lower (WK3) · squat / hinge / single-leg · JRTs · NFRS farmers ~100 m",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1852,7 +1852,7 @@
       },
       {
         "summary": "Strength — Lower · Posterior (Build WK2)",
-        "description": "💪 Strength — Lower (WK2) · squat / hinge / single-leg · Avon WT press/pull · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength — Lower (WK2) · squat / hinge / single-leg · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-09-10",
           "endDate": "2026-09-11"
@@ -1868,8 +1868,8 @@
         "category": "strength"
       },
       {
-        "summary": "Tempo 25' — threshold",
-        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
+        "summary": "Tempo 20' — threshold",
+        "description": "Tempo — 10' easy + 20' tempo (~5:10-5:20/km) + 5' cool = ~35' total · threshold work\nFood: Pudding ok tonight\nPlan: Tempo 20' — threshold",
         "start": {
           "date": "2026-09-11",
           "endDate": "2026-09-12"
@@ -1881,12 +1881,12 @@
         "date": "2026-09-11",
         "dayLabel": "Fri 11",
         "weekTitle": "Week 8",
-        "workoutKey": "tempo_25",
+        "workoutKey": "tempo_20",
         "category": "run"
       },
       {
         "summary": "Easy 10K",
-        "description": "Easy 10K — conversational, rebuild the long run. Walk if legs go. Cooper deferred to Sat 19 (illness-disrupted week)\nFood: Weigh in after. Fuel well.\nPlan: Easy 10K",
+        "description": "Easy 10K — conversational, rebuild the long run. Walk if legs go\nFood: Weigh in after. Fuel well.\nPlan: Easy 10K",
         "start": {
           "date": "2026-09-12",
           "endDate": "2026-09-13"
@@ -1903,7 +1903,7 @@
       },
       {
         "summary": "Speed intervals — 400m reps",
-        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep · keep it controlled, Cooper baseline is Sat 19\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
+        "description": "10' easy + 4× strides · 4× 400m @ 4:50-4:55/km + 4× 400m @ 4:40-4:45/km · 90s walk recoveries · 5' cool · NFRS speed prep · keep it controlled, Parkrun test is Sat 19\nFood: Box portions\nPlan: Speed Intervals (400m reps)",
         "start": {
           "date": "2026-09-14",
           "endDate": "2026-09-15"
@@ -1937,7 +1937,7 @@
       },
       {
         "summary": "Strength — Push · Pull (Intensity WK3)",
-        "description": "💪 Strength — Push·Pull (WK3) · press + row + band face-pull · Avon WT press/pull · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength — Push·Pull (WK3) · press + row + band face-pull · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-09-17",
           "endDate": "2026-09-18"
@@ -1954,7 +1954,7 @@
       },
       {
         "summary": "Easy 5K",
-        "description": "Easy 5K + 4× strides · prime the legs before tomorrow's Cooper — nothing hard\nFood: Pudding ok tonight\nPlan: Easy 5K + strides",
+        "description": "Easy 5K + 4× strides · prime the legs before tomorrow's Parkrun — nothing hard\nFood: Pudding ok tonight\nPlan: Easy 5K + strides",
         "start": {
           "date": "2026-09-18",
           "endDate": "2026-09-19"
@@ -1970,8 +1970,8 @@
         "category": "run"
       },
       {
-        "summary": "Cooper 1.5 mile — time trial",
-        "description": "Avon WT —  Cooper 1.5 mile, first one . Track, 6 laps continuous. Warm up 10–15 min + 2–3 strides · even split, don't go out like a bleep · log the time as your baseline · aim toward 12 min (~5:00/km)\nFood: Weigh in after. Fuel well.\nPlan: Cooper 1.5 mile — time trial",
+        "summary": "Parkrun 5K — time trial",
+        "description": "Parkrun 5K — progress tracker. Warm up 10–15 min + 2–3 strides · race it, log the time\nFood: Weigh in after. Fuel well.\nPlan: Parkrun 5K — time trial",
         "start": {
           "date": "2026-09-19",
           "endDate": "2026-09-20"
@@ -1983,7 +1983,7 @@
         "date": "2026-09-19",
         "dayLabel": "Sat 19",
         "weekTitle": "Week 9",
-        "workoutKey": "cooper_1_5_mile",
+        "workoutKey": "parkrun_5k",
         "category": "run"
       },
       {
@@ -2022,7 +2022,7 @@
       },
       {
         "summary": "Strength — Carry & Grip (Taper WK4)",
-        "description": "💪 Strength — Carry (WK4) · farmers / suitcase / front-rack · JRTs + Avon WT press/pull · NFRS carries\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength — Carry (WK4) · farmers / suitcase / front-rack · JRTs · NFRS carries\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-09-24",
           "endDate": "2026-09-25"
@@ -2039,7 +2039,7 @@
       },
       {
         "summary": "Tempo 25' — threshold",
-        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km, comfortably hard) + 5' cool = ~40' total · threshold work for Cooper + bleep\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
+        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km, comfortably hard) + 5' cool = ~40' total · threshold work for bleep\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
         "start": {
           "date": "2026-09-25",
           "endDate": "2026-09-26"
@@ -2073,7 +2073,7 @@
       },
       {
         "summary": "Bleep practice — full test (L8=5:00/km)",
-        "description": "First full MSFT — Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November. Easy day before if legs heavy · no Cooper this week\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
+        "description": "First full MSFT — Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November. Easy day before if legs heavy\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
         "start": {
           "date": "2026-10-05",
           "endDate": "2026-10-06"
@@ -2107,7 +2107,7 @@
       },
       {
         "summary": "Strength — Conditioning (Build WK2)",
-        "description": "💪 Strength — Conditioning (WK2) · full-body circuit for time · JRTs + Avon WT press/pull · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength — Conditioning (WK2) · full-body circuit for time · JRTs · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-10-08",
           "endDate": "2026-10-09"
@@ -2192,7 +2192,7 @@
       },
       {
         "summary": "Strength — Lower · Posterior (Intensity WK3)",
-        "description": "💪 Strength — Lower (WK3) · squat / hinge / single-leg · JRTs + Avon WT press/pull · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength — Lower (WK3) · squat / hinge / single-leg · JRTs · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-10-29",
           "endDate": "2026-10-30"

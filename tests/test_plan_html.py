@@ -159,8 +159,8 @@ def test_parse_full_plan():
     assert plan.schedule["20260824"] == ["speed_200_400"]  # mixed 200s+400s, no mini bleep
     assert plan.schedule["20260831"] == ["speed_pyramid"]  # mixed pyramid, deload volume
     assert plan.schedule["20260907"] == ["bleep_partial"]  # cap ~7.2, not full
-    assert plan.schedule["20260912"] == ["easy_10k"]  # Cooper deferred to Sat 19 (illness)
-    assert plan.schedule["20260919"] == ["cooper_1_5_mile"]  # first Cooper baseline
+    assert plan.schedule["20260912"] == ["easy_10k"]
+    assert plan.schedule["20260919"] == ["parkrun_5k"]  # Cooper dropped — Shropshire uses bleep test
     assert plan.schedule["20260914"] == ["shuttle_pace"]
     assert plan.schedule["20260921"] == ["bleep_partial"]  # cap ~7.5
     assert plan.schedule["20261005"] == ["bleep_practice"]  # first full diagnostic
@@ -170,8 +170,8 @@ def test_parse_full_plan():
     assert "20260721" not in plan.schedule
     assert plan.schedule["20260722"] == ["easy_5k"]
 
-    # Week 8 — Tue rest; Fri tempo; Sat Cooper repeat
-    assert plan.schedule["20260911"] == ["tempo_25"]
+    # Week 8 — Tue rest; Fri tempo
+    assert plan.schedule["20260911"] == ["tempo_20"]
 
 
 @pytest.mark.skipif(not PLAN.is_file(), reason="training_plan.html not in repo")

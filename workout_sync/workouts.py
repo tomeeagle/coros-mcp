@@ -138,6 +138,7 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         ],
     },
     "easy_10k": _distance_run("Easy 10K", 10000),
+    "parkrun_5k": _distance_run("Parkrun 5K — time trial", 5000, step_name="Race effort"),
     "easy_8k": _distance_run("Easy 8K — conversational", 8000),
     "progression_8k": {
         "name": "Progression 8K — 5K easy / 3K steady",

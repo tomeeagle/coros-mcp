@@ -5,6 +5,16 @@ Session data pulled from COROS on 9 Sep 2026. On interval days, pace is the movi
 
 ---
 
+## Training cessation — 12 Sep to 1 Oct 2026
+
+**Confirmed by user (1 Oct):** no training since the Fri 11 Sep tempo — the last session we logged together.
+
+- **~20 days off** (Sat 12 Sep → Wed 30 Sep). Nothing logged; Weeks 9–10 (speed 400s, Parkrun, mini bleep, tempo 25', 14K) all skipped.
+- **Plan response:** treat this as a fresh comeback, not a soft deload. Full MSFT Mon 5 Oct and Mon 26 Oct pulled; rebuild is easy → light efforts → short quality over Oct, first capped mini-bleep late Oct, first full MSFT pushed to November.
+- **Carry-forward risks from the last block still apply on return:** easy runs drifting to threshold HR, and RPE reading easier than the watch (Fri 11 tempo). Keep first weeks genuinely easy.
+
+---
+
 ## Block summary — 19 Aug to 9 Sep 2026
 
 - **VO2max 41 → 44** over three weeks. The comeback block worked — fitness is trending up despite the disruption.
@@ -14,11 +24,28 @@ Session data pulled from COROS on 9 Sep 2026. On interval days, pace is the movi
 - **Two things actually were the problem:**
   1. *Easy runs run at threshold.* 30 Aug "easy 8K" at HR 151; 2 Sep "easy 6K" at HR 141; the 27 Aug tempo was HR 152 — barely harder. Pace is being kept easy, effort is not. (Same pattern flagged on the 20 Aug 400s.)
   2. *Sleep.* Repeated sub-5.5h nights (5.0h on 25 Aug, 4.6h on 2 Sep, 5.1h on 8 Sep) and high awake time (160 min on 29 Aug, 151 on 3 Sep, 129 on 7 Sep). This, not training, drove the "crashed" sessions.
-- **Still missing:** no Cooper baseline, and no capped/full bleep data point yet this cycle.
+- **Still missing:** no Cooper baseline, and no capped/full bleep data point yet this cycle. Parkrun Sat 19 Sep also missed in the layoff.
 
 ---
 
+## Week 10: 20–26 Sep 2026 (layoff)
+
+**Planned:** Mini bleep Mon 21 · tempo 25' Fri · 14K Sat
+**Actual:** Not done — full week off.
+**Notes:** Part of the ~20-day cessation. Cleared from the live calendar.
+
+## Week 9: 13–19 Sep 2026 (layoff)
+
+**Planned:** Speed 400s Mon 14 · Parkrun 5K Sat 19
+**Actual:** Not done — full week off.
+**Notes:** Part of the ~20-day cessation. Cleared from the live calendar.
+
 ## Week 8: 6–12 Sep 2026
+
+### Saturday, 12 Sep 2026
+**Planned:** Easy 10K
+**Actual:** Not done — start of training cessation.
+**Notes:** No sessions after Fri 11 until the Oct comeback restart.
 
 ### Friday, 11 Sep 2026
 **Planned:** Tempo 20' — 10' easy + 20' tempo @ 5:10-5:20/km + 5' cool

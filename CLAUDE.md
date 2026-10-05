@@ -63,11 +63,10 @@ Regions (`eu`, `us`) map to different base URLs for both APIs. EU tokens only wo
 
 ## Training plan → COROS
 
-- **Single plan file:** `training_plan.html` (browser + COROS sync).
-- **After editing the plan or workout mappings**, push to COROS immediately:
-  ```bash
-  npm run sync:plan
-  # or: .venv/bin/python coros_sync.py sync -y
-  ```
-- **`npm run plan:serve`** serves the plan and **auto-syncs to COROS on every save** (disable with `AUTO_SYNC=0`).
-- Do not wait for the user to ask — sync after plan changes as part of the same task.
+**COROS is the source of truth for the whole plan.** When the user asks for a plan change (run or strength — swap a session, adjust pace, move a test date, etc.), update the COROS calendar directly, and in the *same action* mirror that change into both Google Calendar and `training_plan.html`. Direction of flow is COROS → everything else, not the other way round.
+
+- **COROS**: update directly via `workout_sync/sync.py` (`push_session`, `clear_scheduled_workouts`) / `coros_api.py`.
+- **Google Calendar**: mirror the same change via `workout_sync/google_calendar.py` (`build_calendar_service`, `event_body`, matching `syncKey` = `date:workoutKey`) — create/update/delete just the affected day's event.
+- **`training_plan.html`**: edit the corresponding day-row (day-note + run-cell text) so it stays an accurate **visual summary** of what's actually on COROS. It is not authoritative and nothing should read it to decide what's scheduled — it's for the user to glance at in a browser.
+
+**Do not run the old HTML → COROS/Calendar push scripts** (`npm run sync:plan`, `npm run plan:serve` autosync, `coros-mcp calendar-sync`) to make plan changes — they do a full resync *from* the HTML, which is backwards from the current flow and will overwrite manual COROS/Calendar edits with stale HTML content. `scripts/sync-plan.sh` no longer calls `calendar-sync` for this reason (removed 2026-09-21). These scripts still exist for historical/bulk-import reasons but are not part of the normal "make a plan change" workflow anymore.

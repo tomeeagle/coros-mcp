@@ -163,7 +163,8 @@ def test_parse_full_plan():
     assert plan.schedule["20260919"] == ["parkrun_5k"]  # Cooper dropped — Shropshire uses bleep test
     assert plan.schedule["20260914"] == ["shuttle_pace"]
     assert plan.schedule["20260921"] == ["bleep_partial"]  # cap ~7.5
-    assert plan.schedule["20261005"] == ["bleep_practice"]  # first full diagnostic
+    assert "20261005" not in plan.schedule  # first full MSFT moved off Mon 5
+    assert plan.schedule["20261012"] == ["bleep_practice"]  # first full diagnostic
     assert plan.schedule["20261026"] == ["bleep_practice"]  # second full
 
     # Tue 21 skipped (rest); Wed still easy default

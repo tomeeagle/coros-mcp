@@ -156,7 +156,7 @@ def export_calendar_json(
         "timezone": "Europe/London",
         "structure": (
             "Staffs + NFRS bleep 8.8 · Avon Cooper 1.5 mile · Mon capped bleep/speed · "
-            "Fri tempo · Cooper Sat 22 Aug + Sat 12 Sep · full MSFT Oct 5 + Oct 26"
+            "Fri tempo · Cooper Sat 22 Aug + Sat 12 Sep · full MSFT Oct 12 + Oct 26"
         ),
         "weeks": blocks,
         "googleCalendar": {

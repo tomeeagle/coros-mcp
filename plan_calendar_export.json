@@ -3,7 +3,7 @@
   "blockStart": "2026-07-19",
   "blockEnd": "2026-10-31",
   "timezone": "Europe/London",
-  "structure": "Staffs + NFRS bleep 8.8 · Avon Cooper 1.5 mile · Mon capped bleep/speed · Fri tempo · Cooper Sat 22 Aug + Sat 12 Sep · full MSFT Oct 5 + Oct 26",
+  "structure": "Staffs + NFRS bleep 8.8 · Avon Cooper 1.5 mile · Mon capped bleep/speed · Fri tempo · Cooper Sat 22 Aug + Sat 12 Sep · full MSFT Oct 12 + Oct 26",
   "weeks": [
     {
       "title": "Week 1",
@@ -900,17 +900,11 @@
         {
           "date": "2026-09-19",
           "dayLabel": "Sat 19",
-          "note": "Parkrun 5K — progress tracker. Warm up 10–15 min + 2–3 strides · race it, log the time",
-          "runPlan": "Parkrun 5K — time trial",
+          "note": "Missed — cold/run-down + wine the night before. Parkrun test moved to Sat 26.",
+          "runPlan": "Rest",
           "foodWeight": "Weigh in after. Fuel well.",
-          "workouts": [
-            {
-              "key": "parkrun_5k",
-              "name": "Parkrun 5K — time trial",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         }
       ]
     },
@@ -932,16 +926,10 @@
         {
           "date": "2026-09-21",
           "dayLabel": "Mon 21",
-          "note": "Staffs apps-open window — mini bleep from L5,  stop at ~7.5 . Still not a full test. Log level · Spotify MSFT · full walks between early levels",
-          "runPlan": "Mini bleep — start L5 → fail",
+          "note": "Mini bleep swapped out — still run-down (tired_rate at new weekly lows despite good sleep). 30' open easy, throw in a few efforts only if it feels good. Mini bleep rescheduled once trend actually turns.",
+          "runPlan": "Easy run — optional efforts",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "bleep_partial",
-              "name": "Mini bleep — start L5 → fail",
-              "kind": "run"
-            }
-          ],
+          "workouts": [],
           "rest": false
         },
         {
@@ -956,22 +944,16 @@
         {
           "date": "2026-09-23",
           "dayLabel": "Wed 23",
-          "note": "Optional PFTC — skip if tired",
-          "runPlan": "Run club 8K easy",
+          "note": "Skipped — underslept and drained. Rest day; run club dropped from COROS.",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-09-24",
           "dayLabel": "Thu 24",
-          "note": "💪 Strength — Carry (WK4) · farmers / suitcase / front-rack · JRTs · NFRS carries",
+          "note": "💪 Strength — Carry & Grip, low-friction 1 lap (temporary, while recovery lags) · farmers / deadlift / shrug / step-up / side bend · full WK4 circuit resumes once tired_rate trend turns",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
@@ -986,32 +968,29 @@
         {
           "date": "2026-09-25",
           "dayLabel": "Fri 25",
-          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km, comfortably hard) + 5' cool = ~40' total · threshold work for bleep",
-          "runPlan": "Tempo 25' — threshold",
+          "note": "Tempo dropped — day 11 of cold, still feeling sick. Rest or short walk.",
+          "runPlan": "Rest",
           "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "tempo_25",
-              "name": "Tempo 25' — threshold",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-09-26",
           "dayLabel": "Sat 26",
-          "note": "Trail long run — hilly route, ~258m gain over ~14K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm",
-          "runPlan": "Long run 14K easy",
+          "note": "Rest — still viral/post-viral symptoms. Parkrun test shelved; returns first weekend symptom-free.",
+          "runPlan": "Rest",
           "foodWeight": "Fuel well after.",
-          "workouts": [
-            {
-              "key": "long_14k",
-              "name": "Long Run 14K easy",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-09-27",
+          "dayLabel": "Sun 27",
+          "note": "Rest — still viral/post-viral, not done. Long run 14K stays shelved until symptom-free.",
+          "runPlan": "Rest",
+          "foodWeight": "Fuel well after.",
+          "workouts": [],
+          "rest": true
         }
       ]
     },
@@ -1033,16 +1012,10 @@
         {
           "date": "2026-10-05",
           "dayLabel": "Mon 5",
-          "note": "First full MSFT — Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November. Easy day before if legs heavy",
-          "runPlan": "Bleep practice — full test (L8=5:00/km)",
+          "note": "Full MSFT swapped for an easy hill run — not ready for a structured test yet. First full MSFT moved to Mon 12.",
+          "runPlan": "Easy hill run (done)",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "bleep_practice",
-              "name": "Bleep practice — full test (L8=5:00/km)",
-              "kind": "run"
-            }
-          ],
+          "workouts": [],
           "rest": false
         },
         {
@@ -1113,6 +1086,83 @@
             }
           ],
           "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 13",
+      "dates": "11–17 Oct",
+      "phase": "NFRS / Staffs / Shropshire",
+      "weekNumber": 13,
+      "days": [
+        {
+          "date": "2026-10-11",
+          "dayLabel": "Sun 11",
+          "note": "Easy day before the test",
+          "runPlan": "Rest",
+          "foodWeight": "Weigh in. No pudding.",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-12",
+          "dayLabel": "Mon 12",
+          "note": "First full MSFT — moved from Mon 5. Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November",
+          "runPlan": "Bleep practice — full test (L8=5:00/km)",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "bleep_practice",
+              "name": "Bleep practice — full test (L8=5:00/km)",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-13",
+          "dayLabel": "Tue 13",
+          "note": "Rest — dropped to 4 runs/week",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-14",
+          "dayLabel": "Wed 14",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-15",
+          "dayLabel": "Thu 15",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-16",
+          "dayLabel": "Fri 16",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-17",
+          "dayLabel": "Sat 17",
+          "note": "—",
+          "runPlan": "Rest",
+          "foodWeight": "Fuel well after.",
+          "workouts": [],
+          "rest": true
         }
       ]
     },
@@ -1970,59 +2020,8 @@
         "category": "run"
       },
       {
-        "summary": "Parkrun 5K — time trial",
-        "description": "Parkrun 5K — progress tracker. Warm up 10–15 min + 2–3 strides · race it, log the time\nFood: Weigh in after. Fuel well.\nPlan: Parkrun 5K — time trial",
-        "start": {
-          "date": "2026-09-19",
-          "endDate": "2026-09-20"
-        },
-        "end": {
-          "date": "2026-09-19",
-          "endDate": "2026-09-20"
-        },
-        "date": "2026-09-19",
-        "dayLabel": "Sat 19",
-        "weekTitle": "Week 9",
-        "workoutKey": "parkrun_5k",
-        "category": "run"
-      },
-      {
-        "summary": "Mini bleep — start L5 → fail",
-        "description": "Staffs apps-open window — mini bleep from L5,  stop at ~7.5 . Still not a full test. Log level · Spotify MSFT · full walks between early levels\nFood: Box portions\nPlan: Mini bleep — start L5 → fail",
-        "start": {
-          "date": "2026-09-21",
-          "endDate": "2026-09-22"
-        },
-        "end": {
-          "date": "2026-09-21",
-          "endDate": "2026-09-22"
-        },
-        "date": "2026-09-21",
-        "dayLabel": "Mon 21",
-        "weekTitle": "Week 10",
-        "workoutKey": "bleep_partial",
-        "category": "run"
-      },
-      {
-        "summary": "Run club — easy 8K · PFTC optional",
-        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
-        "start": {
-          "date": "2026-09-23",
-          "endDate": "2026-09-24"
-        },
-        "end": {
-          "date": "2026-09-23",
-          "endDate": "2026-09-24"
-        },
-        "date": "2026-09-23",
-        "dayLabel": "Wed 23",
-        "weekTitle": "Week 10",
-        "workoutKey": "run_club_8k",
-        "category": "run"
-      },
-      {
         "summary": "Strength — Carry & Grip (Taper WK4)",
-        "description": "💪 Strength — Carry (WK4) · farmers / suitcase / front-rack · JRTs · NFRS carries\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength — Carry & Grip, low-friction 1 lap (temporary, while recovery lags) · farmers / deadlift / shrug / step-up / side bend · full WK4 circuit resumes once tired_rate trend turns\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-09-24",
           "endDate": "2026-09-25"
@@ -2036,57 +2035,6 @@
         "weekTitle": "Week 10",
         "workoutKey": "strength_carry_wk4",
         "category": "strength"
-      },
-      {
-        "summary": "Tempo 25' — threshold",
-        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km, comfortably hard) + 5' cool = ~40' total · threshold work for bleep\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
-        "start": {
-          "date": "2026-09-25",
-          "endDate": "2026-09-26"
-        },
-        "end": {
-          "date": "2026-09-25",
-          "endDate": "2026-09-26"
-        },
-        "date": "2026-09-25",
-        "dayLabel": "Fri 25",
-        "weekTitle": "Week 10",
-        "workoutKey": "tempo_25",
-        "category": "run"
-      },
-      {
-        "summary": "Long Run 14K easy",
-        "description": "Trail long run — hilly route, ~258m gain over ~14K · easy conversational effort, walk the steep bits · hydrate + electrolytes, extra if warm\nFood: Fuel well after.\nPlan: Long run 14K easy",
-        "start": {
-          "date": "2026-09-26",
-          "endDate": "2026-09-27"
-        },
-        "end": {
-          "date": "2026-09-26",
-          "endDate": "2026-09-27"
-        },
-        "date": "2026-09-26",
-        "dayLabel": "Sat 26",
-        "weekTitle": "Week 10",
-        "workoutKey": "long_14k",
-        "category": "run"
-      },
-      {
-        "summary": "Bleep practice — full test (L8=5:00/km)",
-        "description": "First full MSFT — Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November. Easy day before if legs heavy\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
-        "start": {
-          "date": "2026-10-05",
-          "endDate": "2026-10-06"
-        },
-        "end": {
-          "date": "2026-10-05",
-          "endDate": "2026-10-06"
-        },
-        "date": "2026-10-05",
-        "dayLabel": "Mon 5",
-        "weekTitle": "Week 12",
-        "workoutKey": "bleep_practice",
-        "category": "run"
       },
       {
         "summary": "Run club — easy 8K · PFTC optional",
@@ -2154,6 +2102,23 @@
         "dayLabel": "Sat 10",
         "weekTitle": "Week 12",
         "workoutKey": "long_12k",
+        "category": "run"
+      },
+      {
+        "summary": "Bleep practice — full test (L8=5:00/km)",
+        "description": "First full MSFT — moved from Mon 5. Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
+        "start": {
+          "date": "2026-10-12",
+          "endDate": "2026-10-13"
+        },
+        "end": {
+          "date": "2026-10-12",
+          "endDate": "2026-10-13"
+        },
+        "date": "2026-10-12",
+        "dayLabel": "Mon 12",
+        "weekTitle": "Week 13",
+        "workoutKey": "bleep_practice",
         "category": "run"
       },
       {

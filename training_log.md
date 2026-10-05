@@ -1,7 +1,33 @@
 # Training Log
 
 A record of actual training sessions, how they felt, and any adjustments made.
-Session data pulled from COROS on 9 Sep 2026. On interval days, pace is the moving average including recoveries; HR is the session average.
+Session data pulled from COROS on 9 Sep 2026 (block summary), 28 Sep 2026 (Weeks 9-10), and 5 Oct 2026 (below). On interval days, pace is the moving average including recoveries; HR is the session average.
+
+---
+
+## Week 11-12: 29 Sep – 5 Oct 2026 (easing back in)
+
+- **Running resumed over the weekend** after the 23-28 Sep dead week: Norley Run (Sat 3 Oct, 6.0 km, HR 150), an MTB ride (Sun 4 Oct, 11.5 km, HR 126 — cross-training), and today's easy hill run (Mon 5 Oct, 6.7 km, HR 151, +197m). Two hikes earlier in the week (Tue 29 Sep, Thu 1 Oct) at low HR (~97).
+- **RHR/HRV/tired_rate recovering:** tired_rate -40 on 2 Oct → -22 by 5 Oct; RHR and HRV both more normal by the weekend.
+- **Mon 5 Oct — first full bleep test (MSFT) swapped for an easy hill run instead.** Not ready for a structured max-effort diagnostic yet, even though easy running has resumed. Removed from COROS + Calendar. Rescheduled to **Mon 12 Oct** (usual test day, still before the 26 Oct second full MSFT).
+- **Note:** today's "easy" hill run was HR 151 over 6.7 km with 197m climb — high for "easy," though the hill content explains some of it. Consistent with [[easy-runs-run-too-hard]] — worth sense-checking effort on the next couple of easy days now volume is picking back up.
+
+---
+
+## Weeks 9-10: 13–28 Sep 2026 (viral relapse)
+
+- **Two decent weeks (13-21 Sep), then a relapse.** Easy 10K (13 Sep, HR 143), 400m speed intervals (15 Sep, HR 138), an 8K trail run badged as "run club" (17 Sep, HR 140, load 101), and an easy run with optional efforts (21 Sep, HR 140, load 44) — all completed roughly as planned or close to it.
+- **Parkrun 5K test (Sat 19 Sep) missed** — cold/run-down, moved to Sat 26; then **shelved entirely** on the 26th as the illness continued, and hasn't been rescheduled.
+- **Zero training load from 23 Sep to 28 Sep inclusive** — six straight days, run and strength both. Only activity in that window: two recovery walks (16 Sep, 28 Sep) and one gravel bike ride (22 Sep, HR 114, load 27 — logged as cross-training, not a run substitute).
+- **RHR and tired_rate both trending down** over the back half of the stretch (RHR baseline ~55-57 → 46-50 by 26-28 Sep; tired_rate -7 on 17 Sep → -37 on 27 Sep), consistent with an extended lay-off rather than a single missed day.
+- **Plan adjustments made in `training_plan.html` / COROS / Calendar during this stretch:** Thu 24 Sep strength dropped to a low-friction carry-only session (not done — see below), Sat 26 Easy 4K removed and marked Rest, Sun 27 Easy 5K removed and marked Rest.
+- **28 Sep:** Still symptomatic — no training, walk only (Sheffield Walk, 6.8 km, HR 102). Nothing was scheduled on COROS for today (gap week ahead of the 5 Oct bleep test), so no calendar change needed.
+- **Next decision point: Fri 2 Oct** — whether the 5 Oct first full bleep test goes ahead or the week gets pushed, based on how many symptom-free days there are by then.
+
+### Sunday, 28 Sep – Wednesday, 24 Sep 2026 (illness, day by day)
+**Planned:** Wed 23 Rest · Thu 24 Strength (Carry & Grip, low-friction) · Fri 25 Rest (tempo dropped) · Sat 26 Easy 4K (optional) · Sun 27 Easy 5K · Mon 28 — nothing scheduled
+**Actual:** No training load any day. Walk only on 28 Sep.
+**Notes:** Sat 26 and Sun 27 runs were removed from COROS/Calendar and marked Rest in `training_plan.html` rather than left as missed "optional" sessions. Thu 24 strength (already reduced to a low-friction single-lap carry circuit) also not done.
 
 ---
 

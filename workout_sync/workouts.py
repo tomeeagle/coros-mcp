@@ -817,6 +817,21 @@ WORKOUTS: dict[str, dict[str, Any]] = {
     "long_16k": _distance_run(
         "Long Run 16K easy", 16000, step_name="Easy long run", sport_type=101
     ),
+    "nine_edges_day": _open_run(
+        "9 Edges — big day out (easy, fuel + walk the climbs)", 300, sport_type=101
+    ),
+    "goyt_11k": _distance_run(
+        "Goyt Valley Trail Run 11K — easy", 11000, step_name="Easy trail", sport_type=101
+    ),
+    "rother_10k": _distance_run(
+        "Rother Valley Trail Run 10K — easy", 10000, step_name="Easy trail", sport_type=101
+    ),
+    "mobility_block": {
+        "name": "Mobility — neck / thoracic / hips (~9 min)",
+        "kind": "strength",
+        "strength_preset": "mobility",
+        "circuit_sets": 1,
+    },
     "strength_full_body": {
         "name": "Strength — full body circuit",
         "kind": "strength",

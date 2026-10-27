@@ -121,6 +121,47 @@ STRENGTH_CATALOG: dict[str, dict[str, str]] = {
         "name": "T1078",
         "overview": "sid_strength_squat_jumps",
     },
+    # --- added for job-stiffness support (pull bias + mobility block) ---
+    "dead_bug": {
+        "origin_id": "469654335807209472",
+        "name": "T1243",
+        "overview": "sid_strength_dead_bug",
+    },
+    "bird_dog": {
+        "origin_id": "469654452845068288",
+        "name": "T1249",
+        "overview": "sid_strength_bird_dog_balance",
+    },
+    "prone_y": {
+        "origin_id": "469655003674624000",
+        "name": "T1278",
+        "overview": "sid_strength_prone_ys",
+    },
+    "thoracic_rotation": {
+        "origin_id": "469654431907102720",
+        "name": "T1248",
+        "overview": "sid_strength_thoracic_spine_rotation",
+    },
+    "cat_cow": {
+        "origin_id": "469646932625768448",
+        "name": "T1234",
+        "overview": "sid_strength_cat_cow_stretch",
+    },
+    "glute_bridge_hold": {
+        "origin_id": "469646833841520640",
+        "name": "T1229",
+        "overview": "sid_strength_glute_bridge_hold",
+    },
+    "chest_stretch": {
+        "origin_id": "469654402916073472",
+        "name": "T1247",
+        "overview": "sid_strength_chest_stretch",
+    },
+    "lunge_stretch": {
+        "origin_id": "469654938176372736",
+        "name": "T1274",
+        "overview": "sid_strength_lunge_stretch",
+    },
 }
 
 # target_type: 2 = time (seconds), 3 = reps
@@ -217,12 +258,13 @@ def _lower_circuit(p: dict[str, Any]) -> list[dict[str, Any]]:
         _timed_station("step_up", work_seconds=w * 2, rest_seconds=r, weight_kg=p["light"]),
         _timed_station("calf_raise", work_seconds=w * 2, rest_seconds=r),
         _timed_station("band_lateral_walk", work_seconds=w, rest_seconds=r),
-        _timed_station("plank", work_seconds=w, rest_seconds=ROUND_REST_SECONDS),
+        _timed_station("dead_bug", work_seconds=w, rest_seconds=ROUND_REST_SECONDS),
     ]
 
 
 def _pushpull_circuit(p: dict[str, Any]) -> list[dict[str, Any]]:
-    """One lap — vertical/horizontal press + row + rear-delt + core."""
+    """One lap — 2 push : 4 pull (overhead press kept for the fire-service tests,
+    but the job already loads the shoulders overhead, so pulling leads)."""
     w, r = p["work"], p["rest"]
     return [
         _timed_station("overhead_press", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
@@ -230,7 +272,7 @@ def _pushpull_circuit(p: dict[str, Any]) -> list[dict[str, Any]]:
         _timed_station("dumbbell_row", work_seconds=w, rest_seconds=r, weight_kg=p["heavy"]),
         _timed_station("dumbbell_row", work_seconds=w * 2, rest_seconds=r, weight_kg=p["heavy"]),
         _timed_station("band_face_pull", work_seconds=w, rest_seconds=r),
-        _timed_station("press_ups", work_seconds=w, rest_seconds=r),
+        _timed_station("prone_y", work_seconds=w, rest_seconds=r),
         _timed_station("side_plank", work_seconds=w * 2, rest_seconds=ROUND_REST_SECONDS),
     ]
 
@@ -270,6 +312,24 @@ def _conditioning_circuit(phase: int, p: dict[str, Any]) -> list[dict[str, Any]]
     ]
 
 
+def mobility_circuit() -> list[dict[str, Any]]:
+    """~9 min neck/thoracic/hip mobility block — run mornings and after shift.
+
+    Sided stations (thoracic rotation, hip-flexor lunge stretch) are doubled
+    for L then R in one block, like the row/split-squat stations above.
+    """
+    return [
+        _timed_station("cat_cow", work_seconds=45, rest_seconds=10),
+        _timed_station("thoracic_rotation", work_seconds=60, rest_seconds=10),
+        _timed_station("chest_stretch", work_seconds=45, rest_seconds=10),
+        _timed_station("lunge_stretch", work_seconds=60, rest_seconds=10),
+        _timed_station("glute_bridge_hold", work_seconds=40, rest_seconds=10),
+        _timed_station("bird_dog", work_seconds=60, rest_seconds=10),
+        _timed_station("dead_bug", work_seconds=45, rest_seconds=10),
+        _timed_station("prone_y", work_seconds=40, rest_seconds=0),
+    ]
+
+
 _SESSION_BUILDERS = {
     "lower": lambda phase, p: _lower_circuit(p),
     "pushpull": lambda phase, p: _pushpull_circuit(p),
@@ -281,6 +341,7 @@ _SESSION_BUILDERS = {
 # Legacy wk1..wk5 keys are kept as aliases for the conditioning circuit.
 STRENGTH_PRESETS: dict[str, list[dict[str, Any]]] = {
     "full_body": _circuit(),
+    "mobility": mobility_circuit(),
 }
 for _phase, _p in PHASES.items():
     STRENGTH_PRESETS[f"wk{_phase}"] = _conditioning_circuit(_phase, _p)

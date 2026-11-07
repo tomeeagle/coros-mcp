@@ -1,7 +1,7 @@
 {
   "name": "coros-mcp",
   "private": true,
-  "description": "COROS training plan sync — npm scripts wrap the Python CLI",
+  "description": "COROS training plan sync \u2014 npm scripts wrap the Python CLI",
   "scripts": {
     "sync:setup": "bash scripts/sync-setup.sh",
     "sync:web": "bash scripts/sync-web.sh",
@@ -12,7 +12,10 @@
     "weekly-api": ".venv/bin/coros-mcp weekly-api",
     "coach:dev": "npm --prefix strength-pr-tracker run dev",
     "auth": ".venv/bin/coros-mcp auth",
-    "auth:calendar": ".venv/bin/coros-mcp  calendar-auth --force"
+    "auth:calendar": ".venv/bin/coros-mcp calendar-auth --force",
+    "auth:web": ".venv/bin/coros-mcp auth-web",
+    "auth:mobile": ".venv/bin/coros-mcp auth-mobile",
+    "auth:status": ".venv/bin/coros-mcp auth-status",
+    "auth:clear": ".venv/bin/coros-mcp auth-clear"
   }
 }
-

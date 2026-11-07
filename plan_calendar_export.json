@@ -1,7 +1,7 @@
 {
   "title": "Tom's Plan — 8-week rebuild",
   "blockStart": "2026-07-19",
-  "blockEnd": "2026-10-31",
+  "blockEnd": "2026-11-15",
   "timezone": "Europe/London",
   "structure": "Staffs + NFRS bleep 8.8 · Avon Cooper 1.5 mile · Mon capped bleep/speed · Fri tempo · Cooper Sat 22 Aug + Sat 12 Sep · full MSFT Oct 12 + Oct 26",
   "weeks": [
@@ -1030,62 +1030,38 @@
         {
           "date": "2026-10-07",
           "dayLabel": "Wed 7",
-          "note": "Optional PFTC — skip if tired",
-          "runPlan": "Run club 8K easy",
+          "note": "Run club (PFTC) — skipped, not feeling right",
+          "runPlan": "Skipped",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
-              "kind": "run"
-            }
-          ],
+          "workouts": [],
           "rest": false
         },
         {
           "date": "2026-10-08",
           "dayLabel": "Thu 8",
-          "note": "💪 Strength — Conditioning (WK2) · full-body circuit for time · JRTs · NFRS farmers ~75 m",
-          "runPlan": "Strength only",
+          "note": "Strength — Conditioning (WK2) skipped · chest tight, cough",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_conditioning_wk2",
-              "name": "Strength — Conditioning (Build WK2)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-10-09",
           "dayLabel": "Fri 9",
-          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work",
-          "runPlan": "Tempo 25' — threshold",
+          "note": "Tempo skipped · chest tight, cough — not making it up",
+          "runPlan": "Rest",
           "foodWeight": "Pudding ok tonight",
-          "workouts": [
-            {
-              "key": "tempo_25",
-              "name": "Tempo 25' — threshold",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-10-10",
           "dayLabel": "Sat 10",
-          "note": "Trail long run — easy conversational · walk the steep bits",
-          "runPlan": "Long run 12K easy",
+          "note": "Long run dropped · rest while chest is tight",
+          "runPlan": "Rest",
           "foodWeight": "Fuel well after.",
-          "workouts": [
-            {
-              "key": "long_12k",
-              "name": "Long Run 12K easy",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         }
       ]
     },
@@ -1098,7 +1074,7 @@
         {
           "date": "2026-10-11",
           "dayLabel": "Sun 11",
-          "note": "Easy day before the test",
+          "note": "Rest — only restart easy runs (HR ≤140) once chest is clear and cough gone 2 days",
           "runPlan": "Rest",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [],
@@ -1107,17 +1083,11 @@
         {
           "date": "2026-10-12",
           "dayLabel": "Mon 12",
-          "note": "First full MSFT — moved from Mon 5. Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November",
-          "runPlan": "Bleep practice — full test (L8=5:00/km)",
+          "note": "Full MSFT dropped — chest tight, cough. Moved to Mon 26",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "bleep_practice",
-              "name": "Bleep practice — full test (L8=5:00/km)",
-              "kind": "run"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-10-13",
@@ -1140,27 +1110,116 @@
         {
           "date": "2026-10-15",
           "dayLabel": "Thu 15",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "Calver Run 7.05 km trails, HR 138 (under cap), minor wheeze after — back running",
+          "runPlan": "Easy trails 7K (done)",
           "foodWeight": "Box portions",
           "workouts": [],
-          "rest": true
+          "rest": false
         },
         {
           "date": "2026-10-16",
           "dayLabel": "Fri 16",
-          "note": "—",
+          "note": "💪 Strength — Conditioning (WK2) · redo of missed Thu 8 Oct, easy on the lungs · squat jumps swapped for bicycle crunches",
+          "runPlan": "Strength only",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "strength_conditioning_wk2",
+              "name": "Strength — Conditioning (Build WK2)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-17",
+          "dayLabel": "Sat 17",
+          "note": "Rhyl Firefighter Experience Day 09:00-13:00 — travel, then easy 2:1 walk/jog in the evening",
+          "runPlan": "Walk/jog 2:1",
+          "foodWeight": "Fuel well after.",
+          "workouts": [
+            {
+              "key": "walk_jog_recovery",
+              "name": "Walk/jog recovery — 2:1",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 14",
+      "dates": "18–24 Oct",
+      "phase": "NFRS / Staffs / Shropshire",
+      "weekNumber": 14,
+      "days": [
+        {
+          "date": "2026-10-18",
+          "dayLabel": "Sun 18",
+          "note": "Run Happy RC 09:30 · easy 5K, HR ≤140. Staffs assessment 10:00 clashes — run first, assessment after",
+          "runPlan": "Easy 5K (RC)",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "easy_5k",
+              "name": "Easy 5K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-10-19",
+          "dayLabel": "Mon 19",
+          "note": "Commute day",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
           "rest": true
         },
         {
-          "date": "2026-10-17",
-          "dayLabel": "Sat 17",
-          "note": "—",
+          "date": "2026-10-20",
+          "dayLabel": "Tue 20",
+          "note": "Skipped — too tired after day 2 of the new job. First speed moves to next week",
           "runPlan": "Rest",
-          "foodWeight": "Fuel well after.",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-21",
+          "dayLabel": "Wed 21",
+          "note": "Skipped — Push · Pull strength not done. No more workouts until 9 Edges",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-22",
+          "dayLabel": "Thu 22",
+          "note": "Missed Run Happy RC easy 6K — not made up. Steer deadline 5pm",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-23",
+          "dayLabel": "Fri 23",
+          "note": "Rest before 9 Edges",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-10-24",
+          "dayLabel": "Sat 24",
+          "note": "9 Edges cancelled — off due to the weather. Rest",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
           "workouts": [],
           "rest": true
         }
@@ -1175,76 +1234,70 @@
         {
           "date": "2026-10-25",
           "dayLabel": "Sun 25",
-          "note": "—",
-          "runPlan": "Rest",
+          "note": "9 Edges cancelled (weather) · easy 5K instead, HR ≤140 · Staffs assessment deadline midnight",
+          "runPlan": "Easy 5K",
           "foodWeight": "Weigh in. No pudding.",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "easy_5k",
+              "name": "Easy 5K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-10-26",
           "dayLabel": "Mon 26",
-          "note": "Second full MSFT — Spotify L1→fail · log score. Only now judge proximity to 8.8. Taper if a real Staffs/NFRS date is inside 10 days",
-          "runPlan": "Bleep practice — full test (L8=5:00/km)",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "bleep_practice",
-              "name": "Bleep practice — full test (L8=5:00/km)",
-              "kind": "run"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-10-27",
-          "dayLabel": "Tue 27",
-          "note": "Rest — dropped to 4 runs/week",
+          "note": "Rest — after a 6K Sat and 10.9K Sun",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
           "rest": true
         },
         {
-          "date": "2026-10-28",
-          "dayLabel": "Wed 28",
-          "note": "Optional PFTC — skip if tired",
-          "runPlan": "Run club 8K easy",
+          "date": "2026-10-27",
+          "dayLabel": "Tue 27",
+          "note": "Easy 4K, HR ≤140",
+          "runPlan": "Easy 4K",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "run_club_8k",
-              "name": "Run club — easy 8K",
+              "key": "easy_4k",
+              "name": "Easy 4K",
               "kind": "run"
             }
           ],
           "rest": false
         },
         {
+          "date": "2026-10-28",
+          "dayLabel": "Wed 28",
+          "note": "Rest — missed run club, too tired",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
           "date": "2026-10-29",
           "dayLabel": "Thu 29",
-          "note": "💪 Strength — Lower (WK3) · squat / hinge / single-leg · JRTs · NFRS farmers ~100 m",
-          "runPlan": "Strength only",
+          "note": "Rest — skipped Strength Lower (WK3), too tired",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "strength_lower_wk3",
-              "name": "Strength — Lower · Posterior (Intensity WK3)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
+          "workouts": [],
+          "rest": true
         },
         {
           "date": "2026-10-30",
           "dayLabel": "Fri 30",
-          "note": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work",
-          "runPlan": "Tempo 25' — threshold",
-          "foodWeight": "Pudding ok tonight",
+          "note": "Tempo dropped — 3K shakeout before Goyt",
+          "runPlan": "Easy 3K",
+          "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "tempo_25",
-              "name": "Tempo 25' — threshold",
+              "key": "easy_3k",
+              "name": "Easy 3K",
               "kind": "run"
             }
           ],
@@ -1253,13 +1306,218 @@
         {
           "date": "2026-10-31",
           "dayLabel": "Sat 31",
-          "note": "Trail long run — easy conversational · walk the steep bits",
-          "runPlan": "Long run 14K easy",
+          "note": "Goyt Valley Wild Trail Run 11K, 10:00 · run it easy, walk the climbs",
+          "runPlan": "Trail run 11K easy",
+          "foodWeight": "Fuel well after.",
+          "workouts": [],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 16",
+      "dates": "1–8 Nov",
+      "phase": "NFRS / Staffs / Shropshire",
+      "weekNumber": 16,
+      "days": [
+        {
+          "date": "2026-11-01",
+          "dayLabel": "Sun 1",
+          "note": "Run Happy RC 09:30 · easy 5-6K",
+          "runPlan": "Run club easy 5K",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "run_club_5k",
+              "name": "Run club — easy 5K",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-11-02",
+          "dayLabel": "Mon 2",
+          "note": "Rest before the test",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-11-03",
+          "dayLabel": "Tue 3",
+          "note": "Bleep test removed — lower back flare (pain 5/10 rest). Mobility only",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-11-04",
+          "dayLabel": "Wed 4",
+          "note": "PFTC · come along and walk (no running) · car in for MOT all day",
+          "runPlan": "Walk 20 min",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "walk_easy_20",
+              "name": "Walk — easy 20 min (no running)",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-11-05",
+          "dayLabel": "Thu 5",
+          "note": "Bloods 08:10 · Back settle (~11 min, gentle) — no carries or loading",
+          "runPlan": "Back settle",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-11-06",
+          "dayLabel": "Fri 6",
+          "note": "Rest",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-11-07",
+          "dayLabel": "Sat 7",
+          "note": "Walk 20 min, flat and easy",
+          "runPlan": "Walk 20 min",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "walk_easy_20",
+              "name": "Walk — easy 20 min (no running)",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-11-08",
+          "dayLabel": "Sun 8",
+          "note": "Rother Valley 10K skipped — no running. Walk 20 min",
+          "runPlan": "Walk 20 min",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "walk_easy_20",
+              "name": "Walk — easy 20 min (no running)",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        }
+      ]
+    },
+    {
+      "title": "Week 17",
+      "dates": "9–15 Nov",
+      "phase": "Back — Phase 1",
+      "weekNumber": 17,
+      "days": [
+        {
+          "date": "2026-11-09",
+          "dayLabel": "Mon 9",
+          "note": "Review day. Back settle only — stay in Phase 1 until rest pain is ≤2/10, a walk stays pain-free, and standing up doesn't lock",
+          "runPlan": "Back settle",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-11-10",
+          "dayLabel": "Tue 10",
+          "note": "Rest. The job is the load",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-11-11",
+          "dayLabel": "Wed 11",
+          "note": "PFTC — walk with them, flat, no running",
+          "runPlan": "Walk 20 min",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "walk_easy_20",
+              "name": "Walk — easy 20 min (no running)",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-11-12",
+          "dayLabel": "Thu 12",
+          "note": "Back settle (~11 min). No carries, no loading",
+          "runPlan": "Back settle",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-11-13",
+          "dayLabel": "Fri 13",
+          "note": "Rest",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-11-14",
+          "dayLabel": "Sat 14",
+          "note": "Walk 25 min, flat. Step toward a 30 min pain-free walk — stop if the back grabs",
+          "runPlan": "Walk 25 min",
           "foodWeight": "Fuel well after.",
           "workouts": [
             {
-              "key": "long_14k",
-              "name": "Long Run 14K easy",
+              "key": "walk_easy_25",
+              "name": "Walk — easy 25 min (no running)",
+              "kind": "run"
+            }
+          ],
+          "rest": false
+        },
+        {
+          "date": "2026-11-15",
+          "dayLabel": "Sun 15",
+          "note": "Walk 20 min, flat and easy. No race, no jog",
+          "runPlan": "Walk 20 min",
+          "foodWeight": "Weigh in. No pudding.",
+          "workouts": [
+            {
+              "key": "walk_easy_20",
+              "name": "Walk — easy 20 min (no running)",
               "kind": "run"
             }
           ],
@@ -2037,144 +2295,93 @@
         "category": "strength"
       },
       {
-        "summary": "Run club — easy 8K · PFTC optional",
-        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
-        "start": {
-          "date": "2026-10-07",
-          "endDate": "2026-10-08"
-        },
-        "end": {
-          "date": "2026-10-07",
-          "endDate": "2026-10-08"
-        },
-        "date": "2026-10-07",
-        "dayLabel": "Wed 7",
-        "weekTitle": "Week 12",
-        "workoutKey": "run_club_8k",
-        "category": "run"
-      },
-      {
         "summary": "Strength — Conditioning (Build WK2)",
-        "description": "💪 Strength — Conditioning (WK2) · full-body circuit for time · JRTs · NFRS farmers ~75 m\nFood: Box portions\nPlan: Strength only",
+        "description": "💪 Strength — Conditioning (WK2) · redo of missed Thu 8 Oct, easy on the lungs · squat jumps swapped for bicycle crunches\nFood: Box portions\nPlan: Strength only",
         "start": {
-          "date": "2026-10-08",
-          "endDate": "2026-10-09"
+          "date": "2026-10-16",
+          "endDate": "2026-10-17"
         },
         "end": {
-          "date": "2026-10-08",
-          "endDate": "2026-10-09"
+          "date": "2026-10-16",
+          "endDate": "2026-10-17"
         },
-        "date": "2026-10-08",
-        "dayLabel": "Thu 8",
-        "weekTitle": "Week 12",
+        "date": "2026-10-16",
+        "dayLabel": "Fri 16",
+        "weekTitle": "Week 13",
         "workoutKey": "strength_conditioning_wk2",
         "category": "strength"
       },
       {
-        "summary": "Tempo 25' — threshold",
-        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
+        "summary": "Walk/jog recovery — 2:1",
+        "description": "Rhyl Firefighter Experience Day 09:00-13:00 — travel, then easy 2:1 walk/jog in the evening\nFood: Fuel well after.\nPlan: Walk/jog 2:1",
         "start": {
-          "date": "2026-10-09",
-          "endDate": "2026-10-10"
+          "date": "2026-10-17",
+          "endDate": "2026-10-18"
         },
         "end": {
-          "date": "2026-10-09",
-          "endDate": "2026-10-10"
+          "date": "2026-10-17",
+          "endDate": "2026-10-18"
         },
-        "date": "2026-10-09",
-        "dayLabel": "Fri 9",
-        "weekTitle": "Week 12",
-        "workoutKey": "tempo_25",
-        "category": "run"
-      },
-      {
-        "summary": "Long Run 12K easy",
-        "description": "Trail long run — easy conversational · walk the steep bits\nFood: Fuel well after.\nPlan: Long run 12K easy",
-        "start": {
-          "date": "2026-10-10",
-          "endDate": "2026-10-11"
-        },
-        "end": {
-          "date": "2026-10-10",
-          "endDate": "2026-10-11"
-        },
-        "date": "2026-10-10",
-        "dayLabel": "Sat 10",
-        "weekTitle": "Week 12",
-        "workoutKey": "long_12k",
-        "category": "run"
-      },
-      {
-        "summary": "Bleep practice — full test (L8=5:00/km)",
-        "description": "First full MSFT — moved from Mon 5. Spotify L1→fail · log score · one diagnostic, not a peak. 8.8 is still November\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
-        "start": {
-          "date": "2026-10-12",
-          "endDate": "2026-10-13"
-        },
-        "end": {
-          "date": "2026-10-12",
-          "endDate": "2026-10-13"
-        },
-        "date": "2026-10-12",
-        "dayLabel": "Mon 12",
+        "date": "2026-10-17",
+        "dayLabel": "Sat 17",
         "weekTitle": "Week 13",
-        "workoutKey": "bleep_practice",
+        "workoutKey": "walk_jog_recovery",
         "category": "run"
       },
       {
-        "summary": "Bleep practice — full test (L8=5:00/km)",
-        "description": "Second full MSFT — Spotify L1→fail · log score. Only now judge proximity to 8.8. Taper if a real Staffs/NFRS date is inside 10 days\nFood: Box portions\nPlan: Bleep practice — full test (L8=5:00/km)",
+        "summary": "Easy 5K",
+        "description": "Run Happy RC 09:30 · easy 5K, HR ≤140. Staffs assessment 10:00 clashes — run first, assessment after\nFood: Box portions\nPlan: Easy 5K (RC)",
         "start": {
-          "date": "2026-10-26",
-          "endDate": "2026-10-27"
+          "date": "2026-10-18",
+          "endDate": "2026-10-19"
         },
         "end": {
-          "date": "2026-10-26",
-          "endDate": "2026-10-27"
+          "date": "2026-10-18",
+          "endDate": "2026-10-19"
         },
-        "date": "2026-10-26",
-        "dayLabel": "Mon 26",
-        "weekTitle": "Week 15",
-        "workoutKey": "bleep_practice",
+        "date": "2026-10-18",
+        "dayLabel": "Sun 18",
+        "weekTitle": "Week 14",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Run club — easy 8K · PFTC optional",
-        "description": "Optional PFTC — skip if tired\nFood: Box portions\nPlan: Run club 8K easy",
+        "summary": "Easy 5K",
+        "description": "9 Edges cancelled (weather) · easy 5K instead, HR ≤140 · Staffs assessment deadline midnight\nFood: Weigh in. No pudding.\nPlan: Easy 5K",
         "start": {
-          "date": "2026-10-28",
-          "endDate": "2026-10-29"
+          "date": "2026-10-25",
+          "endDate": "2026-10-26"
         },
         "end": {
-          "date": "2026-10-28",
-          "endDate": "2026-10-29"
+          "date": "2026-10-25",
+          "endDate": "2026-10-26"
         },
-        "date": "2026-10-28",
-        "dayLabel": "Wed 28",
+        "date": "2026-10-25",
+        "dayLabel": "Sun 25",
         "weekTitle": "Week 15",
-        "workoutKey": "run_club_8k",
+        "workoutKey": "easy_5k",
         "category": "run"
       },
       {
-        "summary": "Strength — Lower · Posterior (Intensity WK3)",
-        "description": "💪 Strength — Lower (WK3) · squat / hinge / single-leg · JRTs · NFRS farmers ~100 m\nFood: Box portions\nPlan: Strength only",
+        "summary": "Easy 4K",
+        "description": "Easy 4K, HR ≤140\nFood: Box portions\nPlan: Easy 4K",
         "start": {
-          "date": "2026-10-29",
-          "endDate": "2026-10-30"
+          "date": "2026-10-27",
+          "endDate": "2026-10-28"
         },
         "end": {
-          "date": "2026-10-29",
-          "endDate": "2026-10-30"
+          "date": "2026-10-27",
+          "endDate": "2026-10-28"
         },
-        "date": "2026-10-29",
-        "dayLabel": "Thu 29",
+        "date": "2026-10-27",
+        "dayLabel": "Tue 27",
         "weekTitle": "Week 15",
-        "workoutKey": "strength_lower_wk3",
-        "category": "strength"
+        "workoutKey": "easy_4k",
+        "category": "run"
       },
       {
-        "summary": "Tempo 25' — threshold",
-        "description": "Tempo — 10' easy + 25' tempo (~5:10-5:20/km) + 5' cool = ~40' total · threshold work\nFood: Pudding ok tonight\nPlan: Tempo 25' — threshold",
+        "summary": "Easy 3K",
+        "description": "Tempo dropped — 3K shakeout before Goyt\nFood: Box portions\nPlan: Easy 3K",
         "start": {
           "date": "2026-10-30",
           "endDate": "2026-10-31"
@@ -2186,24 +2393,177 @@
         "date": "2026-10-30",
         "dayLabel": "Fri 30",
         "weekTitle": "Week 15",
-        "workoutKey": "tempo_25",
+        "workoutKey": "easy_3k",
         "category": "run"
       },
       {
-        "summary": "Long Run 14K easy",
-        "description": "Trail long run — easy conversational · walk the steep bits\nFood: Fuel well after.\nPlan: Long run 14K easy",
+        "summary": "Run club — easy 5K",
+        "description": "Run Happy RC 09:30 · easy 5-6K\nFood: Box portions\nPlan: Run club easy 5K",
         "start": {
-          "date": "2026-10-31",
-          "endDate": "2026-11-01"
+          "date": "2026-11-01",
+          "endDate": "2026-11-02"
         },
         "end": {
-          "date": "2026-10-31",
-          "endDate": "2026-11-01"
+          "date": "2026-11-01",
+          "endDate": "2026-11-02"
         },
-        "date": "2026-10-31",
-        "dayLabel": "Sat 31",
-        "weekTitle": "Week 15",
-        "workoutKey": "long_14k",
+        "date": "2026-11-01",
+        "dayLabel": "Sun 1",
+        "weekTitle": "Week 16",
+        "workoutKey": "run_club_5k",
+        "category": "run"
+      },
+      {
+        "summary": "Walk — easy 20 min (no running)",
+        "description": "PFTC · come along and walk (no running) · car in for MOT all day\nFood: Box portions\nPlan: Walk 20 min",
+        "start": {
+          "date": "2026-11-04",
+          "endDate": "2026-11-05"
+        },
+        "end": {
+          "date": "2026-11-04",
+          "endDate": "2026-11-05"
+        },
+        "date": "2026-11-04",
+        "dayLabel": "Wed 4",
+        "weekTitle": "Week 16",
+        "workoutKey": "walk_easy_20",
+        "category": "run"
+      },
+      {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Bloods 08:10 · Back settle (~11 min, gentle) — no carries or loading\nFood: Box portions\nPlan: Back settle",
+        "start": {
+          "date": "2026-11-05",
+          "endDate": "2026-11-06"
+        },
+        "end": {
+          "date": "2026-11-05",
+          "endDate": "2026-11-06"
+        },
+        "date": "2026-11-05",
+        "dayLabel": "Thu 5",
+        "weekTitle": "Week 16",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
+        "summary": "Walk — easy 20 min (no running)",
+        "description": "Walk 20 min, flat and easy\nFood: Box portions\nPlan: Walk 20 min",
+        "start": {
+          "date": "2026-11-07",
+          "endDate": "2026-11-08"
+        },
+        "end": {
+          "date": "2026-11-07",
+          "endDate": "2026-11-08"
+        },
+        "date": "2026-11-07",
+        "dayLabel": "Sat 7",
+        "weekTitle": "Week 16",
+        "workoutKey": "walk_easy_20",
+        "category": "run"
+      },
+      {
+        "summary": "Walk — easy 20 min (no running)",
+        "description": "Rother Valley 10K skipped — no running. Walk 20 min\nFood: Box portions\nPlan: Walk 20 min",
+        "start": {
+          "date": "2026-11-08",
+          "endDate": "2026-11-09"
+        },
+        "end": {
+          "date": "2026-11-08",
+          "endDate": "2026-11-09"
+        },
+        "date": "2026-11-08",
+        "dayLabel": "Sun 8",
+        "weekTitle": "Week 16",
+        "workoutKey": "walk_easy_20",
+        "category": "run"
+      },
+      {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Review day. Back settle only — stay in Phase 1 until rest pain is ≤2/10, a walk stays pain-free, and standing up doesn't lock\nFood: Box portions\nPlan: Back settle",
+        "start": {
+          "date": "2026-11-09",
+          "endDate": "2026-11-10"
+        },
+        "end": {
+          "date": "2026-11-09",
+          "endDate": "2026-11-10"
+        },
+        "date": "2026-11-09",
+        "dayLabel": "Mon 9",
+        "weekTitle": "Week 17",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
+        "summary": "Walk — easy 20 min (no running)",
+        "description": "PFTC — walk with them, flat, no running\nFood: Box portions\nPlan: Walk 20 min",
+        "start": {
+          "date": "2026-11-11",
+          "endDate": "2026-11-12"
+        },
+        "end": {
+          "date": "2026-11-11",
+          "endDate": "2026-11-12"
+        },
+        "date": "2026-11-11",
+        "dayLabel": "Wed 11",
+        "weekTitle": "Week 17",
+        "workoutKey": "walk_easy_20",
+        "category": "run"
+      },
+      {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Back settle (~11 min). No carries, no loading\nFood: Box portions\nPlan: Back settle",
+        "start": {
+          "date": "2026-11-12",
+          "endDate": "2026-11-13"
+        },
+        "end": {
+          "date": "2026-11-12",
+          "endDate": "2026-11-13"
+        },
+        "date": "2026-11-12",
+        "dayLabel": "Thu 12",
+        "weekTitle": "Week 17",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
+        "summary": "Walk — easy 25 min (no running)",
+        "description": "Walk 25 min, flat. Step toward a 30 min pain-free walk — stop if the back grabs\nFood: Fuel well after.\nPlan: Walk 25 min",
+        "start": {
+          "date": "2026-11-14",
+          "endDate": "2026-11-15"
+        },
+        "end": {
+          "date": "2026-11-14",
+          "endDate": "2026-11-15"
+        },
+        "date": "2026-11-14",
+        "dayLabel": "Sat 14",
+        "weekTitle": "Week 17",
+        "workoutKey": "walk_easy_25",
+        "category": "run"
+      },
+      {
+        "summary": "Walk — easy 20 min (no running)",
+        "description": "Walk 20 min, flat and easy. No race, no jog\nFood: Weigh in. No pudding.\nPlan: Walk 20 min",
+        "start": {
+          "date": "2026-11-15",
+          "endDate": "2026-11-16"
+        },
+        "end": {
+          "date": "2026-11-15",
+          "endDate": "2026-11-16"
+        },
+        "date": "2026-11-15",
+        "dayLabel": "Sun 15",
+        "weekTitle": "Week 17",
+        "workoutKey": "walk_easy_20",
         "category": "run"
       }
     ]

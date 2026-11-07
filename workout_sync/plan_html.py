@@ -244,6 +244,14 @@ def _primary_run_key(
         if re.search(pat, text):
             return None, "rest_or_event"
 
+    if re.search(r"back settle", text, re.I):
+        return "back_settle", None
+
+    if re.search(r"\bwalk\s*25\b", text, re.I):
+        return "walk_easy_25", None
+    if re.search(r"\bwalk\s*20\b", text, re.I):
+        return "walk_easy_20", None
+
     if re.search(r"walk.?/?.?jog|walk/jog recovery|walk jog", text, re.I):
         return "walk_jog_recovery", None
 
@@ -345,6 +353,7 @@ def _is_run_workout_key(key: str) -> bool:
             "cooper_",
             "parkrun_",
             "walk_jog_",
+            "walk_easy_",
         ),
     )
 

@@ -102,6 +102,18 @@ def test_map_run_club_and_race():
     ) == ("race_bakewell", None)
 
 
+def test_map_back_phase_walk_and_settle():
+    assert _map_run_to_workout("Walk 20 min", "PFTC walk, no running", "20261111", {}) == (
+        "walk_easy_20",
+        None,
+    )
+    assert _map_run_to_workout("Walk 25 min", "", "20261114", {}) == ("walk_easy_25", None)
+    assert _map_run_to_workout("Back settle", "gentle, no loading", "20261109", {}) == (
+        "back_settle",
+        None,
+    )
+
+
 def test_map_build_8k():
     assert _map_run_to_workout(
         "Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",

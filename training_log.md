@@ -5,6 +5,70 @@ Session data pulled from COROS on 9 Sep 2026 (block summary), 28 Sep 2026 (Weeks
 
 ---
 
+## Week 17: 9–15 Nov 2026 — still Phase 1
+
+**Plan:** No running. Mon 9 and Thu 12 back settle. Wed 11 and Sun 15 walk 20 min. Sat 14 walk 25 min (toward the 30 min pain-free gate). Tue 10 and Fri 13 rest.
+**Why:** Last run was Sun 1 Nov (run club 5K, HR 141). Since the flare, COROS only has mobility on 3–6 Nov — the scheduled walks were not logged. RHR still 59 this morning (usual ~54). HRV is fine (40 vs baseline 35) and load has collapsed, which just means the watch cannot see the job or the back. Pain gate from 2 Nov is still the rule: rest pain ≤2/10, a pain-free walk, standing up doesn't lock. Last night's sleep was 3.7h.
+**Synced:** COROS + Google Calendar for 9–15 Nov only.
+
+---
+
+## Week 16: 2 Nov 2026 — lower back flare (Phase 1)
+
+### Monday, 2 Nov 2026
+**Plan change:** New physical job from 19 Oct (kneeling, stairs, carrying). Lower back pain building ~2 weeks, spasm on 2 Nov, referred testicular ache. Pain 5/10 at rest, 7-8/10 standing from sitting — well outside the 2/10 gate for returning to running.
+**Data:** Load flat (weekly 210 → 184 → 187, ~17-18 km/week, one hilly ~10 km run every weekend). No load jump at 19 Oct in COROS, but COROS cannot see the job. RHR up to 63-65 on 23 and 30 Oct (usual ~54), HRV 26-29 vs baseline 35. Sleep since 19 Oct about 45 min/night shorter (7h40 → 6h55) with sleeping HR up ~3 bpm (57 → 60, 62 last week).
+**Changed on COROS (and Google Calendar):** Removed Tue 3 bleep test, Wed 4 run club 5K, Thu 5 Carry & Grip strength, Sat 7 Easy 4K, Sun 8 Rother Valley 10K. Added 20 min walks Wed 4, Sat 7, Sun 8 and a ~11 min gentle "Back settle" session Thu 5. Daily mobility kept.
+**Next:** Phase 1 until rest pain ≤2/10, 30 min pain-free walk, and standing no longer locks up. Review Mon 9 Nov. Physio/GP advised; stop and seek urgent help for any red flag.
+
+---
+
+## Week 14: 24–25 Oct 2026
+
+### Sunday, 25 Oct 2026
+**Planned:** Easy 5K, HR cap 140 (added after 9 Edges was cancelled for weather)
+**Actual:** Logged as "Easy 5K" — 10.86 km, 100 min (~9:12/km), HR 143, +296 m, load 122.
+**Notes:** Double the planned distance, on hills, and 3 bpm over the cap. Biggest load since the illness — watch the chest and recovery before the Mon 26 Oct MSFT decision.
+
+### Saturday, 24 Oct 2026
+**Planned:** Rest (9 Edges cancelled, weather)
+**Actual:** Bakewell Run — 6.01 km, 40:27 (~6:44/km), HR 143, +63 m, load 62.
+**Notes:** Unplanned, but a sensible easy run. HR 3 over the 140 cap.
+
+---
+
+## Week 13: 6–15 Oct 2026 (chest illness, return-to-running)
+
+- **Chest tightness and a cough from ~Wed 7 Oct.** Watch metrics (HRV/ATI) looked fine and missed it — symptoms were the signal, not the data.
+- **Missed:** Wed 7 run club, Thu 8 strength (Intensity WK2), Fri 9 tempo 25', Sat 10 long 12K, Mon 12 first full bleep test. All removed from COROS + Calendar; `training_plan.html` updated.
+- **First full MSFT moved to Mon 26 Oct**, conditional on a clear chest and a week of easy runs first.
+
+### Thursday, 15 Oct 2026
+**Planned:** Nothing scheduled — self-directed easy trails
+**Actual:** Calver Run — 7.05 km, 63:09 (~8:57/km), HR 138 (under 140 cap), +94 m, load 52.
+**How it felt:** No chest issues during; "very very very minor wheeze after, nothing like last Sunday."
+**Notes:** First run back that stayed under the HR cap. Wheeze much reduced vs 11 Oct — trending the right way. Tue 13 Oct Bamford Hike (4.8 km, HR 108, +293 m, load 28) was also done.
+
+### Sunday, 11 Oct 2026
+**Planned:** Nothing scheduled — self-directed test run
+**Actual:** Derbyshire Run — 4.00 km, 24:04 (~6:01/km), HR 144 (cap 140), +29 m, load 32. Baslow Hike — 5.87 km, HR 85, load 1.
+**How it felt:** "No issue during, but a bit of a wheeze immediately after."
+**Notes:** Numbers were fine (HR 4 over cap). The post-run wheeze means the airway isn't clear — rest ~48h, retest with 10–15 min walk-jog only after 24h symptom-free. GP/pharmacist if wheeze recurs or cough persists.
+
+### Friday, 9 Oct 2026
+**Planned:** Tempo 25'
+**Actual:** Not done — chest tight, cough.
+
+### Thursday, 8 Oct 2026
+**Planned:** Strength Conditioning (WK2)
+**Actual:** Not done — illness.
+
+### Wednesday, 7 Oct 2026
+**Planned:** Run club (PFTC)
+**Actual:** Not done — illness.
+
+---
+
 ## Week 11-12: 29 Sep – 5 Oct 2026 (easing back in)
 
 - **Running resumed over the weekend** after the 23-28 Sep dead week: Norley Run (Sat 3 Oct, 6.0 km, HR 150), an MTB ride (Sun 4 Oct, 11.5 km, HR 126 — cross-training), and today's easy hill run (Mon 5 Oct, 6.7 km, HR 151, +197m). Two hikes earlier in the week (Tue 29 Sep, Thu 1 Oct) at low HR (~97).

@@ -832,6 +832,26 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "strength_preset": "mobility",
         "circuit_sets": 1,
     },
+    "back_settle": {
+        "name": "Back settle — gentle, pain-free (~11 min)",
+        "kind": "strength",
+        "strength_preset": "back_settle",
+        "circuit_sets": 1,
+    },
+    "walk_easy_20": {
+        "name": "Walk — easy 20 min (no running)",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [{"name": "Easy walk", "duration_minutes": 20}],
+    },
+    "walk_easy_25": {
+        "name": "Walk — easy 25 min (no running)",
+        "kind": "run",
+        "sport_type": 100,
+        "intensity_type": 0,
+        "steps": [{"name": "Easy walk", "duration_minutes": 25}],
+    },
     "strength_full_body": {
         "name": "Strength — full body circuit",
         "kind": "strength",

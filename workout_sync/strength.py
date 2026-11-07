@@ -330,6 +330,18 @@ def mobility_circuit() -> list[dict[str, Any]]:
     ]
 
 
+def back_settle_circuit() -> list[dict[str, Any]]:
+    """~11 min gentle, pain-free back settle for the acute phase (no loaded or core-bracing work)."""
+    return [
+        _timed_station("cat_cow", work_seconds=60, rest_seconds=15),
+        _timed_station("thoracic_rotation", work_seconds=60, rest_seconds=15),
+        _timed_station("lunge_stretch", work_seconds=60, rest_seconds=15),
+        _timed_station("glute_bridge_hold", work_seconds=30, rest_seconds=20),
+        _timed_station("glute_bridge_hold", work_seconds=30, rest_seconds=20),
+        _timed_station("cat_cow", work_seconds=60, rest_seconds=0),
+    ]
+
+
 _SESSION_BUILDERS = {
     "lower": lambda phase, p: _lower_circuit(p),
     "pushpull": lambda phase, p: _pushpull_circuit(p),
@@ -342,6 +354,7 @@ _SESSION_BUILDERS = {
 STRENGTH_PRESETS: dict[str, list[dict[str, Any]]] = {
     "full_body": _circuit(),
     "mobility": mobility_circuit(),
+    "back_settle": back_settle_circuit(),
 }
 for _phase, _p in PHASES.items():
     STRENGTH_PRESETS[f"wk{_phase}"] = _conditioning_circuit(_phase, _p)

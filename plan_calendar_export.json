@@ -1433,7 +1433,7 @@
         {
           "date": "2026-11-09",
           "dayLabel": "Mon 9",
-          "note": "Review day. Back settle only — stay in Phase 1 until rest pain is ≤2/10, a walk stays pain-free, and standing up doesn't lock",
+          "note": "Back settle (~11 min). Review day — stay in Phase 1 until rest pain is ≤2/10, a walk stays pain-free, and standing up doesn't lock",
           "runPlan": "Back settle",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1448,19 +1448,30 @@
         {
           "date": "2026-11-10",
           "dayLabel": "Tue 10",
-          "note": "Rest. The job is the load",
-          "runPlan": "Rest",
+          "note": "Back settle (~11 min). No running — the job is the other load",
+          "runPlan": "Back settle",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-11-11",
           "dayLabel": "Wed 11",
-          "note": "PFTC — walk with them, flat, no running",
-          "runPlan": "Walk 20 min",
+          "note": "Back settle (~11 min) · PFTC walk 20 min, flat, no running",
+          "runPlan": "Back settle + Walk 20 min",
           "foodWeight": "Box portions",
           "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            },
             {
               "key": "walk_easy_20",
               "name": "Walk — easy 20 min (no running)",
@@ -1487,19 +1498,30 @@
         {
           "date": "2026-11-13",
           "dayLabel": "Fri 13",
-          "note": "Rest",
-          "runPlan": "Rest",
+          "note": "Back settle (~11 min)",
+          "runPlan": "Back settle",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-11-14",
           "dayLabel": "Sat 14",
-          "note": "Walk 25 min, flat. Step toward a 30 min pain-free walk — stop if the back grabs",
-          "runPlan": "Walk 25 min",
+          "note": "Back settle (~11 min) · walk 25 min, flat. Stop the walk if the back grabs",
+          "runPlan": "Back settle + Walk 25 min",
           "foodWeight": "Fuel well after.",
           "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            },
             {
               "key": "walk_easy_25",
               "name": "Walk — easy 25 min (no running)",
@@ -1511,10 +1533,15 @@
         {
           "date": "2026-11-15",
           "dayLabel": "Sun 15",
-          "note": "Walk 20 min, flat and easy. No race, no jog",
-          "runPlan": "Walk 20 min",
+          "note": "Back settle (~11 min) · walk 20 min, flat and easy. No race, no jog",
+          "runPlan": "Back settle + Walk 20 min",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            },
             {
               "key": "walk_easy_20",
               "name": "Walk — easy 20 min (no running)",
@@ -2483,7 +2510,7 @@
       },
       {
         "summary": "Back settle — gentle, pain-free (~11 min)",
-        "description": "Review day. Back settle only — stay in Phase 1 until rest pain is ≤2/10, a walk stays pain-free, and standing up doesn't lock\nFood: Box portions\nPlan: Back settle",
+        "description": "Back settle (~11 min). Review day — stay in Phase 1 until rest pain is ≤2/10, a walk stays pain-free, and standing up doesn't lock\nFood: Box portions\nPlan: Back settle",
         "start": {
           "date": "2026-11-09",
           "endDate": "2026-11-10"
@@ -2499,8 +2526,42 @@
         "category": "strength"
       },
       {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Back settle (~11 min). No running — the job is the other load\nFood: Box portions\nPlan: Back settle",
+        "start": {
+          "date": "2026-11-10",
+          "endDate": "2026-11-11"
+        },
+        "end": {
+          "date": "2026-11-10",
+          "endDate": "2026-11-11"
+        },
+        "date": "2026-11-10",
+        "dayLabel": "Tue 10",
+        "weekTitle": "Week 17",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Back settle (~11 min) · PFTC walk 20 min, flat, no running\nFood: Box portions\nPlan: Back settle + Walk 20 min",
+        "start": {
+          "date": "2026-11-11",
+          "endDate": "2026-11-12"
+        },
+        "end": {
+          "date": "2026-11-11",
+          "endDate": "2026-11-12"
+        },
+        "date": "2026-11-11",
+        "dayLabel": "Wed 11",
+        "weekTitle": "Week 17",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
         "summary": "Walk — easy 20 min (no running)",
-        "description": "PFTC — walk with them, flat, no running\nFood: Box portions\nPlan: Walk 20 min",
+        "description": "Back settle (~11 min) · PFTC walk 20 min, flat, no running\nFood: Box portions\nPlan: Back settle + Walk 20 min",
         "start": {
           "date": "2026-11-11",
           "endDate": "2026-11-12"
@@ -2533,8 +2594,42 @@
         "category": "strength"
       },
       {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Back settle (~11 min)\nFood: Box portions\nPlan: Back settle",
+        "start": {
+          "date": "2026-11-13",
+          "endDate": "2026-11-14"
+        },
+        "end": {
+          "date": "2026-11-13",
+          "endDate": "2026-11-14"
+        },
+        "date": "2026-11-13",
+        "dayLabel": "Fri 13",
+        "weekTitle": "Week 17",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Back settle (~11 min) · walk 25 min, flat. Stop the walk if the back grabs\nFood: Fuel well after.\nPlan: Back settle + Walk 25 min",
+        "start": {
+          "date": "2026-11-14",
+          "endDate": "2026-11-15"
+        },
+        "end": {
+          "date": "2026-11-14",
+          "endDate": "2026-11-15"
+        },
+        "date": "2026-11-14",
+        "dayLabel": "Sat 14",
+        "weekTitle": "Week 17",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
         "summary": "Walk — easy 25 min (no running)",
-        "description": "Walk 25 min, flat. Step toward a 30 min pain-free walk — stop if the back grabs\nFood: Fuel well after.\nPlan: Walk 25 min",
+        "description": "Back settle (~11 min) · walk 25 min, flat. Stop the walk if the back grabs\nFood: Fuel well after.\nPlan: Back settle + Walk 25 min",
         "start": {
           "date": "2026-11-14",
           "endDate": "2026-11-15"
@@ -2550,8 +2645,25 @@
         "category": "run"
       },
       {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Back settle (~11 min) · walk 20 min, flat and easy. No race, no jog\nFood: Weigh in. No pudding.\nPlan: Back settle + Walk 20 min",
+        "start": {
+          "date": "2026-11-15",
+          "endDate": "2026-11-16"
+        },
+        "end": {
+          "date": "2026-11-15",
+          "endDate": "2026-11-16"
+        },
+        "date": "2026-11-15",
+        "dayLabel": "Sun 15",
+        "weekTitle": "Week 17",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
         "summary": "Walk — easy 20 min (no running)",
-        "description": "Walk 20 min, flat and easy. No race, no jog\nFood: Weigh in. No pudding.\nPlan: Walk 20 min",
+        "description": "Back settle (~11 min) · walk 20 min, flat and easy. No race, no jog\nFood: Weigh in. No pudding.\nPlan: Back settle + Walk 20 min",
         "start": {
           "date": "2026-11-15",
           "endDate": "2026-11-16"

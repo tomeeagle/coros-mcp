@@ -112,6 +112,22 @@ def test_map_back_phase_walk_and_settle():
         "back_settle",
         None,
     )
+    keys, skip = _map_run_to_workouts(
+        "Back settle + Walk 20 min",
+        "PFTC walk, no running",
+        "20261111",
+        {},
+    )
+    assert skip is None
+    assert keys == ["back_settle", "walk_easy_20"]
+    keys, skip = _map_run_to_workouts(
+        "Back settle + Walk 25 min",
+        "",
+        "20261114",
+        {},
+    )
+    assert skip is None
+    assert keys == ["back_settle", "walk_easy_25"]
 
 
 def test_map_build_8k():

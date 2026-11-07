@@ -386,6 +386,13 @@ def _map_run_to_workouts(
         keys.append(primary)
 
     combined = f"{run_text} {note_text}"
+    if re.search(r"back settle", combined, re.I) and "back_settle" not in keys:
+        keys.append("back_settle")
+    if re.search(r"\bwalk\s*25\b", combined, re.I) and "walk_easy_25" not in keys:
+        keys.append("walk_easy_25")
+    elif re.search(r"\bwalk\s*20\b", combined, re.I) and "walk_easy_20" not in keys:
+        keys.append("walk_easy_20")
+
     if re.search(r"bac\s*6pm|bac\s*6\s*pm", combined, re.I) or (
         re.search(r"\bBAC\b", note_text) and "6pm" in note_text.lower()
     ):

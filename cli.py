@@ -1,28 +1,49 @@
 """CLI commands for Coros MCP Server."""
 import asyncio
 import getpass
+import os
 import sys
 import time
+
+from dotenv import load_dotenv
 
 from auth.storage import clear_token, get_token, is_keyring_available
 from coros_api import TOKEN_TTL_MS, get_stored_auth, login, login_mobile, try_auto_login
 
 
 def _prompt_credentials() -> tuple[str, str, str]:
-    """Prompt for email, password, and region. Returns (email, password, region)."""
-    email = input("Email: ").strip()
+    """Return (email, password, region).
+
+    Values come from COROS_EMAIL / COROS_PASSWORD / COROS_REGION (environment or
+    a .env file in the working directory) when set; anything missing is prompted for.
+    """
+    load_dotenv()
+
+    email = os.environ.get("COROS_EMAIL", "").strip()
+    if email:
+        print(f"Email: {email} (from environment)")
+    else:
+        email = input("Email: ").strip()
     if not email:
         print("Error: email is required.")
         sys.exit(1)
 
-    password = getpass.getpass("Password: ")
+    password = os.environ.get("COROS_PASSWORD", "")
+    if password:
+        print("Password: (from environment)")
+    else:
+        password = getpass.getpass("Password: ")
     if not password:
         print("Error: password is required.")
         sys.exit(1)
 
-    print()
-    print("Region options: eu, us, asia")
-    region = input("Region [eu]: ").strip().lower() or "eu"
+    region = os.environ.get("COROS_REGION", "").strip().lower()
+    if region:
+        print(f"Region: {region} (from environment)")
+    else:
+        print()
+        print("Region options: eu, us, asia")
+        region = input("Region [eu]: ").strip().lower() or "eu"
     if region not in ("eu", "us", "asia"):
         print(f"Warning: unknown region '{region}', using it anyway.")
     return email, password, region

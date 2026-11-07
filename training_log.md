@@ -7,7 +7,7 @@ Session data pulled from COROS on 9 Sep 2026 (block summary), 28 Sep 2026 (Weeks
 
 ## Week 17: 9–15 Nov 2026 — still Phase 1
 
-**Plan:** Back settle every day, 9–15 Nov. Walks stay on Wed 11 and Sun 15 (20 min) and Sat 14 (25 min). No running.
+**Plan:** Back settle every day, including Sat 7 and Sun 8. Walks stay on Sat 7, Sun 8, Wed 11, Sat 14 (25 min) and Sun 15. No running.
 **Why:** Last run was Sun 1 Nov (run club 5K, HR 141). Since the flare, COROS only has mobility on 3–6 Nov — the scheduled walks were not logged. RHR still 59 this morning (usual ~54). HRV is fine (40 vs baseline 35) and load has collapsed, which just means the watch cannot see the job or the back. Pain gate from 2 Nov is still the rule: rest pain ≤2/10, a pain-free walk, standing up doesn't lock. Last night's sleep was 3.7h.
 **Synced:** COROS + Google Calendar for 9–15 Nov only.
 

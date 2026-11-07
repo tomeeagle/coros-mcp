@@ -1395,10 +1395,15 @@
         {
           "date": "2026-11-07",
           "dayLabel": "Sat 7",
-          "note": "Walk 20 min, flat and easy",
-          "runPlan": "Walk 20 min",
+          "note": "Back settle (~11 min) · walk 20 min, flat and easy",
+          "runPlan": "Back settle + Walk 20 min",
           "foodWeight": "Box portions",
           "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            },
             {
               "key": "walk_easy_20",
               "name": "Walk — easy 20 min (no running)",
@@ -1410,10 +1415,15 @@
         {
           "date": "2026-11-08",
           "dayLabel": "Sun 8",
-          "note": "Rother Valley 10K skipped — no running. Walk 20 min",
-          "runPlan": "Walk 20 min",
+          "note": "Back settle (~11 min) · Rother Valley skipped, no running. Walk 20 min",
+          "runPlan": "Back settle + Walk 20 min",
           "foodWeight": "Box portions",
           "workouts": [
+            {
+              "key": "back_settle",
+              "name": "Back settle — gentle, pain-free (~11 min)",
+              "kind": "strength"
+            },
             {
               "key": "walk_easy_20",
               "name": "Walk — easy 20 min (no running)",
@@ -2475,8 +2485,25 @@
         "category": "strength"
       },
       {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Back settle (~11 min) · walk 20 min, flat and easy\nFood: Box portions\nPlan: Back settle + Walk 20 min",
+        "start": {
+          "date": "2026-11-07",
+          "endDate": "2026-11-08"
+        },
+        "end": {
+          "date": "2026-11-07",
+          "endDate": "2026-11-08"
+        },
+        "date": "2026-11-07",
+        "dayLabel": "Sat 7",
+        "weekTitle": "Week 16",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
         "summary": "Walk — easy 20 min (no running)",
-        "description": "Walk 20 min, flat and easy\nFood: Box portions\nPlan: Walk 20 min",
+        "description": "Back settle (~11 min) · walk 20 min, flat and easy\nFood: Box portions\nPlan: Back settle + Walk 20 min",
         "start": {
           "date": "2026-11-07",
           "endDate": "2026-11-08"
@@ -2492,8 +2519,25 @@
         "category": "run"
       },
       {
+        "summary": "Back settle — gentle, pain-free (~11 min)",
+        "description": "Back settle (~11 min) · Rother Valley skipped, no running. Walk 20 min\nFood: Box portions\nPlan: Back settle + Walk 20 min",
+        "start": {
+          "date": "2026-11-08",
+          "endDate": "2026-11-09"
+        },
+        "end": {
+          "date": "2026-11-08",
+          "endDate": "2026-11-09"
+        },
+        "date": "2026-11-08",
+        "dayLabel": "Sun 8",
+        "weekTitle": "Week 16",
+        "workoutKey": "back_settle",
+        "category": "strength"
+      },
+      {
         "summary": "Walk — easy 20 min (no running)",
-        "description": "Rother Valley 10K skipped — no running. Walk 20 min\nFood: Box portions\nPlan: Walk 20 min",
+        "description": "Back settle (~11 min) · Rother Valley skipped, no running. Walk 20 min\nFood: Box portions\nPlan: Back settle + Walk 20 min",
         "start": {
           "date": "2026-11-08",
           "endDate": "2026-11-09"

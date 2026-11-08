@@ -239,6 +239,17 @@ Session data pulled from COROS on 9 Sep 2026 (block summary), 28 Sep 2026 (Weeks
 **Actual:** Longshaw Run — 6.00 km @ 6:37/km, HR 147, +74 m, load 63
 **Notes:** RHR 60 (baseline ~48), HRV 30 — clearly still unwell. Ran anyway.
 
+### Saturday, 7 Nov 2026
+**Planned:** Walk 20 min + back settle (back-flare Phase 1, no running)
+**Actual:** Ran instead — 7.77 km, HR 136, +148 m, load 77 (recorded under the "Walk — easy 20 min" workout, which had been pushed to COROS as a run)
+**How it felt:** Back felt good.
+**Notes:** Progression finishing ~5:05–5:14/km. Phase 1 held pending Mon 9 Nov reassessment.
+
+### Sunday, 8 Nov 2026
+**Planned:** Walk 20 min + back settle (Rother Valley skipped, no running)
+**Actual:** Derbyshire Run — 16.01 km in 2h56 (incl. stops), HR 136, +645 m, load 162
+**Notes:** Second unplanned run in two days, and a long hilly one while in back-flare Phase 1. Check how the back is Mon 9 Nov — flares can show 24–48h later.
+
 ---
 
 ## Format for Future Entries

@@ -1437,16 +1437,21 @@
     {
       "title": "Week 17",
       "dates": "9–15 Nov",
-      "phase": "Back — Phase 1",
+      "phase": "Back — return to run",
       "weekNumber": 17,
       "days": [
         {
           "date": "2026-11-09",
           "dayLabel": "Mon 9",
-          "note": "Back settle (~11 min). Review day — stay in Phase 1 until rest pain is ≤2/10, a walk stays pain-free, and standing up doesn't lock",
-          "runPlan": "Back settle",
+          "note": "Back settle (~11 min) · easy 5K, flat, HR ≤140. Back fine after Sat/Sun runs — back to running",
+          "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
+            {
+              "key": "easy_5k",
+              "name": "Easy 5K",
+              "kind": "run"
+            },
             {
               "key": "back_settle",
               "name": "Back settle — gentle, pain-free (~11 min)",
@@ -1473,19 +1478,19 @@
         {
           "date": "2026-11-11",
           "dayLabel": "Wed 11",
-          "note": "Back settle (~11 min) · PFTC walk 20 min, flat, no running",
-          "runPlan": "Back settle + Walk 20 min",
+          "note": "Back settle (~11 min) · PFTC · easy 6K, keep it flat and easy",
+          "runPlan": "Run club easy 6K",
           "foodWeight": "Box portions",
           "workouts": [
+            {
+              "key": "run_club_6k",
+              "name": "Run club — easy 6K",
+              "kind": "run"
+            },
             {
               "key": "back_settle",
               "name": "Back settle — gentle, pain-free (~11 min)",
               "kind": "strength"
-            },
-            {
-              "key": "walk_easy_20",
-              "name": "Walk — easy 20 min (no running)",
-              "kind": "run"
             }
           ],
           "rest": false
@@ -1523,19 +1528,19 @@
         {
           "date": "2026-11-14",
           "dayLabel": "Sat 14",
-          "note": "Back settle (~11 min) · walk 25 min, flat. Stop the walk if the back grabs",
-          "runPlan": "Back settle + Walk 25 min",
+          "note": "Back settle (~11 min) · easy 5K, flat. Stop if the back grabs",
+          "runPlan": "Easy 5K",
           "foodWeight": "Fuel well after.",
           "workouts": [
+            {
+              "key": "easy_5k",
+              "name": "Easy 5K",
+              "kind": "run"
+            },
             {
               "key": "back_settle",
               "name": "Back settle — gentle, pain-free (~11 min)",
               "kind": "strength"
-            },
-            {
-              "key": "walk_easy_25",
-              "name": "Walk — easy 25 min (no running)",
-              "kind": "run"
             }
           ],
           "rest": false
@@ -1543,19 +1548,19 @@
         {
           "date": "2026-11-15",
           "dayLabel": "Sun 15",
-          "note": "Back settle (~11 min) · walk 20 min, flat and easy. No race, no jog",
-          "runPlan": "Back settle + Walk 20 min",
+          "note": "Back settle (~11 min) · long run 10K easy, mostly flat (well under today's 16K)",
+          "runPlan": "Long run 10K",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [
+            {
+              "key": "long_10k",
+              "name": "Long Run 10K easy",
+              "kind": "run"
+            },
             {
               "key": "back_settle",
               "name": "Back settle — gentle, pain-free (~11 min)",
               "kind": "strength"
-            },
-            {
-              "key": "walk_easy_20",
-              "name": "Walk — easy 20 min (no running)",
-              "kind": "run"
             }
           ],
           "rest": false
@@ -2553,8 +2558,25 @@
         "category": "run"
       },
       {
+        "summary": "Easy 5K",
+        "description": "Back settle (~11 min) · easy 5K, flat, HR ≤140. Back fine after Sat/Sun runs — back to running\nFood: Box portions\nPlan: Easy 5K",
+        "start": {
+          "date": "2026-11-09",
+          "endDate": "2026-11-10"
+        },
+        "end": {
+          "date": "2026-11-09",
+          "endDate": "2026-11-10"
+        },
+        "date": "2026-11-09",
+        "dayLabel": "Mon 9",
+        "weekTitle": "Week 17",
+        "workoutKey": "easy_5k",
+        "category": "run"
+      },
+      {
         "summary": "Back settle — gentle, pain-free (~11 min)",
-        "description": "Back settle (~11 min). Review day — stay in Phase 1 until rest pain is ≤2/10, a walk stays pain-free, and standing up doesn't lock\nFood: Box portions\nPlan: Back settle",
+        "description": "Back settle (~11 min) · easy 5K, flat, HR ≤140. Back fine after Sat/Sun runs — back to running\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-11-09",
           "endDate": "2026-11-10"
@@ -2587,8 +2609,25 @@
         "category": "strength"
       },
       {
+        "summary": "Run club — easy 6K",
+        "description": "Back settle (~11 min) · PFTC · easy 6K, keep it flat and easy\nFood: Box portions\nPlan: Run club easy 6K",
+        "start": {
+          "date": "2026-11-11",
+          "endDate": "2026-11-12"
+        },
+        "end": {
+          "date": "2026-11-11",
+          "endDate": "2026-11-12"
+        },
+        "date": "2026-11-11",
+        "dayLabel": "Wed 11",
+        "weekTitle": "Week 17",
+        "workoutKey": "run_club_6k",
+        "category": "run"
+      },
+      {
         "summary": "Back settle — gentle, pain-free (~11 min)",
-        "description": "Back settle (~11 min) · PFTC walk 20 min, flat, no running\nFood: Box portions\nPlan: Back settle + Walk 20 min",
+        "description": "Back settle (~11 min) · PFTC · easy 6K, keep it flat and easy\nFood: Box portions\nPlan: Run club easy 6K",
         "start": {
           "date": "2026-11-11",
           "endDate": "2026-11-12"
@@ -2602,23 +2641,6 @@
         "weekTitle": "Week 17",
         "workoutKey": "back_settle",
         "category": "strength"
-      },
-      {
-        "summary": "Walk — easy 20 min (no running)",
-        "description": "Back settle (~11 min) · PFTC walk 20 min, flat, no running\nFood: Box portions\nPlan: Back settle + Walk 20 min",
-        "start": {
-          "date": "2026-11-11",
-          "endDate": "2026-11-12"
-        },
-        "end": {
-          "date": "2026-11-11",
-          "endDate": "2026-11-12"
-        },
-        "date": "2026-11-11",
-        "dayLabel": "Wed 11",
-        "weekTitle": "Week 17",
-        "workoutKey": "walk_easy_20",
-        "category": "run"
       },
       {
         "summary": "Back settle — gentle, pain-free (~11 min)",
@@ -2655,8 +2677,25 @@
         "category": "strength"
       },
       {
+        "summary": "Easy 5K",
+        "description": "Back settle (~11 min) · easy 5K, flat. Stop if the back grabs\nFood: Fuel well after.\nPlan: Easy 5K",
+        "start": {
+          "date": "2026-11-14",
+          "endDate": "2026-11-15"
+        },
+        "end": {
+          "date": "2026-11-14",
+          "endDate": "2026-11-15"
+        },
+        "date": "2026-11-14",
+        "dayLabel": "Sat 14",
+        "weekTitle": "Week 17",
+        "workoutKey": "easy_5k",
+        "category": "run"
+      },
+      {
         "summary": "Back settle — gentle, pain-free (~11 min)",
-        "description": "Back settle (~11 min) · walk 25 min, flat. Stop the walk if the back grabs\nFood: Fuel well after.\nPlan: Back settle + Walk 25 min",
+        "description": "Back settle (~11 min) · easy 5K, flat. Stop if the back grabs\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-11-14",
           "endDate": "2026-11-15"
@@ -2672,25 +2711,25 @@
         "category": "strength"
       },
       {
-        "summary": "Walk — easy 25 min (no running)",
-        "description": "Back settle (~11 min) · walk 25 min, flat. Stop the walk if the back grabs\nFood: Fuel well after.\nPlan: Back settle + Walk 25 min",
+        "summary": "Long Run 10K easy",
+        "description": "Back settle (~11 min) · long run 10K easy, mostly flat (well under today's 16K)\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
         "start": {
-          "date": "2026-11-14",
-          "endDate": "2026-11-15"
+          "date": "2026-11-15",
+          "endDate": "2026-11-16"
         },
         "end": {
-          "date": "2026-11-14",
-          "endDate": "2026-11-15"
+          "date": "2026-11-15",
+          "endDate": "2026-11-16"
         },
-        "date": "2026-11-14",
-        "dayLabel": "Sat 14",
+        "date": "2026-11-15",
+        "dayLabel": "Sun 15",
         "weekTitle": "Week 17",
-        "workoutKey": "walk_easy_25",
+        "workoutKey": "long_10k",
         "category": "run"
       },
       {
         "summary": "Back settle — gentle, pain-free (~11 min)",
-        "description": "Back settle (~11 min) · walk 20 min, flat and easy. No race, no jog\nFood: Weigh in. No pudding.\nPlan: Back settle + Walk 20 min",
+        "description": "Back settle (~11 min) · long run 10K easy, mostly flat (well under today's 16K)\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
         "start": {
           "date": "2026-11-15",
           "endDate": "2026-11-16"
@@ -2704,23 +2743,6 @@
         "weekTitle": "Week 17",
         "workoutKey": "back_settle",
         "category": "strength"
-      },
-      {
-        "summary": "Walk — easy 20 min (no running)",
-        "description": "Back settle (~11 min) · walk 20 min, flat and easy. No race, no jog\nFood: Weigh in. No pudding.\nPlan: Back settle + Walk 20 min",
-        "start": {
-          "date": "2026-11-15",
-          "endDate": "2026-11-16"
-        },
-        "end": {
-          "date": "2026-11-15",
-          "endDate": "2026-11-16"
-        },
-        "date": "2026-11-15",
-        "dayLabel": "Sun 15",
-        "weekTitle": "Week 17",
-        "workoutKey": "walk_easy_20",
-        "category": "run"
       }
     ]
   }

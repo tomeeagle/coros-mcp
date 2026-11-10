@@ -5,6 +5,19 @@ Session data pulled from COROS on 9 Sep 2026 (block summary), 28 Sep 2026 (Weeks
 
 ---
 
+## 10 Nov 2026 — back rebuild, then a keep session
+
+**Plan:** From today the daily settle becomes a 10-minute rebuild, then eases into a regular session.
+- **This week (Tue 10–Sun 15):** Back rebuild 1 every day. Short mobility, then two easy rounds of a two-foot bridge, dead bug and bird dog, finish with a prone Y.
+- **16–22 Nov:** Back rebuild 2 on Mon, Wed, Fri and Sun. Bridge goes to one leg, clamshell comes in. A day off in between.
+- **23–29 Nov:** Back rebuild 3, same four days, plus a short prone cobra.
+- **From 30 Nov:** Back keep on Tue, Thu and Sat. That is the maintenance workout.
+Easy runs stay as they are this week: flat, no hills, no loaded strength. Stop a station if the pain comes back, or if it is still worse two hours later.
+**Why:** NHS and NICE both say stay active and build exercise up, rather than rest it. NHS Inform starts with small doses and 20–30 second stretches. The Wrightington lower-back leaflet does the double-leg bridge before the single-leg one, 3–4 days a week once it is strength work. NHS Dynamic Health uses the bird dog and the Y lift, and a rest day between. A plain side plank is not in the watch list as a simple hold, so the side-glute step is a clamshell.
+**Synced:** COROS + Google Calendar, 10 Nov–13 Dec.
+
+---
+
 ## Week 17: 9–15 Nov 2026 — still Phase 1
 
 **Plan:** Back settle every day, including Sat 7 and Sun 8. Walks stay on Sat 7, Sun 8, Wed 11, Sat 14 (25 min) and Sun 15. No running.

@@ -838,6 +838,30 @@ WORKOUTS: dict[str, dict[str, Any]] = {
         "strength_preset": "back_settle",
         "circuit_sets": 1,
     },
+    "back_rebuild_1": {
+        "name": "Back rebuild 1 — move and switch on (10 min)",
+        "kind": "strength",
+        "strength_preset": "back_rebuild_1",
+        "circuit_sets": 1,
+    },
+    "back_rebuild_2": {
+        "name": "Back rebuild 2 — one-leg bridge (10 min)",
+        "kind": "strength",
+        "strength_preset": "back_rebuild_2",
+        "circuit_sets": 1,
+    },
+    "back_rebuild_3": {
+        "name": "Back rebuild 3 — hold and cobra (10 min)",
+        "kind": "strength",
+        "strength_preset": "back_rebuild_3",
+        "circuit_sets": 1,
+    },
+    "back_keep": {
+        "name": "Back keep — maintenance (10 min)",
+        "kind": "strength",
+        "strength_preset": "back_keep",
+        "circuit_sets": 1,
+    },
     "walk_easy_20": {
         "name": "Walk — easy 20 min (no running)",
         "kind": "run",

@@ -188,6 +188,26 @@ def _bac_key_from_text(text: str) -> str | None:
     return None
 
 
+def _back_workout_key(text: str) -> str | None:
+    """Map a back-session label to its workout key.
+
+    Rebuild 1 is the daily settling week. Rebuild 2 and 3 add load week by week.
+    Back keep is the three-day maintenance session. "Back settle" stays the old
+    acute-phase session so earlier weeks do not change.
+    """
+    if re.search(r"back keep", text, re.I):
+        return "back_keep"
+    if re.search(r"back rebuild\s*3", text, re.I):
+        return "back_rebuild_3"
+    if re.search(r"back rebuild\s*2", text, re.I):
+        return "back_rebuild_2"
+    if re.search(r"back rebuild\s*1", text, re.I):
+        return "back_rebuild_1"
+    if re.search(r"back settle", text, re.I):
+        return "back_settle"
+    return None
+
+
 def _primary_run_key(
     run_text: str,
     note_text: str,
@@ -244,8 +264,9 @@ def _primary_run_key(
         if re.search(pat, text):
             return None, "rest_or_event"
 
-    if re.search(r"back settle", text, re.I):
-        return "back_settle", None
+    back = _back_workout_key(text)
+    if back:
+        return back, None
 
     if re.search(r"\bwalk\s*25\b", text, re.I):
         return "walk_easy_25", None
@@ -386,8 +407,9 @@ def _map_run_to_workouts(
         keys.append(primary)
 
     combined = f"{run_text} {note_text}"
-    if re.search(r"back settle", combined, re.I) and "back_settle" not in keys:
-        keys.append("back_settle")
+    back = _back_workout_key(combined)
+    if back and back not in keys:
+        keys.append(back)
     if re.search(r"\bwalk\s*25\b", combined, re.I) and "walk_easy_25" not in keys:
         keys.append("walk_easy_25")
     elif re.search(r"\bwalk\s*20\b", combined, re.I) and "walk_easy_20" not in keys:

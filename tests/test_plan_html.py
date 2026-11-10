@@ -130,6 +130,34 @@ def test_map_back_phase_walk_and_settle():
     assert keys == ["back_settle", "walk_easy_25"]
 
 
+def test_map_back_rebuild_phases():
+    assert _map_run_to_workout("Back rebuild 1", "", "20261110", {}) == (
+        "back_rebuild_1",
+        None,
+    )
+    assert _map_run_to_workout("Back rebuild 2", "", "20261120", {}) == (
+        "back_rebuild_2",
+        None,
+    )
+    assert _map_run_to_workout("Back keep", "", "20261201", {}) == ("back_keep", None)
+    keys, skip = _map_run_to_workouts(
+        "Easy 5K",
+        "Back rebuild 2 (~10 min) · easy 5K, flat",
+        "20261116",
+        {},
+    )
+    assert skip is None
+    assert keys == ["easy_5k", "back_rebuild_2"]
+    keys, skip = _map_run_to_workouts(
+        "Easy 5K",
+        "Back keep (~10 min) · easy 5K, flat",
+        "20261205",
+        {},
+    )
+    assert skip is None
+    assert keys == ["easy_5k", "back_keep"]
+
+
 def test_map_build_8k():
     assert _map_run_to_workout(
         "Build 8K — 5K easy / 1K moderate / 1K hard / 1K push",

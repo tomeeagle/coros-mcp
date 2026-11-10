@@ -162,6 +162,21 @@ STRENGTH_CATALOG: dict[str, dict[str, str]] = {
         "name": "T1274",
         "overview": "sid_strength_lunge_stretch",
     },
+    "single_leg_bridge": {
+        "origin_id": "426801473612070912",
+        "name": "T1160",
+        "overview": "sid_strength_single_leg_bridge",
+    },
+    "clamshell": {
+        "origin_id": "469656606502731776",
+        "name": "T1317",
+        "overview": "sid_strength_clamshell",
+    },
+    "prone_cobra": {
+        "origin_id": "469646741768159232",
+        "name": "T1223",
+        "overview": "sid_strength_prone_cobra",
+    },
 }
 
 # target_type: 2 = time (seconds), 3 = reps
@@ -342,6 +357,79 @@ def back_settle_circuit() -> list[dict[str, Any]]:
     ]
 
 
+def back_rebuild_1_circuit() -> list[dict[str, Any]]:
+    """10 min. Daily while it is still settling.
+
+    Mobility once, then two easy rounds on two feet: bridge, dead bug, bird dog.
+    NHS Inform (start small, stretches about 20–30s a side), Wrightington lower-back
+    leaflet (double-leg bridge before single-leg), and the bird-dog / Y-lift pattern
+    from NHS Dynamic Health.
+    """
+    return [
+        _timed_station("cat_cow", work_seconds=40, rest_seconds=10),
+        _timed_station("thoracic_rotation", work_seconds=50, rest_seconds=10),
+        _timed_station("lunge_stretch", work_seconds=50, rest_seconds=10),
+        _timed_station("glute_bridge_hold", work_seconds=45, rest_seconds=15),
+        _timed_station("dead_bug", work_seconds=50, rest_seconds=15),
+        _timed_station("bird_dog", work_seconds=55, rest_seconds=15),
+        _timed_station("glute_bridge_hold", work_seconds=45, rest_seconds=15),
+        _timed_station("dead_bug", work_seconds=50, rest_seconds=15),
+        _timed_station("bird_dog", work_seconds=55, rest_seconds=15),
+        _timed_station("prone_y", work_seconds=40, rest_seconds=0),
+    ]
+
+
+def back_rebuild_2_circuit() -> list[dict[str, Any]]:
+    """10 min, four days. Bridge progresses to one leg; clamshell adds the side glute."""
+    return [
+        _timed_station("cat_cow", work_seconds=30, rest_seconds=10),
+        _timed_station("thoracic_rotation", work_seconds=40, rest_seconds=10),
+        _timed_station("lunge_stretch", work_seconds=40, rest_seconds=10),
+        _timed_station("single_leg_bridge", work_seconds=55, rest_seconds=10),
+        _timed_station("dead_bug", work_seconds=40, rest_seconds=10),
+        _timed_station("clamshell", work_seconds=40, rest_seconds=10),
+        _timed_station("bird_dog", work_seconds=55, rest_seconds=10),
+        _timed_station("single_leg_bridge", work_seconds=55, rest_seconds=10),
+        _timed_station("dead_bug", work_seconds=40, rest_seconds=10),
+        _timed_station("clamshell", work_seconds=40, rest_seconds=10),
+        _timed_station("bird_dog", work_seconds=65, rest_seconds=0),
+    ]
+
+
+def back_rebuild_3_circuit() -> list[dict[str, Any]]:
+    """10 min, four days. Same strength round, plus a short prone cobra for the spinal muscles."""
+    return [
+        _timed_station("thoracic_rotation", work_seconds=35, rest_seconds=10),
+        _timed_station("lunge_stretch", work_seconds=35, rest_seconds=10),
+        _timed_station("single_leg_bridge", work_seconds=45, rest_seconds=15),
+        _timed_station("clamshell", work_seconds=40, rest_seconds=15),
+        _timed_station("bird_dog", work_seconds=50, rest_seconds=15),
+        _timed_station("dead_bug", work_seconds=45, rest_seconds=15),
+        _timed_station("single_leg_bridge", work_seconds=45, rest_seconds=15),
+        _timed_station("clamshell", work_seconds=40, rest_seconds=15),
+        _timed_station("bird_dog", work_seconds=50, rest_seconds=15),
+        _timed_station("dead_bug", work_seconds=45, rest_seconds=15),
+        _timed_station("prone_cobra", work_seconds=30, rest_seconds=0),
+    ]
+
+
+def back_keep_circuit() -> list[dict[str, Any]]:
+    """10 min, three days a week. The maintenance set once the rebuild weeks are done."""
+    return [
+        _timed_station("cat_cow", work_seconds=30, rest_seconds=10),
+        _timed_station("lunge_stretch", work_seconds=40, rest_seconds=10),
+        _timed_station("single_leg_bridge", work_seconds=50, rest_seconds=10),
+        _timed_station("clamshell", work_seconds=45, rest_seconds=10),
+        _timed_station("bird_dog", work_seconds=55, rest_seconds=10),
+        _timed_station("dead_bug", work_seconds=45, rest_seconds=10),
+        _timed_station("single_leg_bridge", work_seconds=50, rest_seconds=10),
+        _timed_station("clamshell", work_seconds=45, rest_seconds=10),
+        _timed_station("bird_dog", work_seconds=55, rest_seconds=10),
+        _timed_station("dead_bug", work_seconds=45, rest_seconds=10),
+        _timed_station("prone_y", work_seconds=40, rest_seconds=0),
+    ]
+
+
 _SESSION_BUILDERS = {
     "lower": lambda phase, p: _lower_circuit(p),
     "pushpull": lambda phase, p: _pushpull_circuit(p),
@@ -355,6 +443,10 @@ STRENGTH_PRESETS: dict[str, list[dict[str, Any]]] = {
     "full_body": _circuit(),
     "mobility": mobility_circuit(),
     "back_settle": back_settle_circuit(),
+    "back_rebuild_1": back_rebuild_1_circuit(),
+    "back_rebuild_2": back_rebuild_2_circuit(),
+    "back_rebuild_3": back_rebuild_3_circuit(),
+    "back_keep": back_keep_circuit(),
 }
 for _phase, _p in PHASES.items():
     STRENGTH_PRESETS[f"wk{_phase}"] = _conditioning_circuit(_phase, _p)

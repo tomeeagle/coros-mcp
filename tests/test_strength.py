@@ -22,6 +22,16 @@ def test_wk4_expands_three_laps_on_sync():
     assert exercises[13]["rest_seconds"] == ROUND_REST_SECONDS  # end of lap 2
 
 
+_SIDED = {
+    "thoracic_rotation",
+    "lunge_stretch",
+    "single_leg_bridge",
+    "clamshell",
+    "bird_dog",
+    "dead_bug",
+}
+
+
 def test_back_rebuild_phases_are_ten_minutes():
     from workout_sync.strength import STRENGTH_PRESETS
 
@@ -30,6 +40,14 @@ def test_back_rebuild_phases_are_ten_minutes():
         total = sum(b["target_value"] + b["rest_seconds"] for b in blocks)
         assert total == 600, key
         assert blocks[-1]["rest_seconds"] == 0
+        keys = [b["key"] for b in blocks]
+        i = 0
+        while i < len(keys):
+            if keys[i] in _SIDED:
+                assert i + 1 < len(keys) and keys[i + 1] == keys[i], (key, keys[i], i)
+                i += 2
+            else:
+                i += 1
         build_strength_exercises(key)
 
 

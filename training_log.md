@@ -18,6 +18,13 @@ Easy runs stay as they are this week: flat, no hills, no loaded strength. Stop a
 
 ---
 
+### Sunday, 15 Nov 2026
+**Planned:** Back rebuild 1 (10 min) · Long run 10K easy, mostly flat. Heanor Xmas Pud on calendar — skipped.
+**Actual:** Eyam Run — 10.06 km, 1:28:20 (~8:46/km), HR 124, +320 m, load 81. No Back rebuild logged.
+**Notes:** Distance matched. HR easy. Hills, not flat (Eyam). Morning: RHR 57, sleep HRV 36 (baseline 35), tired_rate -7.
+
+---
+
 ## Week 17: 9–15 Nov 2026 — still Phase 1
 
 **Plan:** Back settle every day, including Sat 7 and Sun 8. Walks stay on Sat 7, Sun 8, Wed 11, Sat 14 (25 min) and Sun 15. No running.

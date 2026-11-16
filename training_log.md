@@ -18,6 +18,11 @@ Easy runs stay as they are this week: flat, no hills, no loaded strength. Stop a
 
 ---
 
+### Monday, 16 Nov 2026
+**Planned:** Easy 5K
+**Actual:** Skipped — came home ill from work.
+**Notes:** Taken off COROS. It was not on Google Calendar. Not making it up.
+
 ### Sunday, 15 Nov 2026
 **Planned:** Back rebuild 1 (10 min) · Long run 10K easy, mostly flat. Heanor Xmas Pud on calendar — skipped.
 **Actual:** Eyam Run — 10.06 km, 1:28:20 (~8:46/km), HR 124, +320 m, load 81. No Back rebuild logged.

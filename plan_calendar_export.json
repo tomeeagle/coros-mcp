@@ -1469,7 +1469,7 @@
           "workouts": [
             {
               "key": "back_rebuild_1",
-              "name": "Back rebuild 1 — move and switch on (10 min)",
+              "name": "Back rebuild 1 — unhurried",
               "kind": "strength"
             }
           ],
@@ -1489,7 +1489,7 @@
             },
             {
               "key": "back_rebuild_1",
-              "name": "Back rebuild 1 — move and switch on (10 min)",
+              "name": "Back rebuild 1 — unhurried",
               "kind": "strength"
             }
           ],
@@ -1504,7 +1504,7 @@
           "workouts": [
             {
               "key": "back_rebuild_1",
-              "name": "Back rebuild 1 — move and switch on (10 min)",
+              "name": "Back rebuild 1 — unhurried",
               "kind": "strength"
             }
           ],
@@ -1519,7 +1519,7 @@
           "workouts": [
             {
               "key": "back_rebuild_1",
-              "name": "Back rebuild 1 — move and switch on (10 min)",
+              "name": "Back rebuild 1 — unhurried",
               "kind": "strength"
             }
           ],
@@ -1539,7 +1539,7 @@
             },
             {
               "key": "back_rebuild_1",
-              "name": "Back rebuild 1 — move and switch on (10 min)",
+              "name": "Back rebuild 1 — unhurried",
               "kind": "strength"
             }
           ],
@@ -1559,7 +1559,7 @@
             },
             {
               "key": "back_rebuild_1",
-              "name": "Back rebuild 1 — move and switch on (10 min)",
+              "name": "Back rebuild 1 — unhurried",
               "kind": "strength"
             }
           ],
@@ -1570,42 +1570,37 @@
     {
       "title": "Week 18",
       "dates": "16–22 Nov",
-      "phase": "Back — build",
+      "phase": "Return to structure",
       "weekNumber": 18,
       "days": [
         {
           "date": "2026-11-16",
           "dayLabel": "Mon 16",
-          "note": "Back rebuild 2 (10 min) · easy 5K, flat, HR ≤140",
-          "runPlan": "Easy 5K",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "easy_5k",
-              "name": "Easy 5K",
-              "kind": "run"
-            },
-            {
-              "key": "back_rebuild_2",
-              "name": "Back rebuild 2 — one-leg bridge (10 min)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-11-17",
-          "dayLabel": "Tue 17",
-          "note": "Rest from the back work. No running — the job is the other load",
+          "note": "Easy 5K skipped — came home ill from work. Not making it up",
           "runPlan": "Rest",
           "foodWeight": "Box portions",
           "workouts": [],
           "rest": true
         },
         {
+          "date": "2026-11-17",
+          "dayLabel": "Tue 17",
+          "note": "Back keep, unhurried · maintenance for prevention · no running (work is the load)",
+          "runPlan": "Back keep",
+          "foodWeight": "Box portions",
+          "workouts": [
+            {
+              "key": "back_keep",
+              "name": "Back keep — unhurried",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
+        },
+        {
           "date": "2026-11-18",
           "dayLabel": "Wed 18",
-          "note": "Back rebuild 2 (10 min) · PFTC · easy 6K, flat",
+          "note": "PFTC optional · easy 6K only if you have the energy · skip if work was heavy",
           "runPlan": "Run club easy 6K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1613,11 +1608,6 @@
               "key": "run_club_6k",
               "name": "Run club — easy 6K",
               "kind": "run"
-            },
-            {
-              "key": "back_rebuild_2",
-              "name": "Back rebuild 2 — one-leg bridge (10 min)",
-              "kind": "strength"
             }
           ],
           "rest": false
@@ -1625,22 +1615,28 @@
         {
           "date": "2026-11-19",
           "dayLabel": "Thu 19",
-          "note": "Rest from the back work. No carries, no loading",
-          "runPlan": "Rest",
+          "note": "💪 Strength — Carry & Grip (WK1) · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_carry_wk1",
+              "name": "Strength — Carry & Grip (Foundation WK1)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-11-20",
           "dayLabel": "Fri 20",
-          "note": "Back rebuild 2 (10 min)",
-          "runPlan": "Back rebuild 2",
+          "note": "Back keep, unhurried · rest from running if tired, or easy 3K if legs feel good",
+          "runPlan": "Back keep",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "back_rebuild_2",
-              "name": "Back rebuild 2 — one-leg bridge (10 min)",
+              "key": "back_keep",
+              "name": "Back keep — unhurried",
               "kind": "strength"
             }
           ],
@@ -1649,7 +1645,7 @@
         {
           "date": "2026-11-21",
           "dayLabel": "Sat 21",
-          "note": "Easy 5K, flat. No back session today",
+          "note": "Back keep, unhurried · easy 5K",
           "runPlan": "Easy 5K",
           "foodWeight": "Fuel well after.",
           "workouts": [
@@ -1657,6 +1653,11 @@
               "key": "easy_5k",
               "name": "Easy 5K",
               "kind": "run"
+            },
+            {
+              "key": "back_keep",
+              "name": "Back keep — unhurried",
+              "kind": "strength"
             }
           ],
           "rest": false
@@ -1664,7 +1665,7 @@
         {
           "date": "2026-11-22",
           "dayLabel": "Sun 22",
-          "note": "Back rebuild 2 (10 min) · long run 10K easy, mostly flat",
+          "note": "Long run 10K easy · not pushing volume yet",
           "runPlan": "Long run 10K",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [
@@ -1672,11 +1673,6 @@
               "key": "long_10k",
               "name": "Long Run 10K easy",
               "kind": "run"
-            },
-            {
-              "key": "back_rebuild_2",
-              "name": "Back rebuild 2 — one-leg bridge (10 min)",
-              "kind": "strength"
             }
           ],
           "rest": false
@@ -1686,13 +1682,13 @@
     {
       "title": "Week 19",
       "dates": "23–29 Nov",
-      "phase": "Back — build",
+      "phase": "Build energy",
       "weekNumber": 19,
       "days": [
         {
           "date": "2026-11-23",
           "dayLabel": "Mon 23",
-          "note": "Back rebuild 3 (10 min) · easy 5K, flat, HR ≤140",
+          "note": "Easy 5K · no speed yet, wait for midweek energy to return",
           "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1700,11 +1696,6 @@
               "key": "easy_5k",
               "name": "Easy 5K",
               "kind": "run"
-            },
-            {
-              "key": "back_rebuild_3",
-              "name": "Back rebuild 3 — hold and cobra (10 min)",
-              "kind": "strength"
             }
           ],
           "rest": false
@@ -1712,16 +1703,22 @@
         {
           "date": "2026-11-24",
           "dayLabel": "Tue 24",
-          "note": "Rest from the back work. No running — the job is the other load",
-          "runPlan": "Rest",
+          "note": "Back keep, unhurried · keep the back strong",
+          "runPlan": "Back keep",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "back_keep",
+              "name": "Back keep — unhurried",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-11-25",
           "dayLabel": "Wed 25",
-          "note": "Back rebuild 3 (10 min) · PFTC · easy 6K, flat",
+          "note": "PFTC optional · easy 6K if energy is there, skip if tired",
           "runPlan": "Run club easy 6K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1729,11 +1726,6 @@
               "key": "run_club_6k",
               "name": "Run club — easy 6K",
               "kind": "run"
-            },
-            {
-              "key": "back_rebuild_3",
-              "name": "Back rebuild 3 — hold and cobra (10 min)",
-              "kind": "strength"
             }
           ],
           "rest": false
@@ -1741,22 +1733,28 @@
         {
           "date": "2026-11-26",
           "dayLabel": "Thu 26",
-          "note": "Rest from the back work. No carries, no loading",
-          "runPlan": "Rest",
+          "note": "💪 Strength — Carry & Grip (WK2) · heavier carries, more step-ups · stair strength for work",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "strength_carry_wk2",
+              "name": "Strength — Carry & Grip (Build WK2)",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-11-27",
           "dayLabel": "Fri 27",
-          "note": "Back rebuild 3 (10 min)",
-          "runPlan": "Back rebuild 3",
+          "note": "Back keep, unhurried · rest from running or easy 3K",
+          "runPlan": "Back keep",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "back_rebuild_3",
-              "name": "Back rebuild 3 — hold and cobra (10 min)",
+              "key": "back_keep",
+              "name": "Back keep — unhurried",
               "kind": "strength"
             }
           ],
@@ -1765,7 +1763,7 @@
         {
           "date": "2026-11-28",
           "dayLabel": "Sat 28",
-          "note": "Easy 5K, flat. No back session today",
+          "note": "Back keep, unhurried · easy 5K",
           "runPlan": "Easy 5K",
           "foodWeight": "Fuel well after.",
           "workouts": [
@@ -1773,6 +1771,11 @@
               "key": "easy_5k",
               "name": "Easy 5K",
               "kind": "run"
+            },
+            {
+              "key": "back_keep",
+              "name": "Back keep — unhurried",
+              "kind": "strength"
             }
           ],
           "rest": false
@@ -1780,19 +1783,14 @@
         {
           "date": "2026-11-29",
           "dayLabel": "Sun 29",
-          "note": "Back rebuild 3 (10 min) · long run 10K easy, mostly flat",
-          "runPlan": "Long run 10K",
+          "note": "Long run 12K easy · building back up gently",
+          "runPlan": "Long run 12K",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [
             {
-              "key": "long_10k",
-              "name": "Long Run 10K easy",
+              "key": "long_12k",
+              "name": "Long Run 12K easy",
               "kind": "run"
-            },
-            {
-              "key": "back_rebuild_3",
-              "name": "Back rebuild 3 — hold and cobra (10 min)",
-              "kind": "strength"
             }
           ],
           "rest": false
@@ -1802,13 +1800,13 @@
     {
       "title": "Week 20",
       "dates": "30 Nov – 6 Dec",
-      "phase": "Back — keep",
+      "phase": "Add tempo back",
       "weekNumber": 20,
       "days": [
         {
           "date": "2026-11-30",
           "dayLabel": "Mon 30",
-          "note": "Easy 5K, flat, HR ≤140. No back session today",
+          "note": "Easy 5K · still building base",
           "runPlan": "Easy 5K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1823,13 +1821,13 @@
         {
           "date": "2026-12-01",
           "dayLabel": "Tue 1",
-          "note": "Back keep (10 min). No running — the job is the other load",
+          "note": "Back keep, unhurried · maintenance",
           "runPlan": "Back keep",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "back_keep",
-              "name": "Back keep — maintenance (10 min)",
+              "name": "Back keep — unhurried",
               "kind": "strength"
             }
           ],
@@ -1838,7 +1836,7 @@
         {
           "date": "2026-12-02",
           "dayLabel": "Wed 2",
-          "note": "PFTC · easy 6K, flat. No back session today",
+          "note": "PFTC optional · easy 6K",
           "runPlan": "Run club easy 6K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1853,13 +1851,13 @@
         {
           "date": "2026-12-03",
           "dayLabel": "Thu 3",
-          "note": "Back keep (10 min). No carries, no loading",
-          "runPlan": "Back keep",
+          "note": "💪 Strength — Carry & Grip (WK3) · work capacity for stairs with tools",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "back_keep",
-              "name": "Back keep — maintenance (10 min)",
+              "key": "strength_carry_wk3",
+              "name": "Strength — Carry & Grip (Intensity WK3)",
               "kind": "strength"
             }
           ],
@@ -1868,16 +1866,27 @@
         {
           "date": "2026-12-04",
           "dayLabel": "Fri 4",
-          "note": "Rest",
-          "runPlan": "Rest",
+          "note": "Back keep, unhurried · 10' easy + 15' tempo @ 5:20-5:30/km + 5' cool · first tempo back, conservative pace · skip if midweek is still draining",
+          "runPlan": "Tempo 15'",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "tempo_15",
+              "name": "Tempo 15' — threshold",
+              "kind": "run"
+            },
+            {
+              "key": "back_keep",
+              "name": "Back keep — unhurried",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-12-05",
           "dayLabel": "Sat 5",
-          "note": "Back keep (10 min) · easy 5K, flat",
+          "note": "Back keep, unhurried · easy 5K",
           "runPlan": "Easy 5K",
           "foodWeight": "Fuel well after.",
           "workouts": [
@@ -1888,7 +1897,7 @@
             },
             {
               "key": "back_keep",
-              "name": "Back keep — maintenance (10 min)",
+              "name": "Back keep — unhurried",
               "kind": "strength"
             }
           ],
@@ -1897,13 +1906,13 @@
         {
           "date": "2026-12-06",
           "dayLabel": "Sun 6",
-          "note": "Long run 10K easy, mostly flat. No back session today",
-          "runPlan": "Long run 10K",
+          "note": "Long run 12K easy · holding steady",
+          "runPlan": "Long run 12K",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [
             {
-              "key": "long_10k",
-              "name": "Long Run 10K easy",
+              "key": "long_12k",
+              "name": "Long Run 12K easy",
               "kind": "run"
             }
           ],
@@ -1914,14 +1923,14 @@
     {
       "title": "Week 21",
       "dates": "7–13 Dec",
-      "phase": "Back — keep",
+      "phase": "Build strength + volume",
       "weekNumber": 21,
       "days": [
         {
           "date": "2026-12-07",
           "dayLabel": "Mon 7",
-          "note": "Easy 5K, flat, HR ≤140. No back session today",
-          "runPlan": "Easy 5K",
+          "note": "Easy 5K with 4 strides · introduce strides back",
+          "runPlan": "Easy 5K + strides",
           "foodWeight": "Box portions",
           "workouts": [
             {
@@ -1935,13 +1944,13 @@
         {
           "date": "2026-12-08",
           "dayLabel": "Tue 8",
-          "note": "Back keep (10 min). No running — the job is the other load",
+          "note": "Back keep, unhurried · maintenance",
           "runPlan": "Back keep",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "back_keep",
-              "name": "Back keep — maintenance (10 min)",
+              "name": "Back keep — unhurried",
               "kind": "strength"
             }
           ],
@@ -1950,7 +1959,7 @@
         {
           "date": "2026-12-09",
           "dayLabel": "Wed 9",
-          "note": "PFTC · easy 6K, flat. No back session today",
+          "note": "PFTC optional · easy 6K",
           "runPlan": "Run club easy 6K",
           "foodWeight": "Box portions",
           "workouts": [
@@ -1965,13 +1974,13 @@
         {
           "date": "2026-12-10",
           "dayLabel": "Thu 10",
-          "note": "Back keep (10 min). No carries, no loading",
-          "runPlan": "Back keep",
+          "note": "💪 Strength — Carry & Grip (WK4) · peak carry strength, heavy farmers walks, loaded step-ups",
+          "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
-              "key": "back_keep",
-              "name": "Back keep — maintenance (10 min)",
+              "key": "strength_carry_wk4",
+              "name": "Strength — Carry & Grip (Taper WK4)",
               "kind": "strength"
             }
           ],
@@ -1980,16 +1989,27 @@
         {
           "date": "2026-12-11",
           "dayLabel": "Fri 11",
-          "note": "Rest",
-          "runPlan": "Rest",
+          "note": "Back keep, unhurried · 10' easy + 20' tempo @ 5:15-5:25/km + 5' cool · build tempo duration if last week felt good",
+          "runPlan": "Tempo 20' — threshold",
           "foodWeight": "Box portions",
-          "workouts": [],
-          "rest": true
+          "workouts": [
+            {
+              "key": "tempo_20",
+              "name": "Tempo 20' — threshold",
+              "kind": "run"
+            },
+            {
+              "key": "back_keep",
+              "name": "Back keep — unhurried",
+              "kind": "strength"
+            }
+          ],
+          "rest": false
         },
         {
           "date": "2026-12-12",
           "dayLabel": "Sat 12",
-          "note": "Back keep (10 min) · easy 5K, flat",
+          "note": "Back keep, unhurried · easy 5K",
           "runPlan": "Easy 5K",
           "foodWeight": "Fuel well after.",
           "workouts": [
@@ -2000,7 +2020,7 @@
             },
             {
               "key": "back_keep",
-              "name": "Back keep — maintenance (10 min)",
+              "name": "Back keep — unhurried",
               "kind": "strength"
             }
           ],
@@ -2009,13 +2029,13 @@
         {
           "date": "2026-12-13",
           "dayLabel": "Sun 13",
-          "note": "Long run 10K easy, mostly flat. No back session today",
-          "runPlan": "Long run 10K",
+          "note": "Long run 14K easy · building volume back",
+          "runPlan": "Long run 14K",
           "foodWeight": "Weigh in. No pudding.",
           "workouts": [
             {
-              "key": "long_10k",
-              "name": "Long Run 10K easy",
+              "key": "long_14k",
+              "name": "Long Run 14K easy",
               "kind": "run"
             }
           ],
@@ -3048,7 +3068,7 @@
         "category": "strength"
       },
       {
-        "summary": "Back rebuild 1 — move and switch on (10 min)",
+        "summary": "Back rebuild 1 — unhurried",
         "description": "Back rebuild 1 (10 min). No running — the job is the other load\nFood: Box portions\nPlan: Back rebuild 1",
         "start": {
           "date": "2026-11-10",
@@ -3082,7 +3102,7 @@
         "category": "run"
       },
       {
-        "summary": "Back rebuild 1 — move and switch on (10 min)",
+        "summary": "Back rebuild 1 — unhurried",
         "description": "Back rebuild 1 (10 min) · PFTC · easy 6K, keep it flat and easy\nFood: Box portions\nPlan: Run club easy 6K",
         "start": {
           "date": "2026-11-11",
@@ -3099,7 +3119,7 @@
         "category": "strength"
       },
       {
-        "summary": "Back rebuild 1 — move and switch on (10 min)",
+        "summary": "Back rebuild 1 — unhurried",
         "description": "Back rebuild 1 (10 min). No carries, no loading\nFood: Box portions\nPlan: Back rebuild 1",
         "start": {
           "date": "2026-11-12",
@@ -3116,7 +3136,7 @@
         "category": "strength"
       },
       {
-        "summary": "Back rebuild 1 — move and switch on (10 min)",
+        "summary": "Back rebuild 1 — unhurried",
         "description": "Back rebuild 1 (10 min)\nFood: Box portions\nPlan: Back rebuild 1",
         "start": {
           "date": "2026-11-13",
@@ -3150,7 +3170,7 @@
         "category": "run"
       },
       {
-        "summary": "Back rebuild 1 — move and switch on (10 min)",
+        "summary": "Back rebuild 1 — unhurried",
         "description": "Back rebuild 1 (10 min) · easy 5K, flat. Stop if the back grabs\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-11-14",
@@ -3184,7 +3204,7 @@
         "category": "run"
       },
       {
-        "summary": "Back rebuild 1 — move and switch on (10 min)",
+        "summary": "Back rebuild 1 — unhurried",
         "description": "Back rebuild 1 (10 min) · long run 10K easy, mostly flat (well under today's 16K)\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
         "start": {
           "date": "2026-11-15",
@@ -3201,42 +3221,25 @@
         "category": "strength"
       },
       {
-        "summary": "Easy 5K",
-        "description": "Back rebuild 2 (10 min) · easy 5K, flat, HR ≤140\nFood: Box portions\nPlan: Easy 5K",
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · maintenance for prevention · no running (work is the load)\nFood: Box portions\nPlan: Back keep",
         "start": {
-          "date": "2026-11-16",
-          "endDate": "2026-11-17"
+          "date": "2026-11-17",
+          "endDate": "2026-11-18"
         },
         "end": {
-          "date": "2026-11-16",
-          "endDate": "2026-11-17"
+          "date": "2026-11-17",
+          "endDate": "2026-11-18"
         },
-        "date": "2026-11-16",
-        "dayLabel": "Mon 16",
+        "date": "2026-11-17",
+        "dayLabel": "Tue 17",
         "weekTitle": "Week 18",
-        "workoutKey": "easy_5k",
-        "category": "run"
-      },
-      {
-        "summary": "Back rebuild 2 — one-leg bridge (10 min)",
-        "description": "Back rebuild 2 (10 min) · easy 5K, flat, HR ≤140\nFood: Box portions\nPlan: Easy 5K",
-        "start": {
-          "date": "2026-11-16",
-          "endDate": "2026-11-17"
-        },
-        "end": {
-          "date": "2026-11-16",
-          "endDate": "2026-11-17"
-        },
-        "date": "2026-11-16",
-        "dayLabel": "Mon 16",
-        "weekTitle": "Week 18",
-        "workoutKey": "back_rebuild_2",
+        "workoutKey": "back_keep",
         "category": "strength"
       },
       {
         "summary": "Run club — easy 6K",
-        "description": "Back rebuild 2 (10 min) · PFTC · easy 6K, flat\nFood: Box portions\nPlan: Run club easy 6K",
+        "description": "PFTC optional · easy 6K only if you have the energy · skip if work was heavy\nFood: Box portions\nPlan: Run club easy 6K",
         "start": {
           "date": "2026-11-18",
           "endDate": "2026-11-19"
@@ -3252,25 +3255,25 @@
         "category": "run"
       },
       {
-        "summary": "Back rebuild 2 — one-leg bridge (10 min)",
-        "description": "Back rebuild 2 (10 min) · PFTC · easy 6K, flat\nFood: Box portions\nPlan: Run club easy 6K",
+        "summary": "Strength — Carry & Grip (Foundation WK1)",
+        "description": "💪 Strength — Carry & Grip (WK1) · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs\nFood: Box portions\nPlan: Strength only",
         "start": {
-          "date": "2026-11-18",
-          "endDate": "2026-11-19"
+          "date": "2026-11-19",
+          "endDate": "2026-11-20"
         },
         "end": {
-          "date": "2026-11-18",
-          "endDate": "2026-11-19"
+          "date": "2026-11-19",
+          "endDate": "2026-11-20"
         },
-        "date": "2026-11-18",
-        "dayLabel": "Wed 18",
+        "date": "2026-11-19",
+        "dayLabel": "Thu 19",
         "weekTitle": "Week 18",
-        "workoutKey": "back_rebuild_2",
+        "workoutKey": "strength_carry_wk1",
         "category": "strength"
       },
       {
-        "summary": "Back rebuild 2 — one-leg bridge (10 min)",
-        "description": "Back rebuild 2 (10 min)\nFood: Box portions\nPlan: Back rebuild 2",
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · rest from running if tired, or easy 3K if legs feel good\nFood: Box portions\nPlan: Back keep",
         "start": {
           "date": "2026-11-20",
           "endDate": "2026-11-21"
@@ -3282,12 +3285,12 @@
         "date": "2026-11-20",
         "dayLabel": "Fri 20",
         "weekTitle": "Week 18",
-        "workoutKey": "back_rebuild_2",
+        "workoutKey": "back_keep",
         "category": "strength"
       },
       {
         "summary": "Easy 5K",
-        "description": "Easy 5K, flat. No back session today\nFood: Fuel well after.\nPlan: Easy 5K",
+        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-11-21",
           "endDate": "2026-11-22"
@@ -3303,8 +3306,25 @@
         "category": "run"
       },
       {
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
+        "start": {
+          "date": "2026-11-21",
+          "endDate": "2026-11-22"
+        },
+        "end": {
+          "date": "2026-11-21",
+          "endDate": "2026-11-22"
+        },
+        "date": "2026-11-21",
+        "dayLabel": "Sat 21",
+        "weekTitle": "Week 18",
+        "workoutKey": "back_keep",
+        "category": "strength"
+      },
+      {
         "summary": "Long Run 10K easy",
-        "description": "Back rebuild 2 (10 min) · long run 10K easy, mostly flat\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
+        "description": "Long run 10K easy · not pushing volume yet\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
         "start": {
           "date": "2026-11-22",
           "endDate": "2026-11-23"
@@ -3320,25 +3340,8 @@
         "category": "run"
       },
       {
-        "summary": "Back rebuild 2 — one-leg bridge (10 min)",
-        "description": "Back rebuild 2 (10 min) · long run 10K easy, mostly flat\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
-        "start": {
-          "date": "2026-11-22",
-          "endDate": "2026-11-23"
-        },
-        "end": {
-          "date": "2026-11-22",
-          "endDate": "2026-11-23"
-        },
-        "date": "2026-11-22",
-        "dayLabel": "Sun 22",
-        "weekTitle": "Week 18",
-        "workoutKey": "back_rebuild_2",
-        "category": "strength"
-      },
-      {
         "summary": "Easy 5K",
-        "description": "Back rebuild 3 (10 min) · easy 5K, flat, HR ≤140\nFood: Box portions\nPlan: Easy 5K",
+        "description": "Easy 5K · no speed yet, wait for midweek energy to return\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-11-23",
           "endDate": "2026-11-24"
@@ -3354,25 +3357,25 @@
         "category": "run"
       },
       {
-        "summary": "Back rebuild 3 — hold and cobra (10 min)",
-        "description": "Back rebuild 3 (10 min) · easy 5K, flat, HR ≤140\nFood: Box portions\nPlan: Easy 5K",
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · keep the back strong\nFood: Box portions\nPlan: Back keep",
         "start": {
-          "date": "2026-11-23",
-          "endDate": "2026-11-24"
+          "date": "2026-11-24",
+          "endDate": "2026-11-25"
         },
         "end": {
-          "date": "2026-11-23",
-          "endDate": "2026-11-24"
+          "date": "2026-11-24",
+          "endDate": "2026-11-25"
         },
-        "date": "2026-11-23",
-        "dayLabel": "Mon 23",
+        "date": "2026-11-24",
+        "dayLabel": "Tue 24",
         "weekTitle": "Week 19",
-        "workoutKey": "back_rebuild_3",
+        "workoutKey": "back_keep",
         "category": "strength"
       },
       {
         "summary": "Run club — easy 6K",
-        "description": "Back rebuild 3 (10 min) · PFTC · easy 6K, flat\nFood: Box portions\nPlan: Run club easy 6K",
+        "description": "PFTC optional · easy 6K if energy is there, skip if tired\nFood: Box portions\nPlan: Run club easy 6K",
         "start": {
           "date": "2026-11-25",
           "endDate": "2026-11-26"
@@ -3388,25 +3391,25 @@
         "category": "run"
       },
       {
-        "summary": "Back rebuild 3 — hold and cobra (10 min)",
-        "description": "Back rebuild 3 (10 min) · PFTC · easy 6K, flat\nFood: Box portions\nPlan: Run club easy 6K",
+        "summary": "Strength — Carry & Grip (Build WK2)",
+        "description": "💪 Strength — Carry & Grip (WK2) · heavier carries, more step-ups · stair strength for work\nFood: Box portions\nPlan: Strength only",
         "start": {
-          "date": "2026-11-25",
-          "endDate": "2026-11-26"
+          "date": "2026-11-26",
+          "endDate": "2026-11-27"
         },
         "end": {
-          "date": "2026-11-25",
-          "endDate": "2026-11-26"
+          "date": "2026-11-26",
+          "endDate": "2026-11-27"
         },
-        "date": "2026-11-25",
-        "dayLabel": "Wed 25",
+        "date": "2026-11-26",
+        "dayLabel": "Thu 26",
         "weekTitle": "Week 19",
-        "workoutKey": "back_rebuild_3",
+        "workoutKey": "strength_carry_wk2",
         "category": "strength"
       },
       {
-        "summary": "Back rebuild 3 — hold and cobra (10 min)",
-        "description": "Back rebuild 3 (10 min)\nFood: Box portions\nPlan: Back rebuild 3",
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · rest from running or easy 3K\nFood: Box portions\nPlan: Back keep",
         "start": {
           "date": "2026-11-27",
           "endDate": "2026-11-28"
@@ -3418,12 +3421,12 @@
         "date": "2026-11-27",
         "dayLabel": "Fri 27",
         "weekTitle": "Week 19",
-        "workoutKey": "back_rebuild_3",
+        "workoutKey": "back_keep",
         "category": "strength"
       },
       {
         "summary": "Easy 5K",
-        "description": "Easy 5K, flat. No back session today\nFood: Fuel well after.\nPlan: Easy 5K",
+        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-11-28",
           "endDate": "2026-11-29"
@@ -3439,42 +3442,42 @@
         "category": "run"
       },
       {
-        "summary": "Long Run 10K easy",
-        "description": "Back rebuild 3 (10 min) · long run 10K easy, mostly flat\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
-          "date": "2026-11-29",
-          "endDate": "2026-11-30"
+          "date": "2026-11-28",
+          "endDate": "2026-11-29"
         },
         "end": {
-          "date": "2026-11-29",
-          "endDate": "2026-11-30"
+          "date": "2026-11-28",
+          "endDate": "2026-11-29"
         },
-        "date": "2026-11-29",
-        "dayLabel": "Sun 29",
+        "date": "2026-11-28",
+        "dayLabel": "Sat 28",
         "weekTitle": "Week 19",
-        "workoutKey": "long_10k",
-        "category": "run"
-      },
-      {
-        "summary": "Back rebuild 3 — hold and cobra (10 min)",
-        "description": "Back rebuild 3 (10 min) · long run 10K easy, mostly flat\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
-        "start": {
-          "date": "2026-11-29",
-          "endDate": "2026-11-30"
-        },
-        "end": {
-          "date": "2026-11-29",
-          "endDate": "2026-11-30"
-        },
-        "date": "2026-11-29",
-        "dayLabel": "Sun 29",
-        "weekTitle": "Week 19",
-        "workoutKey": "back_rebuild_3",
+        "workoutKey": "back_keep",
         "category": "strength"
       },
       {
+        "summary": "Long Run 12K easy",
+        "description": "Long run 12K easy · building back up gently\nFood: Weigh in. No pudding.\nPlan: Long run 12K",
+        "start": {
+          "date": "2026-11-29",
+          "endDate": "2026-11-30"
+        },
+        "end": {
+          "date": "2026-11-29",
+          "endDate": "2026-11-30"
+        },
+        "date": "2026-11-29",
+        "dayLabel": "Sun 29",
+        "weekTitle": "Week 19",
+        "workoutKey": "long_12k",
+        "category": "run"
+      },
+      {
         "summary": "Easy 5K",
-        "description": "Easy 5K, flat, HR ≤140. No back session today\nFood: Box portions\nPlan: Easy 5K",
+        "description": "Easy 5K · still building base\nFood: Box portions\nPlan: Easy 5K",
         "start": {
           "date": "2026-11-30",
           "endDate": "2026-12-01"
@@ -3490,8 +3493,8 @@
         "category": "run"
       },
       {
-        "summary": "Back keep — maintenance (10 min)",
-        "description": "Back keep (10 min). No running — the job is the other load\nFood: Box portions\nPlan: Back keep",
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · maintenance\nFood: Box portions\nPlan: Back keep",
         "start": {
           "date": "2026-12-01",
           "endDate": "2026-12-02"
@@ -3508,7 +3511,7 @@
       },
       {
         "summary": "Run club — easy 6K",
-        "description": "PFTC · easy 6K, flat. No back session today\nFood: Box portions\nPlan: Run club easy 6K",
+        "description": "PFTC optional · easy 6K\nFood: Box portions\nPlan: Run club easy 6K",
         "start": {
           "date": "2026-12-02",
           "endDate": "2026-12-03"
@@ -3524,8 +3527,8 @@
         "category": "run"
       },
       {
-        "summary": "Back keep — maintenance (10 min)",
-        "description": "Back keep (10 min). No carries, no loading\nFood: Box portions\nPlan: Back keep",
+        "summary": "Strength — Carry & Grip (Intensity WK3)",
+        "description": "💪 Strength — Carry & Grip (WK3) · work capacity for stairs with tools\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-12-03",
           "endDate": "2026-12-04"
@@ -3537,12 +3540,46 @@
         "date": "2026-12-03",
         "dayLabel": "Thu 3",
         "weekTitle": "Week 20",
+        "workoutKey": "strength_carry_wk3",
+        "category": "strength"
+      },
+      {
+        "summary": "Tempo 15' — threshold",
+        "description": "Back keep, unhurried · 10' easy + 15' tempo @ 5:20-5:30/km + 5' cool · first tempo back, conservative pace · skip if midweek is still draining\nFood: Box portions\nPlan: Tempo 15'",
+        "start": {
+          "date": "2026-12-04",
+          "endDate": "2026-12-05"
+        },
+        "end": {
+          "date": "2026-12-04",
+          "endDate": "2026-12-05"
+        },
+        "date": "2026-12-04",
+        "dayLabel": "Fri 4",
+        "weekTitle": "Week 20",
+        "workoutKey": "tempo_15",
+        "category": "run"
+      },
+      {
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · 10' easy + 15' tempo @ 5:20-5:30/km + 5' cool · first tempo back, conservative pace · skip if midweek is still draining\nFood: Box portions\nPlan: Tempo 15'",
+        "start": {
+          "date": "2026-12-04",
+          "endDate": "2026-12-05"
+        },
+        "end": {
+          "date": "2026-12-04",
+          "endDate": "2026-12-05"
+        },
+        "date": "2026-12-04",
+        "dayLabel": "Fri 4",
+        "weekTitle": "Week 20",
         "workoutKey": "back_keep",
         "category": "strength"
       },
       {
         "summary": "Easy 5K",
-        "description": "Back keep (10 min) · easy 5K, flat\nFood: Fuel well after.\nPlan: Easy 5K",
+        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-12-05",
           "endDate": "2026-12-06"
@@ -3558,8 +3595,8 @@
         "category": "run"
       },
       {
-        "summary": "Back keep — maintenance (10 min)",
-        "description": "Back keep (10 min) · easy 5K, flat\nFood: Fuel well after.\nPlan: Easy 5K",
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-12-05",
           "endDate": "2026-12-06"
@@ -3575,8 +3612,8 @@
         "category": "strength"
       },
       {
-        "summary": "Long Run 10K easy",
-        "description": "Long run 10K easy, mostly flat. No back session today\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
+        "summary": "Long Run 12K easy",
+        "description": "Long run 12K easy · holding steady\nFood: Weigh in. No pudding.\nPlan: Long run 12K",
         "start": {
           "date": "2026-12-06",
           "endDate": "2026-12-07"
@@ -3588,12 +3625,12 @@
         "date": "2026-12-06",
         "dayLabel": "Sun 6",
         "weekTitle": "Week 20",
-        "workoutKey": "long_10k",
+        "workoutKey": "long_12k",
         "category": "run"
       },
       {
         "summary": "Easy 5K",
-        "description": "Easy 5K, flat, HR ≤140. No back session today\nFood: Box portions\nPlan: Easy 5K",
+        "description": "Easy 5K with 4 strides · introduce strides back\nFood: Box portions\nPlan: Easy 5K + strides",
         "start": {
           "date": "2026-12-07",
           "endDate": "2026-12-08"
@@ -3609,8 +3646,8 @@
         "category": "run"
       },
       {
-        "summary": "Back keep — maintenance (10 min)",
-        "description": "Back keep (10 min). No running — the job is the other load\nFood: Box portions\nPlan: Back keep",
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · maintenance\nFood: Box portions\nPlan: Back keep",
         "start": {
           "date": "2026-12-08",
           "endDate": "2026-12-09"
@@ -3627,7 +3664,7 @@
       },
       {
         "summary": "Run club — easy 6K",
-        "description": "PFTC · easy 6K, flat. No back session today\nFood: Box portions\nPlan: Run club easy 6K",
+        "description": "PFTC optional · easy 6K\nFood: Box portions\nPlan: Run club easy 6K",
         "start": {
           "date": "2026-12-09",
           "endDate": "2026-12-10"
@@ -3643,8 +3680,8 @@
         "category": "run"
       },
       {
-        "summary": "Back keep — maintenance (10 min)",
-        "description": "Back keep (10 min). No carries, no loading\nFood: Box portions\nPlan: Back keep",
+        "summary": "Strength — Carry & Grip (Taper WK4)",
+        "description": "💪 Strength — Carry & Grip (WK4) · peak carry strength, heavy farmers walks, loaded step-ups\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-12-10",
           "endDate": "2026-12-11"
@@ -3656,12 +3693,46 @@
         "date": "2026-12-10",
         "dayLabel": "Thu 10",
         "weekTitle": "Week 21",
+        "workoutKey": "strength_carry_wk4",
+        "category": "strength"
+      },
+      {
+        "summary": "Tempo 20' — threshold",
+        "description": "Back keep, unhurried · 10' easy + 20' tempo @ 5:15-5:25/km + 5' cool · build tempo duration if last week felt good\nFood: Box portions\nPlan: Tempo 20' — threshold",
+        "start": {
+          "date": "2026-12-11",
+          "endDate": "2026-12-12"
+        },
+        "end": {
+          "date": "2026-12-11",
+          "endDate": "2026-12-12"
+        },
+        "date": "2026-12-11",
+        "dayLabel": "Fri 11",
+        "weekTitle": "Week 21",
+        "workoutKey": "tempo_20",
+        "category": "run"
+      },
+      {
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · 10' easy + 20' tempo @ 5:15-5:25/km + 5' cool · build tempo duration if last week felt good\nFood: Box portions\nPlan: Tempo 20' — threshold",
+        "start": {
+          "date": "2026-12-11",
+          "endDate": "2026-12-12"
+        },
+        "end": {
+          "date": "2026-12-11",
+          "endDate": "2026-12-12"
+        },
+        "date": "2026-12-11",
+        "dayLabel": "Fri 11",
+        "weekTitle": "Week 21",
         "workoutKey": "back_keep",
         "category": "strength"
       },
       {
         "summary": "Easy 5K",
-        "description": "Back keep (10 min) · easy 5K, flat\nFood: Fuel well after.\nPlan: Easy 5K",
+        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-12-12",
           "endDate": "2026-12-13"
@@ -3677,8 +3748,8 @@
         "category": "run"
       },
       {
-        "summary": "Back keep — maintenance (10 min)",
-        "description": "Back keep (10 min) · easy 5K, flat\nFood: Fuel well after.\nPlan: Easy 5K",
+        "summary": "Back keep — unhurried",
+        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-12-12",
           "endDate": "2026-12-13"
@@ -3694,8 +3765,8 @@
         "category": "strength"
       },
       {
-        "summary": "Long Run 10K easy",
-        "description": "Long run 10K easy, mostly flat. No back session today\nFood: Weigh in. No pudding.\nPlan: Long run 10K",
+        "summary": "Long Run 14K easy",
+        "description": "Long run 14K easy · building volume back\nFood: Weigh in. No pudding.\nPlan: Long run 14K",
         "start": {
           "date": "2026-12-13",
           "endDate": "2026-12-14"
@@ -3707,7 +3778,7 @@
         "date": "2026-12-13",
         "dayLabel": "Sun 13",
         "weekTitle": "Week 21",
-        "workoutKey": "long_10k",
+        "workoutKey": "long_14k",
         "category": "run"
       }
     ]

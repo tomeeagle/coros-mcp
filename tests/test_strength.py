@@ -27,26 +27,32 @@ _SIDED = {
     "lunge_stretch",
     "single_leg_bridge",
     "clamshell",
-    "bird_dog",
-    "dead_bug",
 }
+_ONE_BLOCK = {"dead_bug", "bird_dog", "glute_bridge_hold", "cat_cow", "prone_y", "prone_cobra"}
 
 
-def test_back_rebuild_phases_are_ten_minutes():
+def test_back_sessions_are_unhurried_and_only_split_one_sided_moves():
     from workout_sync.strength import STRENGTH_PRESETS
 
     for key in ("back_rebuild_1", "back_rebuild_2", "back_rebuild_3", "back_keep"):
         blocks = STRENGTH_PRESETS[key]
         total = sum(b["target_value"] + b["rest_seconds"] for b in blocks)
-        assert total == 600, key
+        assert 600 <= total <= 780, (key, total)
         assert blocks[-1]["rest_seconds"] == 0
+        assert all(b["rest_seconds"] >= 20 or b is blocks[-1] for b in blocks), key
+        assert all(b["target_value"] >= 35 for b in blocks), key
         keys = [b["key"] for b in blocks]
+        assert "dead_bug" in keys and "bird_dog" in keys
         i = 0
         while i < len(keys):
             if keys[i] in _SIDED:
                 assert i + 1 < len(keys) and keys[i + 1] == keys[i], (key, keys[i], i)
+                assert blocks[i]["rest_seconds"] >= 20
                 i += 2
             else:
+                assert keys[i] in _ONE_BLOCK, (key, keys[i])
+                if i + 1 < len(keys):
+                    assert keys[i + 1] != keys[i], (key, keys[i])
                 i += 1
         build_strength_exercises(key)
 

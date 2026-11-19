@@ -18,6 +18,13 @@ Easy runs stay as they are this week: flat, no hills, no loaded strength. Stop a
 
 ---
 
+### Thursday, 19 Nov 2026
+**Planned:** Strength — Carry & Grip (WK1)
+**Actual:** Slipped to Friday 20.
+**Notes:** Thursday cleared. Friday’s back keep stays covered on Saturday.
+
+---
+
 ### Monday, 16 Nov 2026
 **Planned:** Easy 5K
 **Actual:** Skipped — came home ill from work.

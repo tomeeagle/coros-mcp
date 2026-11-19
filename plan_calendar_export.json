@@ -1615,28 +1615,22 @@
         {
           "date": "2026-11-19",
           "dayLabel": "Thu 19",
-          "note": "💪 Strength — Carry & Grip (WK1) · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs",
+          "note": "Carry & Grip slipped to Friday",
+          "runPlan": "Rest",
+          "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-11-20",
+          "dayLabel": "Fri 20",
+          "note": "💪 Strength — Carry & Grip (WK1) · slipped from Thursday · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs",
           "runPlan": "Strength only",
           "foodWeight": "Box portions",
           "workouts": [
             {
               "key": "strength_carry_wk1",
               "name": "Strength — Carry & Grip (Foundation WK1)",
-              "kind": "strength"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-11-20",
-          "dayLabel": "Fri 20",
-          "note": "Back keep, unhurried · rest from running if tired, or easy 3K if legs feel good",
-          "runPlan": "Back keep",
-          "foodWeight": "Box portions",
-          "workouts": [
-            {
-              "key": "back_keep",
-              "name": "Back keep — unhurried",
               "kind": "strength"
             }
           ],
@@ -3256,24 +3250,7 @@
       },
       {
         "summary": "Strength — Carry & Grip (Foundation WK1)",
-        "description": "💪 Strength — Carry & Grip (WK1) · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-11-19",
-          "endDate": "2026-11-20"
-        },
-        "end": {
-          "date": "2026-11-19",
-          "endDate": "2026-11-20"
-        },
-        "date": "2026-11-19",
-        "dayLabel": "Thu 19",
-        "weekTitle": "Week 18",
-        "workoutKey": "strength_carry_wk1",
-        "category": "strength"
-      },
-      {
-        "summary": "Back keep — unhurried",
-        "description": "Back keep, unhurried · rest from running if tired, or easy 3K if legs feel good\nFood: Box portions\nPlan: Back keep",
+        "description": "💪 Strength — Carry & Grip (WK1) · slipped from Thursday · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs\nFood: Box portions\nPlan: Strength only",
         "start": {
           "date": "2026-11-20",
           "endDate": "2026-11-21"
@@ -3285,7 +3262,7 @@
         "date": "2026-11-20",
         "dayLabel": "Fri 20",
         "weekTitle": "Week 18",
-        "workoutKey": "back_keep",
+        "workoutKey": "strength_carry_wk1",
         "category": "strength"
       },
       {

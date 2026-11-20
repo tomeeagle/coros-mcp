@@ -430,6 +430,8 @@ def _map_run_to_workouts(
         post_strength: str | None = None
         if re.search(r"easy 6k|6k easy", combined, re.I):
             post_strength = "easy_6k"
+        elif re.search(r"easy 5k|5k easy", combined, re.I):
+            post_strength = "easy_5k"
         elif re.search(r"easy 3k|3k easy|\+ easy", combined, re.I):
             post_strength = "easy_3k"
         if post_strength and post_strength not in keys:

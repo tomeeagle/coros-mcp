@@ -1624,34 +1624,33 @@
         {
           "date": "2026-11-20",
           "dayLabel": "Fri 20",
-          "note": "💪 Strength — Carry & Grip (WK1) · slipped from Thursday · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs",
-          "runPlan": "Strength only",
+          "note": "Carry & Grip slipped to Saturday",
+          "runPlan": "Rest",
           "foodWeight": "Box portions",
+          "workouts": [],
+          "rest": true
+        },
+        {
+          "date": "2026-11-21",
+          "dayLabel": "Sat 21",
+          "note": "💪 Strength — Carry & Grip (WK1) · slipped from Friday · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs · Back keep, unhurried · easy 5K",
+          "runPlan": "Easy 5K",
+          "foodWeight": "Fuel well after.",
           "workouts": [
             {
               "key": "strength_carry_wk1",
               "name": "Strength — Carry & Grip (Foundation WK1)",
               "kind": "strength"
-            }
-          ],
-          "rest": false
-        },
-        {
-          "date": "2026-11-21",
-          "dayLabel": "Sat 21",
-          "note": "Back keep, unhurried · easy 5K",
-          "runPlan": "Easy 5K",
-          "foodWeight": "Fuel well after.",
-          "workouts": [
-            {
-              "key": "easy_5k",
-              "name": "Easy 5K",
-              "kind": "run"
             },
             {
               "key": "back_keep",
               "name": "Back keep — unhurried",
               "kind": "strength"
+            },
+            {
+              "key": "easy_5k",
+              "name": "Easy 5K",
+              "kind": "run"
             }
           ],
           "rest": false
@@ -3250,24 +3249,7 @@
       },
       {
         "summary": "Strength — Carry & Grip (Foundation WK1)",
-        "description": "💪 Strength — Carry & Grip (WK1) · slipped from Thursday · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs\nFood: Box portions\nPlan: Strength only",
-        "start": {
-          "date": "2026-11-20",
-          "endDate": "2026-11-21"
-        },
-        "end": {
-          "date": "2026-11-20",
-          "endDate": "2026-11-21"
-        },
-        "date": "2026-11-20",
-        "dayLabel": "Fri 20",
-        "weekTitle": "Week 18",
-        "workoutKey": "strength_carry_wk1",
-        "category": "strength"
-      },
-      {
-        "summary": "Easy 5K",
-        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
+        "description": "💪 Strength — Carry & Grip (WK1) · slipped from Friday · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs · Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-11-21",
           "endDate": "2026-11-22"
@@ -3279,12 +3261,12 @@
         "date": "2026-11-21",
         "dayLabel": "Sat 21",
         "weekTitle": "Week 18",
-        "workoutKey": "easy_5k",
-        "category": "run"
+        "workoutKey": "strength_carry_wk1",
+        "category": "strength"
       },
       {
         "summary": "Back keep — unhurried",
-        "description": "Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
+        "description": "💪 Strength — Carry & Grip (WK1) · slipped from Friday · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs · Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
         "start": {
           "date": "2026-11-21",
           "endDate": "2026-11-22"
@@ -3298,6 +3280,23 @@
         "weekTitle": "Week 18",
         "workoutKey": "back_keep",
         "category": "strength"
+      },
+      {
+        "summary": "Easy 5K",
+        "description": "💪 Strength — Carry & Grip (WK1) · slipped from Friday · farmers / deadlift / shrug / step-up / side bend · back + legs for work stairs · Back keep, unhurried · easy 5K\nFood: Fuel well after.\nPlan: Easy 5K",
+        "start": {
+          "date": "2026-11-21",
+          "endDate": "2026-11-22"
+        },
+        "end": {
+          "date": "2026-11-21",
+          "endDate": "2026-11-22"
+        },
+        "date": "2026-11-21",
+        "dayLabel": "Sat 21",
+        "weekTitle": "Week 18",
+        "workoutKey": "easy_5k",
+        "category": "run"
       },
       {
         "summary": "Long Run 10K easy",

@@ -7,7 +7,7 @@ from datetime import UTC, date, datetime, timedelta
 from statistics import mean
 from typing import Any
 
-from models import ActivitySummary, DailyRecord, SleepRecord
+from coros_mcp.models import ActivitySummary, DailyRecord, SleepRecord
 from workout_sync.weekly_coach import (
     _activity_day,
     _is_bike,
@@ -792,9 +792,9 @@ async def collect_and_build_report(
     refresh: bool = True,
 ) -> PerformanceReport:
     """Fetch/cache Coros data then build the performance report."""
-    from cache.store import get_activities, get_daily_records, init_db
-    from cache.sync import fetch_activities_cached, fetch_daily_records_cached
-    from coros_api import get_stored_auth, try_auto_login
+    from coros_mcp.cache.store import get_activities, get_daily_records, init_db
+    from coros_mcp.cache.sync import fetch_activities_cached, fetch_daily_records_cached
+    from coros_mcp.coros_api import get_stored_auth, try_auto_login
 
     today = today or datetime.now(UTC).astimezone().date()
     focus_start, _ = previous_week_bounds(today)

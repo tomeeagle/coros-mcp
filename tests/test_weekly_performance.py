@@ -2,7 +2,7 @@
 
 from datetime import UTC, date, datetime, timedelta
 
-from models import ActivitySummary, DailyRecord, SleepPhases, SleepRecord
+from coros_mcp.models import ActivitySummary, DailyRecord, SleepPhases, SleepRecord
 from workout_sync.weekly_performance import (
     build_coach_trends,
     build_fatigue_read,

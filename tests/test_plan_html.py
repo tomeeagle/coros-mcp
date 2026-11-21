@@ -216,12 +216,12 @@ def test_parse_full_plan():
     assert plan.schedule["20260831"] == ["speed_pyramid"]  # mixed pyramid, deload volume
     assert plan.schedule["20260907"] == ["bleep_partial"]  # cap ~7.2, not full
     assert plan.schedule["20260912"] == ["easy_10k"]
-    assert plan.schedule["20260919"] == ["parkrun_5k"]  # Cooper dropped — Shropshire uses bleep test
+    assert "20260919" not in plan.schedule  # Parkrun missed; day is rest
     assert plan.schedule["20260914"] == ["shuttle_pace"]
-    assert plan.schedule["20260921"] == ["bleep_partial"]  # cap ~7.5
+    assert "20260921" not in plan.schedule  # mini bleep swapped for an unmapped easy run
     assert "20261005" not in plan.schedule  # first full MSFT moved off Mon 5
-    assert plan.schedule["20261012"] == ["bleep_practice"]  # first full diagnostic
-    assert plan.schedule["20261026"] == ["bleep_practice"]  # second full
+    assert "20261012" not in plan.schedule  # full MSFT dropped, chest and cough
+    assert "20261026" not in plan.schedule  # rest after the weekend runs
 
     # Tue 21 skipped (rest); Wed still easy default
     assert "20260721" not in plan.schedule

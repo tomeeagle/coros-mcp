@@ -2,14 +2,14 @@
 Coros MCP Server — Sleep, HRV, and training data via the unofficial Coros API.
 
 Usage:
-    python server.py
+    coros-mcp serve
 
 MCP config (Claude Code):
     claude mcp add coros \\
       -e COROS_EMAIL=you@example.com \\
       -e COROS_PASSWORD=yourpass \\
       -e COROS_REGION=eu \\
-      -- python /path/to/coros-mcp/server.py
+      -- /path/to/coros-mcp/.venv/bin/coros-mcp serve
 
 Alternatively, create a .env file in the project directory with the same
 variables. If COROS_EMAIL and COROS_PASSWORD are set (via env or .env), the
@@ -17,29 +17,97 @@ server authenticates automatically on the first request and re-authenticates
 transparently whenever the stored token is expired or rejected.
 """
 
+import json
+import os
 import time
 from datetime import datetime, timedelta
+from typing import Annotated, Literal
 
+import httpx
 from dotenv import load_dotenv
 from fastmcp import FastMCP
+from pydantic import Field
 
-import coros_api
-from cache.store import cache_status, init_db
-from cache.sync import (
+from coros_mcp import coros_api
+from coros_mcp.cache.store import cache_status, init_db
+from coros_mcp.cache.sync import (
     fetch_activities_cached,
     fetch_daily_records_cached,
     fetch_sleep_cached,
 )
-from cache.sync import (
+from coros_mcp.cache.sync import (
     sync_all as _sync_all,
 )
-from cache.utils import LOCAL_TZ, fmt_local_time
-from coros_api import TOKEN_TTL_MS
+from coros_mcp.cache.utils import LOCAL_TZ, fmt_local_time
+from coros_mcp.coros_api import TOKEN_TTL_MS
 
 load_dotenv()
 init_db()
 
 mcp = FastMCP("coros-mcp")
+
+# ---------------------------------------------------------------------------
+# Toolset gating
+#
+# COROS_MCP_TOOLSET=readonly exposes only the compact read surface (metrics,
+# sleep, activities, plans, cache) and hides everything that writes to the
+# Coros account plus the low-level raw/update escape hatches — recommended
+# when the MCP client is an autonomous agent or a smaller model that handles
+# a large tool list poorly. Default: full (all tools, backward compatible).
+#
+# COROS_MCP_HIDE_AUTH_TOOLS=1 additionally hides authenticate_coros /
+# authenticate_coros_mobile so account credentials never travel through the
+# model context; authentication then happens exclusively via the
+# COROS_EMAIL / COROS_PASSWORD env auto-login.
+# ---------------------------------------------------------------------------
+
+_TOOLSET = os.environ.get("COROS_MCP_TOOLSET", "full").strip().lower()
+if _TOOLSET not in ("full", "readonly"):
+    raise ValueError(
+        f"COROS_MCP_TOOLSET must be 'full' or 'readonly', got {_TOOLSET!r}"
+    )
+_HIDE_AUTH_TOOLS = (
+    os.environ.get("COROS_MCP_HIDE_AUTH_TOOLS", "").strip().lower()
+    in ("1", "true", "yes")
+)
+
+# Names of the functions actually registered as MCP tools (get_help filters
+# its listing against this so hidden tools are never advertised).
+_ENABLED_TOOLS: set[str] = set()
+
+# MCP ToolAnnotations presets (hints for the client's permission handling).
+_READ = {"readOnlyHint": True, "openWorldHint": True}
+_READ_LOCAL = {"readOnlyHint": True, "openWorldHint": False}
+_WRITE = {"readOnlyHint": False, "destructiveHint": False, "openWorldHint": True}
+_DESTRUCTIVE = {"readOnlyHint": False, "destructiveHint": True, "openWorldHint": True}
+
+
+def _tool(*, write: bool = False, advanced: bool = False, auth_tool: bool = False,
+          annotations: dict | None = None):
+    """Register a function as an MCP tool unless the toolset excludes it.
+
+    write: modifies the Coros account server-side.
+    advanced: raw/low-level escape hatch only useful in write workflows.
+    auth_tool: takes account credentials as parameters.
+
+    Excluded functions stay plain importable/callable Python functions —
+    they are just not exposed over MCP.
+    """
+    def deco(fn):
+        if _TOOLSET == "readonly" and (write or advanced or auth_tool):
+            return fn
+        if _HIDE_AUTH_TOOLS and auth_tool:
+            return fn
+        _ENABLED_TOOLS.add(fn.__name__)
+        return mcp.tool(annotations=annotations)(fn)
+    return deco
+
+
+# YYYYMMDD parameter types — the pattern lands in the JSON schema, so
+# malformed dates are rejected by the MCP layer before any API call.
+_Day = Annotated[str, Field(pattern=r"^\d{8}$")]
+_DayOrEmpty = Annotated[str, Field(pattern=r"^(\d{8})?$")]
+_Weeks = Annotated[int, Field(ge=1, le=52)]
 
 _NOT_AUTHENTICATED = "Not authenticated. Set COROS_EMAIL and COROS_PASSWORD in .env or call authenticate_coros."  # noqa: E501
 
@@ -52,11 +120,34 @@ async def _get_auth():
     return auth
 
 
-async def _run_with_auth(fn, auth, *args, **kwargs):
-    """Call fn(auth, …). On exception, re-login from env vars and retry once."""
+# Coros result codes that indicate an invalid/expired token (re-login fixes
+# them). "1019" is confirmed for the mobile API; extend as further codes are
+# observed.
+_AUTH_RESULT_CODES = frozenset({"1019"})
+
+
+def _is_auth_error(exc: Exception) -> bool:
+    if isinstance(exc, httpx.HTTPStatusError) and exc.response.status_code in (401, 403):
+        return True
+    return isinstance(exc, coros_api.CorosAPIError) and exc.code in _AUTH_RESULT_CODES
+
+
+async def _run_with_auth(fn, auth, *args, retry_all: bool = True, **kwargs):
+    """Call fn(auth, …). On failure, re-login from env vars and retry once.
+
+    retry_all=True (reads / idempotent calls): any exception triggers the
+    re-login + retry, maximizing resilience.
+
+    retry_all=False (non-idempotent writes like creating or scheduling a
+    workout): only auth-related failures are retried. A blind retry could
+    apply the write twice on the server when the first request succeeded
+    but its response was lost.
+    """
     try:
         return await fn(auth, *args, **kwargs)
-    except Exception:
+    except Exception as exc:
+        if not retry_all and not _is_auth_error(exc):
+            raise
         new_auth = await coros_api.try_auto_login()
         if new_auth is None:
             raise
@@ -81,53 +172,158 @@ def _attach_enrichment_warning(result: dict, response: dict) -> dict:
     return result
 
 
-def _summarize_steps(steps: list[dict]) -> tuple[float, int]:
-    """Return (total_minutes, steps_count) for a workout step list."""
+def _summarize_steps(steps: list[dict]) -> tuple[float, float, int]:
+    """Return (total_minutes, distance_meters_total, steps_count) for a
+    workout step list.
+
+    total_minutes only counts duration_minutes steps, and
+    distance_meters_total only counts duration_meters steps -- a step's
+    real elapsed time/distance isn't knowable from the other unit ahead of
+    time, so each contributes 0 to the total it doesn't measure rather than
+    a guess. duration_open steps contribute to NEITHER total (their length
+    is unknowable by construction -- they end on a lap press). Check
+    steps_count against len(steps), or see the warnings attached by
+    _attach_duration_warnings, if either total looks low.
+    """
     total_minutes = 0.0
+    distance_meters_total = 0.0
     steps_count = 0
     for s in steps:
         if "repeat" in s:
             sub_mins = sum(sub.get("duration_minutes", 0) for sub in s["steps"])
+            sub_meters = sum(sub.get("duration_meters", 0) for sub in s["steps"])
             total_minutes += sub_mins * s["repeat"]
+            distance_meters_total += sub_meters * s["repeat"]
             steps_count += 1 + len(s["steps"])
-        elif "duration_minutes" in s:
-            total_minutes += s["duration_minutes"]
-            steps_count += 1
         else:
+            total_minutes += s.get("duration_minutes", 0)
+            distance_meters_total += s.get("duration_meters", 0)
             steps_count += 1
-    return total_minutes, steps_count
+    return total_minutes, distance_meters_total, steps_count
+
+
+_MIXED_DURATION_WARNING = (
+    "This workout mixes time-based and distance-based steps. total_minutes "
+    "only covers the time-based steps and distance_meters_total only covers "
+    "the distance-based ones -- neither total represents the whole workout's "
+    "length by itself."
+)
+
+
+_OPEN_DURATION_WARNING = (
+    "This workout has {n} open step(s) (duration_open): they end when the "
+    "athlete presses lap, so their length is unknown ahead of time and is "
+    "counted in neither total_minutes nor distance_meters_total. The real "
+    "workout is longer than those totals report."
+)
+
+
+def _has_mixed_durations(steps: list[dict]) -> bool:
+    """True if steps (including inside repeat groups) mix duration_minutes
+    and duration_meters step types."""
+    has_minutes = False
+    has_meters = False
+    for s in steps:
+        candidates = s["steps"] if "repeat" in s else [s]
+        for c in candidates:
+            if "duration_minutes" in c:
+                has_minutes = True
+            if "duration_meters" in c:
+                has_meters = True
+    return has_minutes and has_meters
+
+
+def _append_warning(result: dict, text: str) -> dict:
+    """Add `text` to result['warning'], appending to any existing warning
+    rather than overwriting it."""
+    if "warning" in result:
+        result["warning"] = result["warning"] + " " + text
+    else:
+        result["warning"] = text
+    return result
+
+
+def _attach_mixed_duration_warning(result: dict, steps: list[dict]) -> dict:
+    """Add (or append to) a top-level `warning` if steps mix time- and
+    distance-based durations, so total_minutes/distance_meters_total aren't
+    misread as covering the whole workout's length."""
+    if _has_mixed_durations(steps):
+        _append_warning(result, _MIXED_DURATION_WARNING)
+    return result
+
+
+def _count_open_steps(steps: list[dict]) -> int:
+    """Number of duration_open steps, counting each repetition of a step
+    inside a repeat group (that's how often it is actually performed)."""
+    count = 0
+    for s in steps:
+        if "repeat" in s:
+            count += s["repeat"] * sum(1 for sub in s["steps"] if sub.get("duration_open"))
+        elif s.get("duration_open"):
+            count += 1
+    return count
+
+
+def _attach_open_duration_warning(result: dict, steps: list[dict]) -> dict:
+    """Add (or append to) a top-level `warning` if any step is duration_open.
+
+    An open step ends on a lap press, so it contributes to neither
+    total_minutes nor distance_meters_total -- without this, a workout of
+    [open warm-up, 10min tempo] reports a bare total_minutes of 10.0 and an
+    agent relays "10-minute workout" to the user."""
+    open_count = _count_open_steps(steps)
+    if open_count:
+        _append_warning(result, _OPEN_DURATION_WARNING.format(n=open_count))
+    return result
+
+
+def _attach_duration_warnings(result: dict, steps: list[dict]) -> dict:
+    """Attach every duration-summary caveat that applies (mixed units, open
+    steps). Warnings are concatenated when more than one applies."""
+    _attach_mixed_duration_warning(result, steps)
+    return _attach_open_duration_warning(result, steps)
 
 
 # ---------------------------------------------------------------------------
 # Tool: get_help
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+_TOOL_DESCRIPTIONS = [
+    {"name": "get_help", "description": "List all available tools (this tool)"},
+    {"name": "authenticate_coros", "description": "Log in with email/password; stores web API token (required before all data tools)"},  # noqa: E501
+    {"name": "authenticate_coros_mobile", "description": "Add mobile token for sleep stage data (deep/light/REM/awake)"},  # noqa: E501
+    {"name": "check_coros_auth", "description": "Show current auth status, region, and token expiry"},
+    {"name": "get_daily_metrics", "description": "Fetch daily training metrics: HRV, sleep hours, steps, stress, resting HR, VO2max, fitness score"},  # noqa: E501
+    {"name": "get_sleep_data", "description": "Fetch nightly sleep records with duration and quality score (mobile auth required for stage breakdown)"},  # noqa: E501
+    {"name": "list_activities", "description": "List recorded activities (runs, rides, swims, etc.) with summaries"},  # noqa: E501
+    {"name": "get_activity_detail", "description": "Get full detail for one activity by label_id"},
+    {"name": "list_workout_templates", "description": "List reusable workout templates saved in the Coros library"},  # noqa: E501
+    {"name": "list_training_plans", "description": "List training plans saved in the Coros Training Hub"},  # noqa: E501
+    {"name": "list_training_plans_raw", "description": "List raw training plans including entities and programs"},  # noqa: E501
+    {"name": "save_workout_template", "description": "Save a reusable cycling/intervals/running workout template to the library"},  # noqa: E501
+    {"name": "save_strength_workout_template", "description": "Save a reusable strength workout template to the library"},  # noqa: E501
+    {"name": "delete_workout_template", "description": "Delete a saved workout template by workout_id"},
+    {"name": "list_planned_activities", "description": "List workouts scheduled on the training calendar"},
+    {"name": "list_planned_activities_raw", "description": "List raw scheduled workouts for calendar update workflows"},  # noqa: E501
+    {"name": "calculate_workout_program", "description": "Recalculate edited workout program metrics before updating"},  # noqa: E501
+    {"name": "schedule_workout", "description": "Schedule a one-off cycling/intervals/running workout for a date (no library entry)"},  # noqa: E501
+    {"name": "add_planned_workout", "description": "Add an inline planned workout to the training calendar from raw objects"},  # noqa: E501
+    {"name": "update_scheduled_workout", "description": "Update an existing scheduled workout on the calendar"},  # noqa: E501
+    {"name": "schedule_strength_workout", "description": "Schedule a one-off strength workout for a date (no library entry)"},  # noqa: E501
+    {"name": "schedule_workout_template", "description": "Schedule an existing library workout template on a specific date"},  # noqa: E501
+    {"name": "remove_scheduled_workout", "description": "Remove a workout from the training calendar"},
+    {"name": "list_exercises", "description": "List available strength exercises (used when building strength workouts)"},  # noqa: E501
+    {"name": "sync_coros_data", "description": "Backfill local cache from the Coros API for a date range"},
+    {"name": "get_cache_status", "description": "Show local cache coverage: date ranges stored for each data type"},  # noqa: E501
+]
+
+
+@_tool(annotations=_READ_LOCAL)
 async def get_help() -> dict:
     """List all available Coros MCP tools with a short description of each."""
     return {
-        "tools": [
-            {"name": "get_help", "description": "List all available tools (this tool)"},
-            {"name": "authenticate_coros", "description": "Log in with email/password; stores web API token (required before all data tools)"},  # noqa: E501
-            {"name": "authenticate_coros_mobile", "description": "Add mobile token for sleep stage data (deep/light/REM/awake)"},  # noqa: E501
-            {"name": "check_coros_auth", "description": "Show current auth status, region, and token expiry"},
-            {"name": "get_daily_metrics", "description": "Fetch daily training metrics: HRV, sleep hours, steps, stress, resting HR, VO2max, fitness score"},  # noqa: E501
-            {"name": "get_sleep_data", "description": "Fetch nightly sleep records with duration and quality score (mobile auth required for stage breakdown)"},  # noqa: E501
-            {"name": "list_activities", "description": "List recorded activities (runs, rides, swims, etc.) with summaries"},  # noqa: E501
-            {"name": "get_activity_detail", "description": "Get full detail for one activity by label_id"},
-            {"name": "list_workout_templates", "description": "List reusable workout templates saved in the Coros library"},  # noqa: E501
-            {"name": "save_workout_template", "description": "Save a reusable cycling/intervals workout template to the library"},  # noqa: E501
-            {"name": "save_strength_workout_template", "description": "Save a reusable strength workout template to the library"},  # noqa: E501
-            {"name": "delete_workout_template", "description": "Delete a saved workout template by workout_id"},
-            {"name": "list_planned_activities", "description": "List workouts scheduled on the training calendar"},
-            {"name": "schedule_workout", "description": "Schedule a one-off cycling/intervals workout for a date (no library entry)"},  # noqa: E501
-            {"name": "schedule_strength_workout", "description": "Schedule a one-off strength workout for a date (no library entry)"},  # noqa: E501
-            {"name": "schedule_workout_template", "description": "Schedule an existing library workout template on a specific date"},  # noqa: E501
-            {"name": "remove_scheduled_workout", "description": "Remove a workout from the training calendar"},
-            {"name": "list_exercises", "description": "List available strength exercises (used when building strength workouts)"},  # noqa: E501
-            {"name": "sync_coros_data", "description": "Backfill local cache from the Coros API for a date range"},
-            {"name": "get_cache_status", "description": "Show local cache coverage: date ranges stored for each data type"},  # noqa: E501
-        ]
+        "toolset": _TOOLSET,
+        "tools": [t for t in _TOOL_DESCRIPTIONS if t["name"] in _ENABLED_TOOLS],
     }
 
 
@@ -135,11 +331,11 @@ async def get_help() -> dict:
 # Tool: authenticate_coros
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(auth_tool=True, annotations=_WRITE)
 async def authenticate_coros(
     email: str,
     password: str,
-    region: str = "eu",
+    region: Literal["eu", "us"] = "eu",
 ) -> dict:
     """
     Authenticate with the Coros Training Hub API and store the access token.
@@ -177,11 +373,11 @@ async def authenticate_coros(
 # Tool: authenticate_coros_mobile
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(auth_tool=True, annotations=_WRITE)
 async def authenticate_coros_mobile(
     email: str,
     password: str,
-    region: str = "eu",
+    region: Literal["eu", "us"] = "eu",
 ) -> dict:
     """
     Authenticate with the Coros mobile API only and store the mobile token.
@@ -222,15 +418,33 @@ async def authenticate_coros_mobile(
 # Tool: check_coros_auth
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
-async def check_coros_auth() -> dict:
+@_tool(annotations=_READ)
+async def check_coros_auth(verify_with_server: bool = False) -> dict:
     """
     Check whether valid Coros access tokens are stored locally.
+
+    By default this is a LOCAL check only: ``authenticated: true`` means the stored
+    token has not passed its 24h TTL by the local clock — it does NOT confirm the
+    token is still accepted by Coros. A token can be revoked server-side (password
+    change, account lock) or invalidated early and still report authenticated here;
+    the next real data call would then fail with an auth error (which triggers a
+    re-login retry). ``expires_in_hours`` is likewise a local TTL estimate.
+
+    Parameters
+    ----------
+    verify_with_server : bool
+        When True, additionally make one lightweight read call to Coros to confirm
+        the web token is still accepted, adding a ``server_verified`` key:
+        ``True`` (accepted), ``False`` (rejected — revoked/expired/wrong region), or
+        ``None`` (inconclusive, e.g. a network error) with a ``server_message``.
+        This does not re-login or alter the stored token. Off by default to keep
+        the check cheap and offline.
 
     Returns
     -------
     dict with keys: authenticated, user_id, region, expires_in_hours,
-    mobile_authenticated, mobile_token_status
+    mobile_authenticated, mobile_token_status (plus server_verified/server_message
+    when verify_with_server is True)
     """
     auth = coros_api.get_stored_auth()
     if auth is None:
@@ -252,7 +466,7 @@ async def check_coros_auth() -> dict:
     else:
         mobile_status = "missing (run auth or auth-mobile)"
 
-    return {
+    result = {
         "authenticated": bool(auth.access_token),
         "user_id": auth.user_id,
         "region": auth.region,
@@ -261,21 +475,47 @@ async def check_coros_auth() -> dict:
         "mobile_token_status": mobile_status,
     }
 
+    if verify_with_server:
+        result.update(await _verify_web_token_status(auth))
+
+    return result
+
+
+async def _verify_web_token_status(auth: coros_api.StoredAuth) -> dict:
+    """Probe Coros to confirm the web token, mapping the outcome to result keys.
+
+    Never raises: a rejected token yields server_verified False, while a network
+    or decode failure yields None (inconclusive) — a transport error must not be
+    read as "token invalid". CorosAPIError is caught before httpx errors and
+    before the generic ValueError (of which it is a subclass)."""
+    try:
+        await coros_api.verify_web_token(auth)
+        return {"server_verified": True}
+    except coros_api.CorosAPIError as exc:
+        return {"server_verified": False, "server_message": str(exc)}
+    except httpx.HTTPStatusError as exc:
+        if exc.response.status_code in (401, 403):
+            return {"server_verified": False, "server_message": f"HTTP {exc.response.status_code}"}
+        return {"server_verified": None, "server_message": f"inconclusive: HTTP {exc.response.status_code}"}
+    except (httpx.HTTPError, ValueError) as exc:
+        return {"server_verified": None, "server_message": f"inconclusive: {exc}"}
+
 
 # ---------------------------------------------------------------------------
 # Tool: get_daily_metrics
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
-async def get_daily_metrics(weeks: int = 4) -> dict:
+@_tool(annotations=_READ)
+async def get_daily_metrics(weeks: _Weeks = 4) -> dict:
     """
     Retrieve nightly HRV and daily metrics from Coros for a configurable
     time range (up to 52 weeks).
 
     Historical data is served from the local SQLite cache (fast); only the
     uncached tail is fetched from the Coros API. The underlying API endpoint
-    supports up to 24 weeks per call, but the cache layer handles longer
-    ranges transparently by reading stored records directly.
+    supports up to 24 weeks per call; the cache layer fetches longer uncached
+    ranges in 12-week chunks, so any range up to 52 weeks works even on a
+    cold cache.
 
     Parameters
     ----------
@@ -289,7 +529,12 @@ async def get_daily_metrics(weeks: int = 4) -> dict:
       - date: YYYYMMDD local date (per COROS_TIMEZONE, defaults to system timezone)
       - avg_sleep_hrv: average nightly RMSSD in ms
       - baseline: rolling baseline RMSSD
-      - rhr: resting heart rate (bpm)
+      - rhr: daily resting heart rate (bpm) — aggregate shown in the Coros
+        web dashboard / Training Hub; differs from the app's displayed value
+      - test_rhr: measured resting heart rate (bpm) — matches the resting HR
+        shown in the Coros app. Prefer this when comparing against the app;
+        may be null for days cached before this field existed (re-sync the
+        range to backfill)
       - training_load: daily training load
       - training_load_ratio: acute/chronic training load ratio
       - tired_rate: fatigue rate
@@ -331,8 +576,8 @@ async def get_daily_metrics(weeks: int = 4) -> dict:
 # Tool: get_sleep_data
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
-async def get_sleep_data(weeks: int = 4) -> dict:
+@_tool(annotations=_READ)
+async def get_sleep_data(weeks: _Weeks = 4) -> dict:
     """
     Fetch nightly sleep data from Coros for a configurable time range.
 
@@ -387,12 +632,12 @@ async def get_sleep_data(weeks: int = 4) -> dict:
 # Tool: list_activities
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(annotations=_READ)
 async def list_activities(
-    start_day: str,
-    end_day: str,
-    page: int = 1,
-    size: int = 30,
+    start_day: _Day,
+    end_day: _Day,
+    page: Annotated[int, Field(ge=1)] = 1,
+    size: Annotated[int, Field(ge=1, le=100)] = 30,
 ) -> dict:
     """
     List Coros activities for a date range.
@@ -412,6 +657,9 @@ async def list_activities(
     Returns
     -------
     dict with keys: activities (list), total_count, page
+    total_count is the number of activities in the local cache for the
+    requested range (the source of pagination here), which may differ from
+    the Coros server's own total until a sync has fully backfilled the range.
     Each activity contains: activity_id, name, sport_type, sport_name,
     start_time (local datetime string "YYYY-MM-DD HH:MM:SS", per COROS_TIMEZONE),
     end_time (same format), duration_seconds, distance_meters, avg_hr, max_hr,
@@ -442,10 +690,78 @@ async def list_activities(
 # Tool: get_activity_detail
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+# Top-level keys that are bulky and rarely useful for analysis.
+_ACTIVITY_DROP_TOP = frozenset({
+    "userInfo", "userProfile", "deviceList", "newMessageCount", "level",
+})
+# Per-lap-item fields that are constant across items or useless for analysis.
+_ACTIVITY_DROP_ITEM = frozenset({
+    "sportType", "speedUnit", "exerciseNameKey", "exerciseType", "exerciseIndex",
+    "routeIndex", "pitchIndex", "programExerciseIndex", "sectionIndex", "setIndex",
+    "stageIndex", "sportStage", "sourceType", "lapTrainIndex", "lapType",
+    "intensityType", "intensityValue", "indexInOriginLap", "locationType",
+    "lapMapMarkIsStartGps", "waterTemperature", "tempc", "showRestMode",
+    "startGpsLat", "startGpsLon", "startGpsTimestamp",
+    "endGpsLat", "endGpsLon", "endGpsTimestamp",
+})
+
+
+def _is_empty_value(value: object) -> bool:
+    """True for the zero/null/empty sentinels we strip from lap items.
+
+    ``False`` is treated as empty too; ``True`` is kept. Note ``False == 0`` and
+    ``0.0 == 0`` in Python, so the ``== 0`` check also covers those.
+    """
+    return value is None or value is False or value == 0 or value == "" or value == []
+
+
+def _compact_activity(data: dict) -> dict:
+    """Strip zero/null/empty fields from activity detail to reduce token count.
+
+    Keeps the full ``summary`` (already small) and ``zoneList``, but compacts
+    ``lapList`` items by dropping empty-valued keys and per-item fields that are
+    constant or irrelevant for analysis. Also drops bulky top-level keys.
+
+    Collapses *adjacent* laps whose compacted item lists are identical —
+    climbing activities emit a ``type=2``/``type=3`` pair back-to-back that is
+    an item-for-item copy of the same segment. Dedup is deliberately limited to
+    consecutive laps so genuinely repeated work (e.g. two identical recovery
+    intervals separated by work laps in a HIIT session) is preserved rather
+    than silently merged. Empty item lists never count as duplicates.
+
+    Typical reduction: ~125k chars -> ~15-25k chars (80-85%).
+    """
+    out = {k: v for k, v in data.items() if k not in _ACTIVITY_DROP_TOP}
+
+    if "lapList" in out:
+        compacted_laps = []
+        prev_item_hash: str | None = None
+        for lap in out["lapList"]:
+            new_lap = {k: v for k, v in lap.items() if k != "lapItemList"}
+            new_lap["lapItemList"] = [
+                {k: v for k, v in item.items()
+                 if k not in _ACTIVITY_DROP_ITEM and not _is_empty_value(v)}
+                for item in lap.get("lapItemList", [])
+            ]
+            item_hash = json.dumps(new_lap["lapItemList"], sort_keys=True)
+            # Skip only a back-to-back copy that actually carries data (the
+            # climbing type=2/type=3 artifact). A lap whose items all compacted
+            # away (e.g. ``[{}]``) carries no content to dedup on, so never
+            # collapse those into each other.
+            has_content = any(item for item in new_lap["lapItemList"])
+            if has_content and item_hash == prev_item_hash:
+                continue
+            prev_item_hash = item_hash
+            compacted_laps.append(new_lap)
+        out["lapList"] = compacted_laps
+
+    return out
+
+
+@_tool(annotations=_READ)
 async def get_activity_detail(activity_id: str, sport_type: int = 0) -> dict:
     """
-    Fetch full detail for a single Coros activity.
+    Fetch detail for a single Coros activity.
 
     Parameters
     ----------
@@ -457,14 +773,18 @@ async def get_activity_detail(activity_id: str, sport_type: int = 0) -> dict:
 
     Returns
     -------
-    dict with full activity data including laps, HR zones, power metrics,
-    elevation, and all available sport-specific fields.
+    dict with activity data including laps, HR zones, power metrics, elevation,
+    and all available sport-specific fields. Zero/empty fields are stripped from
+    lap items to keep the response compact (~125k -> ~15-25k chars).
     """
     auth = await _get_auth()
     if auth is None:
         return {"error": _NOT_AUTHENTICATED}
     try:
-        return await _run_with_auth(coros_api.fetch_activity_detail, auth, activity_id, sport_type)
+        data = await _run_with_auth(coros_api.fetch_activity_detail, auth, activity_id, sport_type)
+        if "error" not in data:
+            data = _compact_activity(data)
+        return data
     except Exception as exc:
         return {"error": str(exc)}
 
@@ -473,7 +793,7 @@ async def get_activity_detail(activity_id: str, sport_type: int = 0) -> dict:
 # Tool: list_workout_templates
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(annotations=_READ)
 async def list_workout_templates() -> dict:
     """
     List reusable workout templates saved in the Coros library.
@@ -488,7 +808,9 @@ async def list_workout_templates() -> dict:
     dict with keys: workouts (list), count
     Each entry contains: id, name, sport_type, sport_name,
     estimated_time_seconds, exercise_count, exercises (list of steps with
-    name, duration_seconds, intensity_low, intensity_high, sets)
+    name, intensity_low, intensity_high, sets, and exactly one duration key:
+    duration_seconds for time-based steps, distance_meters for distance-based
+    steps, or duration_open=True for open/lap-press steps)
     """
     auth = await _get_auth()
     if auth is None:
@@ -501,18 +823,74 @@ async def list_workout_templates() -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Tool: list_training_plans
+# ---------------------------------------------------------------------------
+
+@_tool(annotations=_READ)
+async def list_training_plans(
+    status_list: list[int] | None = None,
+) -> dict:
+    """
+    List training plans in the Coros account.
+
+    Parameters
+    ----------
+    status_list : list[int] | None
+        Plan status values to query. Defaults to [1, 2], matching the Training
+        Hub request.
+
+    Returns
+    -------
+    dict with keys: plans (list), count. Each plan entry summarizes id, name,
+    overview, status, date range, week bounds, and program/entity counts.
+    """
+    auth = await _get_auth()
+    if auth is None:
+        return {"error": _NOT_AUTHENTICATED, "plans": []}
+    try:
+        plans = await _run_with_auth(coros_api.fetch_training_plans, auth, status_list)
+        return {"plans": plans, "count": len(plans)}
+    except Exception as exc:
+        return {"error": str(exc), "plans": []}
+
+
+# ---------------------------------------------------------------------------
+# Tool: list_training_plans_raw
+# ---------------------------------------------------------------------------
+
+@_tool(advanced=True, annotations=_READ)
+async def list_training_plans_raw(
+    status_list: list[int] | None = None,
+) -> dict:
+    """
+    List training plans without stripping API fields.
+
+    Use this when the full plan payload is needed, including entities and
+    programs (e.g. to drive update_scheduled_workout).
+    """
+    auth = await _get_auth()
+    if auth is None:
+        return {"error": _NOT_AUTHENTICATED, "plans": []}
+    try:
+        plans = await _run_with_auth(coros_api.fetch_training_plans_raw, auth, status_list)
+        return {"plans": plans, "count": len(plans)}
+    except Exception as exc:
+        return {"error": str(exc), "plans": []}
+
+
+# ---------------------------------------------------------------------------
 # Tool: save_workout_template
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(write=True, annotations=_WRITE)
 async def save_workout_template(
     name: str,
     steps: list[dict],
     sport_type: int = 2,
-    intensity_type: int = 6,
+    intensity_type: int | None = None,
 ) -> dict:
     """
-    Save a REUSABLE cycling/intervals workout TEMPLATE to the Coros library.
+    Save a REUSABLE cycling/intervals/running workout TEMPLATE to the Coros library.
 
     ⚠️ This persists to the library indefinitely. Use ONLY when the user
     explicitly asks to "save as a template", "create a workout in my
@@ -539,8 +917,24 @@ async def save_workout_template(
         List of workout steps. Each step is either a plain step or a repeat group.
 
         Plain step:
-        - name (str): step label, e.g. "10:00 Einfahren"
-        - duration_minutes (float): step duration in minutes
+        - name (str): step label, e.g. "10:00 Warm-up"
+        - duration_minutes (float) OR duration_meters (float) OR duration_open
+          (bool True): step length. duration_minutes is time-based;
+          duration_meters ends at a real distance regardless of pace (e.g.
+          "1000" for a 1km rep) rather than an estimated time -- a
+          duration_minutes step ends after that much elapsed time even if
+          actual pace made it cover more or less than the intended distance.
+          duration_open has no clock or distance cap at all -- the step only
+          ends when the athlete presses the watch's lap button (useful for a
+          warm-up, cooldown, or inter-block rest whose real length varies:
+          waiting for the group, catching your breath, etc.). intensity_low/
+          intensity_high still apply to a duration_open step as a guide zone
+          shown on the watch, but never gate advancement. An open step's
+          length is unknowable ahead of time, so it counts toward neither
+          total_minutes nor distance_meters_total and the response carries a
+          'warning' saying so -- don't report those totals to the user as the
+          workout's full length. Exactly one of the three is required (a
+          falsy duration_open is ignored, not an error).
         - intensity_low (int): lower intensity target (watts, BPM, etc. depending on intensity_type)
         - intensity_high (int): upper intensity target (0 = open-ended)
         Note: power_low_w / power_high_w are accepted as legacy aliases for intensity_low / intensity_high.
@@ -551,40 +945,61 @@ async def save_workout_template(
 
         Example:
         [
-            {"name": "Warm-up", "duration_minutes": 10, "intensity_low": 148, "intensity_high": 192},
+    {"name": "Warm-up", "duration_minutes": 10, "intensity_low": 148, "intensity_high": 192},
             {"repeat": 3, "steps": [
                 {"name": "Sweetspot", "duration_minutes": 10, "intensity_low": 265, "intensity_high": 285},
                 {"name": "Recovery", "duration_minutes": 3, "intensity_low": 150, "intensity_high": 175},
             ]},
-            {"name": "Cool-down", "duration_minutes": 10, "intensity_low": 100, "intensity_high": 165},
+    {"name": "Cool-down", "duration_minutes": 10, "intensity_low": 100, "intensity_high": 165},
         ]
 
+        Distance-based rep (intensity_low/high in pace seconds/km when
+        intensity_type=3), ends at a real 1000m regardless of actual pace:
+        {"name": "1km @ 4:00/km", "duration_meters": 1000, "intensity_low": 235, "intensity_high": 245}
+
+        Open step -- no countdown, advances only on a lap press:
+        {"name": "Warm-up (lap when ready)", "duration_open": True, "intensity_low": 120, "intensity_high": 150}
+
     sport_type : int
-        Sport type ID. Default 2 = Indoor Cycling (Rollen).
-        Use 200 for Road Bike (outdoor), 201 for Indoor Cycling (alt).
-    intensity_type : int
-        Intensity type ID. Default 6 = power in watts.
+        Sport type ID, in the ACTIVITY namespace (the same IDs list_activities
+        returns). Default 2 = Indoor Cycling (indoor trainer).
+        - Cycling: 2 = Indoor Cycling (indoor trainer), 200 = Road Bike (outdoor),
+          201 = Indoor Cycling (alt)
+        - Running: 100 = Running, 102 = Trail Running, 103 = Track Running
+        Running IDs are mapped internally to the workout-API wire ID
+        (sportType=1) and given the metadata block COROS requires for runs.
+        Do NOT pass 1 directly — it's the internal wire ID and is rejected.
+    intensity_type : int, optional
+        Intensity type ID. Defaults per sport when omitted: runs → 2 (HR),
+        cycling → 6 (power in watts).
         Other IntensityType values: 1=weight, 2=HR, 3=pace, 4=speed, 5=none, 6=power, 7=cadence
 
     Returns
     -------
-    dict with keys: workout_id, name, total_minutes, steps_count, message
+    dict with keys: workout_id, name, total_minutes, distance_meters_total,
+    steps_count, message, and optionally 'warning' if the workout mixes
+    time-based and distance-based steps and/or contains duration_open steps,
+    either of which makes the totals understate the workout (see
+    _summarize_steps; warnings are concatenated if both apply)
     """
     auth = await _get_auth()
     if auth is None:
         return {"error": _NOT_AUTHENTICATED}
     try:
         workout_id = await _run_with_auth(
-            coros_api.save_workout_template, auth, name, steps, sport_type, intensity_type
+            coros_api.save_workout_template, auth, name, steps, sport_type, intensity_type,
+            retry_all=False,
         )
-        total_minutes, steps_count = _summarize_steps(steps)
-        return {
+        total_minutes, distance_meters_total, steps_count = _summarize_steps(steps)
+        result = {
             "workout_id": workout_id,
             "name": name,
             "total_minutes": total_minutes,
+            "distance_meters_total": distance_meters_total,
             "steps_count": steps_count,
             "message": "Workout created. Open Coros app → Workouts to sync to watch.",
         }
+        return _attach_duration_warnings(result, steps)
     except Exception as exc:
         return {"error": str(exc)}
 
@@ -593,7 +1008,7 @@ async def save_workout_template(
 # Tool: delete_workout_template
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(write=True, annotations=_DESTRUCTIVE)
 async def delete_workout_template(
     workout_id: str,
 ) -> dict:
@@ -627,10 +1042,10 @@ async def delete_workout_template(
 # Tool: list_planned_activities
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(annotations=_READ)
 async def list_planned_activities(
-    start_day: str,
-    end_day: str,
+    start_day: _Day,
+    end_day: _Day,
 ) -> dict:
     """
     List planned (scheduled) activities from the Coros training calendar.
@@ -662,13 +1077,69 @@ async def list_planned_activities(
 
 
 # ---------------------------------------------------------------------------
+# Tool: list_planned_activities_raw
+# ---------------------------------------------------------------------------
+
+@_tool(advanced=True, annotations=_READ)
+async def list_planned_activities_raw(
+    start_day: _Day,
+    end_day: _Day,
+) -> dict:
+    """
+    List planned activities without stripping API fields.
+
+    Use this before updating an existing scheduled workout. The raw entity and
+    program objects contain the identifiers and version fields required by
+    update_scheduled_workout (planId, planProgramId, idInPlan, version, ...).
+    """
+    auth = await _get_auth()
+    if auth is None:
+        return {"error": _NOT_AUTHENTICATED, "schedule": {}}
+    try:
+        items = await _run_with_auth(coros_api.fetch_schedule_raw, auth, start_day, end_day)
+        return {
+            "schedule": items,
+            "count": len(items.get("entities", [])),
+            "date_range": f"{start_day} – {end_day}",
+        }
+    except Exception as exc:
+        return {"error": str(exc), "schedule": {}}
+
+
+# ---------------------------------------------------------------------------
+# Tool: calculate_workout_program
+# ---------------------------------------------------------------------------
+
+@_tool(advanced=True, annotations=_READ)
+async def calculate_workout_program(program: dict) -> dict:
+    """
+    Recalculate a workout program after editing its exercises.
+
+    This calls Coros /training/program/calculate and returns the calculated
+    metrics plus a copy of the supplied program with derived fields such as
+    duration, estimated distance, training load, and exerciseBarChart applied.
+    Feed the returned program into update_scheduled_workout when its exercises
+    changed.
+    """
+    auth = await _get_auth()
+    if auth is None:
+        return {"error": _NOT_AUTHENTICATED}
+    try:
+        calculation = await _run_with_auth(coros_api.calculate_workout_program, auth, program)
+        updated_program = coros_api.apply_workout_calculation(program, calculation)
+        return {"calculation": calculation, "program": updated_program}
+    except Exception as exc:
+        return {"error": str(exc)}
+
+
+# ---------------------------------------------------------------------------
 # Tool: schedule_workout_template
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(write=True, annotations=_WRITE)
 async def schedule_workout_template(
     workout_id: str,
-    happen_day: str,
+    happen_day: _Day,
     sort_no: int = 1,
 ) -> dict:
     """
@@ -707,7 +1178,8 @@ async def schedule_workout_template(
         return {"error": _NOT_AUTHENTICATED}
     try:
         response = await _run_with_auth(
-            coros_api.schedule_workout_template, auth, workout_id, happen_day, sort_no
+            coros_api.schedule_workout_template, auth, workout_id, happen_day, sort_no,
+            retry_all=False,
         )
         return _attach_enrichment_warning(
             {
@@ -726,17 +1198,17 @@ async def schedule_workout_template(
 # Tool: schedule_workout (inline, one-off cycling/intervals)
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(write=True, annotations=_WRITE)
 async def schedule_workout(
     name: str,
     steps: list[dict],
-    happen_day: str,
+    happen_day: _Day,
     sport_type: int = 2,
-    intensity_type: int = 6,
+    intensity_type: int | None = None,
     sort_no: int = 1,
 ) -> dict:
     """
-    Schedule a ONE-OFF cycling/intervals workout for a specific date.
+    Schedule a ONE-OFF cycling/intervals/running workout for a specific date.
 
     This is the COMMON case. Use this whenever the user wants a workout
     on a specific date and doesn't explicitly ask for a reusable template.
@@ -759,16 +1231,24 @@ async def schedule_workout(
     happen_day : str
         Date in YYYYMMDD format.
     sport_type : int
-        Sport type ID (default 2 = Indoor Cycling).
-    intensity_type : int
-        Intensity type ID (default 6 = power in watts).
+        Sport type ID, in the ACTIVITY namespace (as list_activities returns).
+        Default 2 = Indoor Cycling. 200 = Road Bike, 201 = Indoor Cycling (alt).
+        100 = Running, 102 = Trail Running, 103 = Track Running — these map
+        internally to the workout wire ID (sportType=1) and get the running
+        metadata block. Don't pass 1 directly (it's the wire ID and is rejected).
+    intensity_type : int, optional
+        Intensity type ID. Defaults per sport when omitted: runs → 2 (HR),
+        cycling → 6 (power in watts).
     sort_no : int
         Order within the day (default 1).
 
     Returns
     -------
-    dict with keys: scheduled, name, happen_day, total_minutes, steps_count,
-    response, and optionally 'warning' if enrichment lookup failed.
+    dict with keys: scheduled, name, happen_day, total_minutes,
+    distance_meters_total, steps_count, response, and optionally 'warning'
+    if enrichment lookup failed, the workout mixes time-based and
+    distance-based steps, and/or it contains duration_open steps whose
+    length no total can account for (warnings are concatenated).
 
     The 'response' dict contains the server-assigned identifiers needed to
     later remove this calendar entry: plan_id, id_in_plan, plan_program_id,
@@ -791,32 +1271,125 @@ async def schedule_workout(
             sport_type,
             intensity_type,
             sort_no,
+            retry_all=False,
         )
-        total_minutes, steps_count = _summarize_steps(steps)
-        return _attach_enrichment_warning(
+        total_minutes, distance_meters_total, steps_count = _summarize_steps(steps)
+        result = _attach_enrichment_warning(
             {
                 "scheduled": True,
                 "name": name,
                 "happen_day": happen_day,
                 "total_minutes": total_minutes,
+                "distance_meters_total": distance_meters_total,
                 "steps_count": steps_count,
                 "response": response,
             },
             response,
         )
+        return _attach_duration_warnings(result, steps)
     except Exception as exc:
         return {"error": str(exc), "scheduled": False}
+
+
+# ---------------------------------------------------------------------------
+# Tool: add_planned_workout
+# ---------------------------------------------------------------------------
+
+@_tool(write=True, advanced=True, annotations=_WRITE)
+async def add_planned_workout(
+    entity: dict,
+    program: dict,
+    version_object: dict | None = None,
+) -> dict:
+    """
+    Add an inline planned workout to the Coros training calendar.
+
+    This is a low-level escape hatch for callers that already hold raw entity /
+    program objects (e.g. copied from list_planned_activities_raw). For the
+    common case of building and scheduling a workout, prefer schedule_workout.
+
+    Parameters
+    ----------
+    entity : dict
+        Raw schedule entity object. Must include idInPlan and happenDay.
+    program : dict
+        Raw program object to add to the calendar.
+    version_object : dict | None
+        Optional explicit version object. If omitted, it is built with
+        status=1 (add).
+    """
+    auth = await _get_auth()
+    if auth is None:
+        return {"error": _NOT_AUTHENTICATED, "added": False}
+    try:
+        await _run_with_auth(
+            coros_api.add_planned_workout, auth, entity, program, version_object,
+            retry_all=False,
+        )
+        return {
+            "added": True,
+            "happen_day": entity.get("happenDay"),
+            "id_in_plan": entity.get("idInPlan") or program.get("idInPlan"),
+        }
+    except Exception as exc:
+        return {"error": str(exc), "added": False}
+
+
+# ---------------------------------------------------------------------------
+# Tool: update_scheduled_workout
+# ---------------------------------------------------------------------------
+
+@_tool(write=True, advanced=True, annotations=_DESTRUCTIVE)
+async def update_scheduled_workout(
+    entity: dict,
+    program: dict,
+    version_object: dict | None = None,
+) -> dict:
+    """
+    Update an existing scheduled workout on the Coros training calendar.
+
+    Workflow: fetch the day with list_planned_activities_raw, edit the entity /
+    program objects, and (if exercises changed) run them through
+    calculate_workout_program first to refresh derived metrics.
+
+    Parameters
+    ----------
+    entity : dict
+        Raw entity object from list_planned_activities_raw, with any intended
+        edits applied. Must include idInPlan and planId.
+    program : dict
+        Raw or calculated program object. If exercises changed, first call
+        calculate_workout_program and pass its returned program here.
+    version_object : dict | None
+        Optional explicit version object. If omitted, it is built from entity /
+        program with status=2 (update).
+    """
+    auth = await _get_auth()
+    if auth is None:
+        return {"error": _NOT_AUTHENTICATED, "updated": False}
+    try:
+        await _run_with_auth(
+            coros_api.update_scheduled_workout, auth, entity, program, version_object,
+            retry_all=False,
+        )
+        return {
+            "updated": True,
+            "plan_id": entity.get("planId") or program.get("planId"),
+            "id_in_plan": entity.get("idInPlan") or program.get("idInPlan"),
+        }
+    except Exception as exc:
+        return {"error": str(exc), "updated": False}
 
 
 # ---------------------------------------------------------------------------
 # Tool: schedule_strength_workout (inline, one-off strength)
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(write=True, annotations=_WRITE)
 async def schedule_strength_workout(
     name: str,
     exercises: list[dict],
-    happen_day: str,
+    happen_day: _Day,
     sets: int = 1,
     sort_no: int = 1,
 ) -> dict:
@@ -876,6 +1449,7 @@ async def schedule_strength_workout(
             happen_day,
             sets,
             sort_no,
+            retry_all=False,
         )
         return _attach_enrichment_warning(
             {
@@ -896,7 +1470,7 @@ async def schedule_strength_workout(
 # Tool: remove_scheduled_workout
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(write=True, annotations=_DESTRUCTIVE)
 async def remove_scheduled_workout(
     plan_id: str,
     id_in_plan: str,
@@ -934,7 +1508,7 @@ async def remove_scheduled_workout(
 # Tool: save_strength_workout_template
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(write=True, annotations=_WRITE)
 async def save_strength_workout_template(
     name: str,
     exercises: list[dict],
@@ -999,7 +1573,10 @@ async def save_strength_workout_template(
     if auth is None:
         return {"error": _NOT_AUTHENTICATED}
     try:
-        workout_id = await _run_with_auth(coros_api.save_strength_workout_template, auth, name, exercises, sets)
+        workout_id = await _run_with_auth(
+            coros_api.save_strength_workout_template, auth, name, exercises, sets,
+            retry_all=False,
+        )
         return {
             "workout_id": workout_id,
             "name": name,
@@ -1014,7 +1591,7 @@ async def save_strength_workout_template(
 # Tool: list_exercises
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(annotations=_READ)
 async def list_exercises(sport_type: int = 4) -> dict:
     """
     List the exercise catalogue for a given sport type.
@@ -1045,8 +1622,8 @@ async def list_exercises(sport_type: int = 4) -> dict:
 # Tool: sync_coros_data
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
-async def sync_coros_data(start_day: str = "", end_day: str = "") -> dict:
+@_tool(annotations={"readOnlyHint": False, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True})
+async def sync_coros_data(start_day: _DayOrEmpty = "", end_day: _DayOrEmpty = "") -> dict:
     """
     Sync Coros data for a date range into the local SQLite cache.
 
@@ -1093,7 +1670,7 @@ async def sync_coros_data(start_day: str = "", end_day: str = "") -> dict:
 # Tool: get_cache_status
 # ---------------------------------------------------------------------------
 
-@mcp.tool()
+@_tool(annotations=_READ_LOCAL)
 async def get_cache_status() -> dict:
     """
     Show what data is currently stored in the local cache.

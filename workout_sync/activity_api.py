@@ -62,7 +62,7 @@ def create_app() -> Flask:
                 _refresh_range(week, weeks_back=week_count)
             except Exception as exc:
                 refresh_warning = f"Couldn't refresh from Coros ({exc}). Showing cached data."
-        from cache.store import get_activities, get_daily_records, get_sleep_records, init_db
+        from coros_mcp.cache.store import get_activities, get_daily_records, get_sleep_records, init_db
         from workout_sync.weekly_performance import build_coach_trends
 
         init_db()
@@ -96,8 +96,8 @@ def create_app() -> Flask:
 
 def _refresh_range(week: str | None, *, weeks_back: int = 1) -> None:
     """Pull activities, daily metrics, and sleep into cache."""
-    from cache.store import init_db
-    from cache.sync import fetch_activities_cached, fetch_daily_records_cached, fetch_sleep_cached
+    from coros_mcp.cache.store import init_db
+    from coros_mcp.cache.sync import fetch_activities_cached, fetch_daily_records_cached, fetch_sleep_cached
     from workout_sync.auth import ensure_auth
 
     async def _run():

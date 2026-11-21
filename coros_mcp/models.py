@@ -33,7 +33,8 @@ class DailyRecord(BaseModel):
     avg_sleep_hrv: float | None = None
     baseline: float | None = None
     interval_list: list[int] | None = None
-    rhr: int | None = None                      # resting heart rate (bpm)
+    rhr: int | None = None                      # daily RHR aggregate (web dashboard / Training Hub)
+    test_rhr: int | None = None                 # measured RHR shown in the Coros app (API: testRhr)
     training_load: int | None = None
     training_load_ratio: float | None = None    # acute/chronic ratio
     tired_rate: float | None = None
@@ -74,7 +75,11 @@ class StoredAuth(BaseModel):
     region: str
     timestamp: int  # Unix milliseconds
     mobile_access_token: str | None = None   # token for apieu.coros.com (sleep data)
-    mobile_login_payload: dict | None = None  # encrypted login body for auto-refresh
+    # Encrypted login body, replayed to refresh the mobile token. The Coros
+    # server accepts indefinite replay, so this payload is a long-lived
+    # credential equivalent — it is only ever persisted via the protected
+    # stores (keyring / 0600 encrypted file).
+    mobile_login_payload: dict | None = None
 
     def __repr__(self) -> str:
         tok = f"{self.access_token[:8]}…" if self.access_token else "None"

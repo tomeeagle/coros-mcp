@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import coros_api
-from models import StoredAuth
+from coros_mcp import coros_api
+from coros_mcp.models import StoredAuth
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent
 

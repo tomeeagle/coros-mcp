@@ -21,7 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import coros_api
+from coros_mcp import coros_api
 from workout_sync import schedules as sched_mod
 from workout_sync.auth import auth_status_message, ensure_auth, load_dotenv
 from workout_sync.plan_html import DEFAULT_PLAN_PATH, parse_plan_html

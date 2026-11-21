@@ -7,8 +7,8 @@ from dataclasses import dataclass, field
 from datetime import UTC, date, datetime, timedelta
 from typing import Any
 
-from cache.store import get_activities, get_daily_records, init_db
-from models import ActivitySummary
+from coros_mcp.cache.store import get_activities, get_daily_records, init_db
+from coros_mcp.models import ActivitySummary
 from workout_sync.plan_html import parse_plan_html
 from workout_sync.workouts import WORKOUTS
 

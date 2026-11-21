@@ -3,7 +3,7 @@
 from datetime import UTC, date, datetime
 from unittest.mock import patch
 
-from models import ActivitySummary, DailyRecord
+from coros_mcp.models import ActivitySummary, DailyRecord
 from workout_sync.weekly_coach import build_week_review, monday_of, week_bounds
 
 

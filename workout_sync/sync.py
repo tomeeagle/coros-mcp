@@ -7,7 +7,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
-import coros_api
+from coros_mcp import coros_api
 from workout_sync import schedules as _schedules
 from workout_sync.auth import ensure_auth
 from workout_sync.plan_html import DEFAULT_PLAN_PATH

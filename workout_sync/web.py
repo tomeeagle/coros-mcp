@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 from html import escape
 
-import coros_api
+from coros_mcp import coros_api
 from workout_sync import schedules as sched_mod
 from workout_sync.auth import auth_status_message, load_dotenv
 from workout_sync.plan_html import DEFAULT_PLAN_PATH

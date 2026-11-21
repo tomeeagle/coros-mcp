@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-import coros_api
+from coros_mcp import coros_api
 
 # Catalogue IDs from list_exercises (sport_type=4). Re-run:
 #   python -m workout_sync.strength --refresh

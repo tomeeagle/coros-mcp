@@ -11,14 +11,12 @@ from unittest.mock import AsyncMock
 import httpx
 import pytest
 
-import coros_api
-from coros_api import (
+from coros_mcp import coros_api
+from coros_mcp.coros_api import (
     _build_strength_program_payload,
     _build_workout_program_payload,
     _load_strength_catalog,
     _reset_strength_catalog_cache,
-    build_run_workout_payload,
-    legacy_run_steps_to_run_steps,
 )
 
 
@@ -314,81 +312,175 @@ def test_cycling_power_legacy_aliases():
     assert ex["intensityValueExtend"] == 240
 
 
-def test_run_workout_uses_sport_type_1_and_step_kinds():
-    legacy = [
-        {"name": "Warmup", "duration_minutes": 10},
-        {
-            "repeat": 2,
-            "steps": [
-                {"name": "Tempo 8min", "duration_minutes": 8},
-                {"name": "Jog recovery", "duration_minutes": 2},
-            ],
-        },
-        {"name": "Cooldown", "duration_minutes": 10},
-    ]
-    payload = build_run_workout_payload("Test", legacy_run_steps_to_run_steps(legacy))
-    assert payload["sportType"] == 1
-    assert payload["simple"] is False
-    non_group = [e for e in payload["exercises"] if not e.get("isGroup")]
-    assert non_group[0]["exerciseType"] == 1  # warmup
-    assert non_group[-1]["exerciseType"] == 3  # cooldown
-    assert all(e.get("sportType") == 1 for e in payload["exercises"])
-    assert all(e.get("overview", "").startswith("sid_run_") for e in non_group)
-
-
-def test_run_workout_distance_steps_use_target_type_5():
-    from workout_sync.workouts import WORKOUTS
-
-    steps = WORKOUTS["easy_3k"]["steps"]
-    payload = build_run_workout_payload(
-        WORKOUTS["easy_3k"]["name"],
-        legacy_run_steps_to_run_steps(steps),
-    )
-    main = [e for e in payload["exercises"] if not e.get("isGroup")][0]
-    assert main["targetType"] == 5
-    assert main["targetValue"] == 300_000  # 3 km in COROS centimeters
-    assert main["targetDisplayUnit"] == 1  # km
-    assert payload["targetType"] == 5
-    assert payload["targetValue"] == 300_000
-    assert payload["distanceDisplayUnit"] == 1
-
-
-def test_easy_6k_includes_stride_interval_group():
-    from workout_sync.workouts import WORKOUTS
-
-    steps = WORKOUTS["easy_6k"]["steps"]
-    payload = build_run_workout_payload(WORKOUTS["easy_6k"]["name"], steps)
-    groups = [e for e in payload["exercises"] if e.get("isGroup")]
-    assert len(groups) == 1
-    assert groups[0]["sets"] == 5
-    sub = [e for e in payload["exercises"] if not e.get("isGroup")]
-    stride = [e for e in sub if e.get("name") == "Stride"][0]
-    recovery = [e for e in sub if e.get("name") == "Recovery jog"][0]
-    assert stride["targetType"] == 2
-    assert stride["targetValue"] == 22
-    assert recovery["exerciseType"] == 4  # rest
-
-
-def test_bac_hill_recovery_is_open_target():
-    from workout_sync.workouts import WORKOUTS
-
-    steps = WORKOUTS["bac_hill_6x800"]["steps"]
-    payload = build_run_workout_payload(
-        WORKOUTS["bac_hill_6x800"]["name"],
-        legacy_run_steps_to_run_steps(steps),
-    )
-    recovery = [
-        e for e in payload["exercises"]
-        if e.get("name") == "Recovery to bottom"
-    ][0]
-    assert recovery["targetType"] == 1
-    assert recovery["targetValue"] == 0
-    assert recovery["exerciseType"] == 4
-
-
 def test_cycling_empty_steps_raises():
     with pytest.raises(ValueError):
         _build_workout_program_payload(name="empty", steps=[])
+
+
+def test_distance_step_target_type_and_value():
+    """duration_meters emits targetType=5, targetValue in meters x100, and
+    scales intensity by x1000 with intensityMultiplier=1000 -- confirmed
+    against a real distance-type step built in the Coros app and read back
+    via the API, not documented anywhere in Coros's own API."""
+    payload = _build_workout_program_payload(
+        name="1km rep",
+        steps=[
+            {"name": "1km @ 4:00/km", "duration_meters": 1000, "intensity_low": 235, "intensity_high": 245},
+        ],
+    )
+    ex = payload["exercises"][0]
+    assert ex["targetType"] == 5
+    assert ex["targetValue"] == 100000  # 1000m x 100
+    assert ex["intensityValue"] == 235000  # 235 sec/km x 1000
+    assert ex["intensityValueExtend"] == 245000
+    assert ex["intensityMultiplier"] == 1000
+
+
+def test_time_step_intensity_multiplier_is_zero():
+    """Time-based steps get an explicit intensityMultiplier=0 (matching what
+    the server echoes back for them), not just an absent key."""
+    payload = _build_workout_program_payload(
+        name="tempo",
+        steps=[
+            {"name": "Tempo", "duration_minutes": 20, "intensity_low": 240, "intensity_high": 250},
+        ],
+    )
+    ex = payload["exercises"][0]
+    assert ex["targetType"] == 2
+    assert ex["intensityMultiplier"] == 0
+    assert ex["intensityValue"] == 240  # unscaled
+
+
+def test_distance_step_does_not_contribute_to_estimated_time():
+    """A distance step's real elapsed time isn't known ahead of time, so it
+    contributes 0 rather than a guess -- estimatedTime only reflects the
+    time-based steps in a mixed workout."""
+    payload = _build_workout_program_payload(
+        name="mixed",
+        steps=[
+            {"name": "Warmup", "duration_minutes": 10, "intensity_low": 300, "intensity_high": 360},
+            {"name": "22km @ open pace", "duration_meters": 22000, "intensity_low": 240, "intensity_high": 480},
+        ],
+    )
+    assert payload["estimatedTime"] == 10 * 60
+
+
+def test_distance_step_in_repeat_group():
+    """duration_meters works inside a repeat group's sub-steps too, and is
+    excluded from the group header's own time-based targetValue."""
+    payload = _build_workout_program_payload(
+        name="6x1km",
+        steps=[
+            {"repeat": 6, "steps": [
+                {"name": "1km", "duration_meters": 1000, "intensity_low": 235, "intensity_high": 245},
+                {"name": "Recovery", "duration_minutes": 2, "intensity_low": 330, "intensity_high": 480},
+            ]},
+        ],
+    )
+    header, rep, recovery = payload["exercises"][0], payload["exercises"][1], payload["exercises"][2]
+    # group header's targetValue is one iteration's seconds (distance sub-step
+    # contributes 0): 0 + 120 = 120. The x6 repeat is a separate `sets` field,
+    # not baked into this value.
+    assert header["targetValue"] == 120
+    assert header["sets"] == 6
+    assert rep["targetType"] == 5
+    assert rep["targetValue"] == 100000
+    assert recovery["targetType"] == 2
+    assert recovery["targetValue"] == 120
+
+
+def test_step_missing_all_duration_keys_raises():
+    with pytest.raises(ValueError, match="duration_minutes, duration_meters, or duration_open"):
+        _build_workout_program_payload(
+            name="broken",
+            steps=[{"name": "???", "intensity_low": 100, "intensity_high": 150}],
+        )
+
+
+def test_step_with_multiple_duration_keys_raises():
+    """duration_minutes, duration_meters, and duration_open are mutually
+    exclusive; a step carrying more than one would be ambiguous to build and
+    to summarize, so reject it outright."""
+    with pytest.raises(ValueError, match="exactly one of"):
+        _build_workout_program_payload(
+            name="broken",
+            steps=[{
+                "name": "???",
+                "duration_minutes": 4,
+                "duration_meters": 1000,
+                "intensity_low": 235,
+                "intensity_high": 245,
+            }],
+        )
+    with pytest.raises(ValueError, match="exactly one of"):
+        _build_workout_program_payload(
+            name="broken",
+            steps=[{"name": "???", "duration_minutes": 4, "duration_open": True}],
+        )
+
+
+def test_open_step_target_type_and_value():
+    """duration_open emits targetType=1, targetValue=0, seconds=0 -- no clock
+    or distance cap, the step only ends when the athlete presses lap.
+
+    Confirmed by building a manual/open step in the Coros app itself (a
+    workout literally named "flexible_lap_press") and reading back the raw
+    exercises via /training/program/query: the app emits exactly this
+    targetType/targetValue pair for a step with no duration cap. A prior
+    comment on this function claimed targetType=1 "silently produces a
+    zero-duration, zero-distance step with no error" and treated it as
+    unusable -- that zero *is* the open-step encoding, not a bug. Field-
+    tested on real hardware: the watch shows no countdown and waits for a
+    lap press before advancing."""
+    payload = _build_workout_program_payload(
+        name="open step test",
+        steps=[
+            {"name": "Warm-up", "duration_open": True, "intensity_low": 120, "intensity_high": 150},
+        ],
+    )
+    ex = payload["exercises"][0]
+    assert ex["targetType"] == 1
+    assert ex["targetValue"] == 0
+    assert ex["intensityMultiplier"] == 0
+    assert ex["intensityValue"] == 120  # unscaled, same as a time-based step
+    assert ex["intensityValueExtend"] == 150
+
+
+def test_open_step_does_not_contribute_to_estimated_time():
+    """An open step's real elapsed time is unknowable ahead of time (that's
+    the point), so it contributes 0 rather than a guess -- same convention
+    as a distance step."""
+    payload = _build_workout_program_payload(
+        name="mixed",
+        steps=[
+            {"name": "Warm-up", "duration_open": True},
+            {"name": "Tempo", "duration_minutes": 10, "intensity_low": 240, "intensity_high": 250},
+        ],
+    )
+    assert payload["estimatedTime"] == 10 * 60
+
+
+def test_open_step_in_repeat_group():
+    """duration_open works inside a repeat group's sub-steps too -- e.g. a
+    hill-repeat's recovery that's genuinely unspecified ("jog back down the
+    hill"), not just a policy choice to make it flexible."""
+    payload = _build_workout_program_payload(
+        name="hill repeats",
+        steps=[
+            {"repeat": 16, "steps": [
+                {"name": "Uphill", "duration_minutes": 25 / 60},
+                {"name": "Jog down", "duration_open": True},
+            ]},
+        ],
+    )
+    header, work, recovery = payload["exercises"][0], payload["exercises"][1], payload["exercises"][2]
+    # group header's targetValue is one iteration's seconds (open sub-step
+    # contributes 0): 25 + 0 = 25.
+    assert header["targetValue"] == 25
+    assert header["sets"] == 16
+    assert work["targetType"] == 2
+    assert recovery["targetType"] == 1
+    assert recovery["targetValue"] == 0
 
 
 def test_cycling_sport_and_intensity_types_propagate():
@@ -403,6 +495,342 @@ def test_cycling_sport_and_intensity_types_propagate():
         assert ex["sportType"] == 200
     # Non-group steps use the caller-provided intensity_type
     assert payload["exercises"][0]["intensityType"] == 2
+
+
+# ---------------------------------------------------------------------------
+# Running builder (sport_type=100 → workout namespace sportType=1)
+# ---------------------------------------------------------------------------
+
+def test_running_maps_activity_id_to_workout_id():
+    """sport_type=100 (activity namespace) is rewritten to sportType=1
+    (workout namespace) at program and exercise level."""
+    payload = _build_workout_program_payload(
+        name="Easy Z2 run",
+        steps=[
+            {"name": "Warm-up", "duration_minutes": 5,  "intensity_low": 100, "intensity_high": 130},
+            {"name": "Z2",      "duration_minutes": 20, "intensity_low": 125, "intensity_high": 145},
+            {"name": "Cool",    "duration_minutes": 5,  "intensity_low": 100, "intensity_high": 130},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    assert payload["sportType"] == 1
+    for ex in payload["exercises"]:
+        assert ex["sportType"] == 1
+
+
+def test_running_emits_structured_workout_metadata():
+    """Running programs carry the structured-workout metadata block
+    (referExercise, subType=65535, type=0, etc.)."""
+    payload = _build_workout_program_payload(
+        name="r",
+        steps=[
+            {"name": "W", "duration_minutes": 5,  "intensity_low": 100, "intensity_high": 130},
+            {"name": "M", "duration_minutes": 20, "intensity_low": 125, "intensity_high": 145},
+            {"name": "C", "duration_minutes": 5,  "intensity_low": 100, "intensity_high": 130},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    assert payload["subType"] == 65535
+    assert payload["type"] == 0
+    assert payload["referExercise"] == {
+        "gradeSystem": 0, "hrType": 3, "intensityType": 0, "valueType": 1,
+    }
+    assert payload["totalSets"] == 3
+    assert payload["duration"] == (5 + 20 + 5) * 60
+
+
+def test_running_exercise_type_varies_by_position():
+    """Per-step exerciseType: 1=warmup, 2=main, 3=cooldown."""
+    payload = _build_workout_program_payload(
+        name="r",
+        steps=[
+            {"name": "W", "duration_minutes": 5,  "intensity_low": 100, "intensity_high": 130},
+            {"name": "M", "duration_minutes": 20, "intensity_low": 125, "intensity_high": 145},
+            {"name": "C", "duration_minutes": 5,  "intensity_low": 100, "intensity_high": 130},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    assert [ex["exerciseType"] for ex in payload["exercises"]] == [1, 2, 3]
+
+
+def test_running_single_step_uses_main_exercise_type():
+    """A single-step run is the main block (exerciseType=2), not warmup/cooldown."""
+    payload = _build_workout_program_payload(
+        name="open",
+        steps=[{"name": "Run", "duration_minutes": 30, "intensity_low": 0, "intensity_high": 0}],
+        sport_type=100,
+        intensity_type=5,
+    )
+    assert payload["exercises"][0]["exerciseType"] == 2
+    assert payload["exercises"][0]["hrType"] == 0
+    assert payload["referExercise"]["hrType"] == 0
+
+
+def test_running_hr_intensity_marks_hr_type():
+    """intensity_type=2 (HR) sets hrType=2 per step and referExercise.hrType=3."""
+    payload = _build_workout_program_payload(
+        name="r",
+        steps=[
+            {"name": "W", "duration_minutes": 5,  "intensity_low": 100, "intensity_high": 130},
+            {"name": "M", "duration_minutes": 20, "intensity_low": 125, "intensity_high": 145},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    assert all(ex["hrType"] == 2 for ex in payload["exercises"])
+    assert payload["referExercise"]["hrType"] == 3
+
+
+def test_running_does_not_affect_cycling():
+    """Cycling programs keep their existing sparse shape (no metadata block)."""
+    payload = _build_workout_program_payload(
+        name="c",
+        steps=[{"name": "ride", "duration_minutes": 30, "intensity_low": 200, "intensity_high": 250}],
+        sport_type=2,
+    )
+    assert payload["sportType"] == 2
+    assert "subType" not in payload
+    assert "referExercise" not in payload
+    assert "type" not in payload
+
+
+def test_cycling_payload_top_level_keys_are_exact():
+    """Cycling payload must not leak the running metadata block — its
+    top-level key set is exactly the sparse five."""
+    payload = _build_workout_program_payload(
+        name="c",
+        steps=[
+            {"name": "warm", "duration_minutes": 10, "intensity_low": 150, "intensity_high": 175},
+            {"repeat": 3, "steps": [
+                {"name": "on",  "duration_minutes": 5, "intensity_low": 265, "intensity_high": 285},
+                {"name": "off", "duration_minutes": 3, "intensity_low": 150, "intensity_high": 175},
+            ]},
+            {"name": "cool", "duration_minutes": 10, "intensity_low": 100, "intensity_high": 165},
+        ],
+        sport_type=2,
+    )
+    assert set(payload.keys()) == {"name", "sportType", "estimatedTime", "access", "exercises"}
+
+
+def test_running_repeat_group_substeps_are_main():
+    """[warmup, repeat(3× [hard, easy]), cooldown]: only the top-level
+    warmup is exerciseType=1 and only the cooldown is 3; every sub-step
+    inside the group stays main (2), and the group container stays 0."""
+    payload = _build_workout_program_payload(
+        name="intervals",
+        steps=[
+            {"name": "Warm", "duration_minutes": 10, "intensity_low": 120, "intensity_high": 140},
+            {"repeat": 3, "steps": [
+                {"name": "Hard", "duration_minutes": 3, "intensity_low": 165, "intensity_high": 175},
+                {"name": "Easy", "duration_minutes": 2, "intensity_low": 120, "intensity_high": 140},
+            ]},
+            {"name": "Cool", "duration_minutes": 10, "intensity_low": 120, "intensity_high": 140},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    exercises = payload["exercises"]
+    # Order: warmup, group, hard, easy, cooldown
+    assert [ex["exerciseType"] for ex in exercises] == [1, 0, 2, 2, 3]
+    # Every repeat sub-step (groupId != "0", not the container) is main.
+    sub_steps = [e for e in exercises if not e.get("isGroup") and e.get("groupId") != "0"]
+    assert len(sub_steps) == 2
+    assert all(ex["exerciseType"] == 2 for ex in sub_steps)
+    # Exactly one warmup and one cooldown across the whole workout.
+    assert sum(ex["exerciseType"] == 1 for ex in exercises) == 1
+    assert sum(ex["exerciseType"] == 3 for ex in exercises) == 1
+    # Sub-steps still carry the per-step run metadata so they render.
+    assert all(ex["hrType"] == 2 for ex in sub_steps)
+
+
+def test_running_repeat_group_counts_real_steps_only():
+    """exerciseNum / totalSets count real steps, not the structural group
+    container. [warmup, repeat(3× [hard, easy]), cooldown] has 4 real steps
+    (warmup, hard, easy, cooldown) even though `exercises` holds 5 rows."""
+    payload = _build_workout_program_payload(
+        name="intervals",
+        steps=[
+            {"name": "Warm", "duration_minutes": 10, "intensity_low": 120, "intensity_high": 140},
+            {"repeat": 3, "steps": [
+                {"name": "Hard", "duration_minutes": 3, "intensity_low": 165, "intensity_high": 175},
+                {"name": "Easy", "duration_minutes": 2, "intensity_low": 120, "intensity_high": 140},
+            ]},
+            {"name": "Cool", "duration_minutes": 10, "intensity_low": 120, "intensity_high": 140},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    # 5 rows in `exercises` (one is the isGroup container)...
+    assert len(payload["exercises"]) == 5
+    assert sum(e.get("isGroup", False) for e in payload["exercises"]) == 1
+    # ...but only 4 are real exercise steps.
+    assert payload["exerciseNum"] == 4
+    assert payload["totalSets"] == 4
+
+
+def test_running_repeat_group_only_all_main():
+    """[repeat(3× [hard, easy])] with no surrounding plain steps: both
+    sub-steps are main (2) — never warmup/cooldown."""
+    payload = _build_workout_program_payload(
+        name="just intervals",
+        steps=[
+            {"repeat": 3, "steps": [
+                {"name": "Hard", "duration_minutes": 3, "intensity_low": 165, "intensity_high": 175},
+                {"name": "Easy", "duration_minutes": 2, "intensity_low": 120, "intensity_high": 140},
+            ]},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    exercises = payload["exercises"]
+    assert [ex["exerciseType"] for ex in exercises] == [0, 2, 2]
+    assert not any(ex["exerciseType"] in (1, 3) for ex in exercises)
+
+
+@pytest.mark.parametrize("sport_type", [102, 103])
+def test_trail_and_track_map_to_running(sport_type):
+    """Trail (102) and Track (103) Running are run flavors too — they map to
+    wire sportType=1 and get the same metadata block, not a bare payload."""
+    payload = _build_workout_program_payload(
+        name="r",
+        steps=[
+            {"name": "W", "duration_minutes": 5,  "intensity_low": 100, "intensity_high": 130},
+            {"name": "M", "duration_minutes": 20, "intensity_low": 125, "intensity_high": 145},
+            {"name": "C", "duration_minutes": 5,  "intensity_low": 100, "intensity_high": 130},
+        ],
+        sport_type=sport_type,
+        intensity_type=2,
+    )
+    assert payload["sportType"] == 1
+    assert all(ex["sportType"] == 1 for ex in payload["exercises"])
+    assert payload["subType"] == 65535
+    assert "referExercise" in payload
+
+
+def test_wire_sport_type_id_is_rejected():
+    """Passing the workout-API wire ID (1) directly is rejected — callers
+    must use the activity-namespace ID (100) so the metadata block applies."""
+    with pytest.raises(ValueError, match="sport_type=100"):
+        _build_workout_program_payload(
+            name="r",
+            steps=[{"name": "Run", "duration_minutes": 30, "intensity_low": 0, "intensity_high": 0}],
+            sport_type=1,
+        )
+
+
+def test_running_two_step_exercise_types():
+    """Two plain steps: first=warmup(1), second=cooldown(3), no main block.
+    Pins current behaviour — the COROS app accepts this shape on-device."""
+    payload = _build_workout_program_payload(
+        name="r",
+        steps=[
+            {"name": "W", "duration_minutes": 5, "intensity_low": 100, "intensity_high": 130},
+            {"name": "C", "duration_minutes": 5, "intensity_low": 100, "intensity_high": 130},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    assert [ex["exerciseType"] for ex in payload["exercises"]] == [1, 3]
+
+
+@pytest.mark.parametrize("intensity_type", [3, 4, 5, 7])  # pace, speed, none, cadence
+def test_running_non_hr_intensity_emits_hr_type_zero(intensity_type):
+    """For any non-HR intensity (intensity_type != 2), hrType is 0 on every
+    step and referExercise.hrType is 0 — only HR targeting flips them on."""
+    payload = _build_workout_program_payload(
+        name="r",
+        steps=[{"name": "Run", "duration_minutes": 30, "intensity_low": 0, "intensity_high": 0}],
+        sport_type=100,
+        intensity_type=intensity_type,
+    )
+    assert all(ex["hrType"] == 0 for ex in payload["exercises"])
+    assert payload["referExercise"]["hrType"] == 0
+
+
+def test_road_bike_not_treated_as_running():
+    """sport_type=200 (Road Bike) takes the cycling path: wire sportType is
+    passed through unchanged and the running metadata block is absent."""
+    payload = _build_workout_program_payload(
+        name="c",
+        steps=[{"name": "ride", "duration_minutes": 60, "intensity_low": 200, "intensity_high": 250}],
+        sport_type=200,
+    )
+    assert payload["sportType"] == 200
+    assert "subType" not in payload
+    assert "referExercise" not in payload
+
+
+def test_unknown_sport_type_is_rejected():
+    """An unknown sport_type is rejected rather than emitted as a bogus wire
+    ID that would fail silently on the COROS side."""
+    with pytest.raises(ValueError, match="Unknown sport_type=50"):
+        _build_workout_program_payload(
+            name="x",
+            steps=[{"name": "step", "duration_minutes": 30, "intensity_low": 0, "intensity_high": 0}],
+            sport_type=50,
+        )
+
+
+def test_running_warmup_before_group_is_tagged():
+    """[warmup, repeat(...)] (no trailing plain cooldown): the leading plain
+    step is still warmup (1), not main — the marker keys off the first
+    top-level item, not a count of plain steps. Sub-steps stay main (2)."""
+    payload = _build_workout_program_payload(
+        name="warm then intervals",
+        steps=[
+            {"name": "Warm", "duration_minutes": 10, "intensity_low": 120, "intensity_high": 140},
+            {"repeat": 3, "steps": [
+                {"name": "Hard", "duration_minutes": 3, "intensity_low": 165, "intensity_high": 175},
+                {"name": "Easy", "duration_minutes": 2, "intensity_low": 120, "intensity_high": 140},
+            ]},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    # Order: warmup, group, hard, easy
+    assert [ex["exerciseType"] for ex in payload["exercises"]] == [1, 0, 2, 2]
+
+
+def test_running_group_then_cooldown_is_tagged():
+    """[repeat(...), cooldown] (no leading plain warmup): the trailing plain
+    step is still cooldown (3), not main. Sub-steps stay main (2)."""
+    payload = _build_workout_program_payload(
+        name="intervals then cool",
+        steps=[
+            {"repeat": 3, "steps": [
+                {"name": "Hard", "duration_minutes": 3, "intensity_low": 165, "intensity_high": 175},
+                {"name": "Easy", "duration_minutes": 2, "intensity_low": 120, "intensity_high": 140},
+            ]},
+            {"name": "Cool", "duration_minutes": 10, "intensity_low": 120, "intensity_high": 140},
+        ],
+        sport_type=100,
+        intensity_type=2,
+    )
+    # Order: group, hard, easy, cooldown
+    assert [ex["exerciseType"] for ex in payload["exercises"]] == [0, 2, 2, 3]
+
+
+def test_intensity_type_defaults_per_sport():
+    """When intensity_type is omitted it resolves per sport: runs default to
+    HR (2), cycling to power (6). An explicit value still wins."""
+    run = _build_workout_program_payload(
+        name="r",
+        steps=[{"name": "Run", "duration_minutes": 30, "intensity_low": 120, "intensity_high": 150}],
+        sport_type=100,
+    )
+    assert run["exercises"][0]["intensityType"] == 2
+    assert run["exercises"][0]["hrType"] == 2
+    assert run["referExercise"]["hrType"] == 3
+
+    ride = _build_workout_program_payload(
+        name="c",
+        steps=[{"name": "Ride", "duration_minutes": 30, "intensity_low": 200, "intensity_high": 240}],
+        sport_type=2,
+    )
+    assert ride["exercises"][0]["intensityType"] == 6
 
 
 # ---------------------------------------------------------------------------
@@ -542,101 +970,159 @@ async def test_catalog_cache_concurrent_calls_coalesce(clean_catalog_cache, monk
         assert set(r.keys()) == {"T1010", "T1052", "T1120"}
 
 
-def test_tempo_20_has_warmup_tempo_cooldown():
-    from workout_sync.workouts import WORKOUTS
+# ---------------------------------------------------------------------------
+# duration_meters validation (follow-up to PR #52 review)
+# ---------------------------------------------------------------------------
 
-    steps = WORKOUTS["tempo_20"]["steps"]
-    payload = build_run_workout_payload(
-        WORKOUTS["tempo_20"]["name"],
-        legacy_run_steps_to_run_steps(steps),
+
+def _distance_step(value):
+    return {"name": "step", "duration_meters": value, "intensity_low": 235, "intensity_high": 245}
+
+
+def test_negative_duration_meters_raises():
+    with pytest.raises(ValueError, match="must be positive"):
+        _build_workout_program_payload(name="bad", steps=[_distance_step(-100)])
+
+
+def test_zero_duration_meters_raises():
+    with pytest.raises(ValueError, match="must be positive"):
+        _build_workout_program_payload(name="bad", steps=[_distance_step(0)])
+
+
+def test_non_numeric_duration_meters_raises():
+    """A non-numeric string must not hit Python string-repeat ("1000" * 100)."""
+    with pytest.raises(ValueError, match="must be a number"):
+        _build_workout_program_payload(name="bad", steps=[_distance_step("fast")])
+
+
+def test_numeric_string_duration_meters_coerced():
+    """float() coercion means "1000" builds the same step as 1000."""
+    payload = _build_workout_program_payload(name="ok", steps=[_distance_step("1000")])
+    assert payload["exercises"][0]["targetValue"] == 100000
+
+
+# ---------------------------------------------------------------------------
+# _parse_workout round-trip for distance steps (follow-up to PR #52 review)
+# ---------------------------------------------------------------------------
+
+
+def test_parse_workout_distance_step_round_trips():
+    """A distance step read back from the API must not be misreported as a
+    ~28h duration_seconds with x1000 intensity values."""
+    from coros_mcp.coros_api import _parse_workout
+
+    item = {
+        "id": 42,
+        "name": "1km rep",
+        "sportType": 1,
+        "estimatedTime": 0,
+        "exerciseNum": 1,
+        "exercises": [{
+            "name": "1km @ 4:00/km",
+            "targetType": 5,
+            "targetValue": 100000,
+            "intensityValue": 235000,
+            "intensityValueExtend": 245000,
+            "intensityMultiplier": 1000,
+            "sets": 1,
+        }],
+    }
+    ex = _parse_workout(item)["exercises"][0]
+    assert "duration_seconds" not in ex
+    assert ex["distance_meters"] == 1000
+    assert ex["intensity_low"] == 235
+    assert ex["intensity_high"] == 245
+
+
+def test_parse_workout_time_step_unchanged():
+    from coros_mcp.coros_api import _parse_workout
+
+    item = {
+        "id": 43,
+        "name": "tempo",
+        "sportType": 1,
+        "exercises": [{
+            "name": "Tempo",
+            "targetType": 2,
+            "targetValue": 1200,
+            "intensityValue": 240,
+            "intensityValueExtend": 250,
+            "intensityMultiplier": 0,
+            "sets": 1,
+        }],
+    }
+    ex = _parse_workout(item)["exercises"][0]
+    assert "distance_meters" not in ex
+    assert ex["duration_seconds"] == 1200
+    assert ex["intensity_low"] == 240
+    assert ex["intensity_high"] == 250
+
+
+def test_parse_workout_open_step_round_trips():
+    """An open step read back from the API must come back as duration_open,
+    not as a 0-second timed step.
+
+    Without this, list_workout_templates renders every open step as
+    duration_seconds=0 -- indistinguishable from a genuinely empty step -- and
+    an agent reading a template and writing it back silently drops the open
+    semantics (or "repairs" the apparent 0-minute step)."""
+    from coros_mcp.coros_api import _parse_workout
+
+    item = {
+        "id": 44,
+        "name": "flexible_lap_press",
+        "sportType": 1,
+        "exercises": [{
+            "name": "Warm-up",
+            "targetType": 1,
+            "targetValue": 0,
+            "intensityValue": 120,
+            "intensityValueExtend": 150,
+            "intensityMultiplier": 0,
+            "sets": 1,
+        }],
+    }
+    ex = _parse_workout(item)["exercises"][0]
+    assert ex["duration_open"] is True
+    assert "duration_seconds" not in ex
+    assert "distance_meters" not in ex
+    assert ex["intensity_low"] == 120
+    assert ex["intensity_high"] == 150
+
+
+def test_open_step_write_read_round_trip():
+    """What _build_workout_program_payload writes for an open step is what
+    _parse_workout reads back as an open step."""
+    from coros_mcp.coros_api import _parse_workout
+
+    payload = _build_workout_program_payload(
+        name="round trip",
+        steps=[{"name": "Warm-up", "duration_open": True, "intensity_low": 120, "intensity_high": 150}],
     )
-    names = [e["name"] for e in payload["exercises"] if not e.get("isGroup")]
-    assert names[0] == "Easy warmup"
-    assert "Tempo" in names[1]
-    assert names[-1] == "Easy cooldown"
-    tempo = [e for e in payload["exercises"] if e.get("name", "").startswith("Tempo")][0]
-    assert tempo["targetType"] == 2
-    assert tempo["targetValue"] == 20 * 60
+    ex = _parse_workout({"id": 1, "name": "round trip", "sportType": 1, **payload})["exercises"][0]
+    assert ex["duration_open"] is True
+    assert "duration_seconds" not in ex
 
 
-def test_shuttle_pace_400m_steps_have_pace_alerts():
-    from workout_sync.workouts import WORKOUTS
-
-    steps = WORKOUTS["shuttle_pace"]["steps"]
-    payload = build_run_workout_payload(WORKOUTS["shuttle_pace"]["name"], steps)
-    reps = [
-        e for e in payload["exercises"]
-        if e.get("name", "").startswith("400m @") and not e.get("isGroup")
-    ]
-    assert len(reps) == 2
-    assert reps[0]["intensityType"] == 3
-    assert reps[0]["intensityValue"] == 290
-    assert reps[0]["intensityValueExtend"] == 295
-    assert reps[0]["intensityDisplayUnit"] == 2
-    assert reps[1]["intensityValue"] == 280
-    assert reps[1]["intensityValueExtend"] == 285
-    rec = [
-        e for e in payload["exercises"]
-        if e.get("name", "").startswith("Walk recovery") and not e.get("isGroup")
-    ][0]
-    assert rec["exerciseType"] == 4
-    assert rec["targetValue"] == 90
-    stride = [
-        e for e in payload["exercises"]
-        if e.get("name") == "Stride" and not e.get("isGroup")
-    ][0]
-    assert stride["targetValue"] == 20
-
-
-def test_speed_200_400_has_pace_alerts():
-    from workout_sync.workouts import WORKOUTS
-
-    steps = WORKOUTS["speed_200_400"]["steps"]
-    payload = build_run_workout_payload(WORKOUTS["speed_200_400"]["name"], steps)
-    two = [
-        e for e in payload["exercises"]
-        if e.get("name", "").startswith("200m @") and not e.get("isGroup")
-    ]
-    four = [
-        e for e in payload["exercises"]
-        if e.get("name", "").startswith("400m @") and not e.get("isGroup")
-    ]
-    assert len(two) == 1
-    assert len(four) == 1
-    assert two[0]["intensityType"] == 3
-    assert two[0]["intensityValue"] == 270
-    assert two[0]["intensityValueExtend"] == 280
-    assert four[0]["intensityValue"] == 285
-    assert four[0]["intensityValueExtend"] == 295
-
-
-def test_speed_pyramid_has_600_and_pace_alerts():
-    from workout_sync.workouts import WORKOUTS
-
-    steps = WORKOUTS["speed_pyramid"]["steps"]
-    payload = build_run_workout_payload(WORKOUTS["speed_pyramid"]["name"], steps)
-    six = [
-        e for e in payload["exercises"]
-        if e.get("name", "").startswith("600m @") and not e.get("isGroup")
-    ]
-    assert len(six) == 1
-    assert six[0]["intensityValue"] == 295
-    assert six[0]["intensityValueExtend"] == 305
-
-
-def test_cooper_1_5_mile_has_strides_and_distance():
-    from workout_sync.workouts import WORKOUTS
-
-    steps = WORKOUTS["cooper_1_5_mile"]["steps"]
-    payload = build_run_workout_payload(
-        WORKOUTS["cooper_1_5_mile"]["name"],
-        legacy_run_steps_to_run_steps(steps),
+def test_falsy_duration_open_is_ignored_not_an_error():
+    """`duration_open: False` on a timed step means "not open" -- a natural
+    thing for an LLM client to emit for a boolean field. Treating its mere
+    presence as a second duration key would reject a well-formed step."""
+    payload = _build_workout_program_payload(
+        name="not open",
+        steps=[{"name": "Tempo", "duration_minutes": 5, "duration_open": False,
+                "intensity_low": 240, "intensity_high": 250}],
     )
-    groups = [e for e in payload["exercises"] if e.get("isGroup")]
-    assert groups[0]["sets"] == 3
-    main = [
-        e for e in payload["exercises"]
-        if e.get("name", "").startswith("Cooper 1.5 mile")
-    ][0]
-    assert main["targetType"] == 5
-    assert main["targetValue"] == 241_400  # 2414 m in COROS centimeters
+    ex = payload["exercises"][0]
+    assert ex["targetType"] == 2
+    assert ex["targetValue"] == 300
+
+
+def test_only_falsy_duration_open_raises_with_a_pointed_message():
+    """A step whose ONLY duration key is a falsy duration_open is still
+    invalid -- but the error must not read as if the key were absent."""
+    with pytest.raises(ValueError, match="must be True to mark an open step"):
+        _build_workout_program_payload(
+            name="broken",
+            steps=[{"name": "???", "duration_open": False}],
+        )
